@@ -1,20 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shopit/src/app.dart';
+
 void main() {
-  runApp(const ShopitApp());
-}
-
-class ShopitApp extends StatelessWidget {
-  const ShopitApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('ShopIt'),
-        ),
-      ),
-    );
-  }
+  runApp(const App());
 }
