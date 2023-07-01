@@ -7,12 +7,15 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 15,
-      height: 15,
-      child: CircularProgressIndicator(
-        color: dark ? Theme.of(context).colorScheme.onBackground : Colors.white,
-        strokeWidth: 2,
+    return Center(
+      child: SizedBox(
+        width: 15,
+        height: 15,
+        child: CircularProgressIndicator(
+          color:
+              dark ? Theme.of(context).colorScheme.onBackground : Colors.white,
+          strokeWidth: 2,
+        ),
       ),
     );
   }
