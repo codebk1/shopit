@@ -17,6 +17,6 @@ extension AsyncValueDialog on AsyncValue {
   }
 
   String _errorMessage(Object? error) {
-    return error is FirebaseAuthException ? error.message! : error.toString();
+    return error is FirebaseException ? error.message! : error.toString();
   }
 }
