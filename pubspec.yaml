@@ -20,6 +20,11 @@ dependencies:
   json_annotation: ^4.8.1
   firebase_auth: ^4.6.3
   transparent_image: ^2.0.1
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +36,7 @@ dev_dependencies:
   riverpod_generator: ^2.2.3
   freezed: ^2.3.5
   json_serializable: ^6.7.0
+  isar_generator: ^3.1.0+1
 
 flutter:
   uses-material-design: true  
