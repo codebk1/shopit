@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopit/src/common/widgets/main_app_bar.dart';
 
 import 'package:shopit/src/utils/async_value_dialog.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
@@ -15,11 +16,12 @@ class LoginPage extends ConsumerWidget {
       authControllerProvider,
       (_, state) => state.showAlertDialogOnError(context),
     );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
+    return const Scaffold(
+      appBar: MainAppBar(
+        title: 'Login',
+        showActions: false,
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.only(
           left: 14,
           right: 14,
