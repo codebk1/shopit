@@ -5,5 +5,5 @@ part 'isar_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 Isar isar(IsarRef ref) {
-  throw Exception('Provider was not initialised.');
+  throw UnimplementedError();
 }
