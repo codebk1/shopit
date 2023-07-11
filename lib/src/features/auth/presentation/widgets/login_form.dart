@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/constants/spacing.dart';
@@ -72,22 +71,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                     : const Text('Login'),
               );
             },
-          ),
-          gapH24,
-          Row(
-            children: [
-              const Text('Not registered yet?'),
-              gapW8,
-              GestureDetector(
-                onTap: () => context.go('/signup'),
-                child: Text(
-                  'Create an Account',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                ),
-              ),
-            ],
           ),
         ],
       ),

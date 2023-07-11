@@ -38,11 +38,11 @@ class Swipe extends StatelessWidget {
     ];
 
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: backgroundColor,
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 5),
       padding: const EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: rowAlignment,

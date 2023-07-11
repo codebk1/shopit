@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
 import 'package:shopit/src/features/auth/presentation/widgets/password_field.dart';
-import 'package:shopit/src/features/account/domain/entities/account.dart';
 
 class SignupForm extends ConsumerStatefulWidget {
   const SignupForm({super.key});
@@ -35,15 +33,11 @@ class _SignupFormState extends ConsumerState<SignupForm> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      final account = Account(
-        firstName: _firstNameController.text,
-        lastName: _lastNameController.text,
-      );
-
       ref.read(authControllerProvider.notifier).signup(
+            firstName: _firstNameController.text,
+            lastName: _lastNameController.text,
             email: _emailController.text,
             password: _confirmPasswordController.text,
-            account: account,
           );
     }
   }
@@ -147,22 +141,6 @@ class _SignupFormState extends ConsumerState<SignupForm> {
                     : const Text('Sign Up'),
               );
             },
-          ),
-          gapH24,
-          Row(
-            children: [
-              const Text('Already have an account?'),
-              gapW8,
-              GestureDetector(
-                onTap: () => context.go('/account/login'),
-                child: Text(
-                  'Log in',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                ),
-              ),
-            ],
           ),
         ],
       ),

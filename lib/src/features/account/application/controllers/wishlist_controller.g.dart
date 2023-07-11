@@ -6,8 +6,24 @@ part of 'wishlist_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$wishlistItemsCountHash() =>
+    r'3f3d5be2a76423ff65ae1cfdb87f265aa7ccca27';
+
+/// See also [wishlistItemsCount].
+@ProviderFor(wishlistItemsCount)
+final wishlistItemsCountProvider = AutoDisposeProvider<int>.internal(
+  wishlistItemsCount,
+  name: r'wishlistItemsCountProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$wishlistItemsCountHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WishlistItemsCountRef = AutoDisposeProviderRef<int>;
 String _$wishlistControllerHash() =>
-    r'fa0e891367be8c6ac53ec1ee7a272510babf4200';
+    r'5246e39e4bdcec1167ba08468fc23062fb30acaa';
 
 /// See also [WishlistController].
 @ProviderFor(WishlistController)

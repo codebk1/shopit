@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
+import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
 import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
-import 'package:shopit/src/features/account/application/controllers/edit_account_controller.dart';
+import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
 
 class EditAccountForm extends ConsumerStatefulWidget {
   const EditAccountForm({super.key});
@@ -27,12 +27,12 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
   void initState() {
     super.initState();
 
-    final accountController = ref.read(accountControllerProvider);
-    final authController = ref.read(authControllerProvider);
+    final authRepository = ref.read(authRepositoryProvider);
+    final account = ref.read(accountControllerProvider).value!;
 
-    _firstNameController.text = accountController.value!.firstName;
-    _lastNameController.text = accountController.value!.lastName;
-    _emailController.text = authController.value!.email ?? '';
+    _firstNameController.text = account.firstName;
+    _lastNameController.text = account.lastName;
+    _emailController.text = authRepository.currentUser!.email!;
   }
 
   @override
@@ -52,8 +52,7 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
             lastName: _lastNameController.text,
           );
 
-      ref.read(editAccountControllerProvider.notifier).updateAccount(
-            ref.read(authControllerProvider).value!,
+      ref.read(accountControllerProvider.notifier).updateAccount(
             _emailController.text,
             _confirmPasswordController.text,
             newAccount,
@@ -63,6 +62,8 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
 
   @override
   Widget build(BuildContext context) {
+    final accountController = ref.watch(accountControllerProvider);
+
     return Form(
       key: _formKey,
       child: Column(
@@ -159,15 +160,11 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
             },
           ),
           gapH14,
-          Consumer(
-            builder: (context, ref, child) {
-              final state = ref.watch(editAccountControllerProvider);
-
-              return ElevatedButton(
-                onPressed: _submit,
-                child: state.isLoading ? const Loader() : const Text('Save'),
-              );
-            },
+          ElevatedButton(
+            onPressed: _submit,
+            child: accountController.isLoading
+                ? const Loader()
+                : const Text('Save'),
           ),
         ],
       ),

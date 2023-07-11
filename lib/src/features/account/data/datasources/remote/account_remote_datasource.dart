@@ -15,6 +15,12 @@ class AccountRemoteDataSource {
             toFirestore: (Account account, _) => account.toJson(),
           );
 
+  Future<Account?> getAccount(String id) async {
+    final account = await _accountsRef().doc(id).get();
+
+    return account.data();
+  }
+
   Stream<Account?> watchAccount(String id) {
     return _accountsRef()
         .doc(id)

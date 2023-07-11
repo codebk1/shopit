@@ -11,11 +11,40 @@ part 'account_controller.g.dart';
 class AccountController extends _$AccountController {
   @override
   FutureOr<Account?> build() async {
-    return ref.watch(accountStreamProvider.future);
+    final user = ref.watch(authStateChangesProvider).value;
+
+    if (user != null) {
+      return ref.read(accountRepositoryProvider).getAccount(user.uid);
+    }
+
+    return null;
   }
 
-  Future<void> logout() async {
-    await ref.read(authRepositoryProvider).signOut();
-    ref.read(routerProvider).go('/');
+  Future<Account?> updateAccount(
+    String newEmail,
+    String newPassword,
+    Account account,
+  ) async {
+    final authRepository = ref.read(authRepositoryProvider);
+    final accountRepository = ref.read(accountRepositoryProvider);
+
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await accountRepository.updateAccount(account);
+
+      if (authRepository.currentUser!.email != newEmail) {
+        await authRepository.updateEmail(newEmail);
+      }
+
+      if (newPassword.isNotEmpty) {
+        await authRepository.updatePassword(newPassword);
+      }
+
+      return account;
+    });
+
+    if (!state.hasError) ref.read(routerProvider).pop();
+
+    return null;
   }
 }

@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 
-import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
 import 'package:shopit/src/features/products/domain/entities/product.dart';
 import 'package:shopit/src/features/products/data/repositories/products_repository.dart';
@@ -13,13 +13,12 @@ class WishlistController extends _$WishlistController {
   FutureOr<List<Product>> build() async {
     print('RRRRRJRJRRJRJRJ');
 
-    final user = ref.watch(authStateChangesProvider).value;
+    final account = ref.watch(accountControllerProvider).value;
 
-    if (user != null) {
-      final account = await ref.read(accountStreamProvider.future);
+    if (account != null) {
       return ref
           .read(productsRepositoryProvider)
-          .getProductsByIds(account?.wishlist ?? []);
+          .getProductsByIds(account.wishlist);
     }
 
     return [];
@@ -37,21 +36,26 @@ class WishlistController extends _$WishlistController {
       newWishlist = [...state.value!, product];
     }
 
-    final accountRepository = ref.read(accountRepositoryProvider);
-    final account = ref.read(accountStreamProvider).value;
+    final account = ref.read(accountControllerProvider).value;
 
     state = await AsyncValue.guard(() async {
       if (account != null) {
-        await accountRepository.updateAccount(
-          account.copyWith(wishlist: newWishlist.map((e) => e.id).toList()),
-        );
+        await ref.read(accountRepositoryProvider).updateAccount(
+              account.copyWith(wishlist: newWishlist.map((e) => e.id).toList()),
+            );
       }
 
       return newWishlist;
     });
 
-    if (state.hasError) {
-      state = oldState;
-    }
+    if (state.hasError) state = oldState;
   }
+}
+
+@riverpod
+int wishlistItemsCount(WishlistItemsCountRef ref) {
+  return ref.watch(wishlistControllerProvider).maybeWhen(
+        data: (wishlist) => wishlist.length,
+        orElse: () => 0,
+      );
 }

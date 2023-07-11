@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/router/router.dart';
@@ -11,9 +10,7 @@ part 'auth_controller.g.dart';
 @riverpod
 class AuthController extends _$AuthController {
   @override
-  FutureOr<User?> build() {
-    return ref.watch(authStateChangesProvider).value;
-  }
+  FutureOr<void> build() {}
 
   Future<void> login({
     required String email,
@@ -22,36 +19,45 @@ class AuthController extends _$AuthController {
     final authRepository = ref.read(authRepositoryProvider);
 
     state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      final credentials =
-          await authRepository.signInWithEmailAndPassword(email, password);
+    state = await AsyncValue.guard(
+      () => authRepository.signInWithEmailAndPassword(email, password),
+    );
 
-      return credentials.user;
-    });
-
-    if (state.hasError == false) {
-      ref.read(routerProvider).go('/account');
-    }
+    if (!state.hasError) ref.read(routerProvider).go('/account');
   }
 
   Future<void> signup({
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
-    required Account account,
   }) async {
     final authRepository = ref.read(authRepositoryProvider);
     final accountRepository = ref.read(accountRepositoryProvider);
 
-    state = const AsyncLoading();
+    state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final credentials = await authRepository.createUserWithEmailAndPassword(
         email,
         password,
       );
 
-      await accountRepository.updateAccount(account);
+      final account = Account(
+        id: credentials.user!.uid,
+        firstName: firstName,
+        lastName: lastName,
+      );
 
-      return credentials.user;
+      accountRepository.updateAccount(account);
     });
+  }
+
+  Future<void> logout() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(
+      () => ref.read(authRepositoryProvider).signOut(),
+    );
+
+    if (!state.hasError) ref.read(routerProvider).go('/');
   }
 }

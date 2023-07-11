@@ -14,6 +14,11 @@ class AccountRepository implements AccountRepositoryInterface {
   final AccountRemoteDataSource _remoteDataSource;
 
   @override
+  Future<Account?> getAccount(String userId) {
+    return _remoteDataSource.getAccount(userId);
+  }
+
+  @override
   Stream<Account?> watchAccount(String userId) {
     return _remoteDataSource.watchAccount(userId);
   }
@@ -31,11 +36,13 @@ AccountRepository accountRepository(AccountRepositoryRef ref) {
   return AccountRepository(remoteDataSource);
 }
 
-@riverpod
-Stream<Account?> accountStream(AccountStreamRef ref) {
-  final user = ref.watch(authStateChangesProvider).value;
+// @riverpod
+// Future<Account?> account(AccountRef ref) async {
+//   final user = ref.watch(authStateChangesProvider).value;
 
-  return user != null
-      ? ref.read(accountRepositoryProvider).watchAccount(user.uid)
-      : Stream.value(null);
-}
+//   if (user != null) {
+//     return ref.read(accountRepositoryProvider).getAccount(user.uid);
+//   }
+
+//   return null;
+// }

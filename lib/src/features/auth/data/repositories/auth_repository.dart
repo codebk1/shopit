@@ -13,6 +13,7 @@ class AuthRepository implements AuthRepositoryInterface {
 
   @override
   Stream<User?> authStateChanges() => _remoteDataSource.authStateChanges();
+
   @override
   User? get currentUser => _remoteDataSource.currentUser;
 

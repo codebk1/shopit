@@ -5,7 +5,6 @@ import 'package:shopit/src/common/widgets/main_app_bar.dart';
 
 import 'package:shopit/src/utils/async_value_dialog.dart';
 import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
-import 'package:shopit/src/features/account/application/controllers/edit_account_controller.dart';
 import 'package:shopit/src/features/account/presentation/widgets/edit_account_form.dart';
 
 class EditAccountPage extends ConsumerWidget {
@@ -14,7 +13,7 @@ class EditAccountPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<AsyncValue>(
-      editAccountControllerProvider,
+      accountControllerProvider,
       (_, state) => state.showAlertDialogOnError(context),
     );
 
