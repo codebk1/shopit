@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:shopit/src/features/account/application/controllers/wishlist_controller.dart';
 import 'package:shopit/src/features/products/domain/entities/product.dart';
+import 'package:shopit/src/features/wishlist/application/controllers/wishlist_controller.dart';
 
 class ToggleWishlist extends ConsumerWidget {
   const ToggleWishlist({super.key, required this.product});
@@ -19,10 +19,10 @@ class ToggleWishlist extends ConsumerWidget {
       tag: 'wishlist-${product.id}',
       child: IconButton(
         onPressed: () {
-          ref.read(wishlistControllerProvider.notifier).toggle(product);
+          ref.read(wishlistControllerProvider.notifier).toggle(product.id);
         },
         icon: _Heart(
-          filled: wishlist!.any((p) => p.id == product.id),
+          filled: wishlist!.items.any((item) => item == product.id),
         ),
       ),
     );
