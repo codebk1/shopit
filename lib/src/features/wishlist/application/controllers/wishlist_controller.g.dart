@@ -7,7 +7,7 @@ part of 'wishlist_controller.dart';
 // **************************************************************************
 
 String _$wishlistItemsCountHash() =>
-    r'0de34cbaf749c60a6a5eefb515127bdb51167b56';
+    r'3e2fc75638792fd2a91ec27ecd270e1975f26a01';
 
 /// See also [wishlistItemsCount].
 @ProviderFor(wishlistItemsCount)
@@ -23,7 +23,7 @@ final wishlistItemsCountProvider = AutoDisposeProvider<int>.internal(
 
 typedef WishlistItemsCountRef = AutoDisposeProviderRef<int>;
 String _$wishlistControllerHash() =>
-    r'037c8ce7fdfc730e34436c24261aaa117c538177';
+    r'0ab93087a76af76a48d823cc343876f5f6c14dbb';
 
 /// See also [WishlistController].
 @ProviderFor(WishlistController)

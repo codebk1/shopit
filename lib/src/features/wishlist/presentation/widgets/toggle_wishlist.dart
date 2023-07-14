@@ -7,7 +7,10 @@ import 'package:shopit/src/features/products/domain/entities/product.dart';
 import 'package:shopit/src/features/wishlist/application/controllers/wishlist_controller.dart';
 
 class ToggleWishlist extends ConsumerWidget {
-  const ToggleWishlist({super.key, required this.product});
+  const ToggleWishlist({
+    super.key,
+    required this.product,
+  });
 
   final Product product;
 
@@ -21,28 +24,15 @@ class ToggleWishlist extends ConsumerWidget {
         onPressed: () {
           ref.read(wishlistControllerProvider.notifier).toggle(product.id);
         },
-        icon: _Heart(
-          filled: wishlist!.items.any((item) => item == product.id),
+        icon: SvgPicture.asset(
+          wishlist!.items.any((item) => item == product.id)
+              ? 'assets/icons/heart-filled.svg'
+              : 'assets/icons/heart.svg',
+          colorFilter: ColorFilter.mode(
+            Theme.of(context).colorScheme.primary,
+            BlendMode.srcIn,
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class _Heart extends StatelessWidget {
-  const _Heart({
-    required this.filled,
-  });
-
-  final bool filled;
-
-  @override
-  Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      filled ? 'assets/icons/heart-filled.svg' : 'assets/icons/heart.svg',
-      colorFilter: ColorFilter.mode(
-        Theme.of(context).colorScheme.primary,
-        BlendMode.srcIn,
       ),
     );
   }

@@ -1,9 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
-import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
-import 'package:shopit/src/features/wishlist/data/repositories/wishlist_repository.dart';
+import 'package:shopit/src/features/wishlist/application/services/wishlist_service.dart';
 
 part 'wishlist_controller.g.dart';
 
@@ -11,13 +9,8 @@ part 'wishlist_controller.g.dart';
 class WishlistController extends _$WishlistController {
   @override
   FutureOr<Wishlist> build() async {
-    final account = await ref.watch(accountControllerProvider.future);
-
-    if (account != null) {
-      return account.wishlist;
-    } else {
-      return ref.read(wishlistRepositoryProvider).getWishlist();
-    }
+    print('WHISLIST CONTROLLER');
+    return ref.watch(wishlistServiceProvider).getWishlist();
   }
 
   Future<void> toggle(String itemId) async {
@@ -31,20 +24,9 @@ class WishlistController extends _$WishlistController {
       newItems = [...state.value!.items, itemId];
     }
 
-    final account = ref.read(accountControllerProvider).value;
-    final accountRepository = ref.read(accountRepositoryProvider);
-    final wishlistRepository = ref.read(wishlistRepositoryProvider);
-
     state = await AsyncValue.guard(() async {
       final wishlist = state.value!.copyWith(items: newItems);
-
-      if (account != null) {
-        await accountRepository.updateAccount(
-          account.copyWith(wishlist: wishlist),
-        );
-      } else {
-        await wishlistRepository.updateWishlist(wishlist);
-      }
+      await ref.read(wishlistServiceProvider).updateWishlist(wishlist);
 
       return wishlist;
     });
@@ -54,6 +36,7 @@ class WishlistController extends _$WishlistController {
 @riverpod
 int wishlistItemsCount(WishlistItemsCountRef ref) {
   return ref.watch(wishlistControllerProvider).maybeWhen(
+        skipLoadingOnReload: true,
         data: (wishlist) => wishlist.items.length,
         orElse: () => 0,
       );
