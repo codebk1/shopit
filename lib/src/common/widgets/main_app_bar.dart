@@ -33,7 +33,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? [
                   IconButton(
                     padding: const EdgeInsets.only(right: 14),
-                    onPressed: () => context.push('/cart'),
+                    onPressed: () => context.pushNamed('cart'),
                     icon: Badge(
                       offset: const Offset(6, -4),
                       backgroundColor: Theme.of(context).colorScheme.primary,
