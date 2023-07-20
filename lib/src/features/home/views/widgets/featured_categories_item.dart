@@ -25,7 +25,7 @@ class FeaturedCategoriesItem extends StatelessWidget {
           children: [
             FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: category.photo,
+              image: category.thumbnail,
               fit: BoxFit.cover,
               imageErrorBuilder: (_, __, ___) => const ImageError(),
             ),
