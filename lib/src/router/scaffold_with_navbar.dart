@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shopit/src/features/wishlist/presentation/controllers/wishlist_controller.dart';
+
+import 'package:shopit/src/features/wishlist/application/controllers/wishlist_controller.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   const ScaffoldWithNavBar({
@@ -37,18 +38,15 @@ class ScaffoldWithNavBar extends StatelessWidget {
             return iconIndex == 2
                 ? NavigationDestination(
                     icon: Badge(
-                      offset: const Offset(10, -10),
+                      offset: const Offset(8, -8),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       label: Consumer(
-                        builder: (context, ref, child) {
-                          final wishlists =
-                              ref.watch(wishlistControllerProvider).value;
-
-                          return Text(
-                            wishlists == null
-                                ? '0'
-                                : wishlists.length.toString(),
+                        builder: (_, ref, __) {
+                          final wishlistCount = ref.watch(
+                            wishlistItemsCountProvider,
                           );
+
+                          return Text(wishlistCount.toString());
                         },
                       ),
                       child: SvgPicture.asset(
