@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/router/router.dart';
+import 'package:shopit/src/theme/theme.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -14,36 +15,7 @@ class App extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: goRouter,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          brightness: Brightness.light,
-          seedColor: Colors.blue.shade900,
-        ),
-        navigationBarTheme: const NavigationBarThemeData(
-          indicatorShape: CircleBorder(),
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          height: 60,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide.none,
-          ),
-          filled: true,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(45),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            shadowColor: Colors.transparent,
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            foregroundColor: Colors.white,
-          ),
-        ),
-      ),
+      theme: CustomTheme.lightTheme,
     );
   }
 }
