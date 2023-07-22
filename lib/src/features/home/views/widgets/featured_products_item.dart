@@ -21,10 +21,7 @@ class FeaturedProductsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed(
-        'product',
-        extra: product,
-      ),
+      onTap: () => context.pushNamed('product', extra: product),
       child: Container(
         width: 140,
         decoration: BoxDecoration(

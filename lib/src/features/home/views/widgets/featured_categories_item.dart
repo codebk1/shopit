@@ -32,10 +32,7 @@ class FeaturedCategoriesItem extends StatelessWidget {
             Material(
               color: Theme.of(context).colorScheme.primary.withAlpha(110),
               child: InkWell(
-                onTap: () => context.pushNamed(
-                  'products',
-                  extra: category,
-                ),
+                onTap: () => context.pushNamed('products', extra: category),
                 splashColor:
                     Theme.of(context).colorScheme.primary.withAlpha(50),
                 highlightColor:
