@@ -20,13 +20,10 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Account {
-// ignore: invalid_annotation_target
-  @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
-  List<String> get wishlist => throw _privateConstructorUsedError;
-  Cart get cart => throw _privateConstructorUsedError;
+  Wishlist get wishlist => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,14 +35,9 @@ abstract class $AccountCopyWith<$Res> {
   factory $AccountCopyWith(Account value, $Res Function(Account) then) =
       _$AccountCopyWithImpl<$Res, Account>;
   @useResult
-  $Res call(
-      {@JsonKey(includeToJson: false) String id,
-      String firstName,
-      String lastName,
-      List<String> wishlist,
-      Cart cart});
+  $Res call({String id, String firstName, String lastName, Wishlist wishlist});
 
-  $CartCopyWith<$Res> get cart;
+  $WishlistCopyWith<$Res> get wishlist;
 }
 
 /// @nodoc
@@ -65,7 +57,6 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
     Object? firstName = null,
     Object? lastName = null,
     Object? wishlist = null,
-    Object? cart = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -83,19 +74,15 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
       wishlist: null == wishlist
           ? _value.wishlist
           : wishlist // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      cart: null == cart
-          ? _value.cart
-          : cart // ignore: cast_nullable_to_non_nullable
-              as Cart,
+              as Wishlist,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CartCopyWith<$Res> get cart {
-    return $CartCopyWith<$Res>(_value.cart, (value) {
-      return _then(_value.copyWith(cart: value) as $Val);
+  $WishlistCopyWith<$Res> get wishlist {
+    return $WishlistCopyWith<$Res>(_value.wishlist, (value) {
+      return _then(_value.copyWith(wishlist: value) as $Val);
     });
   }
 }
@@ -107,15 +94,10 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
       __$$_AccountCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(includeToJson: false) String id,
-      String firstName,
-      String lastName,
-      List<String> wishlist,
-      Cart cart});
+  $Res call({String id, String firstName, String lastName, Wishlist wishlist});
 
   @override
-  $CartCopyWith<$Res> get cart;
+  $WishlistCopyWith<$Res> get wishlist;
 }
 
 /// @nodoc
@@ -132,7 +114,6 @@ class __$$_AccountCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? wishlist = null,
-    Object? cart = null,
   }) {
     return _then(_$_Account(
       id: null == id
@@ -148,55 +129,39 @@ class __$$_AccountCopyWithImpl<$Res>
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       wishlist: null == wishlist
-          ? _value._wishlist
+          ? _value.wishlist
           : wishlist // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      cart: null == cart
-          ? _value.cart
-          : cart // ignore: cast_nullable_to_non_nullable
-              as Cart,
+              as Wishlist,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Account implements _Account {
   const _$_Account(
-      {@JsonKey(includeToJson: false) required this.id,
+      {required this.id,
       required this.firstName,
       required this.lastName,
-      final List<String> wishlist = const [],
-      this.cart = const Cart()})
-      : _wishlist = wishlist;
+      this.wishlist = const Wishlist()});
 
   factory _$_Account.fromJson(Map<String, dynamic> json) =>
       _$$_AccountFromJson(json);
 
-// ignore: invalid_annotation_target
   @override
-  @JsonKey(includeToJson: false)
   final String id;
   @override
   final String firstName;
   @override
   final String lastName;
-  final List<String> _wishlist;
   @override
   @JsonKey()
-  List<String> get wishlist {
-    if (_wishlist is EqualUnmodifiableListView) return _wishlist;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_wishlist);
-  }
-
-  @override
-  @JsonKey()
-  final Cart cart;
+  final Wishlist wishlist;
 
   @override
   String toString() {
-    return 'Account(id: $id, firstName: $firstName, lastName: $lastName, wishlist: $wishlist, cart: $cart)';
+    return 'Account(id: $id, firstName: $firstName, lastName: $lastName, wishlist: $wishlist)';
   }
 
   @override
@@ -209,14 +174,14 @@ class _$_Account implements _Account {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            const DeepCollectionEquality().equals(other._wishlist, _wishlist) &&
-            (identical(other.cart, cart) || other.cart == cart));
+            (identical(other.wishlist, wishlist) ||
+                other.wishlist == wishlist));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, lastName,
-      const DeepCollectionEquality().hash(_wishlist), cart);
+  int get hashCode =>
+      Object.hash(runtimeType, id, firstName, lastName, wishlist);
 
   @JsonKey(ignore: true)
   @override
@@ -234,25 +199,21 @@ class _$_Account implements _Account {
 
 abstract class _Account implements Account {
   const factory _Account(
-      {@JsonKey(includeToJson: false) required final String id,
+      {required final String id,
       required final String firstName,
       required final String lastName,
-      final List<String> wishlist,
-      final Cart cart}) = _$_Account;
+      final Wishlist wishlist}) = _$_Account;
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
 
-  @override // ignore: invalid_annotation_target
-  @JsonKey(includeToJson: false)
+  @override
   String get id;
   @override
   String get firstName;
   @override
   String get lastName;
   @override
-  List<String> get wishlist;
-  @override
-  Cart get cart;
+  Wishlist get wishlist;
   @override
   @JsonKey(ignore: true)
   _$$_AccountCopyWith<_$_Account> get copyWith =>

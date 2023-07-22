@@ -4,9 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
-import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 
 class EditAccountForm extends ConsumerStatefulWidget {
   const EditAccountForm({super.key});
@@ -161,7 +160,7 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
           ),
           gapH14,
           ElevatedButton(
-            onPressed: _submit,
+            onPressed: accountController.isLoading ? null : _submit,
             child: accountController.isLoading
                 ? const Loader()
                 : const Text('Save'),

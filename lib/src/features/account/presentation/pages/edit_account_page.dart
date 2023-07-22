@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
 
-import 'package:shopit/src/utils/async_value_dialog.dart';
+import 'package:shopit/src/utils/async_value_messenger.dart';
+import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 import 'package:shopit/src/features/account/presentation/widgets/edit_account_form.dart';
 
@@ -12,26 +12,11 @@ class EditAccountPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<AsyncValue>(
-      accountControllerProvider,
-      (_, state) => state.showAlertDialogOnError(context),
-    );
-
     ref.listen(
       accountControllerProvider,
-      (previous, next) {
-        if (!next.isLoading && !next.hasError) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar
-            ..showSnackBar(
-              const SnackBar(
-                duration: Duration(seconds: 2),
-                content: Text(
-                  'Successfully edited account.',
-                ),
-              ),
-            );
-        }
+      (_, next) {
+        next.showAlertDialogOnError(context);
+        next.showSnackbarOnSuccess(context, 'Successfully edited account.');
       },
     );
 
@@ -41,12 +26,7 @@ class EditAccountPage extends ConsumerWidget {
         showActions: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: 14,
-          right: 14,
-          top: 24,
-          bottom: 24,
-        ),
+        padding: EdgeInsets.all(14),
         child: EditAccountForm(),
       ),
     );

@@ -1,48 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:shopit/src/features/account/domain/entities/account.dart';
-import 'package:shopit/src/features/account/domain/repositories/account_repository_interface.dart';
-import 'package:shopit/src/features/account/data/datasources/remote/account_remote_datasource.dart';
+import 'package:shopit/src/features/account/domain/datasources/account_remote_datasource.dart';
+import 'package:shopit/src/features/account/data/datasources/account_firestore_datasource.dart';
 
 part 'account_repository.g.dart';
 
-class AccountRepository implements AccountRepositoryInterface {
+class AccountRepository {
   const AccountRepository(this._remoteDataSource);
 
-  final AccountRemoteDataSource _remoteDataSource;
+  final IAccountRemoteDataSource _remoteDataSource;
 
-  @override
-  Future<Account?> getAccount(String userId) {
-    return _remoteDataSource.getAccount(userId);
+  Future<Account?> get(String userId) {
+    return _remoteDataSource.get(userId);
   }
 
-  @override
-  Stream<Account?> watchAccount(String userId) {
-    return _remoteDataSource.watchAccount(userId);
+  Stream<Account?> watch(String userId) {
+    return _remoteDataSource.watch(userId);
   }
 
-  @override
-  Future<void> updateAccount(Account account) async {
-    return _remoteDataSource.updateAccount(account);
+  Future<void> update(Account account) async {
+    return _remoteDataSource.update(account);
   }
 }
 
 @Riverpod(keepAlive: true)
 AccountRepository accountRepository(AccountRepositoryRef ref) {
-  final remoteDataSource = AccountRemoteDataSource(FirebaseFirestore.instance);
+  final remoteDataSource = AccountFirestoreDataSource(
+    FirebaseFirestore.instance,
+  );
 
   return AccountRepository(remoteDataSource);
 }
-
-// @riverpod
-// Future<Account?> account(AccountRef ref) async {
-//   final user = ref.watch(authStateChangesProvider).value;
-
-//   if (user != null) {
-//     return ref.read(accountRepositoryProvider).getAccount(user.uid);
-//   }
-
-//   return null;
-// }

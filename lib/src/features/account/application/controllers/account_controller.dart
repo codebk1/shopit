@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
 import 'package:shopit/src/features/account/domain/entities/account.dart';
 import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
 
@@ -11,40 +12,42 @@ part 'account_controller.g.dart';
 class AccountController extends _$AccountController {
   @override
   FutureOr<Account?> build() async {
-    final user = ref.watch(authStateChangesProvider).value;
-
-    if (user != null) {
-      return ref.read(accountRepositoryProvider).getAccount(user.uid);
-    }
-
-    return null;
+    return await ref.watch(accountProvider.future);
   }
 
   Future<Account?> updateAccount(
-    String newEmail,
-    String newPassword,
+    String email,
+    String password,
     Account account,
   ) async {
-    final authRepository = ref.read(authRepositoryProvider);
-    final accountRepository = ref.read(accountRepositoryProvider);
+    final authRepository = ref.watch(authRepositoryProvider);
 
-    state = const AsyncValue.loading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      await accountRepository.updateAccount(account);
+      await ref.watch(accountRepositoryProvider).update(account);
 
-      if (authRepository.currentUser!.email != newEmail) {
-        await authRepository.updateEmail(newEmail);
+      if (authRepository.currentUser!.email != email) {
+        await authRepository.updateEmail(email);
       }
 
-      if (newPassword.isNotEmpty) {
-        await authRepository.updatePassword(newPassword);
+      if (password.isNotEmpty) {
+        await authRepository.updatePassword(password);
       }
 
       return account;
     });
 
-    if (!state.hasError) ref.read(routerProvider).pop();
+    if (!state.hasError) ref.watch(routerProvider).pop();
 
     return null;
   }
+}
+
+@riverpod
+Future<Account?> account(AccountRef ref) async {
+  final user = await ref.watch(authStateChangesProvider.future);
+
+  return user != null
+      ? ref.watch(accountRepositoryProvider).get(user.uid)
+      : null;
 }

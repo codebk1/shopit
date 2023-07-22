@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
-import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
+import 'package:shopit/src/common/widgets/shimmer_text.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
+import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
+import 'package:shopit/src/features/account/presentation/widgets/account_menu_item.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -19,35 +20,34 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       appBar: const MainAppBar(
         title: 'Account',
+        showActions: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          top: 24,
-          bottom: 24,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 14),
         child: Column(
           children: [
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 14),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              padding: const EdgeInsets.only(left: 14),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onInverseSurface,
+                color: surfaceContainer,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Consumer(
                 builder: (context, ref, child) {
-                  final account = ref.watch(accountControllerProvider);
                   final authController = ref.watch(authControllerProvider);
+                  final account = ref.watch(accountControllerProvider);
 
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       account.when(
-                        data: (data) => Row(
+                        skipError: true,
+                        data: (account) => Row(
                           children: [
                             const Text('Hello, '),
                             Text(
-                              '${data?.firstName} ${data?.lastName}',
+                              '${account?.firstName} ${account?.lastName}',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!
@@ -55,18 +55,17 @@ class AccountPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        error: (error, stackTrace) => Text(error.toString()),
-                        loading: () => const Loader(
-                          dark: true,
+                        error: (_, __) => const Text(
+                          'Can\'t load account name.',
                         ),
+                        loading: () => const ShimmerText(width: 200),
                       ),
                       IconButton(
-                        onPressed:
-                            ref.read(authControllerProvider.notifier).logout,
+                        onPressed: authController.isLoading
+                            ? null
+                            : ref.read(authControllerProvider.notifier).logout,
                         icon: authController.isLoading
-                            ? const Loader(
-                                dark: true,
-                              )
+                            ? const Loader(dark: true)
                             : SvgPicture.asset(
                                 'assets/icons/logout.svg',
                               ),
@@ -79,30 +78,25 @@ class AccountPage extends StatelessWidget {
             gapH24,
             Expanded(
               child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    ListTile(
-                      leading: SvgPicture.asset('assets/icons/account.svg'),
-                      title: const Text('Account'),
-                      trailing:
-                          SvgPicture.asset('assets/icons/chevron-right.svg'),
-                      onTap: () => context.go('/account/edit'),
-                    ),
-                    ListTile(
-                      leading: SvgPicture.asset('assets/icons/orders.svg'),
-                      title: const Text('My orders'),
-                      trailing:
-                          SvgPicture.asset('assets/icons/chevron-right.svg'),
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: SvgPicture.asset('assets/icons/cog.svg'),
-                      title: const Text('Settings'),
-                      trailing:
-                          SvgPicture.asset('assets/icons/chevron-right.svg'),
-                      onTap: () {},
-                    ),
-                  ]),
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
+                  AccountMenuItem(
+                    title: 'Account',
+                    icon: 'assets/icons/account.svg',
+                    path: 'edit',
+                  ),
+                  AccountMenuItem(
+                    title: 'My orders',
+                    icon: 'assets/icons/orders.svg',
+                    path: '',
+                  ),
+                  AccountMenuItem(
+                    title: 'Settings',
+                    icon: 'assets/icons/cog.svg',
+                    path: '',
+                  ),
+                ],
+              ),
             ),
           ],
         ),
