@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/features/account/domain/entities/account.dart';
 import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
+import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
 import 'package:shopit/src/features/wishlist/data/repositories/wishlist_repository.dart';
 
@@ -18,20 +19,20 @@ class WishlistService {
   final AccountRepository _accountRepository;
   final WishlistRepository _wishlistRepository;
 
-  Future<Wishlist> getWishlist() async {
+  Future<Wishlist> get() async {
     if (_account != null) {
       return _account!.wishlist;
     }
 
-    return _wishlistRepository.getWishlist();
+    return _wishlistRepository.get();
   }
 
-  Future<void> updateWishlist(Wishlist wishlist) {
+  Future<void> update(Wishlist wishlist) {
     return _account != null
-        ? _accountRepository.updateAccount(
+        ? _accountRepository.update(
             _account!.copyWith(wishlist: wishlist),
           )
-        : _wishlistRepository.updateWishlist(wishlist);
+        : _wishlistRepository.update(wishlist);
   }
 }
 

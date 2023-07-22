@@ -9,8 +9,7 @@ part 'wishlist_controller.g.dart';
 class WishlistController extends _$WishlistController {
   @override
   FutureOr<Wishlist> build() async {
-    print('WHISLIST CONTROLLER');
-    return ref.watch(wishlistServiceProvider).getWishlist();
+    return ref.watch(wishlistServiceProvider).get();
   }
 
   Future<void> toggle(String itemId) async {
@@ -26,7 +25,7 @@ class WishlistController extends _$WishlistController {
 
     state = await AsyncValue.guard(() async {
       final wishlist = state.value!.copyWith(items: newItems);
-      await ref.read(wishlistServiceProvider).updateWishlist(wishlist);
+      await ref.read(wishlistServiceProvider).update(wishlist);
 
       return wishlist;
     });

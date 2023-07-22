@@ -12,12 +12,16 @@ class WishlistRepository {
 
   final IWishlistLocalDataSource _localDataSource;
 
-  Future<Wishlist> getWishlist() {
-    return _localDataSource.getWishlist();
+  Future<Wishlist> get() {
+    return _localDataSource.get();
   }
 
-  Future<void> updateWishlist(Wishlist wishlist) async {
-    return _localDataSource.updateWishlist(wishlist);
+  Future<void> update(Wishlist wishlist) async {
+    return _localDataSource.update(wishlist);
+  }
+
+  Future<void> clear() async {
+    return _localDataSource.clear();
   }
 }
 

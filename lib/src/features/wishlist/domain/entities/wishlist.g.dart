@@ -34,7 +34,7 @@ const WishlistSchema = CollectionSchema(
   getId: _wishlistGetId,
   getLinks: _wishlistGetLinks,
   attach: _wishlistAttach,
-  version: '3.1.0+1',
+  version: '3.1.0',
 );
 
 int _wishlistEstimateSize(
