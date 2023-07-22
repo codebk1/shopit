@@ -7,6 +7,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:shopit/src/features/categories/application/controllers/categories_controller.dart';
 import 'package:shopit/src/features/categories/presentation/widgets/categories_grid_item_loader.dart';
+import 'package:shopit/src/features/categories/presentation/widgets/categories_grid_item_error.dart';
 
 class CategoriesGridItem extends ConsumerWidget {
   const CategoriesGridItem({super.key, required this.index});
@@ -25,17 +26,14 @@ class CategoriesGridItem extends ConsumerWidget {
           children: [
             FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: category.photo,
+              image: category.thumbnail,
               fit: BoxFit.cover,
               imageErrorBuilder: (_, __, ___) => const ImageError(),
             ),
             Material(
               color: Theme.of(context).colorScheme.primary.withAlpha(110),
               child: InkWell(
-                onTap: () => context.goNamed(
-                  'products',
-                  extra: category,
-                ),
+                onTap: () => context.pushNamed('products', extra: category),
                 splashColor:
                     Theme.of(context).colorScheme.primary.withAlpha(50),
                 highlightColor:
@@ -54,7 +52,7 @@ class CategoriesGridItem extends ConsumerWidget {
           ],
         ),
       ),
-      error: (error, stackTrace) => Text(error.toString()),
+      error: (_, __) => const CategoriesGridItemError(),
       loading: () => const CategoriesGridItemLoader(),
     );
   }

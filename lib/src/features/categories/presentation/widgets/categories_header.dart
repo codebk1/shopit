@@ -32,7 +32,7 @@ class CategoriesHeader extends StatelessWidget {
                     ),
               ),
               Text(
-                count > 1 ? ' categories' : ' category',
+                count == 1 ? ' category' : ' categories',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],

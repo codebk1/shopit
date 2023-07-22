@@ -12,15 +12,23 @@ class CategoriesRepository {
 
   final ICategoriesRemoteDataSource _remoteDataSource;
 
-  Future<int> getCategoriesCount() {
-    return _remoteDataSource.getCategoriesCount();
+  Future<int> count() {
+    return _remoteDataSource.count();
   }
 
-  Future<List<Category>> getCategories({
+  Future<List<Category>> paginate({
     String startAfter = '',
     int limit = 10,
   }) {
-    return _remoteDataSource.getCategories(startAfter, limit);
+    return _remoteDataSource.paginate(startAfter, limit);
+  }
+
+  Future<List<Category>> featured() {
+    return _remoteDataSource.featured();
+  }
+
+  Future<List<Category>> byIds(List<String> ids) {
+    return _remoteDataSource.byIds(ids);
   }
 }
 

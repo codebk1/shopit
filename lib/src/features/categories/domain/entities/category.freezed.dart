@@ -22,7 +22,7 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
 mixin _$Category {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get photo => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
   bool get featured => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call({String id, String name, String photo, bool featured});
+  $Res call({String id, String name, String thumbnail, bool featured});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? photo = null,
+    Object? thumbnail = null,
     Object? featured = null,
   }) {
     return _then(_value.copyWith(
@@ -66,9 +66,9 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      photo: null == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as String,
       featured: null == featured
           ? _value.featured
@@ -85,7 +85,7 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       __$$_CategoryCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String photo, bool featured});
+  $Res call({String id, String name, String thumbnail, bool featured});
 }
 
 /// @nodoc
@@ -101,7 +101,7 @@ class __$$_CategoryCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? photo = null,
+    Object? thumbnail = null,
     Object? featured = null,
   }) {
     return _then(_$_Category(
@@ -113,9 +113,9 @@ class __$$_CategoryCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      photo: null == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as String,
       featured: null == featured
           ? _value.featured
@@ -131,7 +131,7 @@ class _$_Category implements _Category {
   _$_Category(
       {required this.id,
       required this.name,
-      required this.photo,
+      required this.thumbnail,
       this.featured = false});
 
   factory _$_Category.fromJson(Map<String, dynamic> json) =>
@@ -142,14 +142,14 @@ class _$_Category implements _Category {
   @override
   final String name;
   @override
-  final String photo;
+  final String thumbnail;
   @override
   @JsonKey()
   final bool featured;
 
   @override
   String toString() {
-    return 'Category(id: $id, name: $name, photo: $photo, featured: $featured)';
+    return 'Category(id: $id, name: $name, thumbnail: $thumbnail, featured: $featured)';
   }
 
   @override
@@ -159,14 +159,15 @@ class _$_Category implements _Category {
             other is _$_Category &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
             (identical(other.featured, featured) ||
                 other.featured == featured));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, photo, featured);
+  int get hashCode => Object.hash(runtimeType, id, name, thumbnail, featured);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +187,7 @@ abstract class _Category implements Category {
   factory _Category(
       {required final String id,
       required final String name,
-      required final String photo,
+      required final String thumbnail,
       final bool featured}) = _$_Category;
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
@@ -196,7 +197,7 @@ abstract class _Category implements Category {
   @override
   String get name;
   @override
-  String get photo;
+  String get thumbnail;
   @override
   bool get featured;
   @override

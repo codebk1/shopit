@@ -17,19 +17,36 @@ class CategoriesFirestoreDataSource implements ICategoriesRemoteDataSource {
           );
 
   @override
-  Future<int> getCategoriesCount() async {
+  Future<int> count() async {
     final snapshot = await _categoriesRef.count().get();
+
     return snapshot.count;
   }
 
   @override
-  Future<List<Category>> getCategories(String startAfter, int limit) async {
-    final categories = await _categoriesRef
+  Future<List<Category>> paginate(String startAfter, int limit) async {
+    final snapshot = await _categoriesRef
         .orderBy('name')
         .startAfter([startAfter])
         .limit(limit)
         .get();
 
-    return categories.docs.map((docSnapshot) => docSnapshot.data()).toList();
+    return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
+  }
+
+  @override
+  Future<List<Category>> featured() async {
+    final snapshot =
+        await _categoriesRef.where('featured', isEqualTo: true).get();
+
+    return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
+  }
+
+  @override
+  Future<List<Category>> byIds(List<String> ids) async {
+    final snapshot =
+        await _categoriesRef.where(FieldPath.documentId, whereIn: ids).get();
+
+    return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
   }
 }

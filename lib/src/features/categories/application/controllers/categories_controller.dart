@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/features/categories/domain/entities/category.dart';
@@ -9,26 +11,31 @@ const kCategoriesPageLimit = 10;
 
 @riverpod
 Future<int> categoriesCount(CategoriesCountRef ref) async {
-  final categoriesRepository = ref.watch(categoriesRepositoryProvider);
-
-  return categoriesRepository.getCategoriesCount();
+  return ref.watch(categoriesRepositoryProvider).count();
 }
 
 @riverpod
-Future<List<Category>> categoriesPages(
-  CategoriesPagesRef ref,
+Future<List<Category>> categoriesPage(
+  CategoriesPageRef ref,
   int page,
 ) async {
   final categoriesRepository = ref.watch(categoriesRepositoryProvider);
 
   String startAfter = page > 0
-      ? (await ref.read(categoriesPagesProvider(page - 1).future)).last.name
+      ? (await ref.read(categoriesPageProvider(page - 1).future)).last.name
       : '';
 
-  return categoriesRepository.getCategories(
+  final categories = await categoriesRepository.paginate(
     startAfter: startAfter,
     limit: kCategoriesPageLimit,
   );
+
+  // cache provider only when we have categories page
+  final link = ref.keepAlive();
+  final timer = Timer(const Duration(seconds: 60), () => link.close());
+  ref.onDispose(() => timer.cancel());
+
+  return categories;
 }
 
 @riverpod
@@ -39,7 +46,7 @@ AsyncValue<Category> category(
   final indexInPage = index % kCategoriesPageLimit;
   final page = index ~/ kCategoriesPageLimit;
 
-  return ref.watch(categoriesPagesProvider(page)).whenData(
+  return ref.watch(categoriesPageProvider(page)).whenData(
         (value) => value[indexInPage],
       );
 }

@@ -8,7 +8,7 @@ class Category with _$Category {
   factory Category({
     required String id,
     required String name,
-    required String photo,
+    required String thumbnail,
     @Default(false) bool featured,
   }) = _Category;
 

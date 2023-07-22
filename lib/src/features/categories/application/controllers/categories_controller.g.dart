@@ -6,7 +6,7 @@ part of 'categories_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoriesCountHash() => r'c84f78e752116ef7d4e7f231f5d152e70cc28e83';
+String _$categoriesCountHash() => r'c954f5fddfa655fc2308606726bc41de1ac22d00';
 
 /// See also [categoriesCount].
 @ProviderFor(categoriesCount)
@@ -21,7 +21,7 @@ final categoriesCountProvider = AutoDisposeFutureProvider<int>.internal(
 );
 
 typedef CategoriesCountRef = AutoDisposeFutureProviderRef<int>;
-String _$categoriesPagesHash() => r'd8e7ed95461c8050662fbb19a3e4614a04d10e6b';
+String _$categoriesPageHash() => r'8e504d165b70e967675230b8dc81109b2435e506';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -44,29 +44,29 @@ class _SystemHash {
   }
 }
 
-typedef CategoriesPagesRef = AutoDisposeFutureProviderRef<List<Category>>;
+typedef CategoriesPageRef = AutoDisposeFutureProviderRef<List<Category>>;
 
-/// See also [categoriesPages].
-@ProviderFor(categoriesPages)
-const categoriesPagesProvider = CategoriesPagesFamily();
+/// See also [categoriesPage].
+@ProviderFor(categoriesPage)
+const categoriesPageProvider = CategoriesPageFamily();
 
-/// See also [categoriesPages].
-class CategoriesPagesFamily extends Family<AsyncValue<List<Category>>> {
-  /// See also [categoriesPages].
-  const CategoriesPagesFamily();
+/// See also [categoriesPage].
+class CategoriesPageFamily extends Family<AsyncValue<List<Category>>> {
+  /// See also [categoriesPage].
+  const CategoriesPageFamily();
 
-  /// See also [categoriesPages].
-  CategoriesPagesProvider call(
+  /// See also [categoriesPage].
+  CategoriesPageProvider call(
     int page,
   ) {
-    return CategoriesPagesProvider(
+    return CategoriesPageProvider(
       page,
     );
   }
 
   @override
-  CategoriesPagesProvider getProviderOverride(
-    covariant CategoriesPagesProvider provider,
+  CategoriesPageProvider getProviderOverride(
+    covariant CategoriesPageProvider provider,
   ) {
     return call(
       provider.page,
@@ -85,36 +85,35 @@ class CategoriesPagesFamily extends Family<AsyncValue<List<Category>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'categoriesPagesProvider';
+  String? get name => r'categoriesPageProvider';
 }
 
-/// See also [categoriesPages].
-class CategoriesPagesProvider
-    extends AutoDisposeFutureProvider<List<Category>> {
-  /// See also [categoriesPages].
-  CategoriesPagesProvider(
+/// See also [categoriesPage].
+class CategoriesPageProvider extends AutoDisposeFutureProvider<List<Category>> {
+  /// See also [categoriesPage].
+  CategoriesPageProvider(
     this.page,
   ) : super.internal(
-          (ref) => categoriesPages(
+          (ref) => categoriesPage(
             ref,
             page,
           ),
-          from: categoriesPagesProvider,
-          name: r'categoriesPagesProvider',
+          from: categoriesPageProvider,
+          name: r'categoriesPageProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$categoriesPagesHash,
-          dependencies: CategoriesPagesFamily._dependencies,
+                  : _$categoriesPageHash,
+          dependencies: CategoriesPageFamily._dependencies,
           allTransitiveDependencies:
-              CategoriesPagesFamily._allTransitiveDependencies,
+              CategoriesPageFamily._allTransitiveDependencies,
         );
 
   final int page;
 
   @override
   bool operator ==(Object other) {
-    return other is CategoriesPagesProvider && other.page == page;
+    return other is CategoriesPageProvider && other.page == page;
   }
 
   @override
@@ -126,7 +125,7 @@ class CategoriesPagesProvider
   }
 }
 
-String _$categoryHash() => r'd9ab36b0be0bd628845c4a7f6fb7b45ee60ece7d';
+String _$categoryHash() => r'1421dbe1d2b43d124d15b0716a206b65b8d4a643';
 typedef CategoryRef = AutoDisposeProviderRef<AsyncValue<Category>>;
 
 /// See also [category].
