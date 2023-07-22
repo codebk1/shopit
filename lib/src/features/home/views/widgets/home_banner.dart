@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/image_error.dart';
@@ -18,12 +18,11 @@ class HomeBanner extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image:
-                  'https://firebasestorage.googleapis.com/v0/b/shopit-141bb.appspot.com/o/banner.png?alt=media&token=d8fa7386-4ab7-4304-9a1f-3f4b1de6f953',
+            CachedNetworkImage(
               fit: BoxFit.cover,
-              imageErrorBuilder: (_, __, ___) => const ImageError(),
+              imageUrl:
+                  'https://firebasestorage.googleapis.com/v0/b/shopit-141bb.appspot.com/o/banner.png?alt=media&token=d8fa7386-4ab7-4304-9a1f-3f4b1de6f953',
+              errorWidget: (_, __, ___) => const ImageError(),
             ),
             Container(
               color: Colors.black38,

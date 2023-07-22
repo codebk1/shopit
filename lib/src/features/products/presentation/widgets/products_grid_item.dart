@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/utils/currency_formatter.dart';
@@ -37,10 +37,17 @@ class ProductsGridItem extends StatelessWidget {
                       tag: product.id,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: product.thumbnail,
-                          imageErrorBuilder: (_, __, ___) => const ImageError(),
+                        child: CachedNetworkImage(
+                          imageUrl: product.thumbnail,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: imageProvider,
+                              ),
+                            ),
+                          ),
+                          errorWidget: (_, __, ___) => const ImageError(),
                         ),
                       ),
                     ),

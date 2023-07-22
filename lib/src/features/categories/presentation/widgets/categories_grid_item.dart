@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:shopit/src/features/categories/application/controllers/categories_controller.dart';
@@ -24,11 +24,10 @@ class CategoriesGridItem extends ConsumerWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: category.thumbnail,
+            CachedNetworkImage(
               fit: BoxFit.cover,
-              imageErrorBuilder: (_, __, ___) => const ImageError(),
+              imageUrl: category.thumbnail,
+              errorWidget: (_, __, ___) => const ImageError(),
             ),
             Material(
               color: Theme.of(context).colorScheme.primary.withAlpha(110),

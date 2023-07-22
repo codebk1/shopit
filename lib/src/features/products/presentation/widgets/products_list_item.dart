@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
@@ -36,11 +36,10 @@ class ProductsListItem extends StatelessWidget {
               tag: product.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
-                child: FadeInImage.memoryNetwork(
+                child: CachedNetworkImage(
                   width: 78,
-                  placeholder: kTransparentImage,
-                  image: product.thumbnail,
-                  imageErrorBuilder: (_, __, ___) => const ImageError(),
+                  imageUrl: product.thumbnail,
+                  errorWidget: (_, __, ___) => const ImageError(),
                 ),
               ),
             ),

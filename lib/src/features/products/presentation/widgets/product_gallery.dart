@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:shopit/src/constants/colors.dart';
@@ -40,8 +42,17 @@ class _ProductGalleryState extends State<ProductGallery> {
               tag: widget.product.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  widget.product.thumbnail,
+                child: CachedNetworkImage(
+                  imageUrl: widget.product.thumbnail,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: imageProvider,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (_, __, ___) => const ImageError(),
                 ),
               ),
             ),
@@ -49,8 +60,17 @@ class _ProductGalleryState extends State<ProductGallery> {
                 .map(
                   (photo) => ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      photo,
+                    child: CachedNetworkImage(
+                      imageUrl: photo,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: imageProvider,
+                          ),
+                        ),
+                      ),
+                      errorWidget: (_, __, ___) => const ImageError(),
                     ),
                   ),
                 )
