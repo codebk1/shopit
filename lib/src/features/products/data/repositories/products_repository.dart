@@ -12,11 +12,11 @@ class ProductsRepository {
 
   final IProductsRemoteDataSource _remoteDataSource;
 
-  Future<Product?> getById(String id) async {
+  Future<Product?> getById(String id) {
     return _remoteDataSource.getById(id);
   }
 
-  Future<int> countByCategory(String id) async {
+  Future<int> countByCategory(String id) {
     return _remoteDataSource.countByCategoryId(id);
   }
 
@@ -25,6 +25,7 @@ class ProductsRepository {
     String startAfter = '',
     int limit = 10,
   }) async {
+    await Future.delayed(Duration(seconds: 2));
     return _remoteDataSource.paginateByCategory(id, startAfter, limit);
   }
 
