@@ -24,8 +24,7 @@ class ProductsRepository {
     String id, {
     String startAfter = '',
     int limit = 10,
-  }) async {
-    await Future.delayed(Duration(seconds: 2));
+  }) {
     return _remoteDataSource.paginateByCategory(id, startAfter, limit);
   }
 
