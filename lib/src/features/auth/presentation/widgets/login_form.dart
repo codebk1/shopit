@@ -19,13 +19,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
   void _submit() {
     if (_formKey.currentState!.validate()) {
       ref.read(authControllerProvider.notifier).login(
@@ -33,6 +26,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
             password: _passwordController.text,
           );
     }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override

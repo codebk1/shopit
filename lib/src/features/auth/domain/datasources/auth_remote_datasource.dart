@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class AuthRepositoryInterface {
-  Stream<User?> authStateChanges();
-
+abstract class IAuthRemoteDataSource {
   User? get currentUser;
+  Stream<User?> authStateChanges();
 
   Future<UserCredential> signInWithEmailAndPassword(
     String email,
@@ -15,9 +14,7 @@ abstract class AuthRepositoryInterface {
     String password,
   );
 
+  Future<void> updateEmail(String email);
+  Future<void> updatePassword(String password);
   Future<void> signOut();
-
-  Future<void> updateEmail(String newEmail);
-
-  Future<void> updatePassword(String newPassword);
 }

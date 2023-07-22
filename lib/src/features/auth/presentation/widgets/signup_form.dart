@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
 import 'package:shopit/src/features/auth/presentation/widgets/password_field.dart';
 
@@ -21,16 +22,6 @@ class _SignupFormState extends ConsumerState<SignupForm> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  @override
-  void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
-
   void _submit() {
     if (_formKey.currentState!.validate()) {
       ref.read(authControllerProvider.notifier).signup(
@@ -40,6 +31,16 @@ class _SignupFormState extends ConsumerState<SignupForm> {
             password: _confirmPasswordController.text,
           );
     }
+  }
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -137,7 +138,7 @@ class _SignupFormState extends ConsumerState<SignupForm> {
               return ElevatedButton(
                 onPressed: _submit,
                 child: authController.isLoading
-                    ? const CircularProgressIndicator()
+                    ? const Loader()
                     : const Text('Sign Up'),
               );
             },
