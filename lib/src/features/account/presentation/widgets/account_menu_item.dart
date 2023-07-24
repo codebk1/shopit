@@ -8,12 +8,12 @@ class AccountMenuItem extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
-    required this.path,
+    required this.route,
   });
 
   final String title;
   final String icon;
-  final String path;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class AccountMenuItem extends StatelessWidget {
       trailing: SvgPicture.asset(
         'assets/icons/chevron-right.svg',
       ),
-      onTap: () => context.go('/account/$path'),
+      onTap: () => context.goNamed(route),
     );
   }
 }

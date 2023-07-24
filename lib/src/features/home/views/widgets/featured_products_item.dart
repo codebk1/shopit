@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/utils/currency_formatter.dart';
 import 'package:shopit/src/common/widgets/image_error.dart';
@@ -21,7 +22,7 @@ class FeaturedProductsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed('product', extra: product),
+      onTap: () => context.pushNamed(Routes.product.name, extra: product),
       child: Container(
         width: 140,
         decoration: BoxDecoration(

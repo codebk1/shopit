@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/image_error.dart';
@@ -21,7 +22,7 @@ class ProductsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed('product', extra: product),
+      onTap: () => context.pushNamed(Routes.product.name, extra: product),
       child: Container(
         padding: const EdgeInsets.all(4),
         margin: const EdgeInsets.symmetric(horizontal: 14),

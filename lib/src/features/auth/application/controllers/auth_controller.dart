@@ -31,7 +31,7 @@ class AuthController extends _$AuthController {
     if (!state.hasError) {
       await cartLocalRepository.clear();
       await wishlistRepository.clear();
-      ref.watch(routerProvider).goNamed('account');
+      ref.watch(routerProvider).goNamed(Routes.account.name);
     }
   }
 
@@ -61,7 +61,7 @@ class AuthController extends _$AuthController {
     });
 
     if (!state.hasError) {
-      ref.watch(routerProvider).goNamed('account');
+      ref.watch(routerProvider).goNamed(Routes.account.name);
     }
   }
 
@@ -71,7 +71,7 @@ class AuthController extends _$AuthController {
       () => ref.watch(authRepositoryProvider).signOut(),
     );
 
-    if (!state.hasError) ref.watch(routerProvider).go('/');
+    if (!state.hasError) ref.watch(routerProvider).goNamed(Routes.home.name);
   }
 }
 

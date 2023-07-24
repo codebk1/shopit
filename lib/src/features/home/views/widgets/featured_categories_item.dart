@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:shopit/src/features/categories/domain/entities/category.dart';
 
@@ -31,7 +32,8 @@ class FeaturedCategoriesItem extends StatelessWidget {
             Material(
               color: Theme.of(context).colorScheme.primary.withAlpha(110),
               child: InkWell(
-                onTap: () => context.pushNamed('products', extra: category),
+                onTap: () =>
+                    context.pushNamed(Routes.products.name, extra: category),
                 splashColor:
                     Theme.of(context).colorScheme.primary.withAlpha(50),
                 highlightColor:

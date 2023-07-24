@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -33,7 +34,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? [
                   IconButton(
                     padding: const EdgeInsets.only(right: 14),
-                    onPressed: () => context.pushNamed('cart'),
+                    onPressed: () => context.pushNamed(Routes.cart.name),
                     icon: Badge(
                       offset: const Offset(6, -4),
                       backgroundColor: Theme.of(context).colorScheme.primary,

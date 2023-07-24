@@ -20,6 +20,19 @@ import 'package:shopit/src/features/products/presentation/pages/products_page.da
 import 'package:shopit/src/features/products/presentation/pages/product_page.dart';
 import 'package:shopit/src/features/cart/presentation/pages/cart_page.dart';
 
+enum Routes {
+  home,
+  categories,
+  wishlist,
+  account,
+  accountEdit,
+  login,
+  signup,
+  cart,
+  products,
+  product,
+}
+
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeNavigatorKey = GlobalKey<NavigatorState>();
 final _categoriesNavigatorKey = GlobalKey<NavigatorState>();
@@ -33,7 +46,6 @@ final routerProvider = Provider<GoRouter>(
     return GoRouter(
       navigatorKey: _rootNavigatorKey,
       initialLocation: '/',
-      debugLogDiagnostics: true,
       redirect: (context, state) async {
         final isLogged = authRepository.currentUser != null;
 
@@ -41,7 +53,7 @@ final routerProvider = Provider<GoRouter>(
           // solution until something will change - https://github.com/flutter/flutter/issues/114131
           await Future.delayed(const Duration(microseconds: 1));
           // ignore: use_build_context_synchronously
-          await _rootNavigatorKey.currentContext!.pushNamed('login');
+          await _rootNavigatorKey.currentContext!.pushNamed(Routes.login.name);
         }
 
         return null;
@@ -57,6 +69,7 @@ final routerProvider = Provider<GoRouter>(
               routes: [
                 GoRoute(
                   path: '/',
+                  name: Routes.home.name,
                   pageBuilder: (_, state) => const NoTransitionPage(
                     child: HomePage(),
                   ),
@@ -68,7 +81,7 @@ final routerProvider = Provider<GoRouter>(
               routes: [
                 GoRoute(
                   path: '/categories',
-                  name: 'categories',
+                  name: Routes.categories.name,
                   pageBuilder: (_, state) => const NoTransitionPage(
                     child: CategoriesPage(),
                   ),
@@ -80,7 +93,7 @@ final routerProvider = Provider<GoRouter>(
               routes: [
                 GoRoute(
                   path: '/wishlist',
-                  name: 'wishlist',
+                  name: Routes.wishlist.name,
                   pageBuilder: (_, state) => const NoTransitionPage(
                     child: WishlistPage(),
                   ),
@@ -92,13 +105,14 @@ final routerProvider = Provider<GoRouter>(
               routes: [
                 GoRoute(
                   path: '/account',
-                  name: 'account',
+                  name: Routes.account.name,
                   pageBuilder: (_, state) => const NoTransitionPage(
                     child: AccountPage(),
                   ),
                   routes: [
                     GoRoute(
                       path: 'edit',
+                      name: Routes.accountEdit.name,
                       pageBuilder: (_, state) => const NoTransitionPage(
                         child: EditAccountPage(),
                       ),
@@ -111,7 +125,7 @@ final routerProvider = Provider<GoRouter>(
         ),
         GoRoute(
           path: '/login',
-          name: 'login',
+          name: Routes.login.name,
           parentNavigatorKey: _rootNavigatorKey,
           pageBuilder: (_, state) => const NoTransitionPage(
             child: LoginPage(),
@@ -119,7 +133,7 @@ final routerProvider = Provider<GoRouter>(
         ),
         GoRoute(
           path: '/signup',
-          name: 'signup',
+          name: Routes.signup.name,
           parentNavigatorKey: _rootNavigatorKey,
           pageBuilder: (_, state) => const NoTransitionPage(
             child: SignupPage(),
@@ -127,7 +141,7 @@ final routerProvider = Provider<GoRouter>(
         ),
         GoRoute(
           path: '/cart',
-          name: 'cart',
+          name: Routes.cart.name,
           parentNavigatorKey: _rootNavigatorKey,
           pageBuilder: (_, state) => const NoTransitionPage(
             child: CartPage(),
@@ -135,7 +149,7 @@ final routerProvider = Provider<GoRouter>(
         ),
         GoRoute(
           path: '/products',
-          name: 'products',
+          name: Routes.products.name,
           parentNavigatorKey: _rootNavigatorKey,
           pageBuilder: (_, state) => NoTransitionPage(
             child: ProductsPage(
@@ -145,7 +159,7 @@ final routerProvider = Provider<GoRouter>(
         ),
         GoRoute(
           path: '/product',
-          name: 'product',
+          name: Routes.product.name,
           parentNavigatorKey: _rootNavigatorKey,
           pageBuilder: (_, state) => CustomTransitionPage(
             transitionsBuilder: (_, animation, __, child) => FadeTransition(

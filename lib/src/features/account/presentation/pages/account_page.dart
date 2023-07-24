@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
@@ -79,21 +80,21 @@ class AccountPage extends StatelessWidget {
             Expanded(
               child: ListView(
                 physics: const NeverScrollableScrollPhysics(),
-                children: const [
+                children: [
                   AccountMenuItem(
                     title: 'Account',
                     icon: 'assets/icons/account.svg',
-                    path: 'edit',
+                    route: Routes.accountEdit.name,
                   ),
-                  AccountMenuItem(
+                  const AccountMenuItem(
                     title: 'My orders',
                     icon: 'assets/icons/orders.svg',
-                    path: '',
+                    route: '',
                   ),
-                  AccountMenuItem(
+                  const AccountMenuItem(
                     title: 'Settings',
                     icon: 'assets/icons/cog.svg',
-                    path: '',
+                    route: '',
                   ),
                 ],
               ),
