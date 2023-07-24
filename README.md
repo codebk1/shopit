@@ -1,13 +1,11 @@
 ### :construction: WORK IN PROGRESS :construction:
 <br>
 
-![shopit](https://github.com/codebk1/shopit/assets/20027710/f4f27989-486a-49ca-b6e2-bff8d9c2232c)
+![logo](https://github.com/codebk1/shopit/assets/20027710/2f67cede-2c58-42c9-b94d-2cb932e3ff02)
 
 E-commerce application built with Flutter :blue_heart:
 
-https://github.com/codebk1/shopit/assets/20027710/f2bfb083-b0d7-42b2-b12b-0e02172b2ead
-
-<br>
+https://github.com/codebk1/shopit/assets/20027710/0e230058-b8db-4a81-a355-5fd5df5861f6
 
 #### Features / edge cases:
 - dependency injection and state management with riverpod,
@@ -17,7 +15,7 @@ https://github.com/codebk1/shopit/assets/20027710/f2bfb083-b0d7-42b2-b12b-0e0217
 - separate isar schema and freezed model with mappers to map between local and remote data (nice separation for storing different data shapes for same feature in local and remote database).
 - riverpod infinity scroll with known number of items for categories list (auto disposing pages on scroll, availability to set custom keepAlive cache) and unknown number of items for products list (ongoing states - loading more / loading more error - without extension on AsyncValue),
 
-![ongoing-states](https://github.com/codebk1/shopit/assets/20027710/15f3afe9-a82c-4c6c-83c9-819f3a3461e5)
+![ongoing-states](https://github.com/codebk1/shopit/assets/20027710/0b13b673-7265-433f-9f1f-aabc6a3bafea)
 
 #### TODO:
 - [ ] checkout & orders feature
