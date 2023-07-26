@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class IAuthRemoteDataSource {
+abstract interface class IAuthRemoteDataSource {
   User? get currentUser;
   Stream<User?> authStateChanges();
 

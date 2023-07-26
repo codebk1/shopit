@@ -1,6 +1,6 @@
 import 'package:shopit/src/features/categories/domain/entities/category.dart';
 
-abstract class ICategoriesRemoteDataSource {
+abstract interface class ICategoriesRemoteDataSource {
   Future<int> count();
   Future<List<Category>> paginate(String startAfter, int limit);
   Future<List<Category>> featured();

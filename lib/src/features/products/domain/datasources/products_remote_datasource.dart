@@ -1,6 +1,6 @@
 import 'package:shopit/src/features/products/domain/entities/product.dart';
 
-abstract class IProductsRemoteDataSource {
+abstract interface class IProductsRemoteDataSource {
   Future<Product?> getById(String id);
   Future<int> countByCategoryId(String id);
 
