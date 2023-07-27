@@ -13,9 +13,9 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appLocale = ref.watch(
-      settingsControllerProvider.select((data) => data.asData?.value.locale),
-    );
+    final appLocale = ref.watch(settingsControllerProvider.select(
+      (settings) => settings.requireValue.locale,
+    ));
 
     final goRouter = ref.watch(routerProvider);
 
