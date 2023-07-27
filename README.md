@@ -21,12 +21,16 @@ https://github.com/codebk1/shopit/assets/20027710/0e230058-b8db-4a81-a355-5fd5df
 - [ ] checkout & orders feature
 - [ ] categories/products sorting and filters
 - [ ] full-text search
+- [x] l10n:
+
+<img width="250px" src="https://github.com/codebk1/shopit/assets/20027710/df8c7a3d-2eb1-4ac6-9aca-b7b9be7ebc91">
+
 - [ ] custom themes
 - [ ] animations & microinteractions
 - [ ] forms validation
 - [ ] admin panel
 - [ ] unit and widgets tests
-- [ ] flavors
-- [ ] Firebase Crashlytics
+- [x] flavors
+- [x] Firebase Crashlytics
 - [ ] GitHub Actions for CI/CD
 - [ ] supabase datasources
