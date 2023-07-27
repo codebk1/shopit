@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/features/home/application/controllers/home_controller.dart';
@@ -49,7 +50,7 @@ class FeaturedProductsFilters extends ConsumerWidget {
         },
         error: (_, __) => FeaturedEmptyState(
           isRow: true,
-          text: 'Can\'t load filters. Try again later.',
+          text: context.l10n.homeFeaturedProductsFiltersEmptyState,
           onRefresh: () => ref.invalidate(featuredProductsCategoriesProvider),
         ),
         loading: () => Shimmer.fromColors(

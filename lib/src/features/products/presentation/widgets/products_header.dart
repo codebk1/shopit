@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
+import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
 
 class ProductsHeader extends ConsumerWidget {
@@ -37,8 +39,9 @@ class ProductsHeader extends ConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
+                gapW2,
                 Text(
-                  count == 1 ? ' product' : ' products',
+                  context.l10n.productsCount(count),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
@@ -52,7 +55,7 @@ class ProductsHeader extends ConsumerWidget {
           ],
         ),
       ),
-      error: (_, __) => const Text('Can\'t load products count.'),
+      error: (_, __) => Text(context.l10n.productsCountLoadingError),
       loading: () => Shimmer.fromColors(
         baseColor: shimmerDarkBaseColor,
         highlightColor: shimmerDarkHighlightColor,

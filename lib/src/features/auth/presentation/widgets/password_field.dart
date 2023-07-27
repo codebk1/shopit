@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/features/auth/application/controllers/show_password_controller.dart';
 
 class PasswordField extends StatelessWidget {
@@ -23,7 +24,7 @@ class PasswordField extends StatelessWidget {
           autocorrect: false,
           obscureText: !showPassword,
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: context.l10n.inputPasswordLabel,
             suffixIcon: IconButton(
               onPressed: () =>
                   ref.read(showPasswordControllerProvider.notifier).toggle(),
@@ -41,7 +42,7 @@ class PasswordField extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Password is required';
+              return context.l10n.inputPasswordIsRequired;
             }
             return null;
           },

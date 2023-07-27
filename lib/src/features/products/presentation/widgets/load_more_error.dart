@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
 
 class LoadMoreError extends StatelessWidget {
@@ -24,9 +25,9 @@ class LoadMoreError extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: Text(
-              'Can\'t load more products, try again later.',
+              context.l10n.productsLoadMoreError,
             ),
           ),
           IconButton(

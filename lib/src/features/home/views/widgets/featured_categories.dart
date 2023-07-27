@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/features/home/application/controllers/home_controller.dart';
 import 'package:shopit/src/features/home/views/widgets/featured_empty_state.dart';
@@ -19,7 +20,7 @@ class FeaturedCategories extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Text(
-            'Featured categories',
+            context.l10n.homeFeaturedCategoriesHeader,
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
@@ -34,8 +35,7 @@ class FeaturedCategories extends StatelessWidget {
                 skipLoadingOnRefresh: false,
                 data: (categories) => categories.isEmpty
                     ? FeaturedEmptyState(
-                        text:
-                            'Not found any featured categories.\nTry again later.',
+                        text: context.l10n.homeFeaturedCategoriesEmptyStateText,
                         onRefresh: () => ref.invalidate(
                           featuredCategoriesProvider,
                         ),
@@ -52,7 +52,7 @@ class FeaturedCategories extends StatelessWidget {
                         },
                       ),
                 error: (_, __) => FeaturedEmptyState(
-                  text: 'Can\'t load featured categories.\nTry again later.',
+                  text: context.l10n.homeFeaturedCategoriesEmptyStateText,
                   onRefresh: () => ref.invalidate(featuredCategoriesProvider),
                 ),
                 loading: () => const FeaturedCategoriesLoader(),

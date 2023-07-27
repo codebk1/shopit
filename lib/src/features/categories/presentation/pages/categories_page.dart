@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/common/widgets/error_state.dart';
@@ -16,8 +17,8 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MainAppBar(
-        title: 'Categories',
+      appBar: MainAppBar(
+        title: context.l10n.categoriesAppBarTitle,
       ),
       body: Consumer(
         builder: (context, ref, child) {
@@ -60,7 +61,7 @@ class CategoriesPage extends StatelessWidget {
               ),
             ),
             error: (_, __) => ErrorState(
-              text: 'Can\'t load categories.\nTry again later.',
+              text: context.l10n.categoriesErrorState,
               onRefresh: () => ref.invalidate(categoriesCountProvider),
             ),
             loading: () => const CategoriesGridLoader(),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
+
 class RemoveSlidable extends StatelessWidget {
   const RemoveSlidable({
     super.key,
@@ -40,7 +42,7 @@ class RemoveSlidable extends StatelessWidget {
                     BlendMode.srcIn,
                   ),
                 ),
-                const Text('Remove'),
+                Text(context.l10n.commonSlidableRemoveItemLabel),
               ],
             ),
           ),

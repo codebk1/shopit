@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
@@ -19,8 +20,8 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MainAppBar(
-        title: 'Account',
+      appBar: MainAppBar(
+        title: context.l10n.accountAppBarTitle,
         showActions: false,
       ),
       body: Padding(
@@ -46,7 +47,7 @@ class AccountPage extends StatelessWidget {
                         skipError: true,
                         data: (account) => Row(
                           children: [
-                            const Text('Hello, '),
+                            Text(context.l10n.accountGreetings),
                             Text(
                               '${account?.firstName} ${account?.lastName}',
                               style: Theme.of(context)
@@ -56,8 +57,8 @@ class AccountPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        error: (_, __) => const Text(
-                          'Can\'t load account name.',
+                        error: (_, __) => Text(
+                          context.l10n.accountNameLoadingError,
                         ),
                         loading: () => const ShimmerText(width: 200),
                       ),
@@ -82,19 +83,19 @@ class AccountPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   AccountMenuItem(
-                    title: 'Account',
+                    title: context.l10n.accountEditAccountMenuItemTitle,
                     icon: 'assets/icons/account.svg',
                     route: Routes.accountEdit.name,
                   ),
-                  const AccountMenuItem(
-                    title: 'My orders',
+                  AccountMenuItem(
+                    title: context.l10n.accountOrdersMenuItemTitle,
                     icon: 'assets/icons/orders.svg',
                     route: '',
                   ),
-                  const AccountMenuItem(
-                    title: 'Settings',
+                  AccountMenuItem(
+                    title: context.l10n.accountSettingsMenuItemTitle,
                     icon: 'assets/icons/cog.svg',
-                    route: '',
+                    route: Routes.accountSettings.name,
                   ),
                 ],
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/features/home/application/controllers/home_controller.dart';
 import 'package:shopit/src/features/home/views/widgets/featured_empty_state.dart';
@@ -20,7 +21,7 @@ class FeaturedProducts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Text(
-            'Featured products',
+            context.l10n.homeFeaturedProductsHeader,
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
@@ -50,7 +51,7 @@ class FeaturedProducts extends StatelessWidget {
                   },
                 ),
                 error: (_, __) => FeaturedEmptyState(
-                  text: 'Can\'t load featured products.\nTry again later.',
+                  text: context.l10n.homeFeaturedProductsEmptyState,
                   onRefresh: () => ref.invalidate(
                     filteredFeaturedProductsProvider,
                   ),

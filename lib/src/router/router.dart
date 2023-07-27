@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopit/src/features/settings/presentation/pages/settings_page.dart';
 
 import 'package:shopit/src/router/scaffold_with_navbar.dart';
 import 'package:shopit/src/features/home/views/pages/home_page.dart';
@@ -26,6 +27,7 @@ enum Routes {
   wishlist,
   account,
   accountEdit,
+  accountSettings,
   login,
   signup,
   cart,
@@ -115,6 +117,14 @@ final routerProvider = Provider<GoRouter>(
                       name: Routes.accountEdit.name,
                       pageBuilder: (_, state) => const NoTransitionPage(
                         child: EditAccountPage(),
+                      ),
+                    ),
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      path: 'settings',
+                      name: Routes.accountSettings.name,
+                      pageBuilder: (_, state) => const NoTransitionPage(
+                        child: SettingsPage(),
                       ),
                     ),
                   ],

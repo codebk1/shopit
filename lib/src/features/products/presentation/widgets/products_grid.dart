@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/common/widgets/empty_state.dart';
 import 'package:shopit/src/common/widgets/error_state.dart';
 import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
@@ -72,7 +73,7 @@ class ProductsGrid extends ConsumerWidget {
                 skipLoadingOnRefresh: false,
                 data: (products) => products.isEmpty
                     ? EmptyState(
-                        text: 'Not found any products.\nTry again later.',
+                        text: context.l10n.productsEmptyState,
                         onRefresh: () => ref.invalidate(
                           productsPageProvider(meta.copyWith(page: 1)),
                         ),
@@ -80,7 +81,7 @@ class ProductsGrid extends ConsumerWidget {
                     : const SizedBox.shrink(),
                 error: (_, __) => page == 1
                     ? ErrorState(
-                        text: 'Can\'t load products.\nTry again later.',
+                        text: context.l10n.productsErrorState,
                         onRefresh: () => ref.invalidate(
                           productsPageProvider(meta.copyWith(page: 1)),
                         ),

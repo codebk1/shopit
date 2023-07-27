@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
@@ -46,13 +47,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
             autocorrect: false,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Email',
+            decoration: InputDecoration(
+              labelText: context.l10n.inputEmailLabel,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Email is required';
+                return context.l10n.inputEmailIsRequired;
               }
               return null;
             },
@@ -68,7 +69,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 onPressed: _submit,
                 child: authController.isLoading
                     ? const Loader()
-                    : const Text('Login'),
+                    : Text(context.l10n.loginButton),
               );
             },
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/utils/currency_formatter.dart';
 import 'package:shopit/src/common/widgets/shimmer_text.dart';
@@ -22,7 +23,7 @@ class CartSummary extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Subtotal'),
+            Text(context.l10n.cartSubtotalHeader),
             cartSubtotal.when(
               skipLoadingOnReload: true,
               data: (subtotal) => Text(
@@ -33,9 +34,7 @@ class CartSummary extends ConsumerWidget {
                 width: 80,
                 dark: true,
               ),
-              error: (_, __) => const Text(
-                'Can\'t load subtotal value.',
-              ),
+              error: (_, __) => Text(context.l10n.cartSubtotalLoadingError),
             ),
           ],
         ),
@@ -43,7 +42,7 @@ class CartSummary extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Shipping estimate'),
+            Text(context.l10n.cartShippingCostHeader),
             Text(
               ref.read(currencyFormatterProvider).format(shipping),
               style: Theme.of(context).textTheme.bodyMedium,
@@ -54,7 +53,7 @@ class CartSummary extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Order total'),
+            Text(context.l10n.cartTotalHeader),
             cartSubtotal.when(
               skipLoadingOnReload: true,
               data: (subtotal) => Text(
@@ -68,9 +67,7 @@ class CartSummary extends ConsumerWidget {
                 width: 100,
                 dark: true,
               ),
-              error: (_, __) => const Text(
-                'Can\'t load total value.',
-              ),
+              error: (_, __) => Text(context.l10n.cartTotalLoadingError),
             ),
           ],
         ),

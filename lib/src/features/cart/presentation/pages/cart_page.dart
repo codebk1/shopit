@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
@@ -22,7 +23,7 @@ class CartPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: MainAppBar(
-        title: 'Shopping cart',
+        title: context.l10n.cartAppBarTitle,
         showActions:
             cartController.hasValue && cartController.value!.items.isNotEmpty,
         actions: [
@@ -42,7 +43,7 @@ class CartPage extends ConsumerWidget {
         child: cartController.when(
           data: (cart) => cart.items.isEmpty
               ? EmptyState(
-                  text: 'Cart is empty.',
+                  text: context.l10n.cartEmptyState,
                   onRefresh: () => ref.invalidate(cartControllerProvider),
                 )
               : Column(
@@ -96,7 +97,7 @@ class CartPage extends ConsumerWidget {
                   ],
                 ),
           error: (_, __) => ErrorState(
-            text: 'Can\'t load cart.\nTry again later.',
+            text: context.l10n.cartErrorState,
             onRefresh: () => ref.invalidate(cartControllerProvider),
           ),
           loading: () => const Loader(

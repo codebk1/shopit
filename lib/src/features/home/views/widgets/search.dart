@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
+
 class Search extends StatelessWidget {
   const Search({
     super.key,
@@ -23,7 +25,7 @@ class Search extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none,
           ),
-          hintText: "Search products...",
+          hintText: context.l10n.inputSearchLabel,
           prefixIcon: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SvgPicture.asset(

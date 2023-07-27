@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/utils/async_value_messenger.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
@@ -20,8 +22,8 @@ class LoginPage extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const MainAppBar(
-        title: 'Login',
+      appBar: MainAppBar(
+        title: context.l10n.loginAppBarTitle,
         showActions: false,
       ),
       body: SingleChildScrollView(
@@ -32,12 +34,12 @@ class LoginPage extends ConsumerWidget {
             gapH24,
             Row(
               children: [
-                const Text('Not registered yet?'),
+                Text(context.l10n.loginNoAccountQuestion),
                 gapW8,
                 GestureDetector(
-                  onTap: () => context.replaceNamed('signup'),
+                  onTap: () => context.replaceNamed(Routes.signup.name),
                   child: Text(
-                    'Create an Account',
+                    context.l10n.loginGoToSignupPage,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),

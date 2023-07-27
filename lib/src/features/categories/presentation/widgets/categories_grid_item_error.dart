@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
 
 class CategoriesGridItemError extends StatelessWidget {
@@ -12,9 +13,9 @@ class CategoriesGridItemError extends StatelessWidget {
         color: surfaceContainer,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: const Center(
+      child: Center(
         child: Text(
-          'Can\'t load category.\nTry again later.',
+          context.l10n.categoriesCategoryLoadingError,
           textAlign: TextAlign.center,
         ),
       ),

@@ -1,0 +1,83 @@
+{
+    "@@locale": "pl",
+    "languageName": "Polski",
+    
+    "commonPhotoLoadingError": "Zdjęcie aktualnie niedostępne.",
+    "commonSlidableRemoveItemLabel": "Usuń",
+
+    "homeFeaturedCategoriesHeader": "Polecane kategorie",
+    "homeFeaturedCategoriesEmptyStateText": "Brak polecanych kategorii.\nSpróbuj ponownie później.",
+    "homeFeaturedProductsHeader": "Polecane produkty",
+    "homeFeaturedProductsEmptyState": "Brak polecanych produktów.\nSpróbuj ponownie później.",
+    "homeFeaturedProductsFiltersEmptyState": "Nie można załadować filtrów. Spróbuj ponownie później.",
+
+    "loginAppBarTitle": "Logowanie",
+    "loginNoAccountQuestion": "Nie masz konta?",
+    "loginGoToSignupPage": "Zarejestruj się",
+    "loginButton": "Zaloguj",
+
+    "signupAppBarTitle": "Rejestracja",
+    "signupAlreadyHaveAccount": "Posiadasz już konto?",
+    "signupGoToLoginPage": "Zaloguj się",
+    "signupButton": "Zarejestruj",    
+
+    "accountAppBarTitle": "Konto",
+    "accountGreetings": "Cześć, ",
+    "accountNameLoadingError": "Nie można załadować nazwy konta.",
+    "accountEditAccountMenuItemTitle": "Konto",
+    "accountOrdersMenuItemTitle": "Moje zamówienia",
+    "accountSettingsMenuItemTitle": "Ustawienia",
+
+    "editAccountAppBarTitle": "Edycja konta",
+    "editAccountSuccess": "Konto pomyślnie zaktualizowane.",
+    "editAccountDontChangePasswordInfo": "Pozostaw pola puste jeśli nie chcesz zmieniać hasła.",
+    "editAccountButton": "Zapisz",
+
+    "settingsAppBarTitle": "Ustawienia",
+    "settingsAppearanceMenuItemTitle": "Wygląd",
+    "settingsLanguageMenuItemTitle": "Język",
+    "settingsSystemLanguageOption": "Język systemowy",
+
+    "wishlistAppBarTitle": "Lista życzeń",
+    "wishlistEmptyState": "Brak produktów w liście życzeń.",
+    "wishlistErrorState": "Nie można załadować listy życzeń.\nSpróbuj ponownie później.",
+
+    "categoriesAppBarTitle": "Kategorie",
+    "categoriesErrorState": "Nie można załadować kategorii.\nSpróbuj ponownie później.",
+    "categoriesCategoryLoadingError": "Nie można załadować kategorii.\nSpróbuj ponownie później.",
+    "categoriesCount": "{count, plural, =1{kategoria} few{kategorie} many{kategorii} other{kategorii}}",
+
+    "productsAddToCartButton": "Dodaj do koszyka",
+    "productsAddToCartSuccess": "Dodano do koszyka",
+    "productsEmptyState": "Nie znaleziono żadnych produktów.\nSpróbuj ponownie później.",
+    "productsErrorState": "Nie można załadować produktów.\nSpróbuj ponownie później.",
+    "productsLoadMoreError": "Nie można załadować więcej produktów. Spróbuj ponownie później.",
+    "productsCount": "{count, plural, =1{produkt} few{produkty} many{produktów} other{produktów}}",
+    "productsCountLoadingError": "Nie można załadować liczby produktów.",
+    "productsListItemError": "Nie można załadować produktu, spróbuj ponownie później lub przeciągnij aby usunąć produkt z listy.",
+
+    "cartAppBarTitle": "Koszyk",
+    "cartEmptyState": "Koszyk jest pusty.",
+    "cartErrorState": "Nie można załadować koszyka.\nSpróbuj ponownie później.",
+    "cartCheckoutButton": "Zamówienie",
+    "cartSubtotalHeader": "Wartość koszyka",
+    "cartSubtotalLoadingError": "Nie można załadować wartości.",
+    "cartShippingCostHeader": "Dostawa",
+    "cartTotalHeader": "Razem",
+    "cartTotalLoadingError": "Nie można załadować wartości.",
+
+    "inputSearchLabel": "Szukaj produktów...",
+    "inputFirstnameLabel": "Imię",
+    "inputFirstnameIsRequired": "Imię jest wymagane",
+    "inputLastnameLabel": "Nazwisko",
+    "inputLastnameIsRequired": "Nazwisko jest wymagane",
+    "inputEmailLabel": "Email",
+    "inputEmailIsRequired": "Email jest wymagany",
+    "inputPasswordLabel": "Hasło",
+    "inputPasswordIsRequired": "Hasło jest wymagane",
+    "inputConfirmPasswordLabel": "Potwierdź hasło",
+    "inputConfirmPasswordIsRequired": "Potwierdzenie hasła jest wymagane",
+    "inputPasswordsNotMatch": "Podane hasła różnią się",
+    "inputNewPasswordLabel": "Nowe hasło",
+    "inputConfirmNewPasswordLabel": "Potwierdź nowe hasło"
+}

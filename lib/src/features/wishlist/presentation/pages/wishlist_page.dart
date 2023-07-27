@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/common/widgets/empty_state.dart';
@@ -20,15 +21,15 @@ class WishlistPage extends ConsumerWidget {
     final wishlistController = ref.watch(wishlistControllerProvider);
 
     return Scaffold(
-      appBar: const MainAppBar(
-        title: 'Wishlist',
+      appBar: MainAppBar(
+        title: context.l10n.wishlistAppBarTitle,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 14),
         child: wishlistController.when(
           data: (wishlist) => wishlist.items.isEmpty
               ? EmptyState(
-                  text: 'No products in wishlist.',
+                  text: context.l10n.wishlistEmptyState,
                   onRefresh: () => ref.invalidate(wishlistControllerProvider),
                 )
               : ListView.separated(
@@ -51,7 +52,7 @@ class WishlistPage extends ConsumerWidget {
                   },
                 ),
           error: (_, __) => ErrorState(
-            text: 'Can\'t load wishlist.\nTry again later.',
+            text: context.l10n.wishlistErrorState,
             onRefresh: () => ref.invalidate(wishlistControllerProvider),
           ),
           loading: () => const ProductsListLoader(),

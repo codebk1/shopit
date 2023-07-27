@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
@@ -58,13 +59,13 @@ class _SignupFormState extends ConsumerState<SignupForm> {
                   autocorrect: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Firstname',
+                  decoration: InputDecoration(
+                    labelText: context.l10n.inputFirstnameLabel,
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Firstname is required';
+                      return context.l10n.inputFirstnameIsRequired;
                     }
                     return null;
                   },
@@ -77,13 +78,13 @@ class _SignupFormState extends ConsumerState<SignupForm> {
                   autocorrect: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Lastname',
+                  decoration: InputDecoration(
+                    labelText: context.l10n.inputLastnameLabel,
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Lastname is required';
+                      return context.l10n.inputLastnameIsRequired;
                     }
                     return null;
                   },
@@ -97,13 +98,13 @@ class _SignupFormState extends ConsumerState<SignupForm> {
             autocorrect: false,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Email',
+            decoration: InputDecoration(
+              labelText: context.l10n.inputEmailLabel,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Email is required';
+                return context.l10n.inputEmailIsRequired;
               }
               return null;
             },
@@ -115,17 +116,17 @@ class _SignupFormState extends ConsumerState<SignupForm> {
             controller: _confirmPasswordController,
             autocorrect: false,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'Confirm password',
+            decoration: InputDecoration(
+              labelText: context.l10n.inputConfirmPasswordLabel,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Password is required';
+                return context.l10n.inputConfirmPasswordIsRequired;
               }
 
               if (value != _passwordController.text) {
-                return 'Passwords don\'t match';
+                return context.l10n.inputPasswordsNotMatch;
               }
               return null;
             },
@@ -139,7 +140,7 @@ class _SignupFormState extends ConsumerState<SignupForm> {
                 onPressed: _submit,
                 child: authController.isLoading
                     ? const Loader()
-                    : const Text('Sign Up'),
+                    : Text(context.l10n.signupButton),
               );
             },
           ),

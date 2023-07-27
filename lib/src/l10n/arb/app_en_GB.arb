@@ -1,0 +1,83 @@
+{
+    "@@locale": "en_GB",
+    "languageName": "English (UK)",
+
+    "commonPhotoLoadingError": "Photo currently unavailable.",
+    "commonSlidableRemoveItemLabel": "Remove",
+
+    "homeFeaturedCategoriesHeader": "Featured categories",
+    "homeFeaturedCategoriesEmptyStateText": "Not found any featured categories.\nTry again later.",
+    "homeFeaturedProductsHeader": "Featured products",
+    "homeFeaturedProductsEmptyState": "Not found any featured products.\nTry again later.",
+    "homeFeaturedProductsFiltersEmptyState": "Can't load filters. Try again later.",
+
+    "loginAppBarTitle": "Login",
+    "loginNoAccountQuestion": "Not registered yet?",
+    "loginGoToSignupPage": "Create an Account",
+    "loginButton": "Login",
+
+    "signupAppBarTitle": "Sign Up",
+    "signupAlreadyHaveAccount": "Already have an account?",
+    "signupGoToLoginPage": "Log in",
+    "signupButton": "Sign Up",    
+
+    "accountAppBarTitle": "Account",
+    "accountGreetings": "Hello, ",
+    "accountNameLoadingError": "Can't load account name.",
+    "accountEditAccountMenuItemTitle": "Account",
+    "accountOrdersMenuItemTitle": "My orders",
+    "accountSettingsMenuItemTitle": "Settings",
+
+    "editAccountAppBarTitle": "Edit account",
+    "editAccountSuccess": "Successfully edited account.",
+    "editAccountDontChangePasswordInfo": "Leave empty if You don't want to change password.",
+    "editAccountButton": "Save",
+
+    "settingsAppBarTitle": "Settings",
+    "settingsAppearanceMenuItemTitle": "Appearance",
+    "settingsLanguageMenuItemTitle": "Language",
+    "settingsSystemLanguageOption": "System language",
+
+    "wishlistAppBarTitle": "Wishlist",
+    "wishlistEmptyState": "No products in wishlist.",
+    "wishlistErrorState": "Can't load wishlist.\nTry again later.",
+
+    "categoriesAppBarTitle": "Categories",
+    "categoriesErrorState": "Can't load categories.\nTry again later.",
+    "categoriesCategoryLoadingError": "Can't load category.\nTry again later.",
+    "categoriesCount": "{count, plural, =1{category} few{categories} many{categories} other{categories}}",
+
+    "productsAddToCartButton": "Add to cart",
+    "productsAddToCartSuccess": "Added to cart",
+    "productsEmptyState": "Not found any products.\nTry again later.",
+    "productsErrorState": "Can't load products.\nTry again later.",
+    "productsLoadMoreError": "Can't load more products, try again later.",
+    "productsCount": "{count, plural, =1{product} few{products} many{products} other{products}}",
+    "productsCountLoadingError": "Can't load products count.",
+    "productsListItemError": "Can't load product, please try again later or swipe to remove product from list.",
+
+    "cartAppBarTitle": "Shopping cart",
+    "cartEmptyState": "Cart is empty.",
+    "cartErrorState": "Can't load cart.\nTry again later.",
+    "cartCheckoutButton": "Checkout",
+    "cartSubtotalHeader": "Subtotal",
+    "cartSubtotalLoadingError": "Can't load subtotal value.",
+    "cartShippingCostHeader": "Shipping estimate",
+    "cartTotalHeader": "Order total",
+    "cartTotalLoadingError": "Can't load total value.",
+
+    "inputSearchLabel": "Search products...",
+    "inputFirstnameLabel": "Firstname",
+    "inputFirstnameIsRequired": "Firstname is required",
+    "inputLastnameLabel": "Lastname",
+    "inputLastnameIsRequired": "Lastname is required",
+    "inputEmailLabel": "Email",
+    "inputEmailIsRequired": "Email is required",
+    "inputPasswordLabel": "Password",
+    "inputPasswordIsRequired": "Password is required",
+    "inputConfirmPasswordLabel": "Confirm password",
+    "inputConfirmPasswordIsRequired": "Password confirmation is required",
+    "inputPasswordsNotMatch": "Passwords dont't match",
+    "inputNewPasswordLabel": "New password",
+    "inputConfirmNewPasswordLabel": "Confirm new password"
+}

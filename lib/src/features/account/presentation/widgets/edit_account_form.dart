@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
@@ -77,13 +78,13 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
                   autocorrect: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Firstname',
+                  decoration: InputDecoration(
+                    labelText: context.l10n.inputFirstnameLabel,
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Firstname is required';
+                      return context.l10n.inputFirstnameIsRequired;
                     }
                     return null;
                   },
@@ -96,13 +97,13 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
                   autocorrect: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Lastname',
+                  decoration: InputDecoration(
+                    labelText: context.l10n.inputLastnameLabel,
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Lastname is required';
+                      return context.l10n.inputLastnameIsRequired;
                     }
                     return null;
                   },
@@ -116,28 +117,28 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
             autocorrect: false,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Email',
+            decoration: InputDecoration(
+              labelText: context.l10n.inputEmailLabel,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Email is required';
+                return context.l10n.inputEmailIsRequired;
               }
               return null;
             },
           ),
           gapH24,
-          const Text(
-            'Leave empty if You don\'t want to change password.',
+          Text(
+            context.l10n.editAccountDontChangePasswordInfo,
           ),
           gapH10,
           TextFormField(
             controller: _passwordController,
             autocorrect: false,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'New password',
+            decoration: InputDecoration(
+              labelText: context.l10n.inputNewPasswordLabel,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
@@ -146,13 +147,13 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
             controller: _confirmPasswordController,
             autocorrect: false,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'Confirm new password',
+            decoration: InputDecoration(
+              labelText: context.l10n.inputConfirmNewPasswordLabel,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value != _passwordController.text) {
-                return 'Passwords don\'t match';
+                return context.l10n.inputPasswordsNotMatch;
               }
 
               return null;
@@ -163,7 +164,7 @@ class _EditAccountFormState extends ConsumerState<EditAccountForm> {
             onPressed: accountController.isLoading ? null : _submit,
             child: accountController.isLoading
                 ? const Loader()
-                : const Text('Save'),
+                : Text(context.l10n.editAccountButton),
           ),
         ],
       ),

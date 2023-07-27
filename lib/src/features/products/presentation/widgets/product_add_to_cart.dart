@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/cart/application/controllers/add_to_cart_controller.dart';
@@ -64,7 +65,11 @@ class _ProductAddToCartState extends ConsumerState<ProductAddToCart> {
                   ),
                 ),
                 gapW8,
-                Text(_isSuccess ? 'Added to cart' : 'Add to cart'),
+                Text(
+                  _isSuccess
+                      ? context.l10n.productsAddToCartSuccess
+                      : context.l10n.productsAddToCartButton,
+                ),
               ],
             ),
     );

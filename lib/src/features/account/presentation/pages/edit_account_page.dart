@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/utils/async_value_messenger.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
@@ -16,16 +17,19 @@ class EditAccountPage extends ConsumerWidget {
       accountControllerProvider,
       (_, next) {
         next.showAlertDialogOnError(context);
-        next.showSnackbarOnSuccess(context, 'Successfully edited account.');
+        next.showSnackbarOnSuccess(
+          context,
+          context.l10n.editAccountSuccess,
+        );
       },
     );
 
-    return const Scaffold(
+    return Scaffold(
       appBar: MainAppBar(
-        title: 'Edit account',
+        title: context.l10n.editAccountAppBarTitle,
         showActions: false,
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         padding: EdgeInsets.all(14),
         child: EditAccountForm(),
       ),

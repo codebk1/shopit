@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
+
 class ProductsListItemError extends StatelessWidget {
   const ProductsListItemError({super.key});
 
@@ -13,11 +15,11 @@ class ProductsListItemError extends StatelessWidget {
         color: Theme.of(context).colorScheme.onInverseSurface,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: const Row(
+      child: Row(
         children: [
           Expanded(
             child: Text(
-              'Can\' load product, please try again later or swipe to remove product from list.',
+              context.l10n.productsListItemError,
             ),
           ),
         ],

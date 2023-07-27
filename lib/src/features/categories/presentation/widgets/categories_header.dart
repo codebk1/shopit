@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
+import 'package:shopit/src/constants/spacing.dart';
 
 class CategoriesHeader extends StatelessWidget {
   const CategoriesHeader({
@@ -31,8 +33,9 @@ class CategoriesHeader extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
               ),
+              gapW2,
               Text(
-                count == 1 ? ' category' : ' categories',
+                context.l10n.categoriesCount(count),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
