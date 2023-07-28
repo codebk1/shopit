@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
@@ -14,6 +16,16 @@ void main() async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    log(error.toString(), stackTrace: stack);
+    return true;
+  };
+
+  Isolate.current.addErrorListener(RawReceivePort((pair) async {
+    final List<dynamic> errorAndStacktrace = pair;
+    log(errorAndStacktrace.first, stackTrace: errorAndStacktrace.last);
+  }).sendPort);
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
