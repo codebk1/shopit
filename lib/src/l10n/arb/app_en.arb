@@ -9,6 +9,7 @@
     "homeFeaturedCategoriesEmptyStateText": "Not found any featured categories.\nTry again later.",
     "homeFeaturedProductsHeader": "Featured products",
     "homeFeaturedProductsEmptyState": "Not found any featured products.\nTry again later.",
+    "homeFeaturedProductsFiltersAllChip": "All",
     "homeFeaturedProductsFiltersEmptyState": "Can't load filters. Try again later.",
 
     "loginAppBarTitle": "Login",
