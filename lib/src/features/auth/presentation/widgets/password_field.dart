@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/features/auth/application/controllers/show_password_controller.dart';
 
 class PasswordField extends StatelessWidget {
@@ -19,6 +19,7 @@ class PasswordField extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) {
         final showPassword = ref.watch(showPasswordControllerProvider);
+
         return TextFormField(
           controller: controller,
           autocorrect: false,
@@ -26,16 +27,11 @@ class PasswordField extends StatelessWidget {
           decoration: InputDecoration(
             labelText: context.l10n.inputPasswordLabel,
             suffixIcon: IconButton(
-              onPressed: () =>
-                  ref.read(showPasswordControllerProvider.notifier).toggle(),
-              icon: SvgPicture.asset(
-                showPassword
-                    ? 'assets/icons/eye.svg'
-                    : 'assets/icons/eye-slash.svg',
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).hintColor,
-                  BlendMode.srcIn,
-                ),
+              onPressed:
+                  ref.read(showPasswordControllerProvider.notifier).toggle,
+              icon: SvgIcon(
+                iconName: showPassword ? 'eye' : 'eye-slash',
+                color: Theme.of(context).hintColor,
               ),
             ),
           ),

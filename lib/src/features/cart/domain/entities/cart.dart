@@ -27,7 +27,7 @@ class Cart with _$Cart {
   factory Cart.fromJson(Map<String, Object?> json) => _$CartFromJson(json);
 }
 
-extension CartToLocalCart on Cart {
+extension CartExtension on Cart {
   LocalCart toLocalCart() {
     return LocalCart()
       ..id = 1

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/common/widgets/shimmer_text.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
@@ -68,9 +68,7 @@ class AccountPage extends StatelessWidget {
                             : ref.read(authControllerProvider.notifier).logout,
                         icon: authController.isLoading
                             ? const Loader(dark: true)
-                            : SvgPicture.asset(
-                                'assets/icons/logout.svg',
-                              ),
+                            : const SvgIcon(iconName: 'logout'),
                       ),
                     ],
                   );
@@ -84,17 +82,17 @@ class AccountPage extends StatelessWidget {
                 children: [
                   AccountMenuItem(
                     title: context.l10n.accountEditAccountMenuItemTitle,
-                    icon: 'assets/icons/account.svg',
+                    iconName: 'account',
                     route: Routes.accountEdit.name,
                   ),
                   AccountMenuItem(
                     title: context.l10n.accountOrdersMenuItemTitle,
-                    icon: 'assets/icons/orders.svg',
+                    iconName: 'orders',
                     route: '',
                   ),
                   AccountMenuItem(
                     title: context.l10n.accountSettingsMenuItemTitle,
-                    icon: 'assets/icons/cog.svg',
+                    iconName: 'cog',
                     route: Routes.accountSettings.name,
                   ),
                 ],

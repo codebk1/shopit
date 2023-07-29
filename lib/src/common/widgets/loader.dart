@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Loader extends StatelessWidget {
-  const Loader({super.key, this.dark = false});
+  const Loader({
+    super.key,
+    this.dark = false,
+  });
 
   final bool dark;
 

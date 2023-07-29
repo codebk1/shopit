@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 
 class EmptyState extends StatelessWidget {
-  const EmptyState({super.key, required this.text, required this.onRefresh});
+  const EmptyState({
+    super.key,
+    required this.text,
+    required this.onRefresh,
+  });
 
   final String text;
   final VoidCallback onRefresh;
@@ -16,31 +19,23 @@ class EmptyState extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            'assets/icons/information.svg',
+          SvgIcon(
+            iconName: 'information',
             width: 100,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).primaryColorDark.withAlpha(50),
-              BlendMode.srcIn,
-            ),
+            color: Theme.of(context).colorScheme.primary.withAlpha(100),
           ),
+          gapH8,
           Text(
             text,
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: Theme.of(context).primaryColorDark.withAlpha(50),
+                  color: Theme.of(context).colorScheme.primary,
                 ),
             textAlign: TextAlign.center,
           ),
-          gapH24,
+          gapH16,
           IconButton(
             onPressed: onRefresh,
-            icon: SvgPicture.asset(
-              'assets/icons/reload.svg',
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).hintColor,
-                BlendMode.srcIn,
-              ),
-            ),
+            icon: const SvgIcon(iconName: 'reload'),
           ),
         ],
       ),

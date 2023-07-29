@@ -9,8 +9,8 @@ class CartIsarDataSource implements ICartLocalDataSource {
   final Isar _isar;
 
   @override
-  Future<LocalCart> get() async {
-    return await _isar.localCarts.get(1) ?? LocalCart();
+  Future<LocalCart?> get() async {
+    return _isar.localCarts.get(1);
   }
 
   @override

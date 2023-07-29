@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 
 class RemoveSlidable extends StatelessWidget {
   const RemoveSlidable({
@@ -32,16 +33,11 @@ class RemoveSlidable extends StatelessWidget {
               topLeft: Radius.circular(8),
               bottomLeft: Radius.circular(8),
             ),
-            backgroundColor: Theme.of(context).colorScheme.error,
+            backgroundColor: Theme.of(context).colorScheme.errorContainer,
             child: Row(
               children: [
-                SvgPicture.asset(
-                  'assets/icons/trash.svg',
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                const SvgIcon(iconName: 'trash'),
+                gapW2,
                 Text(context.l10n.commonSlidableRemoveItemLabel),
               ],
             ),

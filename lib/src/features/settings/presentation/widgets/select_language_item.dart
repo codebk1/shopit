@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
 
 class SelectLanguageItem extends ConsumerWidget {
@@ -25,19 +26,16 @@ class SelectLanguageItem extends ConsumerWidget {
               'assets/l10n/${locale!.toLanguageTag()}.svg',
               width: 24,
             )
-          : SvgPicture.asset('assets/icons/language.svg'),
+          : const SvgIcon(iconName: 'language'),
       title: Text(
         locale != null
             ? lookupAppLocalizations(locale!).languageName
             : context.l10n.settingsSystemLanguageOption,
       ),
       trailing: checked
-          ? SvgPicture.asset(
-              'assets/icons/check.svg',
-              colorFilter: ColorFilter.mode(
-                Colors.green.shade900,
-                BlendMode.srcIn,
-              ),
+          ? SvgIcon(
+              iconName: 'check',
+              color: Colors.green.shade600,
             )
           : null,
       onTap: () {

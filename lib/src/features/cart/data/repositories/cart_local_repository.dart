@@ -14,7 +14,7 @@ class CartLocalRepository {
   final ICartLocalDataSource _localDataSource;
 
   Future<Cart> get() async {
-    final localCart = await _localDataSource.get();
+    final localCart = await _localDataSource.get() ?? LocalCart();
     return localCart.toCart();
   }
 

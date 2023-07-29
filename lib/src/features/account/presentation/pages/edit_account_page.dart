@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/utils/async_value_messenger.dart';
+import 'package:shopit/src/utils/async_value.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
 import 'package:shopit/src/features/account/presentation/widgets/edit_account_form.dart';

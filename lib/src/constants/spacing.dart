@@ -22,7 +22,7 @@ class Spacing {
   static const s64 = 64.0;
 }
 
-/// horizontal spacing
+// horizontal spacing
 const gapW1 = SizedBox(width: Spacing.s1);
 const gapW2 = SizedBox(width: Spacing.s2);
 const gapW4 = SizedBox(width: Spacing.s4);
@@ -43,7 +43,7 @@ const gapW48 = SizedBox(width: Spacing.s48);
 const gapW56 = SizedBox(width: Spacing.s56);
 const gapW64 = SizedBox(width: Spacing.s64);
 
-/// vertical spacing
+// vertical spacing
 const gapH1 = SizedBox(height: Spacing.s1);
 const gapH2 = SizedBox(height: Spacing.s2);
 const gapH4 = SizedBox(height: Spacing.s4);

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
 
 class ProductsHeader extends ConsumerWidget {
@@ -48,9 +48,7 @@ class ProductsHeader extends ConsumerWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: SvgPicture.asset(
-                'assets/icons/funnel.svg',
-              ),
+              icon: const SvgIcon(iconName: 'funnel'),
             )
           ],
         ),

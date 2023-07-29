@@ -11,7 +11,7 @@ class LocalCart {
   List<Item> items = [];
 }
 
-extension LocalCartToCart on LocalCart {
+extension LocalCartExtension on LocalCart {
   Cart toCart() {
     return Cart(
       id: '',

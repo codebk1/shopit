@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/router/router.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -44,7 +45,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                           return Text(count.toString());
                         },
                       ),
-                      child: SvgPicture.asset('assets/icons/cart.svg'),
+                      child: IconButton(
+                        icon: const SvgIcon(iconName: 'cart'),
+                        onPressed: () => context.pushNamed(Routes.cart.name),
+                      ),
                     ),
                   )
                 ]

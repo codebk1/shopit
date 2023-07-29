@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-extension AsyncValueMessenger on AsyncValue {
+extension AsyncValueExtension on AsyncValue {
   void showSnackbarOnSuccess(BuildContext context, String text) {
     if (!isLoading && !hasError) {
       ScaffoldMessenger.of(context)

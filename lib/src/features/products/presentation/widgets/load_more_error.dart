@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 
 class LoadMoreError extends StatelessWidget {
   const LoadMoreError({
@@ -32,9 +32,7 @@ class LoadMoreError extends StatelessWidget {
           ),
           IconButton(
             onPressed: onRefresh,
-            icon: SvgPicture.asset(
-              'assets/icons/reload.svg',
-            ),
+            icon: const SvgIcon(iconName: 'reload'),
           ),
         ],
       ),

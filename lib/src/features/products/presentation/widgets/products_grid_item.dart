@@ -19,7 +19,10 @@ class ProductsGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushNamed(Routes.product.name, extra: product),
+      onTap: () => context.pushNamed(
+        Routes.product.name,
+        extra: product,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: surfaceContainer,
@@ -86,7 +89,7 @@ class ProductsGridItem extends StatelessWidget {
                             ),
                       );
                     },
-                  )
+                  ),
                 ],
               ),
             ),

@@ -9,6 +9,7 @@
     "homeFeaturedCategoriesEmptyStateText": "Brak polecanych kategorii.\nSpróbuj ponownie później.",
     "homeFeaturedProductsHeader": "Polecane produkty",
     "homeFeaturedProductsEmptyState": "Brak polecanych produktów.\nSpróbuj ponownie później.",
+    "homeFeaturedProductsFiltersAllChip": "Wszystkie",
     "homeFeaturedProductsFiltersEmptyState": "Nie można załadować filtrów. Spróbuj ponownie później.",
 
     "loginAppBarTitle": "Logowanie",

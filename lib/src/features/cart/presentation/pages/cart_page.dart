@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/common/widgets/main_app_bar.dart';
 import 'package:shopit/src/common/widgets/empty_state.dart';
 import 'package:shopit/src/common/widgets/error_state.dart';
@@ -27,13 +27,16 @@ class CartPage extends ConsumerWidget {
         showActions:
             cartController.hasValue && cartController.value!.items.isNotEmpty,
         actions: [
-          IconButton(
-            onPressed: cartController.isLoading
-                ? null
-                : ref.read(cartControllerProvider.notifier).clearCart,
-            icon: SvgPicture.asset(
-              'assets/icons/trash.svg',
-              height: 18,
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              onPressed: cartController.isLoading
+                  ? null
+                  : ref.read(cartControllerProvider.notifier).clearCart,
+              icon: const SvgIcon(
+                iconName: 'trash',
+                height: 18,
+              ),
             ),
           )
         ],
@@ -81,14 +84,11 @@ class CartPage extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('Checkout'),
+                            Text(context.l10n.cartCheckoutButton),
                             gapW10,
-                            SvgPicture.asset(
-                              'assets/icons/arrow-long-right.svg',
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
+                            const SvgIcon(
+                              iconName: 'arrow-long-right',
+                              color: Colors.white,
                             ),
                           ],
                         ),

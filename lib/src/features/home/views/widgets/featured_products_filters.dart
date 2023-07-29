@@ -39,8 +39,14 @@ class FeaturedProductsFilters extends ConsumerWidget {
                 side: BorderSide.none,
                 backgroundColor: featuredProductsFilter == filters[index]?.id
                     ? Theme.of(context).colorScheme.primaryContainer
-                    : Theme.of(context).colorScheme.onPrimary,
-                label: Text(filters[index]?.name ?? 'All'),
+                    : Theme.of(context)
+                        .colorScheme
+                        .secondaryContainer
+                        .withAlpha(100),
+                label: Text(
+                  filters[index]?.name ??
+                      context.l10n.homeFeaturedProductsFiltersAllChip,
+                ),
                 onPressed: () => ref
                     .read(featuredProductsFilterProvider.notifier)
                     .set(filters[index]?.id),
@@ -62,8 +68,8 @@ class FeaturedProductsFilters extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14),
               scrollDirection: Axis.horizontal,
               itemCount: 3,
-              separatorBuilder: (context, index) => gapW8,
-              itemBuilder: (context, index) {
+              separatorBuilder: (_, __) => gapW8,
+              itemBuilder: (_, __) {
                 return Container(
                   width: 140,
                   decoration: BoxDecoration(

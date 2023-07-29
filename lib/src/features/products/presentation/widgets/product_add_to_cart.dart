@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/features/cart/application/controllers/add_to_cart_controller.dart';
 
 class ProductAddToCart extends ConsumerStatefulWidget {
@@ -57,12 +57,9 @@ class _ProductAddToCartState extends ConsumerState<ProductAddToCart> {
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/icons/${_isSuccess ? 'check' : 'cart'}.svg',
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
-                  ),
+                SvgIcon(
+                  iconName: _isSuccess ? 'check' : 'cart',
+                  color: Colors.white,
                 ),
                 gapW8,
                 Text(

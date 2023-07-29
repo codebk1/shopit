@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/common/widgets/svg_icon.dart';
 
 class CategoriesHeader extends StatelessWidget {
   const CategoriesHeader({
@@ -42,9 +42,7 @@ class CategoriesHeader extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset(
-              'assets/icons/az.svg',
-            ),
+            icon: const SvgIcon(iconName: 'az'),
           )
         ],
       ),
