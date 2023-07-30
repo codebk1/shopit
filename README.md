@@ -25,7 +25,10 @@ https://github.com/codebk1/shopit/assets/20027710/0e230058-b8db-4a81-a355-5fd5df
 
 <img width="250px" src="https://github.com/codebk1/shopit/assets/20027710/df8c7a3d-2eb1-4ac6-9aca-b7b9be7ebc91">
 
-- [ ] custom themes
+- [x] custom themes:
+
+https://github.com/codebk1/shopit/assets/20027710/6e704d19-8ea4-4b2b-a5b9-551a0462c2a0
+
 - [ ] animations & microinteractions
 - [ ] forms validation
 - [ ] admin panel
