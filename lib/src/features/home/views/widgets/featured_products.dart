@@ -26,7 +26,7 @@ class FeaturedProducts extends StatelessWidget {
           ),
         ),
         gapH10,
-        const FeaturedProductsFilters(),
+        FeaturedProductsFilters(),
         gapH10,
         Consumer(
           builder: (context, ref, child) {

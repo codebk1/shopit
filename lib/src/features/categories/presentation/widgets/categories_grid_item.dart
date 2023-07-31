@@ -31,7 +31,7 @@ class CategoriesGridItem extends ConsumerWidget {
               errorWidget: (_, __, ___) => const ImageError(),
             ),
             Material(
-              color: Theme.of(context).colorScheme.primary.withAlpha(110),
+              color: Colors.black38,
               child: InkWell(
                 onTap: () =>
                     context.pushNamed(Routes.products.name, extra: category),
@@ -43,7 +43,7 @@ class CategoriesGridItem extends ConsumerWidget {
                   child: Text(
                     category.name,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                   ),

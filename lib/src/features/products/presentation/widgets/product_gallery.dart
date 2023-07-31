@@ -1,12 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:shopit/src/features/products/domain/entities/product.dart';
 
 class ProductGallery extends StatefulWidget {
@@ -78,18 +79,23 @@ class _ProductGalleryState extends State<ProductGallery> {
           ],
         ),
         gapH10,
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: AnimatedSmoothIndicator(
-            activeIndex: _currentPhotoIndex,
-            count: widget.product.gallery.length + 1,
-            effect: ExpandingDotsEffect(
-              dotWidth: 10,
-              dotHeight: 10,
-              dotColor: surfaceContainer,
-              activeDotColor: Theme.of(context).colorScheme.primary,
-            ),
-          ),
+        Consumer(
+          builder: (context, ref, child) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: AnimatedSmoothIndicator(
+                activeIndex: _currentPhotoIndex,
+                count: widget.product.gallery.length + 1,
+                effect: ExpandingDotsEffect(
+                  dotWidth: 10,
+                  dotHeight: 10,
+                  // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+                  dotColor: surfaceContainer(ref),
+                  activeDotColor: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            );
+          },
         ),
       ],
     );

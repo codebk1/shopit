@@ -11,7 +11,7 @@ import 'package:shopit/src/features/products/domain/entities/product.dart';
 import 'package:shopit/src/features/products/presentation/widgets/product_add_to_cart.dart';
 import 'package:shopit/src/features/products/presentation/widgets/product_gallery.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends ConsumerWidget {
   const ProductPage({
     super.key,
     required this.product,
@@ -20,7 +20,7 @@ class ProductPage extends StatelessWidget {
   final Product product;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const MainAppBar(
         title: '',
@@ -33,9 +33,10 @@ class ProductPage extends StatelessWidget {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(14),
-                decoration: const BoxDecoration(
-                  color: surfaceContainer,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+                  color: surfaceContainer(ref),
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(14),
                     topRight: Radius.circular(14),
                   ),
@@ -117,41 +118,48 @@ class _PriceHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final progress = shrinkOffset / maxExtent;
 
-    return Column(
-      children: [
-        Container(
-          color: surfaceContainer,
-          child: Row(
-            children: [
-              Expanded(
-                child: Consumer(
-                  builder: (context, ref, child) {
-                    return Text(
-                      ref.read(currencyFormatterProvider).format(product.price),
-                      style: TextStyle.lerp(
-                        Theme.of(context).textTheme.titleMedium,
-                        Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontWeight: FontWeight.bold),
-                        progress,
-                      ),
-                    );
-                  },
-                ),
+    return Consumer(
+      builder: (context, ref, child) {
+        return Column(
+          children: [
+            Container(
+              // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+              color: surfaceContainer(ref),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Consumer(
+                      builder: (context, ref, child) {
+                        return Text(
+                          ref
+                              .read(currencyFormatterProvider)
+                              .format(product.price),
+                          style: TextStyle.lerp(
+                            Theme.of(context).textTheme.titleMedium,
+                            Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(fontWeight: FontWeight.bold),
+                            progress,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Visibility(
+                    visible: progress != 0,
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 150),
+                      opacity: progress,
+                      child: ToggleWishlist(product: product),
+                    ),
+                  ),
+                ],
               ),
-              Visibility(
-                visible: progress != 0,
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 150),
-                  opacity: progress,
-                  child: ToggleWishlist(product: product),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 

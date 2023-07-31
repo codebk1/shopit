@@ -22,6 +22,12 @@ const SettingsSchema = CollectionSchema(
       name: r'locale',
       type: IsarType.object,
       target: r'AppLocale',
+    ),
+    r'theme': PropertySchema(
+      id: 1,
+      name: r'theme',
+      type: IsarType.object,
+      target: r'AppTheme',
     )
   },
   estimateSize: _settingsEstimateSize,
@@ -31,7 +37,7 @@ const SettingsSchema = CollectionSchema(
   idName: r'id',
   indexes: {},
   links: {},
-  embeddedSchemas: {r'AppLocale': AppLocaleSchema},
+  embeddedSchemas: {r'AppLocale': AppLocaleSchema, r'AppTheme': AppThemeSchema},
   getId: _settingsGetId,
   getLinks: _settingsGetLinks,
   attach: _settingsAttach,
@@ -52,6 +58,9 @@ int _settingsEstimateSize(
               value, allOffsets[AppLocale]!, allOffsets);
     }
   }
+  bytesCount += 3 +
+      AppThemeSchema.estimateSize(
+          object.theme, allOffsets[AppTheme]!, allOffsets);
   return bytesCount;
 }
 
@@ -66,6 +75,12 @@ void _settingsSerialize(
     allOffsets,
     AppLocaleSchema.serialize,
     object.locale,
+  );
+  writer.writeObject<AppTheme>(
+    offsets[1],
+    allOffsets,
+    AppThemeSchema.serialize,
+    object.theme,
   );
 }
 
@@ -82,6 +97,12 @@ Settings _settingsDeserialize(
       AppLocaleSchema.deserialize,
       allOffsets,
     ),
+    theme: reader.readObjectOrNull<AppTheme>(
+          offsets[1],
+          AppThemeSchema.deserialize,
+          allOffsets,
+        ) ??
+        AppTheme(),
   );
   return object;
 }
@@ -99,13 +120,20 @@ P _settingsDeserializeProp<P>(
         AppLocaleSchema.deserialize,
         allOffsets,
       )) as P;
+    case 1:
+      return (reader.readObjectOrNull<AppTheme>(
+            offset,
+            AppThemeSchema.deserialize,
+            allOffsets,
+          ) ??
+          AppTheme()) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
 Id _settingsGetId(Settings object) {
-  return object.id ?? Isar.autoIncrement;
+  return object.id;
 }
 
 List<IsarLinkBase<dynamic>> _settingsGetLinks(Settings object) {
@@ -191,23 +219,7 @@ extension SettingsQueryWhere on QueryBuilder<Settings, Settings, QWhereClause> {
 
 extension SettingsQueryFilter
     on QueryBuilder<Settings, Settings, QFilterCondition> {
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> idIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'id',
-      ));
-    });
-  }
-
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> idIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'id',
-      ));
-    });
-  }
-
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> idEqualTo(Id? value) {
+  QueryBuilder<Settings, Settings, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -217,7 +229,7 @@ extension SettingsQueryFilter
   }
 
   QueryBuilder<Settings, Settings, QAfterFilterCondition> idGreaterThan(
-    Id? value, {
+    Id value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -230,7 +242,7 @@ extension SettingsQueryFilter
   }
 
   QueryBuilder<Settings, Settings, QAfterFilterCondition> idLessThan(
-    Id? value, {
+    Id value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -243,8 +255,8 @@ extension SettingsQueryFilter
   }
 
   QueryBuilder<Settings, Settings, QAfterFilterCondition> idBetween(
-    Id? lower,
-    Id? upper, {
+    Id lower,
+    Id upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -284,6 +296,13 @@ extension SettingsQueryObject
       return query.object(q, r'locale');
     });
   }
+
+  QueryBuilder<Settings, Settings, QAfterFilterCondition> theme(
+      FilterQuery<AppTheme> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'theme');
+    });
+  }
 }
 
 extension SettingsQueryLinks
@@ -320,6 +339,12 @@ extension SettingsQueryProperty
   QueryBuilder<Settings, AppLocale?, QQueryOperations> localeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'locale');
+    });
+  }
+
+  QueryBuilder<Settings, AppTheme, QQueryOperations> themeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'theme');
     });
   }
 }
@@ -698,3 +723,231 @@ extension AppLocaleQueryFilter
 
 extension AppLocaleQueryObject
     on QueryBuilder<AppLocale, AppLocale, QFilterCondition> {}
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const AppThemeSchema = Schema(
+  name: r'AppTheme',
+  id: 1593164936082448787,
+  properties: {
+    r'brightness': PropertySchema(
+      id: 0,
+      name: r'brightness',
+      type: IsarType.byte,
+      enumMap: _AppThemebrightnessEnumValueMap,
+    ),
+    r'seed': PropertySchema(
+      id: 1,
+      name: r'seed',
+      type: IsarType.byte,
+      enumMap: _AppThemeseedEnumValueMap,
+    )
+  },
+  estimateSize: _appThemeEstimateSize,
+  serialize: _appThemeSerialize,
+  deserialize: _appThemeDeserialize,
+  deserializeProp: _appThemeDeserializeProp,
+);
+
+int _appThemeEstimateSize(
+  AppTheme object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  return bytesCount;
+}
+
+void _appThemeSerialize(
+  AppTheme object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeByte(offsets[0], object.brightness.index);
+  writer.writeByte(offsets[1], object.seed.index);
+}
+
+AppTheme _appThemeDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = AppTheme(
+    brightness:
+        _AppThemebrightnessValueEnumMap[reader.readByteOrNull(offsets[0])] ??
+            Brightness.dark,
+    seed: _AppThemeseedValueEnumMap[reader.readByteOrNull(offsets[1])] ??
+        ThemeSeed.blue,
+  );
+  return object;
+}
+
+P _appThemeDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (_AppThemebrightnessValueEnumMap[reader.readByteOrNull(offset)] ??
+          Brightness.dark) as P;
+    case 1:
+      return (_AppThemeseedValueEnumMap[reader.readByteOrNull(offset)] ??
+          ThemeSeed.blue) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+const _AppThemebrightnessEnumValueMap = {
+  'dark': 0,
+  'light': 1,
+};
+const _AppThemebrightnessValueEnumMap = {
+  0: Brightness.dark,
+  1: Brightness.light,
+};
+const _AppThemeseedEnumValueMap = {
+  'blue': 0,
+  'green': 1,
+  'yellow': 2,
+  'orange': 3,
+  'deepOrange': 4,
+  'amber': 5,
+  'cyan': 6,
+  'indigo': 7,
+  'pink': 8,
+  'purple': 9,
+  'red': 10,
+  'teal': 11,
+};
+const _AppThemeseedValueEnumMap = {
+  0: ThemeSeed.blue,
+  1: ThemeSeed.green,
+  2: ThemeSeed.yellow,
+  3: ThemeSeed.orange,
+  4: ThemeSeed.deepOrange,
+  5: ThemeSeed.amber,
+  6: ThemeSeed.cyan,
+  7: ThemeSeed.indigo,
+  8: ThemeSeed.pink,
+  9: ThemeSeed.purple,
+  10: ThemeSeed.red,
+  11: ThemeSeed.teal,
+};
+
+extension AppThemeQueryFilter
+    on QueryBuilder<AppTheme, AppTheme, QFilterCondition> {
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> brightnessEqualTo(
+      Brightness value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'brightness',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> brightnessGreaterThan(
+    Brightness value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'brightness',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> brightnessLessThan(
+    Brightness value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'brightness',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> brightnessBetween(
+    Brightness lower,
+    Brightness upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'brightness',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> seedEqualTo(
+      ThemeSeed value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'seed',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> seedGreaterThan(
+    ThemeSeed value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'seed',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> seedLessThan(
+    ThemeSeed value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'seed',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<AppTheme, AppTheme, QAfterFilterCondition> seedBetween(
+    ThemeSeed lower,
+    ThemeSeed upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'seed',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension AppThemeQueryObject
+    on QueryBuilder<AppTheme, AppTheme, QFilterCondition> {}

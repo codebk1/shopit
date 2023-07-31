@@ -38,6 +38,7 @@
     "settingsAppearanceMenuItemTitle": "Appearance",
     "settingsLanguageMenuItemTitle": "Language",
     "settingsSystemLanguageOption": "System language",
+    "settingsBrightnessSwitchLabel": "Dark theme",
 
     "wishlistAppBarTitle": "Wishlist",
     "wishlistEmptyState": "No products in wishlist.",

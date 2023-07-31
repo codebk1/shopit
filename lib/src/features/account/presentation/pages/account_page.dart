@@ -28,19 +28,20 @@ class AccountPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 14),
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 14),
-              padding: const EdgeInsets.only(left: 14),
-              decoration: BoxDecoration(
-                color: surfaceContainer,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Consumer(
-                builder: (context, ref, child) {
-                  final authController = ref.watch(authControllerProvider);
-                  final account = ref.watch(accountControllerProvider);
+            Consumer(
+              builder: (context, ref, child) {
+                final authController = ref.watch(authControllerProvider);
+                final account = ref.watch(accountControllerProvider);
 
-                  return Row(
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 14),
+                  padding: const EdgeInsets.only(left: 14),
+                  decoration: BoxDecoration(
+                    // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+                    color: surfaceContainer(ref),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       account.when(
@@ -71,9 +72,9 @@ class AccountPage extends StatelessWidget {
                             : const SvgIcon(iconName: 'logout'),
                       ),
                     ],
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
             gapH24,
             Expanded(

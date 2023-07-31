@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
+
 import 'package:shopit/src/constants/colors.dart';
 
-class ShimmerText extends StatelessWidget {
+class ShimmerText extends ConsumerWidget {
   const ShimmerText({
     super.key,
     this.lines = 1,
@@ -17,11 +20,13 @@ class ShimmerText extends StatelessWidget {
   final bool dark;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
     return Shimmer.fromColors(
-      baseColor: dark ? shimmerDarkBaseColor : shimmerLightBaseColor,
-      highlightColor:
-          dark ? shimmerDarkHighlightColor : shimmerLightHighlightColor,
+      baseColor: dark ? shimmerDarkBaseColor(ref) : shimmerLightBaseColor,
+      highlightColor: dark
+          ? shimmerDarkHighlightColor(ref)
+          : shimmerLightHighlightColor(ref),
       child: Column(
         children: [
           for (int i = 0; i < lines; i++)
@@ -29,7 +34,7 @@ class ShimmerText extends StatelessWidget {
               height: height,
               width: width,
               decoration: BoxDecoration(
-                color: dark ? surfaceContainer : Colors.white,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/router/router.dart';
@@ -9,7 +10,7 @@ import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:shopit/src/features/products/domain/entities/product.dart';
 
-class ProductsListItem extends StatelessWidget {
+class ProductsListItem extends ConsumerWidget {
   const ProductsListItem({
     super.key,
     required this.product,
@@ -20,7 +21,7 @@ class ProductsListItem extends StatelessWidget {
   final List<Widget> widgets;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () => context.pushNamed(Routes.product.name, extra: product),
       child: Container(
@@ -28,7 +29,8 @@ class ProductsListItem extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 14),
         height: 75,
         decoration: BoxDecoration(
-          color: surfaceContainer,
+          // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+          color: surfaceContainer(ref),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(

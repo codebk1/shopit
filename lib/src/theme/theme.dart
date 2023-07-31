@@ -3,12 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:shopit/src/constants/colors.dart';
 
 class CustomTheme {
-  static ThemeData get lightTheme {
+  const CustomTheme({
+    required this.brightness,
+    required this.seedColor,
+  });
+
+  final Brightness brightness;
+  final Color seedColor;
+
+  ThemeData get theme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        brightness: Brightness.light,
-        seedColor: Colors.blue.shade900,
+        brightness: brightness,
+        seedColor: seedColor,
       ),
       navigationBarTheme: const NavigationBarThemeData(
         indicatorShape: CircleBorder(),
@@ -21,7 +29,9 @@ class CustomTheme {
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: surfaceContainer,
+        fillColor: brightness == Brightness.light
+            ? surfaceContainerLight(seedColor.value)
+            : surfaceContainerDark(seedColor.value),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -31,9 +41,9 @@ class CustomTheme {
           ),
           shadowColor: Colors.transparent,
           foregroundColor: Colors.white,
-          backgroundColor: Colors.blue.shade900,
+          backgroundColor: seedColor.withOpacity(.7),
           disabledForegroundColor: Colors.white,
-          disabledBackgroundColor: Colors.blue.shade900,
+          disabledBackgroundColor: seedColor.withOpacity(.7),
         ),
       ),
     );

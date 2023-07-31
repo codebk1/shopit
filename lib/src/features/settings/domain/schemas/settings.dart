@@ -1,7 +1,9 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:isar/isar.dart';
+
+import 'package:shopit/src/constants/colors.dart';
 
 part 'settings.freezed.dart';
 part 'settings.g.dart';
@@ -12,12 +14,13 @@ class Settings with _$Settings {
   const Settings._();
 
   const factory Settings({
-    Id? id,
+    @Default(1) Id id,
     AppLocale? locale,
+    @Default(AppTheme()) AppTheme theme,
   }) = _Settings;
 
   @override
-  Id? get id => Isar.autoIncrement;
+  Id get id => Isar.autoIncrement;
 }
 
 @embedded
@@ -26,13 +29,24 @@ class AppLocale {
   String? countryCode;
 }
 
-extension AppLocaleToLocale on AppLocale {
+@freezed
+@Embedded(ignore: {'copyWith'})
+class AppTheme with _$AppTheme {
+  const factory AppTheme({
+    // ignore: invalid_annotation_target
+    @Default(ThemeSeed.blue) @enumerated ThemeSeed seed,
+    // ignore: invalid_annotation_target
+    @Default(Brightness.light) @enumerated Brightness brightness,
+  }) = _AppTheme;
+}
+
+extension AppLocaleExtension on AppLocale {
   Locale toLocale() {
     return Locale(languageCode, countryCode);
   }
 }
 
-extension LocaleToAppLocale on Locale {
+extension LocaleExtension on Locale {
   AppLocale toAppLocale() {
     return AppLocale()
       ..languageCode = languageCode

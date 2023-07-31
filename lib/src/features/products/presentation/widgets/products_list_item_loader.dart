@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/constants/spacing.dart';
 
-class ProductsListItemLoader extends StatelessWidget {
+class ProductsListItemLoader extends ConsumerWidget {
   const ProductsListItemLoader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Shimmer.fromColors(
-      baseColor: shimmerDarkBaseColor,
-      highlightColor: shimmerDarkHighlightColor,
+      // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+      baseColor: shimmerDarkBaseColor(ref),
+      highlightColor: shimmerDarkHighlightColor(ref),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 14),
         child: Row(

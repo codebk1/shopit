@@ -13,19 +13,21 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appLocale = ref.watch(settingsControllerProvider.select(
-      (settings) => settings.requireValue.locale,
-    ));
-
     final goRouter = ref.watch(routerProvider);
+    final settings = ref.watch(settingsControllerProvider.select(
+      (value) => value.requireValue,
+    ));
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: goRouter,
-      theme: CustomTheme.lightTheme,
+      theme: CustomTheme(
+        brightness: settings.theme.brightness,
+        seedColor: Color(settings.theme.seed.value),
+      ).theme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: appLocale?.toLocale(),
+      locale: settings.locale?.toLocale(),
     );
   }
 }

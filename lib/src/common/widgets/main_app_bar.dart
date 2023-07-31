@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/router/router.dart';
+import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/common/widgets/svg_icon.dart';
+import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
 import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
 
-class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
+class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const MainAppBar({
     super.key,
     this.title,
@@ -21,23 +24,41 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> actions;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appTheme = ref.watch(settingsControllerProvider.select(
+      (value) => value.requireValue.theme,
+    ));
+
+    final systemOverlayBrightness = appTheme.brightness == Brightness.light
+        ? Brightness.dark
+        : Brightness.light;
+
     return AppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: const Color(0x00000000),
+        statusBarBrightness: systemOverlayBrightness,
+        statusBarIconBrightness: systemOverlayBrightness,
+        systemStatusBarContrastEnforced: false,
+        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+        systemNavigationBarColor: surfaceContainer(ref),
+        systemNavigationBarIconBrightness: systemOverlayBrightness,
+      ),
       scrolledUnderElevation: 0,
       title: title == null
           ? SvgPicture.asset(
-              'assets/logo.svg',
+              appTheme.brightness == Brightness.light
+                  ? 'assets/logo.svg'
+                  : 'assets/logo-dark.svg',
               height: 24,
             )
           : Text(title!),
       actions: showActions
           ? actions.isEmpty
               ? [
-                  IconButton(
-                    padding: const EdgeInsets.only(right: 14),
-                    onPressed: () => context.pushNamed(Routes.cart.name),
-                    icon: Badge(
-                      offset: const Offset(6, -4),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Badge(
+                      offset: const Offset(-6, 4),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       label: Consumer(
                         builder: (context, ref, child) {
@@ -50,7 +71,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                         onPressed: () => context.pushNamed(Routes.cart.name),
                       ),
                     ),
-                  )
+                  ),
                 ]
               : actions
           : null,

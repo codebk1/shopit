@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/colors.dart';
 import 'package:shopit/src/common/widgets/svg_icon.dart';
 
-class LoadMoreError extends StatelessWidget {
+class LoadMoreError extends ConsumerWidget {
   const LoadMoreError({
     super.key,
     required this.onRefresh,
@@ -14,14 +15,15 @@ class LoadMoreError extends StatelessWidget {
   final VoidCallback onRefresh;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       height: 40,
       padding: const EdgeInsets.only(left: 14),
       margin: const EdgeInsets.only(bottom: 14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: surfaceContainer,
+        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+        color: surfaceContainer(ref),
       ),
       child: Row(
         children: [

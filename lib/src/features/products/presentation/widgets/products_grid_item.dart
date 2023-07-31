@@ -11,13 +11,13 @@ import 'package:shopit/src/common/widgets/image_error.dart';
 import 'package:shopit/src/features/products/domain/entities/product.dart';
 import 'package:shopit/src/features/wishlist/presentation/widgets/toggle_wishlist.dart';
 
-class ProductsGridItem extends StatelessWidget {
+class ProductsGridItem extends ConsumerWidget {
   const ProductsGridItem({super.key, required this.product});
 
   final Product product;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () => context.pushNamed(
         Routes.product.name,
@@ -25,7 +25,8 @@ class ProductsGridItem extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: surfaceContainer,
+          // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+          color: surfaceContainer(ref),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(

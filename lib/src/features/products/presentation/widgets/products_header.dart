@@ -26,7 +26,8 @@ class ProductsHeader extends ConsumerWidget {
         padding: const EdgeInsets.only(left: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: surfaceContainer,
+          // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+          color: surfaceContainer(ref),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,8 +56,9 @@ class ProductsHeader extends ConsumerWidget {
       ),
       error: (_, __) => Text(context.l10n.productsCountLoadingError),
       loading: () => Shimmer.fromColors(
-        baseColor: shimmerDarkBaseColor,
-        highlightColor: shimmerDarkHighlightColor,
+        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+        baseColor: shimmerDarkBaseColor(ref),
+        highlightColor: shimmerDarkHighlightColor(ref),
         child: Container(
           height: 48,
           padding: const EdgeInsets.only(left: 8),
