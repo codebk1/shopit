@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopit/src/features/settings/presentation/pages/settings_page.dart';
 
 import 'package:shopit/src/router/scaffold_with_navbar.dart';
 import 'package:shopit/src/features/home/views/pages/home_page.dart';
@@ -13,6 +12,7 @@ import 'package:shopit/src/features/auth/presentation/pages/login_page.dart';
 import 'package:shopit/src/features/auth/presentation/pages/signup_page.dart';
 import 'package:shopit/src/features/account/presentation/pages/account_page.dart';
 import 'package:shopit/src/features/account/presentation/pages/edit_account_page.dart';
+import 'package:shopit/src/features/settings/presentation/pages/settings_page.dart';
 import 'package:shopit/src/features/wishlist/presentation/pages/wishlist_page.dart';
 import 'package:shopit/src/features/categories/domain/entities/category.dart';
 import 'package:shopit/src/features/categories/presentation/pages/categories_page.dart';
@@ -61,9 +61,13 @@ final routerProvider = Provider<GoRouter>(
         return null;
       },
       routes: [
-        StatefulShellRoute.indexedStack(
-          builder: (_, __, navigationShell) {
-            return ScaffoldWithNavBar(navigationShell: navigationShell);
+        StatefulShellRoute(
+          builder: (_, __, navigationShell) => navigationShell,
+          navigatorContainerBuilder: (_, navigationShell, children) {
+            return ScaffoldWithNavBar(
+              navigationShell: navigationShell,
+              children: children,
+            );
           },
           branches: [
             StatefulShellBranch(
@@ -72,9 +76,7 @@ final routerProvider = Provider<GoRouter>(
                 GoRoute(
                   path: '/',
                   name: Routes.home.name,
-                  pageBuilder: (_, state) => const NoTransitionPage(
-                    child: HomePage(),
-                  ),
+                  builder: (_, __) => const HomePage(),
                 ),
               ],
             ),
@@ -84,9 +86,7 @@ final routerProvider = Provider<GoRouter>(
                 GoRoute(
                   path: '/categories',
                   name: Routes.categories.name,
-                  pageBuilder: (_, state) => const NoTransitionPage(
-                    child: CategoriesPage(),
-                  ),
+                  builder: (_, __) => const CategoriesPage(),
                 ),
               ],
             ),
@@ -96,9 +96,7 @@ final routerProvider = Provider<GoRouter>(
                 GoRoute(
                   path: '/wishlist',
                   name: Routes.wishlist.name,
-                  pageBuilder: (_, state) => const NoTransitionPage(
-                    child: WishlistPage(),
-                  ),
+                  builder: (_, __) => const WishlistPage(),
                 ),
               ],
             ),
@@ -108,24 +106,19 @@ final routerProvider = Provider<GoRouter>(
                 GoRoute(
                   path: '/account',
                   name: Routes.account.name,
-                  pageBuilder: (_, state) => const NoTransitionPage(
-                    child: AccountPage(),
-                  ),
+                  builder: (_, __) => const AccountPage(),
                   routes: [
                     GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
                       path: 'edit',
                       name: Routes.accountEdit.name,
-                      pageBuilder: (_, state) => const NoTransitionPage(
-                        child: EditAccountPage(),
-                      ),
+                      builder: (_, __) => const EditAccountPage(),
                     ),
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
                       path: 'settings',
                       name: Routes.accountSettings.name,
-                      pageBuilder: (_, state) => const NoTransitionPage(
-                        child: SettingsPage(),
-                      ),
+                      builder: (_, __) => const SettingsPage(),
                     ),
                   ],
                 ),
@@ -137,48 +130,34 @@ final routerProvider = Provider<GoRouter>(
           path: '/login',
           name: Routes.login.name,
           parentNavigatorKey: _rootNavigatorKey,
-          pageBuilder: (_, state) => const NoTransitionPage(
-            child: LoginPage(),
-          ),
+          builder: (_, __) => const LoginPage(),
         ),
         GoRoute(
           path: '/signup',
           name: Routes.signup.name,
           parentNavigatorKey: _rootNavigatorKey,
-          pageBuilder: (_, state) => const NoTransitionPage(
-            child: SignupPage(),
-          ),
+          builder: (_, __) => const SignupPage(),
         ),
         GoRoute(
           path: '/cart',
           name: Routes.cart.name,
           parentNavigatorKey: _rootNavigatorKey,
-          pageBuilder: (_, state) => const NoTransitionPage(
-            child: CartPage(),
-          ),
+          builder: (_, __) => const CartPage(),
         ),
         GoRoute(
           path: '/products',
           name: Routes.products.name,
           parentNavigatorKey: _rootNavigatorKey,
-          pageBuilder: (_, state) => NoTransitionPage(
-            child: ProductsPage(
-              category: state.extra as Category,
-            ),
+          builder: (_, state) => ProductsPage(
+            category: state.extra as Category,
           ),
         ),
         GoRoute(
           path: '/product',
           name: Routes.product.name,
           parentNavigatorKey: _rootNavigatorKey,
-          pageBuilder: (_, state) => CustomTransitionPage(
-            transitionsBuilder: (_, animation, __, child) => FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
-            child: ProductPage(
-              product: state.extra as Product,
-            ),
+          builder: (_, state) => ProductPage(
+            product: state.extra as Product,
           ),
         ),
       ],

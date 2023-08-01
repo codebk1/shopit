@@ -9,10 +9,12 @@ import 'package:shopit/src/features/wishlist/application/controllers/wishlist_co
 class ScaffoldWithNavBar extends StatelessWidget {
   const ScaffoldWithNavBar({
     required this.navigationShell,
+    required this.children,
     Key? key,
   }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
 
   final StatefulNavigationShell navigationShell;
+  final List<Widget> children;
 
   final _tabIcons = const [
     'home',
@@ -24,7 +26,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: AnimatedBranch(
+        currentIndex: navigationShell.currentIndex,
+        children: children,
+      ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(8),
@@ -71,6 +76,45 @@ class ScaffoldWithNavBar extends StatelessWidget {
     navigationShell.goBranch(
       index,
       initialLocation: true,
+    );
+  }
+}
+
+class AnimatedBranch extends StatefulWidget {
+  const AnimatedBranch({
+    super.key,
+    required this.currentIndex,
+    required this.children,
+  });
+
+  final int currentIndex;
+  final List<Widget> children;
+
+  @override
+  State<AnimatedBranch> createState() => _AnimatedBranchState();
+}
+
+class _AnimatedBranchState extends State<AnimatedBranch>
+    with TickerProviderStateMixin {
+  late final TabController _tabController = TabController(
+    length: widget.children.length,
+    vsync: this,
+  );
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _tabController.index = widget.currentIndex;
+
+    return TabBarView(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: _tabController,
+      children: widget.children,
     );
   }
 }
