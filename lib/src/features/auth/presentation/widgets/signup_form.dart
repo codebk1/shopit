@@ -6,7 +6,11 @@ import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
+import 'package:shopit/src/features/auth/presentation/widgets/first_name_field.dart';
+import 'package:shopit/src/features/auth/presentation/widgets/last_name_field.dart';
+import 'package:shopit/src/features/auth/presentation/widgets/email_field.dart';
 import 'package:shopit/src/features/auth/presentation/widgets/password_field.dart';
+import 'package:shopit/src/features/auth/presentation/widgets/confirm_password_field.dart';
 
 class SignupForm extends ConsumerStatefulWidget {
   const SignupForm({super.key});
@@ -17,6 +21,8 @@ class SignupForm extends ConsumerStatefulWidget {
 
 class _SignupFormState extends ConsumerState<SignupForm> {
   final _formKey = GlobalKey<FormState>();
+  var _autovalidateMode = AutovalidateMode.disabled;
+
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -32,6 +38,10 @@ class _SignupFormState extends ConsumerState<SignupForm> {
             password: _confirmPasswordController.text,
           );
     }
+
+    setState(() {
+      _autovalidateMode = AutovalidateMode.onUserInteraction;
+    });
   }
 
   @override
@@ -48,88 +58,29 @@ class _SignupFormState extends ConsumerState<SignupForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: _autovalidateMode,
       child: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: TextFormField(
-                  controller: _firstNameController,
-                  autocorrect: false,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: context.l10n.inputFirstnameLabel,
-                  ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return context.l10n.inputFirstnameIsRequired;
-                    }
-                    return null;
-                  },
-                ),
+                child: FirstNameField(controller: _firstNameController),
               ),
               gapW10,
               Expanded(
-                child: TextFormField(
-                  controller: _lastNameController,
-                  autocorrect: false,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: context.l10n.inputLastnameLabel,
-                  ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return context.l10n.inputLastnameIsRequired;
-                    }
-                    return null;
-                  },
-                ),
+                child: LastNameField(controller: _lastNameController),
               ),
             ],
           ),
           gapH10,
-          TextFormField(
-            controller: _emailController,
-            autocorrect: false,
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              labelText: context.l10n.inputEmailLabel,
-            ),
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return context.l10n.inputEmailIsRequired;
-              }
-              return null;
-            },
-          ),
+          EmailField(controller: _emailController),
           gapH10,
           PasswordField(controller: _passwordController),
           gapH10,
-          TextFormField(
+          ConfirmPasswordField(
             controller: _confirmPasswordController,
-            autocorrect: false,
-            obscureText: true,
-            decoration: InputDecoration(
-              labelText: context.l10n.inputConfirmPasswordLabel,
-            ),
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return context.l10n.inputConfirmPasswordIsRequired;
-              }
-
-              if (value != _passwordController.text) {
-                return context.l10n.inputPasswordsNotMatch;
-              }
-              return null;
-            },
+            controllerToCompare: _passwordController,
           ),
           gapH14,
           Consumer(

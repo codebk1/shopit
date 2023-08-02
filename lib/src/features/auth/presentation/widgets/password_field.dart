@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/utils/validator/validator.dart';
 import 'package:shopit/src/common/widgets/svg_icon.dart';
 import 'package:shopit/src/features/auth/application/controllers/show_password_controller.dart';
 
@@ -10,9 +11,11 @@ class PasswordField extends StatelessWidget {
   const PasswordField({
     super.key,
     required this.controller,
+    this.validate = true,
   });
 
   final TextEditingController controller;
+  final bool validate;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +38,12 @@ class PasswordField extends StatelessWidget {
               ),
             ),
           ),
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return context.l10n.inputPasswordIsRequired;
-            }
-            return null;
-          },
+          validator: validate
+              ? (value) => one([
+                    () =>
+                        isNotEmpty(value, context.l10n.inputPasswordIsRequired)
+                  ])
+              : null,
         );
       },
     );

@@ -6,6 +6,7 @@ import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/spacing.dart';
 import 'package:shopit/src/common/widgets/loader.dart';
 import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
+import 'package:shopit/src/features/auth/presentation/widgets/email_field.dart';
 import 'package:shopit/src/features/auth/presentation/widgets/password_field.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
@@ -17,6 +18,8 @@ class LoginForm extends ConsumerStatefulWidget {
 
 class _LoginFormState extends ConsumerState<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+  var _autovalidateMode = AutovalidateMode.disabled;
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -27,6 +30,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
             password: _passwordController.text,
           );
     }
+
+    setState(() {
+      _autovalidateMode = AutovalidateMode.onUserInteraction;
+    });
   }
 
   @override
@@ -40,24 +47,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: _autovalidateMode,
       child: Column(
         children: [
-          TextFormField(
-            controller: _emailController,
-            autocorrect: false,
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              labelText: context.l10n.inputEmailLabel,
-            ),
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return context.l10n.inputEmailIsRequired;
-              }
-              return null;
-            },
-          ),
+          EmailField(controller: _emailController),
           gapH10,
           PasswordField(controller: _passwordController),
           gapH14,

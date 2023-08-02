@@ -30,7 +30,7 @@ https://github.com/codebk1/shopit/assets/20027710/1f71e741-c1f3-4fe7-a337-51e431
 https://github.com/codebk1/shopit/assets/20027710/6e704d19-8ea4-4b2b-a5b9-551a0462c2a0
 
 - [ ] animations & microinteractions
-- [ ] forms validation
+- [x] forms validation
 - [ ] admin panel
 - [ ] unit and widgets tests
 - [x] flavors
