@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/exceptions/app_exception.dart';
 
 extension AsyncValueExtension on AsyncValue {
   void showSnackbarOnSuccess(BuildContext context, String text) {
@@ -23,11 +25,11 @@ extension AsyncValueExtension on AsyncValue {
         context: context,
         barrierDismissible: true,
         builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: Text(_errorMessage(error)),
+          title: Text(context.l10n.alertErrorHeader),
+          content: Text(_errorMessage(error, context)),
           actions: [
             TextButton(
-              child: const Text('Ok'),
+              child: Text(context.l10n.alertErrorDismissButton),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -36,7 +38,7 @@ extension AsyncValueExtension on AsyncValue {
     }
   }
 
-  String _errorMessage(Object? error) {
-    return error is FirebaseException ? error.message! : error.toString();
+  String _errorMessage(Object? error, BuildContext context) {
+    return error is AppException ? error.l10n(context) : error.toString();
   }
 }

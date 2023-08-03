@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shopit/src/exceptions/auth_exception.dart';
 
 import 'package:shopit/src/features/auth/domain/datasources/auth_remote_datasource.dart';
 
@@ -17,32 +18,56 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
   Future<UserCredential> signInWithEmailAndPassword(
     String email,
     String password,
-  ) {
-    return _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+  ) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthException.fromCode(e.code);
+    } catch (_) {
+      throw const AuthException.unknown();
+    }
   }
 
   @override
   Future<UserCredential> createUserWithEmailAndPassword(
     String email,
     String password,
-  ) {
-    return _auth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+  ) async {
+    try {
+      return await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthException.fromCode(e.code);
+    } catch (_) {
+      throw const AuthException.unknown();
+    }
   }
 
   @override
   Future<void> updateEmail(String email) async {
-    return _auth.currentUser!.updateEmail(email);
+    try {
+      return await _auth.currentUser!.updateEmail(email);
+    } on FirebaseAuthException catch (e) {
+      throw AuthException.fromCode(e.code);
+    } catch (_) {
+      throw const AuthException.unknown();
+    }
   }
 
   @override
-  Future<void> updatePassword(String password) {
-    return _auth.currentUser!.updatePassword(password);
+  Future<void> updatePassword(String password) async {
+    try {
+      return await _auth.currentUser!.updatePassword(password);
+    } on FirebaseAuthException catch (e) {
+      throw AuthException.fromCode(e.code);
+    } catch (_) {
+      throw const AuthException.unknown();
+    }
   }
 
   @override

@@ -82,5 +82,20 @@
     "inputConfirmPasswordIsRequired": "Potwierdzenie hasła jest wymagane",
     "inputPasswordsNotMatch": "Podane hasła różnią się",
     "inputNewPasswordLabel": "Nowe hasło",
-    "inputConfirmNewPasswordLabel": "Potwierdź nowe hasło"
+    "inputConfirmNewPasswordLabel": "Potwierdź nowe hasło",
+
+    "alertErrorHeader": "Błąd",
+    "alertErrorDismissButton": "Ok",
+
+    "appExceptionUnknown": "Wystąpił błąd",
+
+    "authExceptionInvalidEmail": "Podany email jest błędny",
+    "authExceptionEmailAlreadyInUse": "Podany email jest już zajęty",
+    "authExceptionWrongPassword": "Podane hasło jest błędne",
+    "authExceptionWeakPassword": "Podane hasło jest za słabe. (min. 6 znaków)",
+    "authExceptionUserNotFound": "Nie znaleziono konta",
+    "authExceptionUserDisabled": "Twoje konto zostało zablokowane",
+    "authExceptionRequiresRecentLogin": "Ze względów bezpieczeństwa, wymagane jest ponowne zalogowanie",
+    "authExceptionOperationNotAllowed": "Akcja nie jest dozwolona",
+    "authExceptionUnknown": "Wystąpił nieznany błąd"
 }

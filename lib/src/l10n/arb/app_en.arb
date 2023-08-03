@@ -82,5 +82,20 @@
     "inputConfirmPasswordIsRequired": "Password confirmation is required",
     "inputPasswordsNotMatch": "Passwords dont't match",
     "inputNewPasswordLabel": "New password",
-    "inputConfirmNewPasswordLabel": "Confirm new password"
+    "inputConfirmNewPasswordLabel": "Confirm new password",
+
+    "alertErrorHeader": "Error",
+    "alertErrorDismissButton": "Ok",
+
+    "appExceptionUnknown": "An unexpected error occurred",
+
+    "authExceptionInvalidEmail": "Provided email is wrong",
+    "authExceptionEmailAlreadyInUse": "Provided email is already used",
+    "authExceptionWrongPassword": "Provided password is wrong",
+    "authExceptionWeakPassword": "Provided password is too weak. (min. 6 characters)",
+    "authExceptionUserNotFound": "Account not found",
+    "authExceptionUserDisabled": "Your account is disabled",
+    "authExceptionRequiresRecentLogin": "For security reasons, a re-login is required",
+    "authExceptionOperationNotAllowed": "Operation not allowed",
+    "authExceptionUnknown": "An unexpected error occurred"
 }
