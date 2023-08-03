@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/exceptions/app_exception.dart';
+import 'package:shopit/src/exceptions/auth_exception.dart';
 
 extension AsyncValueExtension on AsyncValue {
   void showSnackbarOnSuccess(BuildContext context, String text) {
@@ -39,6 +39,6 @@ extension AsyncValueExtension on AsyncValue {
   }
 
   String _errorMessage(Object? error, BuildContext context) {
-    return error is AppException ? error.l10n(context) : error.toString();
+    return error is AuthException ? error.l10n(context.l10n) : error.toString();
   }
 }

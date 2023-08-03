@@ -27,7 +27,7 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
     } on FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
-      throw const AuthException.unknown();
+      throw AuthUnknownException();
     }
   }
 
@@ -44,7 +44,7 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
     } on FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
-      throw const AuthException.unknown();
+      throw AuthUnknownException();
     }
   }
 
@@ -55,7 +55,7 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
     } on FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
-      throw const AuthException.unknown();
+      throw AuthUnknownException();
     }
   }
 
@@ -66,7 +66,7 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
     } on FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
-      throw const AuthException.unknown();
+      throw AuthUnknownException();
     }
   }
 

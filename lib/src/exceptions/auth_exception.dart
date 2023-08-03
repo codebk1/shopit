@@ -1,49 +1,51 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/exceptions/app_exception.dart';
 
-part 'auth_exception.freezed.dart';
-
-@freezed
-sealed class AuthException with _$AuthException implements AppException {
+sealed class AuthException implements Exception {
   factory AuthException.fromCode(Object code) {
     return switch (code) {
-      'invalid-email' => const AuthException.invalidEmail(),
-      'email-already-in-use' => const AuthException.emailAlreadyInUse(),
-      'wrong-password' => const AuthException.wrongPassword(),
-      'weak-password' => const AuthException.weakPassword(),
-      'user-not-found' => const AuthException.userNotFound(),
-      'user-disabled' => const AuthException.userDisabled(),
-      'requires-recent-login' => const AuthException.requiresRecentLogin(),
-      'operation-not-allowed' => const AuthException.operationNotAllowed(),
-      _ => const AuthException.unknown(),
+      'invalid-email' => InvalidEmailException(),
+      'email-already-in-use' => EmailAlreadyInUseException(),
+      'wrong-password' => WrongPasswordException(),
+      'weak-password' => WeakPasswordException(),
+      'user-not-found' => UserNotFoundException(),
+      'user-disabled' => UserDisabledException(),
+      'requires-recent-login' => RequiresRecentLoginException(),
+      'operation-not-allowed' => OperationNotAllowedException(),
+      _ => AuthUnknownException(),
     };
   }
-
-  const factory AuthException.invalidEmail() = InvalidEmail;
-  const factory AuthException.emailAlreadyInUse() = EmailAlreadyInUse;
-  const factory AuthException.wrongPassword() = WrongPassword;
-  const factory AuthException.weakPassword() = WeakPassword;
-  const factory AuthException.userNotFound() = UserNotFound;
-  const factory AuthException.userDisabled() = UserDisabled;
-  const factory AuthException.requiresRecentLogin() = RequiresRecentLogin;
-  const factory AuthException.operationNotAllowed() = OperationNotAllowed;
-  const factory AuthException.unknown() = Unknown;
 }
 
+class InvalidEmailException implements AuthException {}
+
+class EmailAlreadyInUseException implements AuthException {}
+
+class WrongPasswordException implements AuthException {}
+
+class WeakPasswordException implements AuthException {}
+
+class UserNotFoundException implements AuthException {}
+
+class UserDisabledException implements AuthException {}
+
+class RequiresRecentLoginException implements AuthException {}
+
+class OperationNotAllowedException implements AuthException {}
+
+class AuthUnknownException implements AuthException {}
+
 extension AuthExceptionExtension on AuthException {
-  String translate(AppLocalizations l10n) {
+  String l10n(AppLocalizations l10n) {
     return switch (this) {
-      InvalidEmail() => l10n.authExceptionInvalidEmail,
-      EmailAlreadyInUse() => l10n.authExceptionEmailAlreadyInUse,
-      WrongPassword() => l10n.authExceptionWrongPassword,
-      WeakPassword() => l10n.authExceptionWeakPassword,
-      UserNotFound() => l10n.authExceptionUserNotFound,
-      UserDisabled() => l10n.authExceptionUserDisabled,
-      RequiresRecentLogin() => l10n.authExceptionRequiresRecentLogin,
-      OperationNotAllowed() => l10n.authExceptionOperationNotAllowed,
-      Unknown() => l10n.authExceptionUnknown,
+      InvalidEmailException() => l10n.authExceptionEmailAlreadyInUse,
+      EmailAlreadyInUseException() => l10n.authExceptionEmailAlreadyInUse,
+      WrongPasswordException() => l10n.authExceptionEmailAlreadyInUse,
+      WeakPasswordException() => l10n.authExceptionEmailAlreadyInUse,
+      UserNotFoundException() => l10n.authExceptionEmailAlreadyInUse,
+      UserDisabledException() => l10n.authExceptionEmailAlreadyInUse,
+      RequiresRecentLoginException() => l10n.authExceptionEmailAlreadyInUse,
+      OperationNotAllowedException() => l10n.authExceptionEmailAlreadyInUse,
+      AuthUnknownException() => l10n.authExceptionEmailAlreadyInUse,
     };
   }
 }
