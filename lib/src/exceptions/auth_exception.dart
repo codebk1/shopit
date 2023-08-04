@@ -1,6 +1,8 @@
 import 'package:shopit/src/l10n/l10n.dart';
 
 sealed class AuthException implements Exception {
+  const AuthException();
+
   factory AuthException.fromCode(Object code) {
     return switch (code) {
       'invalid-email' => InvalidEmailException(),
@@ -16,23 +18,23 @@ sealed class AuthException implements Exception {
   }
 }
 
-class InvalidEmailException implements AuthException {}
+class InvalidEmailException extends AuthException {}
 
-class EmailAlreadyInUseException implements AuthException {}
+class EmailAlreadyInUseException extends AuthException {}
 
-class WrongPasswordException implements AuthException {}
+class WrongPasswordException extends AuthException {}
 
-class WeakPasswordException implements AuthException {}
+class WeakPasswordException extends AuthException {}
 
-class UserNotFoundException implements AuthException {}
+class UserNotFoundException extends AuthException {}
 
-class UserDisabledException implements AuthException {}
+class UserDisabledException extends AuthException {}
 
-class RequiresRecentLoginException implements AuthException {}
+class RequiresRecentLoginException extends AuthException {}
 
-class OperationNotAllowedException implements AuthException {}
+class OperationNotAllowedException extends AuthException {}
 
-class AuthUnknownException implements AuthException {}
+class AuthUnknownException extends AuthException {}
 
 extension AuthExceptionExtension on AuthException {
   String l10n(AppLocalizations l10n) {
