@@ -97,5 +97,5 @@
     "authExceptionUserDisabled": "Twoje konto zostało zablokowane",
     "authExceptionRequiresRecentLogin": "Ze względów bezpieczeństwa, wymagane jest ponowne zalogowanie",
     "authExceptionOperationNotAllowed": "Akcja nie jest dozwolona",
-    "authExceptionUnknown": "Wystąpił nieznany błąd"
+    "authExceptionUnknown": "Wystąpił błąd"
 }

@@ -39,15 +39,15 @@ class AuthUnknownException extends AuthException {}
 extension AuthExceptionExtension on AuthException {
   String l10n(AppLocalizations l10n) {
     return switch (this) {
-      InvalidEmailException() => l10n.authExceptionEmailAlreadyInUse,
+      InvalidEmailException() => l10n.authExceptionInvalidEmail,
       EmailAlreadyInUseException() => l10n.authExceptionEmailAlreadyInUse,
-      WrongPasswordException() => l10n.authExceptionEmailAlreadyInUse,
-      WeakPasswordException() => l10n.authExceptionEmailAlreadyInUse,
-      UserNotFoundException() => l10n.authExceptionEmailAlreadyInUse,
-      UserDisabledException() => l10n.authExceptionEmailAlreadyInUse,
-      RequiresRecentLoginException() => l10n.authExceptionEmailAlreadyInUse,
-      OperationNotAllowedException() => l10n.authExceptionEmailAlreadyInUse,
-      AuthUnknownException() => l10n.authExceptionEmailAlreadyInUse,
+      WrongPasswordException() => l10n.authExceptionWrongPassword,
+      WeakPasswordException() => l10n.authExceptionWeakPassword,
+      UserNotFoundException() => l10n.authExceptionUserNotFound,
+      UserDisabledException() => l10n.authExceptionUserDisabled,
+      RequiresRecentLoginException() => l10n.authExceptionRequiresRecentLogin,
+      OperationNotAllowedException() => l10n.authExceptionOperationNotAllowed,
+      AuthUnknownException() => l10n.authExceptionUnknown,
     };
   }
 }
