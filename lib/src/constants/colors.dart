@@ -25,13 +25,13 @@ enum ThemeSeed {
 }
 
 // waiting for: https://github.com/flutter/flutter/issues/115912
-surfaceContainerLight(int color) =>
+Color surfaceContainerLight(int color) =>
     Color(CorePalette.of(color).neutralVariant.get(94));
-surfaceContainerDark(int color) => Color(
+Color surfaceContainerDark(int color) => Color(
       CorePalette.of(color).neutralVariant.get(18),
     );
 
-surfaceContainer(WidgetRef ref) {
+Color surfaceContainer(WidgetRef ref) {
   final appTheme = ref.watch(settingsControllerProvider.select(
     (value) => value.requireValue.theme,
   ));

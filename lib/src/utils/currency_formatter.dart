@@ -1,5 +1,5 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:intl/intl.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'currency_formatter.g.dart';
 
