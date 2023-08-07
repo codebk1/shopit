@@ -5,10 +5,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/image_error.dart';
-import 'package:shopit/src/features/products/domain/entities/product.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class ProductGallery extends StatefulWidget {
   const ProductGallery({

@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/products/domain/entities/product.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 abstract interface class IProductsRemoteDataSource {
   Future<Product?> getById(String id);

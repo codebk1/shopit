@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/constants/constants.dart';
 
 class ProductsListItemLoader extends ConsumerWidget {
   const ProductsListItemLoader({super.key});

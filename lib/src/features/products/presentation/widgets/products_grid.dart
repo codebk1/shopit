@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/common/widgets/empty_state.dart';
-import 'package:shopit/src/common/widgets/error_state.dart';
-import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
-import 'package:shopit/src/features/products/presentation/widgets/load_more_loader.dart';
-import 'package:shopit/src/features/products/presentation/widgets/load_more_error.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_grid_loader.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_grid_item.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class ProductsGrid extends ConsumerWidget {
   const ProductsGrid({

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/features/categories/domain/entities/category.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_header.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_grid.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/categories/categories.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({

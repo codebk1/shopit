@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/features/cart/application/controllers/add_to_cart_controller.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class ProductAddToCart extends ConsumerStatefulWidget {
   const ProductAddToCart({super.key, required this.itemId});

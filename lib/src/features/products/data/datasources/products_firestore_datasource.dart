@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:shopit/src/features/products/domain/entities/product.dart';
-import 'package:shopit/src/features/products/domain/datasources/products_remote_datasource.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class ProductsFirestoreDataSource implements IProductsRemoteDataSource {
   const ProductsFirestoreDataSource(this._firestore);

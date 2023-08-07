@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/products/domain/entities/product.dart';
-import 'package:shopit/src/features/products/data/repositories/products_repository.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 part 'products_controller.freezed.dart';
 part 'products_controller.g.dart';
@@ -26,9 +25,7 @@ String productId(ProductIdRef ref) {
 
 @riverpod
 Future<Product?> product(ProductRef ref, String id) async {
-  final productsRepository = ref.watch(productsRepositoryProvider);
-
-  final product = await productsRepository.getById(id);
+  final product = await ref.read(productsRepositoryProvider).getById(id);
 
   // cache provider only when we have product
   final link = ref.keepAlive();
@@ -40,9 +37,7 @@ Future<Product?> product(ProductRef ref, String id) async {
 
 @riverpod
 Future<int> productsCount(ProductsCountRef ref, String id) async {
-  final productsRepository = ref.watch(productsRepositoryProvider);
-
-  return productsRepository.countByCategory(id);
+  return ref.read(productsRepositoryProvider).countByCategory(id);
 }
 
 @riverpod
@@ -50,23 +45,21 @@ Future<List<Product>> productsPage(
   ProductsPageRef ref,
   ProductsPageMeta meta,
 ) async {
-  final productsRepository = ref.watch(productsRepositoryProvider);
-
   var startAfter = '';
 
   if (meta.page > 1) {
-    final prevPage = await ref.watch(
+    final prevPage = await ref.read(
       productsPageProvider(meta.copyWith(page: meta.page - 1)).future,
     );
 
     startAfter = prevPage.last.name;
   }
 
-  return productsRepository.paginateByCategory(
-    meta.categoryId,
-    startAfter: startAfter,
-    limit: kProductsPageLimit,
-  );
+  return ref.read(productsRepositoryProvider).paginateByCategory(
+        meta.categoryId,
+        startAfter: startAfter,
+        limit: kProductsPageLimit,
+      );
 }
 
 @riverpod

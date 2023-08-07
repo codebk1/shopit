@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/products/domain/entities/product.dart';
-import 'package:shopit/src/features/products/domain/datasources/products_remote_datasource.dart';
-import 'package:shopit/src/features/products/data/datasources/products_firestore_datasource.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 part 'products_repository.g.dart';
 

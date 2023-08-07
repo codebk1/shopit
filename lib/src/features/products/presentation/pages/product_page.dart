@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/utils/currency_formatter.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/features/wishlist/presentation/widgets/toggle_wishlist.dart';
-import 'package:shopit/src/features/products/domain/entities/product.dart';
-import 'package:shopit/src/features/products/presentation/widgets/product_add_to_cart.dart';
-import 'package:shopit/src/features/products/presentation/widgets/product_gallery.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class ProductPage extends ConsumerWidget {
   const ProductPage({

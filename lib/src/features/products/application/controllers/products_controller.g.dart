@@ -20,7 +20,7 @@ final productIdProvider = AutoDisposeProvider<String>.internal(
 );
 
 typedef ProductIdRef = AutoDisposeProviderRef<String>;
-String _$productHash() => r'b1a0dc3d84b5005379406ffe2e22c8c2cb25ce30';
+String _$productHash() => r'fee8b578dc12fa681136187f84bcb7e12b9e72ce';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -123,7 +123,7 @@ class ProductProvider extends AutoDisposeFutureProvider<Product?> {
   }
 }
 
-String _$productsCountHash() => r'a74c3fb7f5270ae9850a85ac92e2116ff698a34b';
+String _$productsCountHash() => r'6a4a7897e20e6aab90c50cccc4abcf2403aa448a';
 typedef ProductsCountRef = AutoDisposeFutureProviderRef<int>;
 
 /// See also [productsCount].
@@ -205,7 +205,7 @@ class ProductsCountProvider extends AutoDisposeFutureProvider<int> {
   }
 }
 
-String _$productsPageHash() => r'1c24c310d09da4e8399903a9cd610d2d6929a820';
+String _$productsPageHash() => r'f5a46c25b23c2c16b610d4600fe5059dea7e48e0';
 typedef ProductsPageRef = AutoDisposeFutureProviderRef<List<Product>>;
 
 /// See also [productsPage].

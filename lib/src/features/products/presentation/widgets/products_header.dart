@@ -4,10 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class ProductsHeader extends ConsumerWidget {
   const ProductsHeader({
