@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/constants/spacing.dart';
+import 'package:shopit/src/constants/constants.dart';
 
-class FeaturedCategoriesLoader extends ConsumerWidget {
-  const FeaturedCategoriesLoader({super.key});
+class FeaturedProductsLoader extends ConsumerWidget {
+  const FeaturedProductsLoader({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +21,7 @@ class FeaturedCategoriesLoader extends ConsumerWidget {
         separatorBuilder: (_, __) => gapW8,
         itemBuilder: (_, __) {
           return Container(
-            width: 150,
+            width: 140,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),

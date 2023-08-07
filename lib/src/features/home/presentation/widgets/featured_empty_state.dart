@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
 
 class FeaturedEmptyState extends ConsumerWidget {
   const FeaturedEmptyState({

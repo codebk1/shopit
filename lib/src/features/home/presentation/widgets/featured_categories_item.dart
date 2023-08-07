@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/common/widgets/image_error.dart';
-import 'package:shopit/src/features/categories/domain/entities/category.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 class FeaturedCategoriesItem extends StatelessWidget {
   const FeaturedCategoriesItem({

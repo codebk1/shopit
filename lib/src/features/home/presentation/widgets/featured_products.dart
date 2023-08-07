@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/features/home/application/controllers/home_controller.dart';
-import 'package:shopit/src/features/home/views/widgets/featured_empty_state.dart';
-import 'package:shopit/src/features/home/views/widgets/featured_products_filters.dart';
-import 'package:shopit/src/features/home/views/widgets/featured_products_item.dart';
-import 'package:shopit/src/features/home/views/widgets/featured_products_loader.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/features/home/home.dart';
 
 class FeaturedProducts extends StatelessWidget {
   const FeaturedProducts({super.key});

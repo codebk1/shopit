@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
+import 'package:shopit/src/common/common.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});

@@ -5,11 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/utils/currency_formatter.dart';
-import 'package:shopit/src/common/widgets/image_error.dart';
-import 'package:shopit/src/features/products/domain/entities/product.dart';
-import 'package:shopit/src/features/wishlist/presentation/widgets/toggle_wishlist.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/products/products.dart';
 
 class FeaturedProductsItem extends ConsumerWidget {
   const FeaturedProductsItem({

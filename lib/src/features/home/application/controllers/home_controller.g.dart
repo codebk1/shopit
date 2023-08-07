@@ -7,7 +7,7 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 String _$featuredCategoriesHash() =>
-    r'ec26e0e90dd0862022a0d3cdd260536d16172554';
+    r'34558b455e3348aa756f885fbcf63c29b79f043a';
 
 /// See also [featuredCategories].
 @ProviderFor(featuredCategories)
@@ -23,7 +23,7 @@ final featuredCategoriesProvider =
 );
 
 typedef FeaturedCategoriesRef = AutoDisposeFutureProviderRef<List<Category>>;
-String _$featuredProductsHash() => r'd972236aa5aeacf07b1fd3a512aadd9f7fd02977';
+String _$featuredProductsHash() => r'dc547a881abfbcb1a6f00f2c87a82617958c8cfd';
 
 /// See also [featuredProducts].
 @ProviderFor(featuredProducts)
@@ -40,7 +40,7 @@ final featuredProductsProvider =
 
 typedef FeaturedProductsRef = AutoDisposeFutureProviderRef<List<Product>>;
 String _$filteredFeaturedProductsHash() =>
-    r'008b8733cec9dfd6af64319d15e09c7a509cb0ee';
+    r'293a9277e8dd2c1be8a9f6f74446c881a9d444f1';
 
 /// See also [filteredFeaturedProducts].
 @ProviderFor(filteredFeaturedProducts)
@@ -58,7 +58,7 @@ final filteredFeaturedProductsProvider =
 typedef FilteredFeaturedProductsRef
     = AutoDisposeFutureProviderRef<List<Product>>;
 String _$featuredProductsCategoriesHash() =>
-    r'b7ee0d9d092c80bbe2b07ab91fc33fe53ad62e32';
+    r'5ea43cc982a9cddb606b6f1bc4f979faeb4600ee';
 
 /// See also [featuredProductsCategories].
 @ProviderFor(featuredProductsCategories)

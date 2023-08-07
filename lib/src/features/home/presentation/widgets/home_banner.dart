@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/image_error.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
 
 class HomeBanner extends StatelessWidget {
   const HomeBanner({super.key});
