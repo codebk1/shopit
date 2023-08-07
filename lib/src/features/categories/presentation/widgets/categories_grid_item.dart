@@ -5,10 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/common/widgets/image_error.dart';
-import 'package:shopit/src/features/categories/application/controllers/categories_controller.dart';
-import 'package:shopit/src/features/categories/presentation/widgets/categories_grid_item_loader.dart';
-import 'package:shopit/src/features/categories/presentation/widgets/categories_grid_item_error.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 class CategoriesGridItem extends ConsumerWidget {
   const CategoriesGridItem({super.key, required this.index});

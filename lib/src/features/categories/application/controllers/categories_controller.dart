@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/categories/domain/entities/category.dart';
-import 'package:shopit/src/features/categories/data/repositories/categories_repository.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 part 'categories_controller.g.dart';
 
@@ -19,16 +18,14 @@ Future<List<Category>> categoriesPage(
   CategoriesPageRef ref,
   int page,
 ) async {
-  final categoriesRepository = ref.watch(categoriesRepositoryProvider);
-
   String startAfter = page > 0
       ? (await ref.read(categoriesPageProvider(page - 1).future)).last.name
       : '';
 
-  final categories = await categoriesRepository.paginate(
-    startAfter: startAfter,
-    limit: kCategoriesPageLimit,
-  );
+  final categories = await ref.read(categoriesRepositoryProvider).paginate(
+        startAfter: startAfter,
+        limit: kCategoriesPageLimit,
+      );
 
   // cache provider only when we have categories page
   final link = ref.keepAlive();

@@ -21,7 +21,7 @@ final categoriesCountProvider = AutoDisposeFutureProvider<int>.internal(
 );
 
 typedef CategoriesCountRef = AutoDisposeFutureProviderRef<int>;
-String _$categoriesPageHash() => r'8e504d165b70e967675230b8dc81109b2435e506';
+String _$categoriesPageHash() => r'b4b55266aefca21f6ac479078bc601e1a666f789';
 
 /// Copied from Dart SDK
 class _SystemHash {

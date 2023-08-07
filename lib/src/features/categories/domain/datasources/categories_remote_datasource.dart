@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/categories/domain/entities/category.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 abstract interface class ICategoriesRemoteDataSource {
   Future<int> count();

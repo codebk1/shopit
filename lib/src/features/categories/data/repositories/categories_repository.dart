@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/categories/domain/entities/category.dart';
-import 'package:shopit/src/features/categories/domain/datasources/categories_remote_datasource.dart';
-import 'package:shopit/src/features/categories/data/datasources/categories_firestore_datasource.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 part 'categories_repository.g.dart';
 

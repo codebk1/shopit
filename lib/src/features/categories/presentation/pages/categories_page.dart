@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/common/widgets/error_state.dart';
-import 'package:shopit/src/features/categories/application/controllers/categories_controller.dart';
-import 'package:shopit/src/features/categories/presentation/widgets/categories_grid_item.dart';
-import 'package:shopit/src/features/categories/presentation/widgets/categories_grid_loader.dart';
-import 'package:shopit/src/features/categories/presentation/widgets/categories_header.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
