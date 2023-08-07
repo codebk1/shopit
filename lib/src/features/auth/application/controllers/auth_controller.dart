@@ -3,8 +3,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/wishlist/data/repositories/wishlist_repository.dart';
-import 'package:shopit/src/features/cart/data/repositories/cart_local_repository.dart';
+import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'auth_controller.g.dart';
 
@@ -17,19 +18,15 @@ class AuthController extends _$AuthController {
     required String email,
     required String password,
   }) async {
-    final authRepository = ref.watch(authRepositoryProvider);
-    final cartLocalRepository = ref.watch(cartLocalRepositoryProvider);
-    final wishlistRepository = ref.watch(wishlistRepositoryProvider);
-
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-      () => authRepository.signIn(email, password),
+      () => ref.read(authRepositoryProvider).signIn(email, password),
     );
 
     if (!state.hasError) {
-      await cartLocalRepository.clear();
-      await wishlistRepository.clear();
-      ref.watch(routerProvider).goNamed(Routes.account.name);
+      await ref.read(cartLocalRepositoryProvider).clear();
+      await ref.read(wishlistRepositoryProvider).clear();
+      ref.read(routerProvider).goNamed(Routes.account.name);
     }
   }
 
@@ -39,12 +36,12 @@ class AuthController extends _$AuthController {
     required String firstName,
     required String lastName,
   }) async {
-    final authRepository = ref.watch(authRepositoryProvider);
-    final profileRepository = ref.watch(profileRepositoryProvider);
-
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      final user = await authRepository.signUp(email, password);
+      final user = await ref.read(authRepositoryProvider).signUp(
+            email,
+            password,
+          );
 
       final profile = Profile(
         id: user.id,
@@ -52,23 +49,26 @@ class AuthController extends _$AuthController {
         lastName: lastName,
       );
 
-      await profileRepository.update(profile);
+      await ref.read(profileRepositoryProvider).update(profile);
     });
 
-    if (!state.hasError) ref.watch(routerProvider).goNamed(Routes.profile.name);
+    if (!state.hasError) ref.read(routerProvider).goNamed(Routes.profile.name);
   }
 
   Future<void> signOut() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-      () => ref.watch(authRepositoryProvider).signOut(),
+      () => ref.read(authRepositoryProvider).signOut(),
     );
 
-    if (!state.hasError) ref.watch(routerProvider).goNamed(Routes.home.name);
+    if (!state.hasError) {
+      await ref.read(settingsControllerProvider.notifier).clear();
+      ref.read(routerProvider).goNamed(Routes.home.name);
+    }
   }
 }
 
 @riverpod
 Stream<User?> authStateChanges(AuthStateChangesRef ref) {
-  return ref.watch(authRepositoryProvider).authStateChanges();
+  return ref.read(authRepositoryProvider).authStateChanges();
 }
