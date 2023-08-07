@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/cart/domain/entities/cart.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 abstract interface class ICartRemoteDataSource {
   Future<Cart> get(String id);

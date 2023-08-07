@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
-import 'package:shopit/src/features/cart/presentation/widgets/quantity_selector.dart';
-import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_list_item.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_list_item_error.dart';
-import 'package:shopit/src/features/products/presentation/widgets/products_list_item_loader.dart';
+import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class CartItem extends ConsumerWidget {
   const CartItem({super.key});

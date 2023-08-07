@@ -3,16 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/common/widgets/empty_state.dart';
-import 'package:shopit/src/common/widgets/error_state.dart';
-import 'package:shopit/src/common/widgets/remove_slidable.dart';
-import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
-import 'package:shopit/src/features/cart/presentation/widgets/cart_item.dart';
-import 'package:shopit/src/features/cart/presentation/widgets/cart_summary.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class CartPage extends ConsumerWidget {
   const CartPage({super.key});

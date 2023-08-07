@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:shopit/src/features/cart/domain/entities/item.dart';
-import 'package:shopit/src/features/cart/domain/schemas/local_cart.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'cart.freezed.dart';
 part 'cart.g.dart';

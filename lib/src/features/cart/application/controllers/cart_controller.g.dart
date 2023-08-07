@@ -35,7 +35,7 @@ final cartItemsCountProvider = AutoDisposeProvider<int>.internal(
 );
 
 typedef CartItemsCountRef = AutoDisposeProviderRef<int>;
-String _$cartSubtotalHash() => r'1e5fe2efbdbbdad3f2360a50db858f780077d963';
+String _$cartSubtotalHash() => r'8871585b831a6de080b5d3afd3d687b0963221d8';
 
 /// See also [cartSubtotal].
 @ProviderFor(cartSubtotal)
@@ -49,7 +49,7 @@ final cartSubtotalProvider = AutoDisposeFutureProvider<double>.internal(
 );
 
 typedef CartSubtotalRef = AutoDisposeFutureProviderRef<double>;
-String _$cartControllerHash() => r'1d282ae675690496db39b01cc8643d93e9548ff0';
+String _$cartControllerHash() => r'619a4a640b92bffc85e24a25ae8b1663d65a8cd1';
 
 /// See also [CartController].
 @ProviderFor(CartController)

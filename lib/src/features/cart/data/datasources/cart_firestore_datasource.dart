@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:shopit/src/features/cart/domain/entities/cart.dart';
-import 'package:shopit/src/features/cart/domain/datasources/cart_remote_datasource.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class CartFirestoreDataSource implements ICartRemoteDataSource {
   const CartFirestoreDataSource(this._firestore);
@@ -34,12 +33,12 @@ class CartFirestoreDataSource implements ICartRemoteDataSource {
   }
 
   @override
-  Future<void> update(Cart cart) async {
+  Future<void> update(Cart cart) {
     return _cartsRef.doc(cart.id).set(cart);
   }
 
   @override
-  Future<void> clear(Cart cart) async {
+  Future<void> clear(Cart cart) {
     return _cartsRef.doc(cart.id).set(
           cart.copyWith(state: CartState.abandoned),
           SetOptions(merge: true),

@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/utils/async_value.dart';
-import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
-import 'package:shopit/src/features/cart/application/controllers/quantity_controller.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class QuantitySelector extends ConsumerWidget {
   const QuantitySelector({super.key});

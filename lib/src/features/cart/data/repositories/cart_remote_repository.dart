@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/cart/domain/entities/cart.dart';
-import 'package:shopit/src/features/cart/domain/datasources/cart_remote_datasource.dart';
-import 'package:shopit/src/features/cart/data/datasources/cart_firestore_datasource.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'cart_remote_repository.g.dart';
 
@@ -12,15 +10,15 @@ class CartRemoteRepository {
 
   final ICartRemoteDataSource _remoteDataSource;
 
-  Future<Cart> get(String id) async {
+  Future<Cart> get(String id) {
     return _remoteDataSource.get(id);
   }
 
-  Future<void> update(Cart cart) async {
+  Future<void> update(Cart cart) {
     return _remoteDataSource.update(cart);
   }
 
-  Future<void> clear(Cart cart) async {
+  Future<void> clear(Cart cart) {
     return _remoteDataSource.clear(cart);
   }
 }

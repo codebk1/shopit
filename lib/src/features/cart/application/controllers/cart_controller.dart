@@ -1,9 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/products/application/controllers/products_controller.dart';
-import 'package:shopit/src/features/cart/domain/entities/cart.dart';
-import 'package:shopit/src/features/cart/domain/entities/item.dart';
-import 'package:shopit/src/features/cart/application/services/cart_service.dart';
+import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'cart_controller.g.dart';
 
@@ -15,7 +13,6 @@ class CartController extends _$CartController {
   }
 
   Future<void> addItem(String itemId) async {
-    final cartService = ref.watch(cartServiceProvider);
     final cart = state.value!;
 
     Item? currentItem;
@@ -32,7 +29,7 @@ class CartController extends _$CartController {
           items: [...cart.items, Item(id: itemId, quantity: 1)],
         );
 
-        await cartService.update(newCart);
+        await ref.read(cartServiceProvider).update(newCart);
         return newCart;
       });
     } else {
@@ -41,7 +38,6 @@ class CartController extends _$CartController {
   }
 
   Future<void> updateItem(Item currentItem, int quantity) async {
-    final cartService = ref.watch(cartServiceProvider);
     final cart = state.value!;
 
     List<Item> newItems;
@@ -59,22 +55,20 @@ class CartController extends _$CartController {
 
     state = await AsyncValue.guard(() async {
       final newCart = cart.copyWith(items: newItems);
-      await cartService.update(newCart);
+      await ref.read(cartServiceProvider).update(newCart);
 
       return newCart;
     });
   }
 
   Future<void> removeItem(Item item) async {
-    final cartService = ref.watch(cartServiceProvider);
-
     state = await AsyncValue.guard(
       () async {
         final newCart = state.value!.copyWith(
           items: [...state.value!.items]..remove(item),
         );
 
-        await cartService.update(newCart);
+        await ref.read(cartServiceProvider).update(newCart);
 
         return newCart;
       },
@@ -82,10 +76,10 @@ class CartController extends _$CartController {
   }
 
   Future<void> clearCart() async {
-    final cartService = ref.watch(cartServiceProvider);
-
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
+      final cartService = ref.read(cartServiceProvider);
+
       await cartService.clear(state.value!);
       return cartService.get();
     });
@@ -112,7 +106,7 @@ Future<double> cartSubtotal(CartSubtotalRef ref) async {
   var total = 0.0;
   if (cart != null) {
     for (var item in cart.items) {
-      final product = await ref.watch(productProvider(item.id).future);
+      final product = await ref.read(productProvider(item.id).future);
 
       total += product!.price * item.quantity;
     }

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/utils/currency_formatter.dart';
-import 'package:shopit/src/common/widgets/shimmer_text.dart';
-import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class CartSummary extends ConsumerWidget {
   const CartSummary({super.key});

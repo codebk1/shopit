@@ -1,9 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/cart/domain/entities/cart.dart';
-import 'package:shopit/src/features/cart/data/repositories/cart_local_repository.dart';
-import 'package:shopit/src/features/cart/data/repositories/cart_remote_repository.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'cart_service.g.dart';
 
@@ -30,7 +28,7 @@ class CartService {
         : _localRepository.update(cart);
   }
 
-  Future<void> clear(Cart cart) async {
+  Future<void> clear(Cart cart) {
     return _user != null
         ? _remoteRepository.clear(cart)
         : _localRepository.clear();

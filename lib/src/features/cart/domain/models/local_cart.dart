@@ -1,7 +1,6 @@
 import 'package:isar/isar.dart';
 
-import 'package:shopit/src/features/cart/domain/entities/cart.dart';
-import 'package:shopit/src/features/cart/domain/entities/item.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'local_cart.g.dart';
 
