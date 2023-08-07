@@ -1,9 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/utils/isar.dart';
-import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
-import 'package:shopit/src/features/wishlist/domain/datasources/wishlist_local_datasource.dart';
-import 'package:shopit/src/features/wishlist/data/datasources/wishlist_isar_datasource.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
 
 part 'wishlist_repository.g.dart';
 
@@ -12,8 +10,8 @@ class WishlistRepository {
 
   final IWishlistLocalDataSource _localDataSource;
 
-  Future<Wishlist> get() {
-    return _localDataSource.get();
+  Future<Wishlist> get() async {
+    return await _localDataSource.get() ?? const Wishlist(id: 1);
   }
 
   Future<void> update(Wishlist wishlist) async {

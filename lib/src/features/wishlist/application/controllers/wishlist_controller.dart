@@ -1,14 +1,13 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
-import 'package:shopit/src/features/wishlist/application/services/wishlist_service.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
 
 part 'wishlist_controller.g.dart';
 
 @riverpod
 class WishlistController extends _$WishlistController {
   @override
-  FutureOr<Wishlist> build() async {
+  FutureOr<Wishlist> build() {
     return ref.watch(wishlistServiceProvider).get();
   }
 

@@ -1,8 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
-import 'package:shopit/src/features/wishlist/data/repositories/wishlist_repository.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
 
 part 'wishlist_service.g.dart';
 
