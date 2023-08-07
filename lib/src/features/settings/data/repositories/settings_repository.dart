@@ -1,8 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shopit/src/features/settings/data/datasources/settings_isar_datasource.dart';
-import 'package:shopit/src/features/settings/domain/datasources/settings_local_datasource.dart';
-import 'package:shopit/src/features/settings/domain/schemas/settings.dart';
-import 'package:shopit/src/utils/isar.dart';
+
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/features/settings/settings.dart';
 
 part 'settings_repository.g.dart';
 
@@ -15,11 +14,11 @@ class SettingsRepository {
     return await _localDataSource.get() ?? const Settings();
   }
 
-  Future<void> update(Settings settings) async {
+  Future<void> update(Settings settings) {
     return _localDataSource.update(settings);
   }
 
-  Future<void> clear() async {
+  Future<void> clear() {
     return _localDataSource.clear();
   }
 }

@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/settings/settings.dart';
 
 class SelectLanguageItem extends ConsumerWidget {
   const SelectLanguageItem({

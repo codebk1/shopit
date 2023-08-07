@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/common/widgets/svg_icon.dart';
+import 'package:shopit/src/common/common.dart';
 
 class SettingsListItem extends StatelessWidget {
   const SettingsListItem({

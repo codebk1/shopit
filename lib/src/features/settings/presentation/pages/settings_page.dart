@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/utils/capitalize.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
-import 'package:shopit/src/features/settings/presentation/widgets/settings_list_item.dart';
-import 'package:shopit/src/features/settings/presentation/widgets/select_appearance_sheet.dart';
-import 'package:shopit/src/features/settings/presentation/widgets/select_language_sheet.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/settings/settings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

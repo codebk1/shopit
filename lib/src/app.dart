@@ -5,8 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/theme/theme.dart';
-import 'package:shopit/src/features/settings/domain/schemas/settings.dart';
-import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
+import 'package:shopit/src/features/settings/settings.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});

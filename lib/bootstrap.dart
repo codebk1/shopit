@@ -7,9 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:isar/isar.dart';
 
-import 'package:shopit/src/utils/isar.dart';
-import 'package:shopit/src/features/settings/domain/schemas/settings.dart';
-import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/cart/domain/schemas/local_cart.dart';
 import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
 
