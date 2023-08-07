@@ -26,4 +26,9 @@ class SettingsController extends _$SettingsController {
     await ref.read(settingsRepositoryProvider).update(settings);
     state = AsyncData(settings);
   }
+
+  Future<void> clear() async {
+    await ref.read(settingsRepositoryProvider).clear();
+    state = const AsyncData(Settings());
+  }
 }
