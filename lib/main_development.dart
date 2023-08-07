@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:shopit/firebase_options_development.dart';
 import 'package:shopit/bootstrap.dart';
@@ -29,6 +30,11 @@ void main() async {
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await Supabase.initialize(
+    url: '',
+    anonKey: '',
   );
 
   bootstrap(() => const App());
