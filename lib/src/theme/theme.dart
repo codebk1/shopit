@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/constants/colors.dart';
+import 'package:shopit/src/constants/constants.dart';
 
 class CustomTheme {
   const CustomTheme({

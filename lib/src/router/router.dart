@@ -6,18 +6,15 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/router/scaffold_with_navbar.dart';
-import 'package:shopit/src/features/home/views/pages/home_page.dart';
+import 'package:shopit/src/features/home/home.dart';
 import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/account/account.dart';
 import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/settings/presentation/pages/settings_page.dart';
-import 'package:shopit/src/features/wishlist/presentation/pages/wishlist_page.dart';
-import 'package:shopit/src/features/categories/domain/entities/category.dart';
-import 'package:shopit/src/features/categories/presentation/pages/categories_page.dart';
-import 'package:shopit/src/features/products/domain/entities/product.dart';
-import 'package:shopit/src/features/products/presentation/pages/products_page.dart';
-import 'package:shopit/src/features/products/presentation/pages/product_page.dart';
-import 'package:shopit/src/features/cart/presentation/pages/cart_page.dart';
+import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/categories/categories.dart';
+import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 enum Routes {
   home,
