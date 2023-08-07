@@ -3,23 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
-import 'package:shopit/src/features/auth/presentation/widgets/first_name_field.dart';
-import 'package:shopit/src/features/auth/presentation/widgets/last_name_field.dart';
-import 'package:shopit/src/features/auth/presentation/widgets/email_field.dart';
-import 'package:shopit/src/features/auth/presentation/widgets/password_field.dart';
-import 'package:shopit/src/features/auth/presentation/widgets/confirm_password_field.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/auth/auth.dart';
 
-class SignupForm extends ConsumerStatefulWidget {
-  const SignupForm({super.key});
+class SignUpForm extends ConsumerStatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  ConsumerState<SignupForm> createState() => _SignupFormState();
+  ConsumerState<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignupFormState extends ConsumerState<SignupForm> {
+class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   var _autovalidateMode = AutovalidateMode.disabled;
 
@@ -31,7 +26,7 @@ class _SignupFormState extends ConsumerState<SignupForm> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      ref.read(authControllerProvider.notifier).signup(
+      ref.read(authControllerProvider.notifier).signUp(
             firstName: _firstNameController.text,
             lastName: _lastNameController.text,
             email: _emailController.text,
@@ -91,7 +86,7 @@ class _SignupFormState extends ConsumerState<SignupForm> {
                 onPressed: _submit,
                 child: authController.isLoading
                     ? const Loader()
-                    : Text(context.l10n.signupButton),
+                    : Text(context.l10n.signUpButton),
               );
             },
           ),

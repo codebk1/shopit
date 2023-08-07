@@ -7,11 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/router/scaffold_with_navbar.dart';
 import 'package:shopit/src/features/home/views/pages/home_page.dart';
-import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
-import 'package:shopit/src/features/auth/presentation/pages/login_page.dart';
-import 'package:shopit/src/features/auth/presentation/pages/signup_page.dart';
-import 'package:shopit/src/features/account/presentation/pages/account_page.dart';
-import 'package:shopit/src/features/account/presentation/pages/edit_account_page.dart';
+import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/features/account/account.dart';
+import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/settings/presentation/pages/settings_page.dart';
 import 'package:shopit/src/features/wishlist/presentation/pages/wishlist_page.dart';
 import 'package:shopit/src/features/categories/domain/entities/category.dart';
@@ -26,9 +24,9 @@ enum Routes {
   categories,
   wishlist,
   account,
-  accountEdit,
-  accountSettings,
-  login,
+  profile,
+  settings,
+  signin,
   signup,
   cart,
   products,
@@ -55,7 +53,7 @@ final routerProvider = Provider<GoRouter>(
           // solution until something will change - https://github.com/flutter/flutter/issues/114131
           await Future.delayed(const Duration(microseconds: 1));
           // ignore: use_build_context_synchronously
-          await _rootNavigatorKey.currentContext!.pushNamed(Routes.login.name);
+          await _rootNavigatorKey.currentContext!.pushNamed(Routes.signin.name);
         }
 
         return null;
@@ -110,14 +108,14 @@ final routerProvider = Provider<GoRouter>(
                   routes: [
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
-                      path: 'edit',
-                      name: Routes.accountEdit.name,
-                      builder: (_, __) => const EditAccountPage(),
+                      path: 'profile',
+                      name: Routes.profile.name,
+                      builder: (_, __) => const ProfilePage(),
                     ),
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
                       path: 'settings',
-                      name: Routes.accountSettings.name,
+                      name: Routes.settings.name,
                       builder: (_, __) => const SettingsPage(),
                     ),
                   ],
@@ -127,16 +125,16 @@ final routerProvider = Provider<GoRouter>(
           ],
         ),
         GoRoute(
-          path: '/login',
-          name: Routes.login.name,
+          path: '/signin',
+          name: Routes.signin.name,
           parentNavigatorKey: _rootNavigatorKey,
-          builder: (_, __) => const LoginPage(),
+          builder: (_, __) => const SignInPage(),
         ),
         GoRoute(
           path: '/signup',
           name: Routes.signup.name,
           parentNavigatorKey: _rootNavigatorKey,
-          builder: (_, __) => const SignupPage(),
+          builder: (_, __) => const SignUpPage(),
         ),
         GoRoute(
           path: '/cart',

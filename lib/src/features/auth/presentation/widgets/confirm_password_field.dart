@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/utils/validator/validator.dart';
+import 'package:shopit/src/utils/utils.dart';
 
 class ConfirmPasswordField extends StatelessWidget {
   const ConfirmPasswordField({

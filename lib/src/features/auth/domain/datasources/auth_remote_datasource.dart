@@ -1,20 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shopit/src/features/auth/auth.dart';
 
 abstract interface class IAuthRemoteDataSource {
   User? get currentUser;
   Stream<User?> authStateChanges();
 
-  Future<UserCredential> signInWithEmailAndPassword(
+  Future<void> signInWithEmailAndPassword(
     String email,
     String password,
   );
 
-  Future<UserCredential> createUserWithEmailAndPassword(
+  Future<User> signUpWithEmailAndPassword(
     String email,
     String password,
   );
 
+  Future<void> signOut();
   Future<void> updateEmail(String email);
   Future<void> updatePassword(String password);
-  Future<void> signOut();
 }

@@ -18,6 +18,8 @@ sealed class AuthException implements Exception {
   }
 }
 
+class InvalidCredentialsException extends AuthException {}
+
 class InvalidEmailException extends AuthException {}
 
 class EmailAlreadyInUseException extends AuthException {}
@@ -39,6 +41,7 @@ class AuthUnknownException extends AuthException {}
 extension AuthExceptionExtension on AuthException {
   String l10n(AppLocalizations l10n) {
     return switch (this) {
+      InvalidCredentialsException() => l10n.authExceptionInvalidCredentials,
       InvalidEmailException() => l10n.authExceptionInvalidEmail,
       EmailAlreadyInUseException() => l10n.authExceptionEmailAlreadyInUse,
       WrongPasswordException() => l10n.authExceptionWrongPassword,

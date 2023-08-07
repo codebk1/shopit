@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/features/auth/data/repositories/auth_repository.dart';
-import 'package:shopit/src/features/cart/data/repositories/cart_local_repository.dart';
-import 'package:shopit/src/features/account/domain/entities/account.dart';
-import 'package:shopit/src/features/account/data/repositories/account_repository.dart';
+import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/wishlist/data/repositories/wishlist_repository.dart';
+import 'package:shopit/src/features/cart/data/repositories/cart_local_repository.dart';
 
 part 'auth_controller.g.dart';
 
@@ -15,7 +13,7 @@ class AuthController extends _$AuthController {
   @override
   FutureOr<void> build() {}
 
-  Future<void> login({
+  Future<void> signIn({
     required String email,
     required String password,
   }) async {
@@ -25,7 +23,7 @@ class AuthController extends _$AuthController {
 
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-      () => authRepository.signInWithEmailAndPassword(email, password),
+      () => authRepository.signIn(email, password),
     );
 
     if (!state.hasError) {
@@ -35,37 +33,32 @@ class AuthController extends _$AuthController {
     }
   }
 
-  Future<void> signup({
-    required String firstName,
-    required String lastName,
+  Future<void> signUp({
     required String email,
     required String password,
+    required String firstName,
+    required String lastName,
   }) async {
     final authRepository = ref.watch(authRepositoryProvider);
-    final accountRepository = ref.watch(accountRepositoryProvider);
+    final profileRepository = ref.watch(profileRepositoryProvider);
 
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      final credentials = await authRepository.createUserWithEmailAndPassword(
-        email,
-        password,
-      );
+      final user = await authRepository.signUp(email, password);
 
-      final account = Account(
-        id: credentials.user!.uid,
+      final profile = Profile(
+        id: user.id,
         firstName: firstName,
         lastName: lastName,
       );
 
-      accountRepository.update(account);
+      await profileRepository.update(profile);
     });
 
-    if (!state.hasError) {
-      ref.watch(routerProvider).goNamed(Routes.account.name);
-    }
+    if (!state.hasError) ref.watch(routerProvider).goNamed(Routes.profile.name);
   }
 
-  Future<void> logout() async {
+  Future<void> signOut() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(
       () => ref.watch(authRepositoryProvider).signOut(),

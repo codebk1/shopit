@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
+import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/cart/domain/entities/cart.dart';
 import 'package:shopit/src/features/cart/data/repositories/cart_local_repository.dart';
 import 'package:shopit/src/features/cart/data/repositories/cart_remote_repository.dart';
@@ -21,7 +20,7 @@ class CartService {
 
   Future<Cart> get() {
     return _user != null
-        ? _remoteRepository.get(_user!.uid)
+        ? _remoteRepository.get(_user!.id)
         : _localRepository.get();
   }
 

@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+//import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-import 'package:shopit/src/features/auth/domain/datasources/auth_remote_datasource.dart';
-import 'package:shopit/src/features/auth/data/datasources/auth_firestore_datasource.dart';
+import 'package:shopit/src/features/auth/auth.dart';
 
 part 'auth_repository.g.dart';
 
@@ -14,21 +14,24 @@ class AuthRepository {
   User? get currentUser => _remoteDataSource.currentUser;
   Stream<User?> authStateChanges() => _remoteDataSource.authStateChanges();
 
-  Future<UserCredential> signInWithEmailAndPassword(
+  Future<void> signIn(
     String email,
     String password,
   ) {
     return _remoteDataSource.signInWithEmailAndPassword(email, password);
   }
 
-  Future<UserCredential> createUserWithEmailAndPassword(
+  Future<User> signUp(
     String email,
     String password,
   ) {
-    return _remoteDataSource.createUserWithEmailAndPassword(email, password);
+    return _remoteDataSource.signUpWithEmailAndPassword(
+      email,
+      password,
+    );
   }
 
-  Future<void> updateEmail(String email) async {
+  Future<void> updateEmail(String email) {
     return _remoteDataSource.updateEmail(email);
   }
 
@@ -43,7 +46,12 @@ class AuthRepository {
 
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  final remoteDataSource = AuthFirestoreDataSource(FirebaseAuth.instance);
+  final remoteDataSource = AuthFirestoreDataSource(
+    firebase_auth.FirebaseAuth.instance,
+  );
+
+  // final remoteDataSource =
+  //     AuthSupabaseDataSource(supabase.Supabase.instance.client);
 
   return AuthRepository(remoteDataSource);
 }

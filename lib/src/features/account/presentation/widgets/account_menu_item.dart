@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:shopit/src/common/widgets/svg_icon.dart';
+import 'package:shopit/src/common/common.dart';
 
 class AccountMenuItem extends StatelessWidget {
   const AccountMenuItem({

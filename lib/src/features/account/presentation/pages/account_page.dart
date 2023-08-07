@@ -4,15 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/loader.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/common/widgets/main_app_bar.dart';
-import 'package:shopit/src/common/widgets/shimmer_text.dart';
-import 'package:shopit/src/features/auth/application/controllers/auth_controller.dart';
-import 'package:shopit/src/features/account/application/controllers/account_controller.dart';
-import 'package:shopit/src/features/account/presentation/widgets/account_menu_item.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/account/account.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -31,7 +27,7 @@ class AccountPage extends StatelessWidget {
             Consumer(
               builder: (context, ref, child) {
                 final authController = ref.watch(authControllerProvider);
-                final account = ref.watch(accountControllerProvider);
+                final profileController = ref.watch(profileControllerProvider);
 
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 14),
@@ -44,13 +40,13 @@ class AccountPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      account.when(
-                        skipError: true,
-                        data: (account) => Row(
+                      profileController.when(
+                        skipLoadingOnReload: true,
+                        data: (profile) => Row(
                           children: [
-                            Text(context.l10n.accountGreetings),
+                            Text(context.l10n.profileGreetings),
                             Text(
-                              '${account?.firstName} ${account?.lastName}',
+                              '${profile?.firstName}',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!
@@ -59,14 +55,14 @@ class AccountPage extends StatelessWidget {
                           ],
                         ),
                         error: (_, __) => Text(
-                          context.l10n.accountNameLoadingError,
+                          context.l10n.profileGreetingsLoadingError,
                         ),
                         loading: () => const ShimmerText(width: 200),
                       ),
                       IconButton(
                         onPressed: authController.isLoading
                             ? null
-                            : ref.read(authControllerProvider.notifier).logout,
+                            : ref.read(authControllerProvider.notifier).signOut,
                         icon: authController.isLoading
                             ? const Loader(dark: true)
                             : const SvgIcon(iconName: 'logout'),
@@ -82,19 +78,19 @@ class AccountPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   AccountMenuItem(
-                    title: context.l10n.accountEditAccountMenuItemTitle,
-                    iconName: 'account',
-                    route: Routes.accountEdit.name,
+                    title: context.l10n.profileMenuItemTitle,
+                    iconName: 'profile',
+                    route: Routes.profile.name,
                   ),
                   AccountMenuItem(
-                    title: context.l10n.accountOrdersMenuItemTitle,
+                    title: context.l10n.ordersMenuItemTitle,
                     iconName: 'orders',
                     route: '',
                   ),
                   AccountMenuItem(
-                    title: context.l10n.accountSettingsMenuItemTitle,
+                    title: context.l10n.settingsMenuItemTitle,
                     iconName: 'cog',
-                    route: Routes.accountSettings.name,
+                    route: Routes.settings.name,
                   ),
                 ],
               ),

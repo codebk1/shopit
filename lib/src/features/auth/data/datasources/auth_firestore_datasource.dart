@@ -1,30 +1,31 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shopit/src/exceptions/auth_exception.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
-import 'package:shopit/src/features/auth/domain/datasources/auth_remote_datasource.dart';
+import 'package:shopit/src/exceptions/exceptions.dart';
+import 'package:shopit/src/features/auth/auth.dart';
 
 class AuthFirestoreDataSource implements IAuthRemoteDataSource {
   const AuthFirestoreDataSource(this._auth);
 
-  final FirebaseAuth _auth;
+  final firebase_auth.FirebaseAuth _auth;
 
   @override
-  User? get currentUser => _auth.currentUser;
+  User? get currentUser => _auth.currentUser?.toUser;
 
   @override
-  Stream<User?> authStateChanges() => _auth.authStateChanges();
+  Stream<User?> authStateChanges() =>
+      _auth.authStateChanges().asyncMap((user) => user?.toUser);
 
   @override
-  Future<UserCredential> signInWithEmailAndPassword(
+  Future<void> signInWithEmailAndPassword(
     String email,
     String password,
   ) async {
     try {
-      return await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
+    } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
       throw AuthUnknownException();
@@ -32,38 +33,18 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
   }
 
   @override
-  Future<UserCredential> createUserWithEmailAndPassword(
+  Future<User> signUpWithEmailAndPassword(
     String email,
     String password,
   ) async {
     try {
-      return await _auth.createUserWithEmailAndPassword(
+      final credentials = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw AuthException.fromCode(e.code);
-    } catch (_) {
-      throw AuthUnknownException();
-    }
-  }
 
-  @override
-  Future<void> updateEmail(String email) async {
-    try {
-      return await _auth.currentUser!.updateEmail(email);
-    } on FirebaseAuthException catch (e) {
-      throw AuthException.fromCode(e.code);
-    } catch (_) {
-      throw AuthUnknownException();
-    }
-  }
-
-  @override
-  Future<void> updatePassword(String password) async {
-    try {
-      return await _auth.currentUser!.updatePassword(password);
-    } on FirebaseAuthException catch (e) {
+      return credentials.user!.toUser;
+    } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
       throw AuthUnknownException();
@@ -73,5 +54,33 @@ class AuthFirestoreDataSource implements IAuthRemoteDataSource {
   @override
   Future<void> signOut() {
     return _auth.signOut();
+  }
+
+  @override
+  Future<void> updateEmail(String email) async {
+    try {
+      await _auth.currentUser!.updateEmail(email);
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      throw AuthException.fromCode(e.code);
+    } catch (_) {
+      throw AuthUnknownException();
+    }
+  }
+
+  @override
+  Future<void> updatePassword(String password) async {
+    try {
+      await _auth.currentUser!.updatePassword(password);
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      throw AuthException.fromCode(e.code);
+    } catch (_) {
+      throw AuthUnknownException();
+    }
+  }
+}
+
+extension on firebase_auth.User {
+  User get toUser {
+    return User(id: uid, email: email!);
   }
 }
