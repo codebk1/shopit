@@ -14,7 +14,6 @@ class EditProfileSheet extends ConsumerWidget {
     ref.listen(
       profileControllerProvider,
       (_, next) {
-        next.popOnSuccess(context);
         next.showAlertDialogOnError(context);
         next.showSnackbarOnSuccess(
           context,

@@ -21,8 +21,12 @@ class ProfileController extends _$ProfileController {
   Future<void> updateProfile(
     Profile profile,
   ) async {
-    state = const AsyncLoading();
-    await ref.watch(profileRepositoryProvider).update(profile);
-    state = AsyncData(profile);
+    try {
+      await ref.watch(profileRepositoryProvider).update(profile);
+      state = AsyncData(profile);
+    } catch (e, st) {
+      state = AsyncError(e, st);
+      return Future.error(e);
+    }
   }
 }

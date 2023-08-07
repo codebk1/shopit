@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:shopit/src/features/wishlist/domain/entities/wishlist.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';

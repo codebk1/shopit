@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
@@ -40,7 +41,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
     super.dispose();
   }
 
-  Future<void>? updateFuture;
+  Future<void>? updateProfile;
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
@@ -53,7 +54,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
         );
 
         setState(() {
-          updateFuture = ref
+          updateProfile = ref
               .read(profileControllerProvider.notifier)
               .updateProfile(newProfile);
         });
@@ -75,10 +76,14 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
           LastNameField(controller: _lastNameController),
           gapH14,
           FutureBuilder(
-            future: updateFuture,
+            future: updateProfile,
             builder: (context, snapshot) {
-              final isLoading =
-                  snapshot.connectionState == ConnectionState.waiting;
+              final state = snapshot.connectionState;
+              final isLoading = state == ConnectionState.waiting;
+
+              if (state == ConnectionState.done && !snapshot.hasError) {
+                context.pop();
+              }
 
               return ElevatedButton(
                 onPressed: isLoading ? null : _submit,
