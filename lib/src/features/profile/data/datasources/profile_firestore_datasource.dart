@@ -15,7 +15,7 @@ class ProfileFirestoreDataSource implements IProfileRemoteDataSource {
             fromFirestore: (doc, _) => Profile.fromJson(
               doc.data()!..addAll({'id': doc.id}),
             ),
-            toFirestore: (Profile profile, _) => profile.toJson(),
+            toFirestore: (Profile profile, _) => profile.toJson()..remove('id'),
           );
 
   @override
@@ -46,7 +46,7 @@ class ProfileFirestoreDataSource implements IProfileRemoteDataSource {
   @override
   Future<void> update(Profile profile) async {
     try {
-      await _profilesRef.doc(profile.id).update(profile.toJson());
+      await _profilesRef.doc(profile.id).set(profile, SetOptions(merge: true));
     } catch (_) {
       throw AppUnknownException();
     }
