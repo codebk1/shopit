@@ -31,6 +31,7 @@ dependencies:
   flutter_slidable: 3.0.0
   cached_network_image: 3.2.3
   firebase_crashlytics: 3.3.4
+  mocktail: 1.0.0
   supabase_flutter: 1.10.11
   
 dev_dependencies:

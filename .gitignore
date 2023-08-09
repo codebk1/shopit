@@ -52,3 +52,6 @@ lib/firebase_options_production.dart
 
 # Firebase Crashlytics
 .crashlytics
+
+# lcov
+coverage
