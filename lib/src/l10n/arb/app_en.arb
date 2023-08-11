@@ -14,12 +14,12 @@
 
     "signInAppBarTitle": "Sign In",
     "signInNoAccountQuestion": "Not registered yet?",
-    "signInGoToSignupPage": "Create an Account",
+    "signInGoToSignUpPage": "Create an Account",
     "signInButton": "Sign In",
 
     "signUpAppBarTitle": "Sign Up",
     "signUpAlreadyHaveAccount": "Already have an account?",
-    "signUpGoToLoginPage": "Sign In",
+    "signUpGoToSignInPage": "Sign In",
     "signUpButton": "Sign Up",    
 
     "accountAppBarTitle": "Account",

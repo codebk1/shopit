@@ -37,7 +37,7 @@ class SignInPage extends ConsumerWidget {
                 GestureDetector(
                   onTap: () => context.replaceNamed(Routes.signup.name),
                   child: Text(
-                    context.l10n.signInGoToSignupPage,
+                    context.l10n.signInGoToSignUpPage,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),

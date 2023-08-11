@@ -14,12 +14,12 @@
 
     "signInAppBarTitle": "Logowanie",
     "signInNoAccountQuestion": "Nie masz konta?",
-    "signInGoToSignupPage": "Zarejestruj się",
+    "signInGoToSignUpPage": "Zarejestruj się",
     "signInButton": "Zaloguj",
 
     "signUpAppBarTitle": "Rejestracja",
     "signUpAlreadyHaveAccount": "Posiadasz już konto?",
-    "signUpGoToLoginPage": "Zaloguj się",
+    "signUpGoToSignInPage": "Zaloguj się",
     "signUpButton": "Zarejestruj",    
 
     "accountAppBarTitle": "Konto",
