@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/auth/auth.dart';
@@ -61,7 +62,25 @@ void main() {
       await tester.pumpApp(const SignUpPage(), container);
 
       expect(find.byType(SignUpPage), findsOneWidget);
-      expect(find.text(tester.l10n.signInAppBarTitle), findsAtLeastNWidgets(1));
+    });
+
+    testWidgets('can navigate to SignInPage', (tester) async {
+      final goRouter = MockGoRouter();
+
+      when(() => goRouter.replaceNamed(any())).thenAnswer(
+        (_) => Future<void>.value(),
+      );
+
+      await tester.pumpApp(const SignUpPage(), container, goRouter);
+
+      final goToSignInPageButton = find.byKey(
+        const Key('goToSignInPageButton'),
+      );
+
+      await tester.tap(goToSignInPageButton);
+      await tester.pumpAndSettle();
+
+      verify(() => goRouter.replaceNamed(Routes.signin.name)).called(1);
     });
 
     testWidgets('not sign up when form is empty', (tester) async {

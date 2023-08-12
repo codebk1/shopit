@@ -35,6 +35,7 @@ class SignInPage extends ConsumerWidget {
                 Text(context.l10n.signInNoAccountQuestion),
                 gapW8,
                 GestureDetector(
+                  key: const Key('goToSignUpPageButton'),
                   onTap: () => context.replaceNamed(Routes.signup.name),
                   child: Text(
                     context.l10n.signInGoToSignUpPage,
