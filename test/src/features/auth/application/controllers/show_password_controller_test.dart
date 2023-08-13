@@ -1,7 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:mocktail/mocktail.dart';
-import 'package:shopit/src/features/auth/application/application.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:shopit/src/features/auth/auth.dart';
 
 class Listener<T> extends Mock {
   void call(T? previous, T next);

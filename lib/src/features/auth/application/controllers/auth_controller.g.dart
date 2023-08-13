@@ -6,11 +6,11 @@ part of 'auth_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authStateChangesHash() => r'e8fb160c726803a3f35e4b307a0506cd78d37d4d';
+String _$authStateChangesHash() => r'879fe011806e08d19f64c81831f9949901296421';
 
 /// See also [authStateChanges].
 @ProviderFor(authStateChanges)
-final authStateChangesProvider = AutoDisposeStreamProvider<User?>.internal(
+final authStateChangesProvider = StreamProvider<User?>.internal(
   authStateChanges,
   name: r'authStateChangesProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,7 +20,7 @@ final authStateChangesProvider = AutoDisposeStreamProvider<User?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AuthStateChangesRef = AutoDisposeStreamProviderRef<User?>;
+typedef AuthStateChangesRef = StreamProviderRef<User?>;
 String _$authControllerHash() => r'76378a99a82be38adbe2daab0edc4d527bc4930e';
 
 /// See also [AuthController].

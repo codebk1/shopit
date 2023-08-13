@@ -41,7 +41,6 @@ class AccountPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       profileController.when(
-                        skipLoadingOnReload: true,
                         data: (profile) => Row(
                           children: [
                             Text(context.l10n.profileGreetings),

@@ -38,7 +38,7 @@ final _accountNavigatorKey = GlobalKey<NavigatorState>();
 
 final routerProvider = Provider<GoRouter>(
   (ref) {
-    final authRepository = ref.watch(authRepositoryProvider);
+    final authRepository = ref.read(authRepositoryProvider);
 
     return GoRouter(
       navigatorKey: _rootNavigatorKey,

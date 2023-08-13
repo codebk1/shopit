@@ -12,7 +12,7 @@ class ProfileController extends _$ProfileController {
     final user = await ref.watch(authStateChangesProvider.future);
 
     if (user != null) {
-      return ref.watch(profileRepositoryProvider).get(user.id);
+      return ref.read(profileRepositoryProvider).get(user.id);
     }
 
     return null;
@@ -22,7 +22,7 @@ class ProfileController extends _$ProfileController {
     Profile profile,
   ) async {
     try {
-      await ref.watch(profileRepositoryProvider).update(profile);
+      await ref.read(profileRepositoryProvider).update(profile);
       state = AsyncData(profile);
     } catch (e, st) {
       state = AsyncError(e, st);

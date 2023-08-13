@@ -68,7 +68,7 @@ class AuthController extends _$AuthController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<User?> authStateChanges(AuthStateChangesRef ref) {
   return ref.read(authRepositoryProvider).authStateChanges();
 }
