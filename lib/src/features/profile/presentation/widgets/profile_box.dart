@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
@@ -18,9 +19,23 @@ class ProfileBox extends ConsumerWidget {
       skipError: true,
       data: (profile) => Row(
         children: [
-          const CircleAvatar(
-            radius: 35,
-            child: SvgIcon(iconName: 'account'),
+          Container(
+            width: 70,
+            height: 70,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Theme.of(context).colorScheme.primaryContainer,
+            ),
+            child: profile!.avatar != null
+                ? CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: profile.avatar!,
+                    placeholder: (_, __) => const Loader(dark: true),
+                  )
+                : const Center(
+                    child: SvgIcon(iconName: 'account'),
+                  ),
           ),
           gapW14,
           Row(
@@ -35,7 +50,7 @@ class ProfileBox extends ConsumerWidget {
                         ),
                   ),
                   Text(
-                    '${profile?.firstName}',
+                    profile.firstName,
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
@@ -54,7 +69,7 @@ class ProfileBox extends ConsumerWidget {
                         ),
                   ),
                   Text(
-                    '${profile?.lastName}',
+                    profile.lastName,
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!

@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 //import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 import 'package:shopit/src/features/profile/profile.dart';
@@ -19,8 +20,8 @@ class ProfileRepository {
     return _remoteDataSource.watch(userId);
   }
 
-  Future<void> update(Profile profile) {
-    return _remoteDataSource.update(profile);
+  Future<Profile> update(Profile profile, {bool updateAvatar = false}) {
+    return _remoteDataSource.update(profile, updateAvatar);
   }
 }
 
@@ -28,6 +29,7 @@ class ProfileRepository {
 ProfileRepository profileRepository(ProfileRepositoryRef ref) {
   final remoteDataSource = ProfileFirestoreDataSource(
     FirebaseFirestore.instance,
+    FirebaseStorage.instance,
   );
 
   // final remoteDataSource = ProfileSupabaseDataSource(

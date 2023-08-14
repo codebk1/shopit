@@ -24,7 +24,10 @@ mixin _$Profile {
   @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? get avatar => throw _privateConstructorUsedError;
   Wishlist get wishlist => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,6 +44,7 @@ abstract class $ProfileCopyWith<$Res> {
       {@JsonKey(includeToJson: false) String id,
       String firstName,
       String lastName,
+      @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
       Wishlist wishlist});
 
   $WishlistCopyWith<$Res> get wishlist;
@@ -62,6 +66,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? avatar = freezed,
     Object? wishlist = null,
   }) {
     return _then(_value.copyWith(
@@ -77,6 +82,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
       wishlist: null == wishlist
           ? _value.wishlist
           : wishlist // ignore: cast_nullable_to_non_nullable
@@ -104,6 +113,7 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       {@JsonKey(includeToJson: false) String id,
       String firstName,
       String lastName,
+      @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
       Wishlist wishlist});
 
   @override
@@ -123,6 +133,7 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? avatar = freezed,
     Object? wishlist = null,
   }) {
     return _then(_$_Profile(
@@ -138,6 +149,10 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
       wishlist: null == wishlist
           ? _value.wishlist
           : wishlist // ignore: cast_nullable_to_non_nullable
@@ -154,6 +169,7 @@ class _$_Profile implements _Profile {
       {@JsonKey(includeToJson: false) required this.id,
       required this.firstName,
       required this.lastName,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.avatar,
       this.wishlist = const Wishlist()});
 
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
@@ -167,13 +183,17 @@ class _$_Profile implements _Profile {
   final String firstName;
   @override
   final String lastName;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final String? avatar;
   @override
   @JsonKey()
   final Wishlist wishlist;
 
   @override
   String toString() {
-    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, wishlist: $wishlist)';
+    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, avatar: $avatar, wishlist: $wishlist)';
   }
 
   @override
@@ -186,6 +206,7 @@ class _$_Profile implements _Profile {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.wishlist, wishlist) ||
                 other.wishlist == wishlist));
   }
@@ -193,7 +214,7 @@ class _$_Profile implements _Profile {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, wishlist);
+      Object.hash(runtimeType, id, firstName, lastName, avatar, wishlist);
 
   @JsonKey(ignore: true)
   @override
@@ -214,6 +235,8 @@ abstract class _Profile implements Profile {
       {@JsonKey(includeToJson: false) required final String id,
       required final String firstName,
       required final String lastName,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final String? avatar,
       final Wishlist wishlist}) = _$_Profile;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
@@ -225,6 +248,9 @@ abstract class _Profile implements Profile {
   String get firstName;
   @override
   String get lastName;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? get avatar;
   @override
   Wishlist get wishlist;
   @override

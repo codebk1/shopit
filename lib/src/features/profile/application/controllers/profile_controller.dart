@@ -18,15 +18,12 @@ class ProfileController extends _$ProfileController {
     return null;
   }
 
-  Future<void> updateProfile(
-    Profile profile,
-  ) async {
-    try {
-      await ref.read(profileRepositoryProvider).update(profile);
-      state = AsyncData(profile);
-    } catch (e, st) {
-      state = AsyncError(e, st);
-      return Future.error(e);
-    }
+  Future<void> updateProfile(Profile profile) async {
+    state = await AsyncValue.guard(
+      () => ref.read(profileRepositoryProvider).update(
+            profile,
+            updateAvatar: true,
+          ),
+    );
   }
 }

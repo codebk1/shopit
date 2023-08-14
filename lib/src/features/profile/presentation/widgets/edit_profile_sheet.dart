@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/utils/utils.dart';
@@ -13,7 +14,14 @@ class EditProfileSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(
       profileControllerProvider,
-      (_, next) {
+      (prev, next) {
+        if (prev != null &&
+            prev.hasValue &&
+            !next.hasError &&
+            !next.isLoading) {
+          context.pop();
+        }
+
         next.showAlertDialogOnError(context);
         next.showSnackbarOnSuccess(
           context,

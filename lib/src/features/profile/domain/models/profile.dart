@@ -14,6 +14,8 @@ class Profile with _$Profile {
     @JsonKey(includeToJson: false) required String id,
     required String firstName,
     required String lastName,
+    // ignore: invalid_annotation_target
+    @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
     @Default(Wishlist()) Wishlist wishlist,
   }) = _Profile;
 
