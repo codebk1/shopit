@@ -42,6 +42,7 @@ extension AsyncValueExtension on AsyncValue {
     return switch (error) {
       AppException() => error.l10n(context.l10n),
       AuthException() => error.l10n(context.l10n),
+      StorageException() => error.l10n(context.l10n),
       _ => error.toString()
     };
   }
