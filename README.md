@@ -5,7 +5,7 @@
 
 E-commerce application built with Flutter :blue_heart:
 
-https://github.com/codebk1/shopit/assets/20027710/1f71e741-c1f3-4fe7-a337-51e4311993cf
+https://github.com/codebk1/shopit/assets/20027710/c42471b0-5870-46e9-a008-7c9b20ac44a8
 
 #### Features / edge cases:
 - dependency injection and state management with riverpod,
