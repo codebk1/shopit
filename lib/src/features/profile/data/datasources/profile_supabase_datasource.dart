@@ -1,4 +1,6 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'dart:io';
+
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/features/profile/profile.dart';
@@ -6,7 +8,7 @@ import 'package:shopit/src/features/profile/profile.dart';
 class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
   const ProfileSupabaseDataSource(this._supabase);
 
-  final SupabaseClient _supabase;
+  final supabase.SupabaseClient _supabase;
 
   static const _table = 'profiles';
 
@@ -16,7 +18,9 @@ class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
       final response =
           await _supabase.from(_table).select().eq('id', id).single();
 
-      return Profile.fromJson(response);
+      return Profile.fromJson(response).copyWith(
+        avatar: await getAvatar(id),
+      );
     } catch (_) {
       throw AppUnknownException();
     }
@@ -35,14 +39,58 @@ class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
   }
 
   @override
-  Future<void> update(Profile profile) async {
+  Future<Profile> update(Profile profile, [bool updateAvatar = false]) async {
     try {
       await _supabase
           .from(_table)
           .update(profile.toJson())
           .eq('id', profile.id);
+
+      if (updateAvatar) {
+        return profile.copyWith(
+          avatar: await setAvatar(profile.avatar, profile.id),
+        );
+      }
+
+      return profile;
     } catch (_) {
       throw AppUnknownException();
+    }
+  }
+
+  @override
+  Future<String?> getAvatar(String folder) async {
+    try {
+      final bucket = _supabase.storage.from('users');
+
+      return await bucket.createSignedUrl('$folder/avatar.jpg', 10);
+    } on supabase.StorageException catch (e) {
+      if (e.statusCode == '404') return null;
+      throw StorageUnknownException();
+    } catch (_) {
+      throw StorageUnknownException();
+    }
+  }
+
+  @override
+  Future<String?> setAvatar(String? path, String folder) async {
+    try {
+      final bucket = _supabase.storage.from('users');
+
+      if (path == null) {
+        await bucket.remove(['$folder/avatar.jpg']);
+        return null;
+      }
+
+      await bucket.upload(
+        '$folder/avatar.jpg',
+        File(path),
+        fileOptions: const supabase.FileOptions(upsert: true),
+      );
+
+      return await bucket.createSignedUrl('$folder/avatar.jpg', 10);
+    } catch (_) {
+      throw StorageUnknownException();
     }
   }
 }
