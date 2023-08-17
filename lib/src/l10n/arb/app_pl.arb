@@ -115,5 +115,10 @@
     "storageExceptionNoDefaultBucket": "Nie ustawiono żadnego folderu.",
     "storageExceptionCannotSliceBlob": "Lokalny plik uległ zmianie. Spróbuj przesłać ponownie po sprawdzeniu, że plik nie uległ zmianie.",              
     "storageExceptionServerFileWrongSize": "Plik na kliencie nie odpowiada rozmiarowi pliku otrzymanego przez serwer. Spróbuj przesłać plik ponownie.",
-    "storageExceptionUnknown": "Wystąpił błąd."
+    "storageExceptionUnknown": "Wystąpił błąd.",
+
+    "sortNameASC": "Nazwa: A-Z",
+    "sortNameDESC": "Nazwa: Z-A",
+    "sortPriceASC": "Cena: od najniższej",
+    "sortPriceDESC": "Cena: od najwyższej"
 }

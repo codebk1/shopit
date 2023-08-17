@@ -46,6 +46,7 @@ class CategoriesPage extends StatelessWidget {
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
                         ),
+                        cacheExtent: 1500,
                         itemCount: count,
                         itemBuilder: (context, index) {
                           return CategoriesGridItem(index: index);

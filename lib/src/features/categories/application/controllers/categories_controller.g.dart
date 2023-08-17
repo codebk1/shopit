@@ -21,7 +21,7 @@ final categoriesCountProvider = AutoDisposeFutureProvider<int>.internal(
 );
 
 typedef CategoriesCountRef = AutoDisposeFutureProviderRef<int>;
-String _$categoriesPageHash() => r'b4b55266aefca21f6ac479078bc601e1a666f789';
+String _$categoriesPageHash() => r'b8c9c0aef3ec5ed4158fcd04cc85b968ee9b825f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -205,4 +205,21 @@ class CategoryProvider extends AutoDisposeProvider<AsyncValue<Category>> {
     return _SystemHash.finish(hash);
   }
 }
+
+String _$categoriesSortHash() => r'3729fc2a3d5117ee6d4dc981bbb23f99c74aaae0';
+
+/// See also [CategoriesSort].
+@ProviderFor(CategoriesSort)
+final categoriesSortProvider =
+    AutoDisposeNotifierProvider<CategoriesSort, Sort>.internal(
+  CategoriesSort.new,
+  name: r'categoriesSortProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$categoriesSortHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CategoriesSort = AutoDisposeNotifier<Sort>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -10,20 +10,20 @@ part 'products_controller.g.dart';
 const kProductsPageLimit = 10;
 
 @riverpod
-Future<Product?> product(ProductRef ref, String id) async {
-  final product = await ref.read(productsRepositoryProvider).getById(id);
-
-  // cache provider only when we have product
-  final link = ref.keepAlive();
-  final timer = Timer(const Duration(seconds: 60), () => link.close());
-  ref.onDispose(() => timer.cancel());
-
-  return product;
+Future<int> productsCount(ProductsCountRef ref, String id) {
+  return ref.read(productsRepositoryProvider).countByCategory(id);
 }
 
 @riverpod
-Future<int> productsCount(ProductsCountRef ref, String id) async {
-  return ref.read(productsRepositoryProvider).countByCategory(id);
+class ProductsSort extends _$ProductsSort {
+  @override
+  Sort build() {
+    return const NameASC();
+  }
+
+  void set(Sort sort) {
+    state = sort;
+  }
 }
 
 @riverpod
@@ -31,20 +31,21 @@ Future<List<Product>> productsPage(
   ProductsPageRef ref,
   PageMeta meta,
 ) async {
-  var startAfter = '';
+  Product? startAfter;
 
   if (meta.page > 1) {
     final prevPage = await ref.read(
       productsPageProvider(meta.copyWith(page: meta.page - 1)).future,
     );
 
-    startAfter = prevPage.last.name;
+    startAfter = prevPage.last;
   }
 
   return ref.read(productsRepositoryProvider).paginateByCategory(
         meta.itemId,
         startAfter: startAfter,
         limit: kProductsPageLimit,
+        sort: ref.watch(productsSortProvider),
       );
 }
 

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/products/products.dart';
 
 part 'products_repository.g.dart';
@@ -20,10 +21,11 @@ class ProductsRepository {
 
   Future<List<Product>> paginateByCategory(
     String id, {
-    String startAfter = '',
+    Product? startAfter,
     int limit = 10,
+    Sort sort = const NameASC(),
   }) {
-    return _remoteDataSource.paginateByCategory(id, startAfter, limit);
+    return _remoteDataSource.paginateByCategory(id, startAfter, limit, sort);
   }
 
   Future<List<Product>> featured() {

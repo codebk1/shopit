@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shopit/src/common/models/sort.dart';
 
 import 'package:shopit/src/features/categories/categories.dart';
 
@@ -11,6 +12,18 @@ const kCategoriesPageLimit = 10;
 @riverpod
 Future<int> categoriesCount(CategoriesCountRef ref) async {
   return ref.watch(categoriesRepositoryProvider).count();
+}
+
+@riverpod
+class CategoriesSort extends _$CategoriesSort {
+  @override
+  Sort build() {
+    return const NameASC();
+  }
+
+  void set(Sort sort) {
+    state = sort;
+  }
 }
 
 @riverpod
@@ -25,6 +38,7 @@ Future<List<Category>> categoriesPage(
   final categories = await ref.read(categoriesRepositoryProvider).paginate(
         startAfter: startAfter,
         limit: kCategoriesPageLimit,
+        sort: ref.watch(categoriesSortProvider),
       );
 
   // cache provider only when we have categories page

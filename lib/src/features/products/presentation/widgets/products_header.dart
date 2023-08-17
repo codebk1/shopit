@@ -46,10 +46,30 @@ class ProductsHeader extends ConsumerWidget {
                 ),
               ],
             ),
-            IconButton(
-              onPressed: () {},
+            PopupMenuButton(
               icon: const SvgIcon(iconName: 'funnel'),
-            )
+              position: PopupMenuPosition.under,
+              onSelected: (value) =>
+                  ref.read(productsSortProvider.notifier).set(value),
+              itemBuilder: (context) => [
+                ProductsSortMenuItem(
+                  value: const NameASC(),
+                  label: context.l10n.sortNameASC,
+                ),
+                ProductsSortMenuItem(
+                  value: const NameDESC(),
+                  label: context.l10n.sortNameDESC,
+                ),
+                ProductsSortMenuItem(
+                  value: const PriceASC(),
+                  label: context.l10n.sortPriceASC,
+                ),
+                ProductsSortMenuItem(
+                  value: const PriceDESC(),
+                  label: context.l10n.sortPriceDESC,
+                ),
+              ],
+            ),
           ],
         ),
       ),

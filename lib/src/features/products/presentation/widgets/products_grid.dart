@@ -17,7 +17,7 @@ class ProductsGrid extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final page = ref.watch(productsPageControllerProvider);
-    final meta = ProductsPageMeta(categoryId: categoryId, page: page);
+    final meta = PageMeta(itemId: categoryId, page: page);
     final productsPage = ref.watch(productsPageProvider(meta));
 
     return NotificationListener<ScrollEndNotification>(

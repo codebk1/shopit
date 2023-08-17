@@ -10,3 +10,4 @@ export 'products_list_item_error.dart';
 export 'products_list_item_loader.dart';
 export 'products_list_item.dart';
 export 'products_list_loader.dart';
+export 'products_sort_menu_item.dart';

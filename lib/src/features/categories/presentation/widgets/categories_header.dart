@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/categories/categories.dart';
 
 class CategoriesHeader extends ConsumerWidget {
   const CategoriesHeader({
@@ -41,9 +42,19 @@ class CategoriesHeader extends ConsumerWidget {
               ),
             ],
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const SvgIcon(iconName: 'az'),
+          Consumer(
+            builder: (context, ref, child) {
+              final sort = ref.watch(categoriesSortProvider);
+
+              return IconButton(
+                onPressed: () => ref
+                    .read(categoriesSortProvider.notifier)
+                    .set(sort.descending ? const NameASC() : const NameDESC()),
+                icon: SvgIcon(
+                  iconName: sort.descending ? 'za' : 'az',
+                ),
+              );
+            },
           )
         ],
       ),

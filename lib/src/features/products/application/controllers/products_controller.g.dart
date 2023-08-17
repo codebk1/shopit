@@ -6,21 +6,7 @@ part of 'products_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$productIdHash() => r'45c432b7de274c4e379590471c87ed7a0298f7b7';
-
-/// See also [productId].
-@ProviderFor(productId)
-final productIdProvider = AutoDisposeProvider<String>.internal(
-  productId,
-  name: r'productIdProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$productIdHash,
-  dependencies: const <ProviderOrFamily>[],
-  allTransitiveDependencies: const <ProviderOrFamily>{},
-);
-
-typedef ProductIdRef = AutoDisposeProviderRef<String>;
-String _$productHash() => r'fee8b578dc12fa681136187f84bcb7e12b9e72ce';
+String _$productsCountHash() => r'b530a3edf25a596520c1d6be5c71b030a0a73caf';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -43,87 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef ProductRef = AutoDisposeFutureProviderRef<Product?>;
-
-/// See also [product].
-@ProviderFor(product)
-const productProvider = ProductFamily();
-
-/// See also [product].
-class ProductFamily extends Family<AsyncValue<Product?>> {
-  /// See also [product].
-  const ProductFamily();
-
-  /// See also [product].
-  ProductProvider call(
-    String id,
-  ) {
-    return ProductProvider(
-      id,
-    );
-  }
-
-  @override
-  ProductProvider getProviderOverride(
-    covariant ProductProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'productProvider';
-}
-
-/// See also [product].
-class ProductProvider extends AutoDisposeFutureProvider<Product?> {
-  /// See also [product].
-  ProductProvider(
-    this.id,
-  ) : super.internal(
-          (ref) => product(
-            ref,
-            id,
-          ),
-          from: productProvider,
-          name: r'productProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$productHash,
-          dependencies: ProductFamily._dependencies,
-          allTransitiveDependencies: ProductFamily._allTransitiveDependencies,
-        );
-
-  final String id;
-
-  @override
-  bool operator ==(Object other) {
-    return other is ProductProvider && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-String _$productsCountHash() => r'6a4a7897e20e6aab90c50cccc4abcf2403aa448a';
 typedef ProductsCountRef = AutoDisposeFutureProviderRef<int>;
 
 /// See also [productsCount].
@@ -205,7 +110,7 @@ class ProductsCountProvider extends AutoDisposeFutureProvider<int> {
   }
 }
 
-String _$productsPageHash() => r'f5a46c25b23c2c16b610d4600fe5059dea7e48e0';
+String _$productsPageHash() => r'7a3c623f0c2fa5a1f6adcbabdd68c7f00275e0ce';
 typedef ProductsPageRef = AutoDisposeFutureProviderRef<List<Product>>;
 
 /// See also [productsPage].
@@ -219,7 +124,7 @@ class ProductsPageFamily extends Family<AsyncValue<List<Product>>> {
 
   /// See also [productsPage].
   ProductsPageProvider call(
-    ProductsPageMeta meta,
+    PageMeta meta,
   ) {
     return ProductsPageProvider(
       meta,
@@ -271,7 +176,7 @@ class ProductsPageProvider extends AutoDisposeFutureProvider<List<Product>> {
               ProductsPageFamily._allTransitiveDependencies,
         );
 
-  final ProductsPageMeta meta;
+  final PageMeta meta;
 
   @override
   bool operator ==(Object other) {
@@ -287,6 +192,21 @@ class ProductsPageProvider extends AutoDisposeFutureProvider<List<Product>> {
   }
 }
 
+String _$productsSortHash() => r'ec65fe222d84246ed6aef260f6d3657bdee9142b';
+
+/// See also [ProductsSort].
+@ProviderFor(ProductsSort)
+final productsSortProvider =
+    AutoDisposeNotifierProvider<ProductsSort, Sort>.internal(
+  ProductsSort.new,
+  name: r'productsSortProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$productsSortHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ProductsSort = AutoDisposeNotifier<Sort>;
 String _$productsPageControllerHash() =>
     r'511ab9cc75d805fb8fe5a0153d226b1c47662dba';
 

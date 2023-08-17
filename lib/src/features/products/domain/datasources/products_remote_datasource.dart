@@ -1,3 +1,4 @@
+import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/products/products.dart';
 
 abstract interface class IProductsRemoteDataSource {
@@ -6,8 +7,9 @@ abstract interface class IProductsRemoteDataSource {
 
   Future<List<Product>> paginateByCategory(
     String id,
-    String startAfter,
+    Product? startAfter,
     int limit,
+    Sort sort,
   );
 
   Future<List<Product>> featured();

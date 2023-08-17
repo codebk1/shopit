@@ -19,7 +19,8 @@ https://github.com/codebk1/shopit/assets/20027710/c42471b0-5870-46e9-a008-7c9b20
 
 #### TODO:
 - [ ] checkout & orders feature
-- [ ] categories/products sorting and filters
+- [x] categories/products sorting
+- [ ] products filters
 - [ ] full-text search
 - [x] l10n:
 
