@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/common/common.dart';
@@ -38,6 +39,10 @@ ProductsRepository productsRepository(ProductsRepositoryRef ref) {
   final remoteDataSource = ProductsFirebaseDataSource(
     FirebaseFirestore.instance,
   );
+
+  // final remoteDataSource = ProductsSupabaseDataSource(
+  //   supabase.Supabase.instance.client,
+  // );
 
   return ProductsRepository(remoteDataSource);
 }
