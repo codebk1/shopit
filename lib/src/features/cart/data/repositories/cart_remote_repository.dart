@@ -25,7 +25,7 @@ class CartRemoteRepository {
 
 @Riverpod(keepAlive: true)
 CartRemoteRepository cartRemoteRepository(CartRemoteRepositoryRef ref) {
-  final remoteDataSource = CartFirestoreDataSource(FirebaseFirestore.instance);
+  final remoteDataSource = CartFirebaseDataSource(FirebaseFirestore.instance);
 
   return CartRemoteRepository(remoteDataSource);
 }

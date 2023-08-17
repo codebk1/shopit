@@ -33,7 +33,7 @@ class ProductsRepository {
 
 @Riverpod(keepAlive: true)
 ProductsRepository productsRepository(ProductsRepositoryRef ref) {
-  final remoteDataSource = ProductsFirestoreDataSource(
+  final remoteDataSource = ProductsFirebaseDataSource(
     FirebaseFirestore.instance,
   );
 

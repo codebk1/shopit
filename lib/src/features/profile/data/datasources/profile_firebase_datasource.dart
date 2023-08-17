@@ -6,8 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 
-class ProfileFirestoreDataSource implements IProfileRemoteDataSource {
-  const ProfileFirestoreDataSource(
+class ProfileFirebaseDataSource implements IProfileRemoteDataSource {
+  const ProfileFirebaseDataSource(
     this._firestore,
     this._storage,
   );

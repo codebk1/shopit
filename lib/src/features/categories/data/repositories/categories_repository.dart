@@ -32,7 +32,7 @@ class CategoriesRepository {
 
 @Riverpod(keepAlive: true)
 CategoriesRepository categoriesRepository(CategoriesRepositoryRef ref) {
-  final remoteDataSource = CategoriesFirestoreDataSource(
+  final remoteDataSource = CategoriesFirebaseDataSource(
     FirebaseFirestore.instance,
   );
 

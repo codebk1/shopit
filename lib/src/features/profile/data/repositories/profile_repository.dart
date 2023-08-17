@@ -27,7 +27,7 @@ class ProfileRepository {
 
 @Riverpod(keepAlive: true)
 ProfileRepository profileRepository(ProfileRepositoryRef ref) {
-  final remoteDataSource = ProfileFirestoreDataSource(
+  final remoteDataSource = ProfileFirebaseDataSource(
     FirebaseFirestore.instance,
     FirebaseStorage.instance,
   );

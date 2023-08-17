@@ -46,7 +46,7 @@ class AuthRepository {
 
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  final remoteDataSource = AuthFirestoreDataSource(
+  final remoteDataSource = AuthFirebaseDataSource(
     firebase_auth.FirebaseAuth.instance,
   );
 

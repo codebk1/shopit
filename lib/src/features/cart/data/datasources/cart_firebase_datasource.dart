@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:shopit/src/features/cart/cart.dart';
 
-class CartFirestoreDataSource implements ICartRemoteDataSource {
-  const CartFirestoreDataSource(this._firestore);
+class CartFirebaseDataSource implements ICartRemoteDataSource {
+  const CartFirebaseDataSource(this._firestore);
 
   final FirebaseFirestore _firestore;
 

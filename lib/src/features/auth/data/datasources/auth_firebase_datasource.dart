@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/features/auth/auth.dart';
 
-class AuthFirestoreDataSource implements IAuthRemoteDataSource {
-  const AuthFirestoreDataSource(this._auth);
+class AuthFirebaseDataSource implements IAuthRemoteDataSource {
+  const AuthFirebaseDataSource(this._auth);
 
   final firebase_auth.FirebaseAuth _auth;
 
