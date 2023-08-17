@@ -1,2 +1,2 @@
-export 'auth_firestore_datasource.dart';
+export 'auth_firebase_datasource.dart';
 export 'auth_supabase_datasource.dart';

@@ -1,6 +1,6 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 //import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/features/auth/auth.dart';
 

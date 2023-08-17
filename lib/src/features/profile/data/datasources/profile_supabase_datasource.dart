@@ -10,13 +10,12 @@ class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
 
   final supabase.SupabaseClient _supabase;
 
-  static const _table = 'profiles';
+  supabase.SupabaseQueryBuilder get _profilesRef => _supabase.from('profiles');
 
   @override
   Future<Profile> get(String id) async {
     try {
-      final response =
-          await _supabase.from(_table).select().eq('id', id).single();
+      final response = await _profilesRef.select().eq('id', id).single();
 
       return Profile.fromJson(response).copyWith(
         avatar: await getAvatar(id),
@@ -28,8 +27,7 @@ class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
 
   @override
   Stream<Profile?> watch(String id) {
-    return _supabase
-        .from(_table)
+    return _profilesRef
         .select()
         .eq('id', id)
         .single()
@@ -41,10 +39,7 @@ class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
   @override
   Future<Profile> update(Profile profile, [bool updateAvatar = false]) async {
     try {
-      await _supabase
-          .from(_table)
-          .update(profile.toJson())
-          .eq('id', profile.id);
+      await _profilesRef.update(profile.toJson()).eq('id', profile.id);
 
       if (updateAvatar) {
         return profile.copyWith(
