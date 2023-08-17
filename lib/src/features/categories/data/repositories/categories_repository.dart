@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/common/common.dart';
@@ -37,6 +38,10 @@ CategoriesRepository categoriesRepository(CategoriesRepositoryRef ref) {
   final remoteDataSource = CategoriesFirebaseDataSource(
     FirebaseFirestore.instance,
   );
+
+  // final remoteDataSource = CategoriesSupabaseDataSource(
+  //   supabase.Supabase.instance.client,
+  // );
 
   return CategoriesRepository(remoteDataSource);
 }
