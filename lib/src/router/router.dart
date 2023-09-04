@@ -46,7 +46,7 @@ final routerProvider = Provider<GoRouter>(
       redirect: (context, state) async {
         final isLogged = authRepository.currentUser != null;
 
-        if (!isLogged && state.location.startsWith('/account')) {
+        if (!isLogged && state.uri.toString().startsWith('/account')) {
           // solution until something will change - https://github.com/flutter/flutter/issues/114131
           await Future.delayed(const Duration(microseconds: 1));
           // ignore: use_build_context_synchronously

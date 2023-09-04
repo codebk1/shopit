@@ -10,7 +10,6 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 
 class EditProfileForm extends ConsumerStatefulWidget {

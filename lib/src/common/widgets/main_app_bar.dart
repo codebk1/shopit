@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/constants/colors.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
-import 'package:shopit/src/features/settings/application/controllers/settings_controller.dart';
-import 'package:shopit/src/features/cart/application/controllers/cart_controller.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const MainAppBar({

@@ -50,8 +50,9 @@ AuthRepository authRepository(AuthRepositoryRef ref) {
     firebase_auth.FirebaseAuth.instance,
   );
 
-  // final remoteDataSource =
-  //     AuthSupabaseDataSource(supabase.Supabase.instance.client);
+  // final remoteDataSource = AuthSupabaseDataSource(
+  //   supabase.Supabase.instance.client,
+  // );
 
   return AuthRepository(remoteDataSource);
 }
