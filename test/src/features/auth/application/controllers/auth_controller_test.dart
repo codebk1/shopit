@@ -157,7 +157,7 @@ void main() {
             .thenAnswer((_) async => user);
 
         when(() => profileRepository.update(profile))
-            .thenAnswer((_) async => Future<void>.value());
+            .thenAnswer((_) async => profile);
 
         final listener = Listener<AsyncValue<void>>();
 

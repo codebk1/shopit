@@ -101,7 +101,7 @@ void main() {
           (_) => Future.delayed(const Duration(seconds: 1), () => user));
 
       when(() => profileRepository.update(profile))
-          .thenAnswer((_) async => Future<void>.value());
+          .thenAnswer((_) async => profile);
 
       await tester.pumpApp(const SignUpPage(), container);
 

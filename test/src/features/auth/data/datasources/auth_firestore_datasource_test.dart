@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
-import 'package:shopit/src/exceptions/auth_exception.dart';
+import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/features/auth/auth.dart';
 
 class MockFirebaseAuth extends Mock implements firebase_auth.FirebaseAuth {}
@@ -41,13 +41,13 @@ void main() {
   final firebaseUser1 = MockFirebaseUser(uid: '1', email: 'test1@test.com');
   final firebaseUser2 = MockFirebaseUser(uid: '2', email: 'test2@test.com');
 
-  group('AuthFirestoreDataSource', () {
+  group('AuthFirebaseDataSource', () {
     late firebase_auth.FirebaseAuth firebaseAuth;
-    late AuthFirestoreDataSource sut;
+    late AuthFirebaseDataSource sut;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
-      sut = AuthFirestoreDataSource(firebaseAuth);
+      sut = AuthFirebaseDataSource(firebaseAuth);
     });
 
     group('currentUser', () {
