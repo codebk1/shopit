@@ -87,6 +87,11 @@ class AccountPage extends StatelessWidget {
                     route: '',
                   ),
                   AccountMenuItem(
+                    title: context.l10n.addressesMenuItemTitle,
+                    iconName: 'addresses',
+                    route: Routes.addresses.name,
+                  ),
+                  AccountMenuItem(
                     title: context.l10n.settingsMenuItemTitle,
                     iconName: 'cog',
                     route: Routes.settings.name,

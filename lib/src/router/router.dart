@@ -10,6 +10,7 @@ import 'package:shopit/src/features/home/home.dart';
 import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/account/account.dart';
 import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/addresses/addresses.dart';
 import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
 import 'package:shopit/src/features/categories/categories.dart';
@@ -22,6 +23,7 @@ enum Routes {
   wishlist,
   account,
   profile,
+  addresses,
   settings,
   signin,
   signup,
@@ -108,6 +110,12 @@ final routerProvider = Provider<GoRouter>(
                       path: 'profile',
                       name: Routes.profile.name,
                       builder: (_, __) => const ProfilePage(),
+                    ),
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      path: 'addresses',
+                      name: Routes.addresses.name,
+                      builder: (_, __) => const AddressesPage(),
                     ),
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
