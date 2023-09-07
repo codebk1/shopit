@@ -7,16 +7,15 @@ part 'profile.g.dart';
 
 @freezed
 class Profile with _$Profile {
-  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory Profile({
-    // ignore: invalid_annotation_target
     @JsonKey(includeToJson: false) required String id,
     required String firstName,
     required String lastName,
-    // ignore: invalid_annotation_target
     @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
     @Default(Wishlist()) Wishlist wishlist,
+    String? deliveryAddress,
+    String? billingAddress,
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, Object?> json) =>

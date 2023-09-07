@@ -5,10 +5,11 @@ import 'package:shopit/src/features/profile/profile.dart';
 
 part 'profile_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<Profile?> build() async {
+    await Future.delayed(Duration(seconds: 5));
     final user = await ref.watch(authStateChangesProvider.future);
 
     if (user != null) {
@@ -18,12 +19,14 @@ class ProfileController extends _$ProfileController {
     return null;
   }
 
-  Future<void> updateProfile(Profile profile) async {
-    state = await AsyncValue.guard(
-      () => ref.read(profileRepositoryProvider).update(
-            profile,
-            updateAvatar: true,
-          ),
-    );
+  Future<void> updateProfile(
+    Profile profile, {
+    bool updateAvatar = true,
+  }) async {
+    final newProfile = await ref
+        .read(profileRepositoryProvider)
+        .update(profile, updateAvatar: updateAvatar);
+
+    state = AsyncData(newProfile);
   }
 }

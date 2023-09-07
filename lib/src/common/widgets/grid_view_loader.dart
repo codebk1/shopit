@@ -5,8 +5,15 @@ import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/constants/constants.dart';
 
-class AddressesGridLoader extends ConsumerWidget {
-  const AddressesGridLoader({super.key});
+class GridViewLoader extends ConsumerWidget {
+  const GridViewLoader({
+    super.key,
+    this.itemCount = 4,
+    this.aspectRatio = 1,
+  });
+
+  final int itemCount;
+  final double aspectRatio;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,17 +22,18 @@ class AddressesGridLoader extends ConsumerWidget {
       baseColor: shimmerDarkBaseColor(ref),
       highlightColor: shimmerDarkHighlightColor(ref),
       child: GridView.builder(
-        itemCount: 4,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        itemCount: itemCount,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
+          childAspectRatio: aspectRatio,
         ),
         shrinkWrap: true,
         itemBuilder: (_, __) {
           return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(8),
             ),
           );

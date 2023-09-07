@@ -4,6 +4,7 @@ import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/addresses/addresses.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -66,12 +67,20 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                       gapH24,
-                      const DefaultAddressBox(
-                        header: 'Default delivery address',
-                      ),
-                      gapH24,
-                      const DefaultAddressBox(
-                        header: 'Default payment address',
+                      Column(
+                        children: [
+                          DefaultAddressBox(
+                            header: context
+                                .l10n.profileDefaultDeliveryAddressBoxHeader,
+                            type: AddressType.delivery,
+                          ),
+                          gapH24,
+                          DefaultAddressBox(
+                            header: context
+                                .l10n.profileDefaultBillingAddressBoxHeader,
+                            type: AddressType.billing,
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'addresses_controller.dart';
+part of 'default_address_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addressesControllerHash() =>
-    r'aae62d725f38ebe63d1fa9aaa36399883e8ef7bf';
+String _$defaultAddressHash() => r'822092ce999df52dd89a161bb92b6f6795476db7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,36 +29,29 @@ class _SystemHash {
   }
 }
 
-abstract class _$AddressesController
-    extends BuildlessAutoDisposeAsyncNotifier<List<Address>> {
-  late final AddressType type;
+typedef DefaultAddressRef = FutureProviderRef<Address?>;
 
-  FutureOr<List<Address>> build(
-    AddressType type,
-  );
-}
+/// See also [defaultAddress].
+@ProviderFor(defaultAddress)
+const defaultAddressProvider = DefaultAddressFamily();
 
-/// See also [AddressesController].
-@ProviderFor(AddressesController)
-const addressesControllerProvider = AddressesControllerFamily();
+/// See also [defaultAddress].
+class DefaultAddressFamily extends Family<AsyncValue<Address?>> {
+  /// See also [defaultAddress].
+  const DefaultAddressFamily();
 
-/// See also [AddressesController].
-class AddressesControllerFamily extends Family<AsyncValue<List<Address>>> {
-  /// See also [AddressesController].
-  const AddressesControllerFamily();
-
-  /// See also [AddressesController].
-  AddressesControllerProvider call(
+  /// See also [defaultAddress].
+  DefaultAddressProvider call(
     AddressType type,
   ) {
-    return AddressesControllerProvider(
+    return DefaultAddressProvider(
       type,
     );
   }
 
   @override
-  AddressesControllerProvider getProviderOverride(
-    covariant AddressesControllerProvider provider,
+  DefaultAddressProvider getProviderOverride(
+    covariant DefaultAddressProvider provider,
   ) {
     return call(
       provider.type,
@@ -78,33 +70,35 @@ class AddressesControllerFamily extends Family<AsyncValue<List<Address>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'addressesControllerProvider';
+  String? get name => r'defaultAddressProvider';
 }
 
-/// See also [AddressesController].
-class AddressesControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    AddressesController, List<Address>> {
-  /// See also [AddressesController].
-  AddressesControllerProvider(
+/// See also [defaultAddress].
+class DefaultAddressProvider extends FutureProvider<Address?> {
+  /// See also [defaultAddress].
+  DefaultAddressProvider(
     this.type,
   ) : super.internal(
-          () => AddressesController()..type = type,
-          from: addressesControllerProvider,
-          name: r'addressesControllerProvider',
+          (ref) => defaultAddress(
+            ref,
+            type,
+          ),
+          from: defaultAddressProvider,
+          name: r'defaultAddressProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$addressesControllerHash,
-          dependencies: AddressesControllerFamily._dependencies,
+                  : _$defaultAddressHash,
+          dependencies: DefaultAddressFamily._dependencies,
           allTransitiveDependencies:
-              AddressesControllerFamily._allTransitiveDependencies,
+              DefaultAddressFamily._allTransitiveDependencies,
         );
 
   final AddressType type;
 
   @override
   bool operator ==(Object other) {
-    return other is AddressesControllerProvider && other.type == type;
+    return other is DefaultAddressProvider && other.type == type;
   }
 
   @override
@@ -113,15 +107,6 @@ class AddressesControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
     hash = _SystemHash.combine(hash, type.hashCode);
 
     return _SystemHash.finish(hash);
-  }
-
-  @override
-  FutureOr<List<Address>> runNotifierBuild(
-    covariant AddressesController notifier,
-  ) {
-    return notifier.build(
-      type,
-    );
   }
 }
 // ignore_for_file: type=lint

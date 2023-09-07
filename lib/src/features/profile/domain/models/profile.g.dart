@@ -13,6 +13,8 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
       wishlist: json['wishlist'] == null
           ? const Wishlist()
           : Wishlist.fromJson(json['wishlist'] as Map<String, dynamic>),
+      deliveryAddress: json['deliveryAddress'] as String?,
+      billingAddress: json['billingAddress'] as String?,
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
@@ -20,4 +22,6 @@ Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'wishlist': instance.wishlist.toJson(),
+      'deliveryAddress': instance.deliveryAddress,
+      'billingAddress': instance.billingAddress,
     };

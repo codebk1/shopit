@@ -29,7 +29,11 @@
     "profileGreetings": "Hello, ",
     "profileGreetingsLoadingError": "Can't load profile data.",
     "profileEditButton": "Save",
-    "profileEditSuccess": "Successfully edited profile.",
+    "profileSaveSuccessSnackbar": "Succesfully saved profile.",
+    "profileDefaultDeliveryAddressBoxHeader": "Default delivery address",
+    "profileDefaultBillingAddressBoxHeader": "Default billing address",
+    "profileNoDefaultAddress": "No default address selected",
+    "profileChangeDefaultAddressButton": "Change",
 
     "ordersMenuItemTitle": "My orders",
 

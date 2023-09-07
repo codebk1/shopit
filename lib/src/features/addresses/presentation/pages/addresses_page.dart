@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopit/src/features/profile/profile.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
 
 class AddressesPage extends ConsumerWidget {
@@ -39,15 +39,23 @@ class AddressesPage extends ConsumerWidget {
                       final profile =
                           ref.watch(profileControllerProvider).value!;
 
+                      final defaultAddressId = type == AddressType.delivery
+                          ? profile.deliveryAddress
+                          : profile.billingAddress;
+
+                      final aspectRatio =
+                          type == AddressType.delivery ? 1.0 : 0.9;
+
                       return ref.watch(provider).when(
                             skipLoadingOnRefresh: false,
                             data: (addresses) => addresses.isNotEmpty
                                 ? SliverGrid.builder(
                                     gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                        SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       mainAxisSpacing: 10,
                                       crossAxisSpacing: 10,
+                                      childAspectRatio: aspectRatio,
                                     ),
                                     itemCount: addresses.length,
                                     itemBuilder: (context, index) {
@@ -55,10 +63,8 @@ class AddressesPage extends ConsumerWidget {
 
                                       return AddressGridItem(
                                         address: address,
-                                        isDefault: address.id ==
-                                            (type == AddressType.delivery
-                                                ? profile.deliveryAddress
-                                                : profile.billingAddress),
+                                        isDefault:
+                                            address.id == defaultAddressId,
                                       );
                                     },
                                   )
@@ -72,8 +78,10 @@ class AddressesPage extends ConsumerWidget {
                                 onRefresh: () => ref.invalidate(provider),
                               ),
                             ),
-                            loading: () => const SliverToBoxAdapter(
-                              child: AddressesGridLoader(),
+                            loading: () => SliverToBoxAdapter(
+                              child: GridViewLoader(
+                                aspectRatio: aspectRatio,
+                              ),
                             ),
                           );
                     },

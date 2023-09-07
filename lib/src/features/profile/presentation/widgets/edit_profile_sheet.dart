@@ -1,35 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/utils/utils.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 
-class EditProfileSheet extends ConsumerWidget {
+class EditProfileSheet extends StatelessWidget {
   const EditProfileSheet({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(
-      profileControllerProvider,
-      (prev, next) {
-        if (prev != null &&
-            prev.hasValue &&
-            !next.hasError &&
-            !next.isLoading) {
-          context.pop();
-        }
-
-        next.showAlertDialogOnError(context);
-        next.showSnackbarOnSuccess(
-          context,
-          context.l10n.profileEditSuccess,
-        );
-      },
-    );
-
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14)
           .add(MediaQuery.of(context).viewInsets),

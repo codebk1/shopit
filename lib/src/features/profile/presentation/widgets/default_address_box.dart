@@ -2,24 +2,54 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/addresses/addresses.dart';
 
-class DefaultAddressBox extends ConsumerWidget {
+class DefaultAddressBox extends ConsumerStatefulWidget {
   const DefaultAddressBox({
     super.key,
     required this.header,
+    required this.type,
   });
 
   final String header;
+  final AddressType type;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<DefaultAddressBox> createState() => _DefaultAddressBoxState();
+}
+
+class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
+  void _changeAddress(Address address) {
+    ref.read(addressesServiceProvider).setDefaultAddress(address).then(
+      (_) {
+        showSuccessSnackbar(
+          context: context,
+          content: context.l10n.addressesSetAsDefaultSuccessSnackbar,
+        );
+      },
+    ).catchError(
+      (error) {
+        showErrorDialog(
+          context: context,
+          error: error,
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          header,
+          widget.header,
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
@@ -32,6 +62,7 @@ class DefaultAddressBox extends ConsumerWidget {
           ),
         ),
         Container(
+          width: double.infinity,
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             color: surfaceContainer(ref),
@@ -41,29 +72,61 @@ class DefaultAddressBox extends ConsumerWidget {
               bottomRight: Radius.circular(14),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Google John Kovalski',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  const Text('1600 Amphitheatre Parkway'),
-                  const Text('Mountain View, CA 94043, USA'),
-                ],
-              ),
-              TextButton(
-                child: const Text('Change'),
-                onPressed: () {},
-              )
-            ],
+          child: Consumer(
+            builder: (context, ref, child) {
+              final address = ref.watch(defaultAddressProvider(widget.type));
+
+              return address.when(
+                data: (address) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    address != null
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                address.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              Text(address.street),
+                              Text('${address.postalCode}, ${address.city}'),
+                            ],
+                          )
+                        : Text(context.l10n.profileNoDefaultAddress),
+                    TextButton(
+                      child: Text(
+                        context.l10n.profileChangeDefaultAddressButton,
+                      ),
+                      onPressed: () async {
+                        final selectedAddress = await showModalBottomSheet(
+                          context: context,
+                          showDragHandle: true,
+                          builder: (_) => SelectDefaultAddressSheet(
+                            currentAddress: address,
+                            addressType: widget.type,
+                          ),
+                        );
+
+                        if (selectedAddress != null) {
+                          _changeAddress(selectedAddress);
+                        }
+                      },
+                    )
+                  ],
+                ),
+                error: (error, _) => Text(
+                  errorMessage(error, context),
+                ),
+                loading: () => const ShimmerText(
+                  width: 150,
+                  oddLinesWidth: 100,
+                  lines: 3,
+                ),
+              );
+            },
           ),
         ),
       ],

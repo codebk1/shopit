@@ -22,6 +22,12 @@ class AddressesService {
     return address;
   }
 
+  Future<List<Address>> getByType(AddressType type) async {
+    final address = await _addressesRepository.getByType(_profile.id, type);
+
+    return address;
+  }
+
   Future<Address> add(Address address) async {
     final id = await _addressesRepository.add(_profile.id, address);
 
@@ -43,7 +49,7 @@ class AddressesService {
 
     return _profileController.updateProfile(
       newProfile,
-      updateAvatar: true,
+      updateAvatar: false,
     );
   }
 }

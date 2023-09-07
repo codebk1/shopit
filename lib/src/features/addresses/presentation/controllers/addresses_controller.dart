@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
 
 part 'addresses_controller.g.dart';
@@ -9,9 +8,7 @@ part 'addresses_controller.g.dart';
 class AddressesController extends _$AddressesController {
   @override
   FutureOr<List<Address>> build(AddressType type) async {
-    final user = ref.read(authRepositoryProvider).currentUser!;
-
-    return ref.read(addressesRepositoryProvider).getByType(user.id, type);
+    return ref.read(addressesServiceProvider).getByType(type);
   }
 
   Future<void> add(Address address) async {

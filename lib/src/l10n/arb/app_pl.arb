@@ -29,7 +29,11 @@
     "profileGreetings": "Cześć, ",
     "profileGreetingsLoadingError": "Nie można załadować danych profilu.",
     "profileEditButton": "Zapisz",
-    "profileEditSuccess": "Pomyślnie edytowano profil.",
+    "profileSaveSuccessSnackbar": "Pomyślnie zapisano profil.",
+    "profileDefaultDeliveryAddressBoxHeader": "Domyślny adres dostawy",
+    "profileDefaultBillingAddressBoxHeader": "Domyślny adres płatności",
+    "profileNoDefaultAddress": "Nie wybrano domyślnego adresu",
+    "profileChangeDefaultAddressButton": "Zmień",
 
     "ordersMenuItemTitle": "Moje zamówienia",
 
