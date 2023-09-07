@@ -138,7 +138,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
                   child: Ink(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black,
+                        color: const Color.fromARGB(255, 0, 0, 0),
                         width: 1,
                       ),
                       color: Theme.of(context).colorScheme.errorContainer,

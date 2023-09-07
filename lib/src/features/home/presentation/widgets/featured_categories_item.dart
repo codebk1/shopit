@@ -30,7 +30,7 @@ class FeaturedCategoriesItem extends StatelessWidget {
               errorWidget: (_, __, ___) => const ImageError(),
             ),
             Material(
-              color: Colors.black38,
+              color: const Color.fromARGB(150, 0, 0, 0),
               child: InkWell(
                 onTap: () => context.pushNamed(
                   Routes.products.name,
@@ -44,7 +44,7 @@ class FeaturedCategoriesItem extends StatelessWidget {
                   child: Text(
                     category.name,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Colors.white,
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           fontWeight: FontWeight.bold,
                         ),
                   ),

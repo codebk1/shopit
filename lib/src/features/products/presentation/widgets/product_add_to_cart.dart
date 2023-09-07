@@ -48,7 +48,7 @@ class _ProductAddToCartState extends ConsumerState<ProductAddToCart> {
       style: _isSuccess
           ? ElevatedButton.styleFrom(
               disabledBackgroundColor: Colors.green.shade900,
-              disabledForegroundColor: Colors.white,
+              disabledForegroundColor: const Color.fromARGB(255, 255, 255, 255),
             )
           : null,
       child: addToCartController.isLoading
@@ -58,7 +58,7 @@ class _ProductAddToCartState extends ConsumerState<ProductAddToCart> {
               children: [
                 SvgIcon(
                   iconName: _isSuccess ? 'check' : 'cart',
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 255, 255, 255),
                 ),
                 gapW8,
                 Text(

@@ -81,7 +81,7 @@ class CartPage extends ConsumerWidget {
                             gapW10,
                             const SvgIcon(
                               iconName: 'arrow-long-right',
-                              color: Colors.white,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                           ],
                         ),

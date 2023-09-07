@@ -18,7 +18,7 @@ class ProfileBoxLoader extends ConsumerWidget {
         children: [
           const CircleAvatar(
             radius: 35,
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
           ),
           gapW14,
           Row(
@@ -31,7 +31,7 @@ class ProfileBoxLoader extends ConsumerWidget {
                     width: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                   gapH4,
@@ -40,7 +40,7 @@ class ProfileBoxLoader extends ConsumerWidget {
                     width: 80,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                 ],
@@ -54,7 +54,7 @@ class ProfileBoxLoader extends ConsumerWidget {
                     width: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                   gapH4,
@@ -63,7 +63,7 @@ class ProfileBoxLoader extends ConsumerWidget {
                     width: 80,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                 ],

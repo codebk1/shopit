@@ -25,7 +25,7 @@ class HomeBanner extends StatelessWidget {
               errorWidget: (_, __, ___) => const ImageError(),
             ),
             Container(
-              color: Colors.black38,
+              color: const Color.fromARGB(150, 0, 0, 0),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
@@ -36,7 +36,7 @@ class HomeBanner extends StatelessWidget {
                   Text(
                     'Build Your Dream Gaming Room!',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 255, 255, 255),
                       fontSize: 27,
                       fontWeight: FontWeight.bold,
                     ),
@@ -47,14 +47,14 @@ class HomeBanner extends StatelessWidget {
                       Text(
                         'Discounts up to',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 16,
                         ),
                       ),
                       Text(
                         ' 69%',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

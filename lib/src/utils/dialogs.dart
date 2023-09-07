@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopit/src/exceptions/exceptions.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/exceptions/exceptions.dart';
 
 Future<T?> showErrorDialog<T>({
   required BuildContext context,
@@ -13,7 +13,7 @@ Future<T?> showErrorDialog<T>({
     barrierDismissible: true,
     builder: (context) => AlertDialog(
       title: Text(title ?? context.l10n.alertErrorHeader),
-      content: Text(_errorMessage(error, context)),
+      content: Text(errorMessage(error, context)),
       actions: [
         TextButton(
           child: Text(context.l10n.alertErrorDismissButton),
@@ -22,13 +22,4 @@ Future<T?> showErrorDialog<T>({
       ],
     ),
   );
-}
-
-String _errorMessage(Object? error, BuildContext context) {
-  return switch (error) {
-    AppException() => error.l10n(context.l10n),
-    AuthException() => error.l10n(context.l10n),
-    StorageException() => error.l10n(context.l10n),
-    _ => error.toString()
-  };
 }

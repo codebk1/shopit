@@ -63,8 +63,8 @@ class CartSummary extends ConsumerWidget {
                     ),
               ),
               loading: () => const ShimmerText(
-                height: 24,
                 width: 100,
+                lineHeight: 24,
                 dark: true,
               ),
               error: (_, __) => Text(context.l10n.cartTotalLoadingError),

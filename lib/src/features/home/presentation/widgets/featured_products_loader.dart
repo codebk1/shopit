@@ -23,7 +23,7 @@ class FeaturedProductsLoader extends ConsumerWidget {
           return Container(
             width: 140,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(8),
             ),
           );

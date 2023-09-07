@@ -22,7 +22,7 @@ class ProductsListItemLoader extends ConsumerWidget {
               height: 75,
               width: 85,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
@@ -32,7 +32,7 @@ class ProductsListItemLoader extends ConsumerWidget {
                 height: 75,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 255, 255, 255),
                 ),
               ),
             ),

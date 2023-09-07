@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:shopit/src/constants/colors.dart';
+import 'package:shopit/src/constants/constants.dart';
 
 class ShimmerText extends ConsumerWidget {
   const ShimmerText({
     super.key,
-    this.lines = 1,
-    this.height = 20,
     required this.width,
+    double? oddLinesWidth,
+    this.lines = 1,
+    this.lineHeight = 15,
+    this.gap = 5,
     this.dark = false,
-  });
+  }) : oddLinesWidth = oddLinesWidth ?? width;
 
-  final int lines;
-  final double height;
   final double width;
+  final double oddLinesWidth;
+  final int lines;
+  final double lineHeight;
+  final double gap;
   final bool dark;
 
   @override
@@ -28,13 +32,15 @@ class ShimmerText extends ConsumerWidget {
           ? shimmerDarkHighlightColor(ref)
           : shimmerLightHighlightColor(ref),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           for (int i = 0; i < lines; i++)
             Container(
-              height: height,
-              width: width,
+              margin: EdgeInsets.only(bottom: i == lines - 1 ? 0 : gap),
+              height: lineHeight + gap / lines,
+              width: i.isEven ? width : oddLinesWidth,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.circular(4),
               ),
             ),

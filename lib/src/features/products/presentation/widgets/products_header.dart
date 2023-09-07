@@ -83,7 +83,7 @@ class ProductsHeader extends ConsumerWidget {
           padding: const EdgeInsets.only(left: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: Colors.white,
+            color: const Color.fromARGB(255, 255, 255, 255),
           ),
         ),
       ),

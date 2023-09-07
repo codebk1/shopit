@@ -28,7 +28,7 @@ class ProductsGridLoader extends ConsumerWidget {
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
           );
         },
