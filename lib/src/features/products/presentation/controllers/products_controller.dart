@@ -27,43 +27,62 @@ class ProductsSort extends _$ProductsSort {
 }
 
 @riverpod
-Future<List<Product>> productsPage(
-  ProductsPageRef ref,
-  PageMeta meta,
-) async {
-  Product? startAfter;
-
-  if (meta.page > 1) {
-    final prevPage = await ref.read(
-      productsPageProvider(meta.copyWith(page: meta.page - 1)).future,
-    );
-
-    startAfter = prevPage.last;
-  }
-
-  return ref.read(productsRepositoryProvider).paginateByCategory(
-        meta.itemId,
-        startAfter: startAfter,
-        limit: kProductsPageLimit,
-        sort: ref.watch(productsSortProvider),
-      );
-}
-
-@riverpod
 class ProductsPageController extends _$ProductsPageController {
   @override
-  int build() {
-    return 1;
+  FutureOr<PageMeta<Product>> build(String categoryId) async {
+    final items = await ref.read(productsRepositoryProvider).paginateByCategory(
+          categoryId,
+          limit: kProductsPageLimit,
+          sort: ref.watch(productsSortProvider),
+        );
+
+    return PageMeta(
+      items: items,
+    );
   }
 
-  Future<void> nextPage(AsyncValue value) async {
-    final canLoadMore = !value.isLoading &&
-        !value.hasError &&
-        value.asData!.value.isNotEmpty &&
-        value.asData!.value.length == kProductsPageLimit;
+  Future<void> nextPage() async {
+    final pageMeta = await future;
+
+    final canLoadMore = pageMeta.items.length % kProductsPageLimit == 0 &&
+        !pageMeta.noMoreItems &&
+        !pageMeta.isLoading &&
+        pageMeta.error == null;
 
     if (!canLoadMore) return;
 
-    state = state + 1;
+    try {
+      state = AsyncData(
+        pageMeta.copyWith(
+          isLoading: true,
+        ),
+      );
+
+      final nextItems =
+          await ref.read(productsRepositoryProvider).paginateByCategory(
+                categoryId,
+                startAfter: pageMeta.items.last,
+                limit: kProductsPageLimit,
+                sort: ref.watch(productsSortProvider),
+              );
+
+      state = AsyncData(
+        pageMeta.copyWith(
+          isLoading: false,
+          noMoreItems: nextItems.isEmpty,
+          items: [
+            ...pageMeta.items,
+            ...nextItems,
+          ],
+        ),
+      );
+    } catch (error) {
+      state = AsyncData(
+        pageMeta.copyWith(
+          isLoading: false,
+          error: error,
+        ),
+      );
+    }
   }
 }

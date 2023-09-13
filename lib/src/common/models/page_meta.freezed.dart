@@ -15,26 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PageMeta {
-  String get itemId => throw _privateConstructorUsedError;
-  int get page => throw _privateConstructorUsedError;
+mixin _$PageMeta<T> {
+  List<T> get items => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get noMoreItems => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PageMetaCopyWith<PageMeta> get copyWith =>
+  $PageMetaCopyWith<T, PageMeta<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PageMetaCopyWith<$Res> {
-  factory $PageMetaCopyWith(PageMeta value, $Res Function(PageMeta) then) =
-      _$PageMetaCopyWithImpl<$Res, PageMeta>;
+abstract class $PageMetaCopyWith<T, $Res> {
+  factory $PageMetaCopyWith(
+          PageMeta<T> value, $Res Function(PageMeta<T>) then) =
+      _$PageMetaCopyWithImpl<T, $Res, PageMeta<T>>;
   @useResult
-  $Res call({String itemId, int page});
+  $Res call({List<T> items, bool isLoading, bool noMoreItems, Object? error});
 }
 
 /// @nodoc
-class _$PageMetaCopyWithImpl<$Res, $Val extends PageMeta>
-    implements $PageMetaCopyWith<$Res> {
+class _$PageMetaCopyWithImpl<T, $Res, $Val extends PageMeta<T>>
+    implements $PageMetaCopyWith<T, $Res> {
   _$PageMetaCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -45,103 +48,151 @@ class _$PageMetaCopyWithImpl<$Res, $Val extends PageMeta>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? itemId = null,
-    Object? page = null,
+    Object? items = null,
+    Object? isLoading = null,
+    Object? noMoreItems = null,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
-      itemId: null == itemId
-          ? _value.itemId
-          : itemId // ignore: cast_nullable_to_non_nullable
-              as String,
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<T>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      noMoreItems: null == noMoreItems
+          ? _value.noMoreItems
+          : noMoreItems // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: freezed == error ? _value.error : error,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_PageMetaCopyWith<$Res> implements $PageMetaCopyWith<$Res> {
+abstract class _$$_PageMetaCopyWith<T, $Res>
+    implements $PageMetaCopyWith<T, $Res> {
   factory _$$_PageMetaCopyWith(
-          _$_PageMeta value, $Res Function(_$_PageMeta) then) =
-      __$$_PageMetaCopyWithImpl<$Res>;
+          _$_PageMeta<T> value, $Res Function(_$_PageMeta<T>) then) =
+      __$$_PageMetaCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({String itemId, int page});
+  $Res call({List<T> items, bool isLoading, bool noMoreItems, Object? error});
 }
 
 /// @nodoc
-class __$$_PageMetaCopyWithImpl<$Res>
-    extends _$PageMetaCopyWithImpl<$Res, _$_PageMeta>
-    implements _$$_PageMetaCopyWith<$Res> {
+class __$$_PageMetaCopyWithImpl<T, $Res>
+    extends _$PageMetaCopyWithImpl<T, $Res, _$_PageMeta<T>>
+    implements _$$_PageMetaCopyWith<T, $Res> {
   __$$_PageMetaCopyWithImpl(
-      _$_PageMeta _value, $Res Function(_$_PageMeta) _then)
+      _$_PageMeta<T> _value, $Res Function(_$_PageMeta<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? itemId = null,
-    Object? page = null,
+    Object? items = null,
+    Object? isLoading = null,
+    Object? noMoreItems = null,
+    Object? error = freezed,
   }) {
-    return _then(_$_PageMeta(
-      itemId: null == itemId
-          ? _value.itemId
-          : itemId // ignore: cast_nullable_to_non_nullable
-              as String,
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$_PageMeta<T>(
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<T>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      noMoreItems: null == noMoreItems
+          ? _value.noMoreItems
+          : noMoreItems // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: freezed == error ? _value.error : error,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_PageMeta implements _PageMeta {
-  const _$_PageMeta({required this.itemId, required this.page});
+class _$_PageMeta<T> implements _PageMeta<T> {
+  const _$_PageMeta(
+      {required final List<T> items,
+      this.isLoading = false,
+      this.noMoreItems = false,
+      this.error})
+      : _items = items;
+
+  final List<T> _items;
+  @override
+  List<T> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
 
   @override
-  final String itemId;
+  @JsonKey()
+  final bool isLoading;
   @override
-  final int page;
+  @JsonKey()
+  final bool noMoreItems;
+  @override
+  final Object? error;
 
   @override
   String toString() {
-    return 'PageMeta(itemId: $itemId, page: $page)';
+    return 'PageMeta<$T>(items: $items, isLoading: $isLoading, noMoreItems: $noMoreItems, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PageMeta &&
-            (identical(other.itemId, itemId) || other.itemId == itemId) &&
-            (identical(other.page, page) || other.page == page));
+            other is _$_PageMeta<T> &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.noMoreItems, noMoreItems) ||
+                other.noMoreItems == noMoreItems) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, itemId, page);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      isLoading,
+      noMoreItems,
+      const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PageMetaCopyWith<_$_PageMeta> get copyWith =>
-      __$$_PageMetaCopyWithImpl<_$_PageMeta>(this, _$identity);
+  _$$_PageMetaCopyWith<T, _$_PageMeta<T>> get copyWith =>
+      __$$_PageMetaCopyWithImpl<T, _$_PageMeta<T>>(this, _$identity);
 }
 
-abstract class _PageMeta implements PageMeta {
+abstract class _PageMeta<T> implements PageMeta<T> {
   const factory _PageMeta(
-      {required final String itemId, required final int page}) = _$_PageMeta;
+      {required final List<T> items,
+      final bool isLoading,
+      final bool noMoreItems,
+      final Object? error}) = _$_PageMeta<T>;
 
   @override
-  String get itemId;
+  List<T> get items;
   @override
-  int get page;
+  bool get isLoading;
+  @override
+  bool get noMoreItems;
+  @override
+  Object? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_PageMetaCopyWith<_$_PageMeta> get copyWith =>
+  _$$_PageMetaCopyWith<T, _$_PageMeta<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

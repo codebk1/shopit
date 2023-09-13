@@ -16,83 +16,71 @@ class ProductsGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final page = ref.watch(productsPageControllerProvider);
-    final meta = PageMeta(itemId: categoryId, page: page);
-    final productsPage = ref.watch(productsPageProvider(meta));
+    final productsPageProvider = productsPageControllerProvider(categoryId);
+    final productsPageController = ref.watch(productsPageProvider);
 
-    return NotificationListener<ScrollEndNotification>(
-      onNotification: (scroll) {
-        if (scroll.metrics.extentAfter < 150) {
-          ref
-              .read(productsPageControllerProvider.notifier)
-              .nextPage(productsPage);
-        }
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(8),
+        topRight: Radius.circular(8),
+      ),
+      child: productsPageController.when(
+        data: (pageMeta) {
+          return pageMeta.items.isEmpty
+              ? EmptyState(
+                  text: context.l10n.productsEmptyState,
+                  onRefresh: () => ref.invalidate(productsPageProvider),
+                )
+              : NotificationListener<ScrollEndNotification>(
+                  onNotification: (scroll) {
+                    if (scroll.metrics.extentAfter < 150) {
+                      ref.read(productsPageProvider.notifier).nextPage();
+                    }
 
-        return true;
-      },
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(8),
-          topRight: Radius.circular(8),
-        ),
-        child: CustomScrollView(
-          cacheExtent: 100,
-          slivers: [
-            for (var i = 1; i <= page; i++)
-              ref.watch(productsPageProvider(meta.copyWith(page: i))).maybeWhen(
-                    data: (products) => SliverPadding(
-                      padding:
-                          EdgeInsets.only(bottom: products.isEmpty ? 0 : 14),
-                      sliver: SliverGrid.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 3 / 4,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
+                    return true;
+                  },
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverPadding(
+                        padding: EdgeInsets.only(
+                          bottom: pageMeta.items.isEmpty ? 0 : 14,
                         ),
-                        itemCount: products.length,
-                        itemBuilder: (_, index) {
-                          return ProductsGridItem(
-                            product: products[index],
-                          );
-                        },
+                        sliver: SliverGrid.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 3 / 4,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                          itemCount: pageMeta.items.length,
+                          itemBuilder: (_, index) {
+                            return ProductsGridItem(
+                              product: pageMeta.items[index],
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    orElse: () => const SliverToBoxAdapter(
-                      child: SizedBox.shrink(),
-                    ),
+                      if (pageMeta.isLoading)
+                        const SliverToBoxAdapter(
+                          child: LoadMoreLoader(),
+                        ),
+                      if (pageMeta.error != null)
+                        SliverToBoxAdapter(
+                          child: LoadMoreError(
+                            onRefresh: () =>
+                                ref.invalidate(productsPageProvider),
+                          ),
+                        ),
+                    ],
                   ),
-            SliverToBoxAdapter(
-              child: productsPage.when(
-                skipLoadingOnRefresh: false,
-                data: (products) => products.isEmpty
-                    ? EmptyState(
-                        text: context.l10n.productsEmptyState,
-                        onRefresh: () => ref.invalidate(
-                          productsPageProvider(meta.copyWith(page: 1)),
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                error: (_, __) => page == 1
-                    ? ErrorState(
-                        text: context.l10n.productsErrorState,
-                        onRefresh: () => ref.invalidate(
-                          productsPageProvider(meta.copyWith(page: 1)),
-                        ),
-                      )
-                    : LoadMoreError(
-                        onRefresh: () => ref.invalidate(
-                          productsPageProvider(meta.copyWith(page: page)),
-                        ),
-                      ),
-                loading: () => page == 1
-                    ? const ProductsGridLoader()
-                    : const LoadMoreLoader(),
-              ),
-            ),
-          ],
+                );
+        },
+        error: (_, __) => ErrorState(
+          text: context.l10n.productsErrorState,
+          onRefresh: () => ref.invalidate(productsPageProvider),
         ),
+        loading: () => const ProductsGridLoader(),
       ),
     );
   }
