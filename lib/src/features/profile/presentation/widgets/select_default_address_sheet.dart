@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopit/src/constants/constants.dart';
 
 import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/common/common.dart';
@@ -33,12 +34,34 @@ class SelectDefaultAddressSheet extends ConsumerWidget {
             value: address.id,
             groupValue: currentAddress?.id,
             title: Text(address.name),
-            subtitle: Text(
-              '${address.street}, ${address.postalCode}, ${address.city}',
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${address.street}, ${address.postalCode}, ${address.city}',
+                ),
+                if (address.nip!.isNotEmpty)
+                  Row(
+                    children: [
+                      const Text('NIP:'),
+                      gapW4,
+                      Text(address.nip!),
+                    ],
+                  ),
+                Row(
+                  children: [
+                    const SvgIcon(iconName: 'phone', width: 16),
+                    gapW4,
+                    Text(address.phone),
+                    gapW6,
+                    const SvgIcon(iconName: 'email', width: 16),
+                    gapW4,
+                    Text(address.email),
+                  ],
+                ),
+              ],
             ),
-            onChanged: (_) {
-              context.pop(address);
-            },
+            onChanged: (_) => context.pop(address),
           );
         },
       ),

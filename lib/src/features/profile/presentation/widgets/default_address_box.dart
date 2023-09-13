@@ -62,6 +62,7 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
           ),
         ),
         Container(
+          height: 150,
           width: double.infinity,
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
@@ -82,6 +83,7 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                   children: [
                     address != null
                         ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -93,6 +95,28 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                               ),
                               Text(address.street),
                               Text('${address.postalCode}, ${address.city}'),
+                              if (address.nip!.isNotEmpty)
+                                Row(
+                                  children: [
+                                    const Text('NIP:'),
+                                    gapW4,
+                                    Text(address.nip!),
+                                  ],
+                                ),
+                              Row(
+                                children: [
+                                  const SvgIcon(iconName: 'phone', width: 16),
+                                  gapW4,
+                                  Text(address.phone),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const SvgIcon(iconName: 'email', width: 16),
+                                  gapW4,
+                                  Text(address.email),
+                                ],
+                              ),
                             ],
                           )
                         : Text(context.l10n.profileNoDefaultAddress),
@@ -123,7 +147,7 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                 loading: () => const ShimmerText(
                   width: 150,
                   oddLinesWidth: 100,
-                  lines: 3,
+                  lines: 6,
                 ),
               );
             },
