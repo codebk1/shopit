@@ -9,9 +9,11 @@ class EditAddressMenuItem extends StatelessWidget {
   const EditAddressMenuItem({
     super.key,
     required this.address,
+    required this.submit,
   });
 
   final Address address;
+  final Future<void> Function(Address) submit;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,8 @@ class EditAddressMenuItem extends StatelessWidget {
           showDragHandle: true,
           isScrollControlled: true,
           builder: (_) => AddressSheet(
-            type: address.type,
             address: address,
+            submit: submit,
           ),
         );
       },

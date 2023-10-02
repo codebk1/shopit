@@ -5,7 +5,7 @@ part 'address.g.dart';
 
 enum AddressType {
   delivery,
-  billing,
+  payment,
 }
 
 @freezed
@@ -21,6 +21,16 @@ class Address with _$Address {
     required String phone,
     required String email,
   }) = _Address;
+
+  factory Address.empty(AddressType type) => Address(
+        type: type,
+        name: '',
+        street: '',
+        postalCode: '',
+        city: '',
+        phone: '',
+        email: '',
+      );
 
   factory Address.fromJson(Map<String, Object?> json) =>
       _$AddressFromJson(json);

@@ -10,11 +10,13 @@ class AddressGridItem extends ConsumerStatefulWidget {
   const AddressGridItem({
     super.key,
     required this.address,
+    required this.submit,
     this.isDefault = false,
   });
 
   final Address address;
   final bool isDefault;
+  final Future<void> Function(Address) submit;
 
   @override
   ConsumerState<AddressGridItem> createState() => _AddressGridItemState();
@@ -63,6 +65,7 @@ class _AddressGridItemState extends ConsumerState<AddressGridItem> {
                       ),
                     EditAddressMenuItem(
                       address: widget.address,
+                      submit: widget.submit,
                     ),
                     DeleteAddressMenuItem(
                       address: widget.address,

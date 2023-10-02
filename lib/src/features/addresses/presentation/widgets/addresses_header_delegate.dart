@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/addresses/addresses.dart';
 
 class AddressesHeaderDelegate extends SliverPersistentHeaderDelegate {
   const AddressesHeaderDelegate({
     required this.title,
-    required this.sheet,
+    required this.type,
+    required this.submit,
   });
 
   final String title;
-  final Widget sheet;
+  final AddressType type;
+  final Future<void> Function(Address) submit;
 
   @override
   Widget build(
@@ -27,16 +32,23 @@ class AddressesHeaderDelegate extends SliverPersistentHeaderDelegate {
             title,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          IconButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                showDragHandle: true,
-                isScrollControlled: true,
-                builder: (_) => sheet,
+          Consumer(
+            builder: (context, ref, child) {
+              return IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    showDragHandle: true,
+                    isScrollControlled: true,
+                    builder: (_) => AddressSheet(
+                      address: Address.empty(type),
+                      submit: submit,
+                    ),
+                  );
+                },
+                icon: const SvgIcon(iconName: 'add'),
               );
             },
-            icon: const SvgIcon(iconName: 'add'),
           )
         ],
       ),

@@ -12,12 +12,12 @@ import 'package:shopit/src/features/addresses/addresses.dart';
 class AddressForm extends ConsumerStatefulWidget {
   const AddressForm({
     super.key,
-    required this.type,
-    this.address,
+    required this.address,
+    required this.submit,
   });
 
-  final AddressType type;
-  final Address? address;
+  final Address address;
+  final Future<void> Function(Address) submit;
 
   @override
   ConsumerState<AddressForm> createState() => _AddressFormState();
@@ -41,15 +41,13 @@ class _AddressFormState extends ConsumerState<AddressForm> {
 
     final address = widget.address;
 
-    if (address != null) {
-      _nipController.text = address.nip ?? '';
-      _nameController.text = address.name;
-      _streetController.text = address.street;
-      _postalCodeController.text = address.postalCode;
-      _cityController.text = address.city;
-      _phoneController.text = address.phone;
-      _emailController.text = address.email;
-    }
+    _nipController.text = address.nip ?? '';
+    _nameController.text = address.name;
+    _streetController.text = address.street;
+    _postalCodeController.text = address.postalCode;
+    _cityController.text = address.city;
+    _phoneController.text = address.phone;
+    _emailController.text = address.email;
   }
 
   @override
@@ -68,8 +66,8 @@ class _AddressFormState extends ConsumerState<AddressForm> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       final address = Address(
-        id: widget.address?.id,
-        type: widget.type,
+        id: widget.address.id,
+        type: widget.address.type,
         nip: _nipController.text,
         name: _nameController.text,
         street: _streetController.text,
@@ -79,13 +77,8 @@ class _AddressFormState extends ConsumerState<AddressForm> {
         email: _emailController.text,
       );
 
-      final addressesNotifier =
-          ref.read(addressesControllerProvider(widget.type).notifier);
-
       setState(() {
-        _save = address.id == null
-            ? addressesNotifier.add(address)
-            : addressesNotifier.set(address);
+        _save = widget.submit(address);
       });
 
       _save!.then((_) {
@@ -112,7 +105,7 @@ class _AddressFormState extends ConsumerState<AddressForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (widget.type == AddressType.billing)
+          if (widget.address.type == AddressType.payment)
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: NipField(controller: _nipController),

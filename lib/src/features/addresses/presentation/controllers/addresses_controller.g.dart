@@ -86,8 +86,8 @@ class AddressesControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
     AddressesController, List<Address>> {
   /// See also [AddressesController].
   AddressesControllerProvider(
-    this.type,
-  ) : super.internal(
+    AddressType type,
+  ) : this._internal(
           () => AddressesController()..type = type,
           from: addressesControllerProvider,
           name: r'addressesControllerProvider',
@@ -98,9 +98,51 @@ class AddressesControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
           dependencies: AddressesControllerFamily._dependencies,
           allTransitiveDependencies:
               AddressesControllerFamily._allTransitiveDependencies,
+          type: type,
         );
 
+  AddressesControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.type,
+  }) : super.internal();
+
   final AddressType type;
+
+  @override
+  FutureOr<List<Address>> runNotifierBuild(
+    covariant AddressesController notifier,
+  ) {
+    return notifier.build(
+      type,
+    );
+  }
+
+  @override
+  Override overrideWith(AddressesController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: AddressesControllerProvider._internal(
+        () => create()..type = type,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        type: type,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<AddressesController, List<Address>>
+      createElement() {
+    return _AddressesControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -114,15 +156,21 @@ class AddressesControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin AddressesControllerRef
+    on AutoDisposeAsyncNotifierProviderRef<List<Address>> {
+  /// The parameter `type` of this provider.
+  AddressType get type;
+}
+
+class _AddressesControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<AddressesController,
+        List<Address>> with AddressesControllerRef {
+  _AddressesControllerProviderElement(super.provider);
 
   @override
-  FutureOr<List<Address>> runNotifierBuild(
-    covariant AddressesController notifier,
-  ) {
-    return notifier.build(
-      type,
-    );
-  }
+  AddressType get type => (origin as AddressesControllerProvider).type;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

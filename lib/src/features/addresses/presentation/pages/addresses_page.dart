@@ -7,11 +7,26 @@ import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
 
-class AddressesPage extends ConsumerWidget {
+class AddressesPage extends ConsumerStatefulWidget {
   const AddressesPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AddressesPage> createState() => _AddressesPageState();
+}
+
+class _AddressesPageState extends ConsumerState<AddressesPage> {
+  Future<void> _submit(Address address) {
+    final addressesController = ref.read(
+      addressesControllerProvider(address.type).notifier,
+    );
+
+    return address.id == null
+        ? addressesController.add(address)
+        : addressesController.set(address);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: MainAppBar(
         title: context.l10n.addressesAppBarTitle,
@@ -27,11 +42,11 @@ class AddressesPage extends ConsumerWidget {
                   SliverPersistentHeader(
                     pinned: true,
                     delegate: AddressesHeaderDelegate(
-                      title: type == AddressType.delivery
-                          ? context.l10n.addressesDeliveryAddressesHeader
-                          : context.l10n.addressesBillingAddressesHeader,
-                      sheet: AddressSheet(type: type),
-                    ),
+                        title: type == AddressType.delivery
+                            ? context.l10n.addressesDeliveryAddressesHeader
+                            : context.l10n.addressesPaymentAddressesHeader,
+                        type: type,
+                        submit: _submit),
                   ),
                   Consumer(
                     builder: (context, ref, child) {
@@ -41,7 +56,7 @@ class AddressesPage extends ConsumerWidget {
 
                       final defaultAddressId = type == AddressType.delivery
                           ? profile.deliveryAddress
-                          : profile.billingAddress;
+                          : profile.paymentAddress;
 
                       final aspectRatio =
                           type == AddressType.delivery ? 1.0 : 0.9;
@@ -63,6 +78,7 @@ class AddressesPage extends ConsumerWidget {
 
                                       return AddressGridItem(
                                         address: address,
+                                        submit: _submit,
                                         isDefault:
                                             address.id == defaultAddressId,
                                       );
@@ -79,7 +95,7 @@ class AddressesPage extends ConsumerWidget {
                               ),
                             ),
                             loading: () => SliverToBoxAdapter(
-                              child: GridViewLoader(
+                              child: GridLoader(
                                 aspectRatio: aspectRatio,
                               ),
                             ),

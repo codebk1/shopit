@@ -31,5 +31,5 @@ Map<String, dynamic> _$$_AddressToJson(_$_Address instance) =>
 
 const _$AddressTypeEnumMap = {
   AddressType.delivery: 'delivery',
-  AddressType.billing: 'billing',
+  AddressType.payment: 'payment',
 };

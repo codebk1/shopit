@@ -7,32 +7,35 @@ import 'package:shopit/src/features/addresses/addresses.dart';
 class AddressSheet extends StatelessWidget {
   const AddressSheet({
     super.key,
-    required this.type,
-    this.address,
+    required this.address,
+    required this.submit,
   });
 
-  final AddressType type;
-  final Address? address;
+  final Address address;
+  final Future<void> Function(Address) submit;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14)
-          .add(MediaQuery.of(context).viewInsets),
+      padding: const EdgeInsets.only(
+        left: 14,
+        right: 14,
+        bottom: 14,
+      ).add(MediaQuery.viewInsetsOf(context)),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              type == AddressType.delivery
+              address.type == AddressType.delivery
                   ? context.l10n.addressesDeliveryAddressFormHeader
-                  : context.l10n.addressesBillingAddressFormHeader,
+                  : context.l10n.addressesPaymentAddressFormHeader,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             gapH14,
             AddressForm(
-              type: type,
               address: address,
+              submit: submit,
             ),
           ],
         ),

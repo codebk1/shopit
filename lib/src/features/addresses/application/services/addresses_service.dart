@@ -17,15 +17,11 @@ class AddressesService {
   final AddressesRepository _addressesRepository;
 
   Future<Address?> getById(String id, AddressType type) async {
-    final address = await _addressesRepository.getById(_profile.id, type, id);
-
-    return address;
+    return await _addressesRepository.getById(_profile.id, type, id);
   }
 
   Future<List<Address>> getByType(AddressType type) async {
-    final address = await _addressesRepository.getByType(_profile.id, type);
-
-    return address;
+    return await _addressesRepository.getByType(_profile.id, type);
   }
 
   Future<Address> add(Address address) async {
@@ -34,18 +30,18 @@ class AddressesService {
     return address.copyWith(id: id);
   }
 
-  Future<void> set(Address address) async {
+  Future<void> set(Address address) {
     return _addressesRepository.set(_profile.id, address);
   }
 
-  Future<void> delete(Address address) async {
+  Future<void> delete(Address address) {
     return _addressesRepository.delete(_profile.id, address);
   }
 
-  Future<void> setDefaultAddress(Address address) async {
+  Future<void> setDefaultAddress(Address address) {
     final newProfile = address.type == AddressType.delivery
         ? _profile.copyWith(deliveryAddress: address.id)
-        : _profile.copyWith(billingAddress: address.id);
+        : _profile.copyWith(paymentAddress: address.id);
 
     return _profileController.updateProfile(
       newProfile,

@@ -10,7 +10,7 @@ Future<Address?> defaultAddress(DefaultAddressRef ref, AddressType type) async {
   final addressId = await ref.watch(profileControllerProvider.selectAsync(
     (data) => type == AddressType.delivery
         ? data?.deliveryAddress
-        : data?.billingAddress,
+        : data?.paymentAddress,
   ));
 
   return addressId != null
