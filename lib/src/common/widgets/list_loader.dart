@@ -5,8 +5,8 @@ import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/constants/constants.dart';
 
-class ListViewLoader extends ConsumerWidget {
-  const ListViewLoader({
+class ListLoader extends ConsumerWidget {
+  const ListLoader({
     super.key,
     this.itemCount = 6,
   });

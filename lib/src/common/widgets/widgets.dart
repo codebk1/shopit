@@ -1,9 +1,10 @@
 export 'form_fields/form_fields.dart';
 export 'empty_state.dart';
+export 'error_box.dart';
 export 'error_state.dart';
-export 'grid_view_loader.dart';
+export 'grid_loader.dart';
 export 'image_error.dart';
-export 'list_view_loader.dart';
+export 'list_loader.dart';
 export 'loader.dart';
 export 'main_app_bar.dart';
 export 'remove_slidable.dart';

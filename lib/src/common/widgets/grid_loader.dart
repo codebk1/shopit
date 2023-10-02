@@ -5,15 +5,21 @@ import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/constants/constants.dart';
 
-class GridViewLoader extends ConsumerWidget {
-  const GridViewLoader({
+class GridLoader extends ConsumerWidget {
+  const GridLoader({
     super.key,
     this.itemCount = 4,
+    this.crossAxisCount = 2,
     this.aspectRatio = 1,
+    this.mainAxisSpacing = 10,
+    this.crossAxisSpacing = 10,
   });
 
   final int itemCount;
+  final int crossAxisCount;
   final double aspectRatio;
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +30,7 @@ class GridViewLoader extends ConsumerWidget {
       child: GridView.builder(
         itemCount: itemCount,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: crossAxisCount,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
           childAspectRatio: aspectRatio,
