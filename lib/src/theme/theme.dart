@@ -13,6 +13,13 @@ class CustomTheme {
 
   ThemeData get theme {
     return ThemeData(
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.android: ZoomPageTransitionsBuilder(
+            allowEnterRouteSnapshotting: false,
+          ),
+        },
+      ),
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         brightness: brightness,
