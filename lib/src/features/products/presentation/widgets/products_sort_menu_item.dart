@@ -26,9 +26,9 @@ class ProductsSortMenuItem extends ConsumerWidget implements PopupMenuEntry {
         children: [
           Text(label),
           if (value == selectedSort)
-            SvgIcon(
+            const SvgIcon(
               iconName: 'check',
-              color: Colors.green.shade600,
+              color: Color.fromARGB(255, 67, 160, 71),
             ),
         ],
       ),

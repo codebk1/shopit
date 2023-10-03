@@ -46,11 +46,18 @@ class CustomTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          shadowColor: Colors.transparent,
-          foregroundColor: Colors.white,
-          backgroundColor: seedColor.withOpacity(.7),
-          disabledForegroundColor: Colors.white,
-          disabledBackgroundColor: seedColor.withOpacity(.7),
+          shadowColor: const Color.fromARGB(0, 0, 0, 0),
+          foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: seedColor,
+          disabledForegroundColor: const Color.fromARGB(255, 255, 255, 255),
+          disabledBackgroundColor: seedColor.withAlpha(150),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
       ),
     );

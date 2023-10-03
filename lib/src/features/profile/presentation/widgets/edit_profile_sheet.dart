@@ -8,8 +8,11 @@ class EditProfileSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14)
-          .add(MediaQuery.of(context).viewInsets),
+      padding: const EdgeInsets.only(
+        left: 14,
+        right: 14,
+        bottom: 14,
+      ).add(MediaQuery.viewInsetsOf(context)),
       child: const EditProfileForm(),
     );
   }

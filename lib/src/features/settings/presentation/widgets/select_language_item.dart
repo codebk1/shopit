@@ -33,9 +33,9 @@ class SelectLanguageItem extends ConsumerWidget {
             : context.l10n.settingsSystemLanguageOption,
       ),
       trailing: checked
-          ? SvgIcon(
+          ? const SvgIcon(
               iconName: 'check',
-              color: Colors.green.shade600,
+              color: Color.fromARGB(255, 67, 160, 71),
             )
           : null,
       onTap: () {

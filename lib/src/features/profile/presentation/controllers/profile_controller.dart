@@ -9,7 +9,6 @@ part 'profile_controller.g.dart';
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<Profile?> build() async {
-    await Future.delayed(Duration(seconds: 5));
     final user = await ref.watch(authStateChangesProvider.future);
 
     if (user != null) {

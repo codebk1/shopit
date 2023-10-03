@@ -64,12 +64,12 @@ class ProductPage extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          const SliverToBoxAdapter(child: gapH8),
+                          sliverGapH8,
                           SliverPersistentHeader(
                             pinned: true,
                             delegate: _PriceHeaderDelegate(product: product),
                           ),
-                          const SliverToBoxAdapter(child: gapH24),
+                          sliverGapH24,
                           SliverToBoxAdapter(
                             child: Text(
                               'Description',
@@ -79,7 +79,7 @@ class ProductPage extends ConsumerWidget {
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),
-                          const SliverToBoxAdapter(child: gapH4),
+                          sliverGapH4,
                           SliverToBoxAdapter(
                             child: Text(
                               product.description,

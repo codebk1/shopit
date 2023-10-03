@@ -32,8 +32,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(8),
-          topLeft: Radius.circular(8),
+          topRight: Radius.circular(14),
+          topLeft: Radius.circular(14),
         ),
         child: NavigationBar(
           onDestinationSelected: (int index) => _onTap(context, index),

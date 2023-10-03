@@ -26,7 +26,7 @@ class AuthController extends _$AuthController {
     if (!state.hasError) {
       await ref.read(cartLocalRepositoryProvider).clear();
       await ref.read(wishlistRepositoryProvider).clear();
-      ref.read(routerProvider).goNamed(Routes.account.name);
+      ref.read(routerProvider).pop();
     }
   }
 

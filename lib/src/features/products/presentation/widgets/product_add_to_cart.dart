@@ -47,7 +47,7 @@ class _ProductAddToCartState extends ConsumerState<ProductAddToCart> {
               .addItem(widget.itemId),
       style: _isSuccess
           ? ElevatedButton.styleFrom(
-              disabledBackgroundColor: Colors.green.shade900,
+              disabledBackgroundColor: const Color.fromARGB(255, 27, 94, 32),
               disabledForegroundColor: const Color.fromARGB(255, 255, 255, 255),
             )
           : null,
