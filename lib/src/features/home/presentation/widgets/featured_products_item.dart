@@ -22,7 +22,11 @@ class FeaturedProductsItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => context.pushNamed(Routes.product.name, extra: product),
+      onTap: () => context.pushNamed(
+        Routes.product.name,
+        queryParameters: {'tag': '${product.id}-featured'},
+        extra: product,
+      ),
       child: Container(
         width: 140,
         decoration: BoxDecoration(
@@ -40,7 +44,7 @@ class FeaturedProductsItem extends ConsumerWidget {
                 child: Stack(
                   children: [
                     Hero(
-                      tag: product.id,
+                      tag: '${product.id}-featured',
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
                         child: CachedNetworkImage(
@@ -60,7 +64,7 @@ class FeaturedProductsItem extends ConsumerWidget {
                     Positioned(
                       right: 0,
                       child: Hero(
-                        tag: 'wishlist-${product.id}',
+                        tag: '${product.id}-featured-toggle',
                         child: ToggleWishlist(
                           product: product,
                         ),

@@ -12,7 +12,10 @@ import 'package:shopit/src/features/wishlist/wishlist.dart';
 import 'package:shopit/src/features/products/products.dart';
 
 class ProductsGridItem extends ConsumerWidget {
-  const ProductsGridItem({super.key, required this.product});
+  const ProductsGridItem({
+    super.key,
+    required this.product,
+  });
 
   final Product product;
 
@@ -59,7 +62,7 @@ class ProductsGridItem extends ConsumerWidget {
                     Positioned(
                       right: 0,
                       child: Hero(
-                        tag: 'wishlist-${product.id}',
+                        tag: '${product.id}-toggle',
                         child: ToggleWishlist(product: product),
                       ),
                     ),

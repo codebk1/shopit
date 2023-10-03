@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/utils/utils.dart';
@@ -25,7 +26,9 @@ class ProductPage extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           children: [
-            ProductGallery(product: product),
+            ProductGallery(
+              product: product,
+            ),
             gapH24,
             Expanded(
               child: Container(
@@ -58,7 +61,8 @@ class ProductPage extends ConsumerWidget {
                                   ),
                                 ),
                                 Hero(
-                                  tag: 'wishlist-${product.id}',
+                                  tag:
+                                      '${GoRouterState.of(context).uri.queryParameters['tag'] ?? product.id}-toggle',
                                   child: ToggleWishlist(product: product),
                                 ),
                               ],

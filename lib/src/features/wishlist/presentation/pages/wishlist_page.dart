@@ -32,16 +32,20 @@ class WishlistPage extends ConsumerWidget {
                   itemCount: wishlist.items.length,
                   separatorBuilder: (_, __) => gapH8,
                   itemBuilder: (context, index) {
-                    final id = wishlist.items[index];
+                    final productId = wishlist.items[index];
 
                     return ProviderScope(
-                      overrides: [productIdProvider.overrideWithValue(id)],
+                      overrides: [
+                        productIdProvider.overrideWithValue(productId),
+                      ],
                       child: RemoveSlidable(
-                        key: ValueKey(id),
+                        key: ValueKey(productId),
                         onRemove: () => ref
                             .read(wishlistControllerProvider.notifier)
-                            .toggle(id),
-                        child: const WishlistItem(),
+                            .toggle(productId),
+                        child: const ProductsListItem(
+                          heroTag: 'wishlist',
+                        ),
                       ),
                     );
                   },

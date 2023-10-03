@@ -8,68 +8,95 @@ import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/utils/utils.dart';
 
 class ProductsListItem extends ConsumerWidget {
   const ProductsListItem({
     super.key,
-    required this.product,
+    this.heroTag,
+    this.allowTap = true,
+    this.addMargin = true,
     this.widgets = const [],
   });
 
-  final Product product;
+  final bool allowTap;
+  final bool addMargin;
   final List<Widget> widgets;
+  final String? heroTag;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTap: () => context.pushNamed(Routes.product.name, extra: product),
-      child: Container(
-        padding: const EdgeInsets.all(4),
-        margin: const EdgeInsets.symmetric(horizontal: 14),
-        height: 75,
-        decoration: BoxDecoration(
-          // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-          color: surfaceContainer(ref),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          children: [
-            Hero(
-              tag: product.id,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: CachedNetworkImage(
-                  width: 78,
-                  imageUrl: product.thumbnail,
-                  errorWidget: (_, __, ___) => const ImageError(),
+    final id = ref.watch(productIdProvider);
+    final product = ref.watch(productProvider(id));
+
+    return product.when(
+      data: (product) => product == null
+          ? const ProductsListItemError()
+          : GestureDetector(
+              onTap: allowTap
+                  ? () => context.pushNamed(
+                        Routes.product.name,
+                        queryParameters: {'tag': '${product.id}-$heroTag'},
+                        extra: product,
+                      )
+                  : null,
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                margin: addMargin
+                    ? const EdgeInsets.symmetric(horizontal: 14)
+                    : null,
+                height: 75,
+                decoration: BoxDecoration(
+                  // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+                  color: surfaceContainer(ref),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  children: [
+                    Hero(
+                      tag: '${product.id}-$heroTag',
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: CachedNetworkImage(
+                          width: 78,
+                          imageUrl: product.thumbnail,
+                          errorWidget: (_, __, ___) => const ImageError(),
+                        ),
+                      ),
+                    ),
+                    gapW10,
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            product.name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          Text(
+                            ref
+                                .read(currencyFormatterProvider)
+                                .format(product.price),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ...widgets,
+                  ],
                 ),
               ),
             ),
-            gapW10,
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(
-                    '\$${product.price}',
-                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            ...widgets,
-          ],
-        ),
-      ),
+      error: (_, __) => const ProductsListItemError(),
+      loading: () => const ProductsListItemLoader(),
     );
   }
 }
