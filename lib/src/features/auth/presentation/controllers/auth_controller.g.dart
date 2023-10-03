@@ -21,7 +21,7 @@ final authStateChangesProvider = StreamProvider<User?>.internal(
 );
 
 typedef AuthStateChangesRef = StreamProviderRef<User?>;
-String _$authControllerHash() => r'76378a99a82be38adbe2daab0edc4d527bc4930e';
+String _$authControllerHash() => r'fd4fe75399c8ef3f7936cfec52ca6ce15f3db457';
 
 /// See also [AuthController].
 @ProviderFor(AuthController)
@@ -38,4 +38,4 @@ final authControllerProvider =
 
 typedef _$AuthController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
