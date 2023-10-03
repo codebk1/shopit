@@ -55,3 +55,6 @@ lib/firebase_options_production.dart
 
 # lcov
 coverage
+
+# env
+.env
