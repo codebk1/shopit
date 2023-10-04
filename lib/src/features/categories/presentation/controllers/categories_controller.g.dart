@@ -21,7 +21,7 @@ final categoriesCountProvider = AutoDisposeFutureProvider<int>.internal(
 );
 
 typedef CategoriesCountRef = AutoDisposeFutureProviderRef<int>;
-String _$categoriesPageHash() => r'b8c9c0aef3ec5ed4158fcd04cc85b968ee9b825f';
+String _$categoriesPageHash() => r'4c6451575603d04cf5b573d6e881511bdd613900';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -43,8 +43,6 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
-
-typedef CategoriesPageRef = AutoDisposeFutureProviderRef<List<Category>>;
 
 /// See also [categoriesPage].
 @ProviderFor(categoriesPage)
@@ -92,10 +90,10 @@ class CategoriesPageFamily extends Family<AsyncValue<List<Category>>> {
 class CategoriesPageProvider extends AutoDisposeFutureProvider<List<Category>> {
   /// See also [categoriesPage].
   CategoriesPageProvider(
-    this.page,
-  ) : super.internal(
+    int page,
+  ) : this._internal(
           (ref) => categoriesPage(
-            ref,
+            ref as CategoriesPageRef,
             page,
           ),
           from: categoriesPageProvider,
@@ -107,9 +105,43 @@ class CategoriesPageProvider extends AutoDisposeFutureProvider<List<Category>> {
           dependencies: CategoriesPageFamily._dependencies,
           allTransitiveDependencies:
               CategoriesPageFamily._allTransitiveDependencies,
+          page: page,
         );
 
+  CategoriesPageProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.page,
+  }) : super.internal();
+
   final int page;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Category>> Function(CategoriesPageRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CategoriesPageProvider._internal(
+        (ref) => create(ref as CategoriesPageRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        page: page,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Category>> createElement() {
+    return _CategoriesPageProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -125,8 +157,21 @@ class CategoriesPageProvider extends AutoDisposeFutureProvider<List<Category>> {
   }
 }
 
+mixin CategoriesPageRef on AutoDisposeFutureProviderRef<List<Category>> {
+  /// The parameter `page` of this provider.
+  int get page;
+}
+
+class _CategoriesPageProviderElement
+    extends AutoDisposeFutureProviderElement<List<Category>>
+    with CategoriesPageRef {
+  _CategoriesPageProviderElement(super.provider);
+
+  @override
+  int get page => (origin as CategoriesPageProvider).page;
+}
+
 String _$categoryHash() => r'1421dbe1d2b43d124d15b0716a206b65b8d4a643';
-typedef CategoryRef = AutoDisposeProviderRef<AsyncValue<Category>>;
 
 /// See also [category].
 @ProviderFor(category)
@@ -174,10 +219,10 @@ class CategoryFamily extends Family<AsyncValue<Category>> {
 class CategoryProvider extends AutoDisposeProvider<AsyncValue<Category>> {
   /// See also [category].
   CategoryProvider(
-    this.index,
-  ) : super.internal(
+    int index,
+  ) : this._internal(
           (ref) => category(
-            ref,
+            ref as CategoryRef,
             index,
           ),
           from: categoryProvider,
@@ -188,9 +233,43 @@ class CategoryProvider extends AutoDisposeProvider<AsyncValue<Category>> {
                   : _$categoryHash,
           dependencies: CategoryFamily._dependencies,
           allTransitiveDependencies: CategoryFamily._allTransitiveDependencies,
+          index: index,
         );
 
+  CategoryProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.index,
+  }) : super.internal();
+
   final int index;
+
+  @override
+  Override overrideWith(
+    AsyncValue<Category> Function(CategoryRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CategoryProvider._internal(
+        (ref) => create(ref as CategoryRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        index: index,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<AsyncValue<Category>> createElement() {
+    return _CategoryProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -204,6 +283,19 @@ class CategoryProvider extends AutoDisposeProvider<AsyncValue<Category>> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin CategoryRef on AutoDisposeProviderRef<AsyncValue<Category>> {
+  /// The parameter `index` of this provider.
+  int get index;
+}
+
+class _CategoryProviderElement
+    extends AutoDisposeProviderElement<AsyncValue<Category>> with CategoryRef {
+  _CategoryProviderElement(super.provider);
+
+  @override
+  int get index => (origin as CategoryProvider).index;
 }
 
 String _$categoriesSortHash() => r'3729fc2a3d5117ee6d4dc981bbb23f99c74aaae0';
@@ -223,4 +315,4 @@ final categoriesSortProvider =
 
 typedef _$CategoriesSort = AutoDisposeNotifier<Sort>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

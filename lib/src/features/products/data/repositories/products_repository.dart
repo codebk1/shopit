@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -45,4 +47,20 @@ ProductsRepository productsRepository(ProductsRepositoryRef ref) {
   // );
 
   return ProductsRepository(remoteDataSource);
+}
+
+@riverpod
+Future<Product?> product(ProductRef ref, String id) async {
+  Timer? timer;
+
+  ref.onResume(() => timer?.cancel());
+  ref.onDispose(() => timer?.cancel());
+
+  final product = await ref.read(productsRepositoryProvider).getById(id);
+
+  // cache provider only when we have product
+  final link = ref.keepAlive();
+  ref.onCancel(() => timer = Timer(const Duration(seconds: 60), link.close));
+
+  return product;
 }

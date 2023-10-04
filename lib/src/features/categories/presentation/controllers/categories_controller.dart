@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shopit/src/common/models/sort.dart';
 
+import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/categories/categories.dart';
 
 part 'categories_controller.g.dart';
@@ -31,6 +31,11 @@ Future<List<Category>> categoriesPage(
   CategoriesPageRef ref,
   int page,
 ) async {
+  Timer? timer;
+
+  ref.onResume(() => timer?.cancel());
+  ref.onDispose(() => timer?.cancel());
+
   String startAfter = page > 0
       ? (await ref.read(categoriesPageProvider(page - 1).future)).last.name
       : '';
@@ -43,8 +48,7 @@ Future<List<Category>> categoriesPage(
 
   // cache provider only when we have categories page
   final link = ref.keepAlive();
-  final timer = Timer(const Duration(seconds: 60), () => link.close());
-  ref.onDispose(() => timer.cancel());
+  ref.onCancel(() => timer = Timer(const Duration(seconds: 60), link.close));
 
   return categories;
 }
