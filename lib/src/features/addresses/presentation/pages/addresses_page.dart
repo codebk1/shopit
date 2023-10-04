@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopit/src/constants/constants.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/common/common.dart';
@@ -32,12 +33,12 @@ class _AddressesPageState extends ConsumerState<AddressesPage> {
         title: context.l10n.addressesAppBarTitle,
         showActions: false,
       ),
-      body: CustomScrollView(
-        slivers: [
-          for (var type in AddressType.values)
-            SliverPadding(
-              padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14),
-              sliver: SliverMainAxisGroup(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        child: CustomScrollView(
+          slivers: [
+            for (var type in AddressType.values)
+              SliverMainAxisGroup(
                 slivers: [
                   SliverPersistentHeader(
                     pinned: true,
@@ -102,10 +103,11 @@ class _AddressesPageState extends ConsumerState<AddressesPage> {
                           );
                     },
                   ),
+                  sliverGapH14,
                 ],
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
