@@ -3,10 +3,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopit/src/utils/utils.dart';
 import 'package:shopit/src/features/cart/cart.dart';
 
-part 'cart_local_repository.g.dart';
+part 'cart_repository.g.dart';
 
-class CartLocalRepository {
-  CartLocalRepository(this._localDataSource);
+class CartRepository {
+  CartRepository(
+    this._localDataSource,
+  );
 
   final ICartLocalDataSource _localDataSource;
 
@@ -25,9 +27,9 @@ class CartLocalRepository {
 }
 
 @Riverpod(keepAlive: true)
-CartLocalRepository cartLocalRepository(CartLocalRepositoryRef ref) {
+CartRepository cartRepository(CartRepositoryRef ref) {
   final isar = ref.watch(isarProvider);
   final localDataSource = CartIsarDataSource(isar);
 
-  return CartLocalRepository(localDataSource);
+  return CartRepository(localDataSource);
 }

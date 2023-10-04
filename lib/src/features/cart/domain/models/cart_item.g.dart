@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'item.dart';
+part of 'cart_item.dart';
 
 // **************************************************************************
 // IsarEmbeddedGenerator
@@ -9,9 +9,9 @@ part of 'item.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-const ItemSchema = Schema(
-  name: r'Item',
-  id: 7900997316587104717,
+const CartItemSchema = Schema(
+  name: r'CartItem',
+  id: -8381127435096147183,
   properties: {
     r'id': PropertySchema(
       id: 0,
@@ -24,14 +24,14 @@ const ItemSchema = Schema(
       type: IsarType.long,
     )
   },
-  estimateSize: _itemEstimateSize,
-  serialize: _itemSerialize,
-  deserialize: _itemDeserialize,
-  deserializeProp: _itemDeserializeProp,
+  estimateSize: _cartItemEstimateSize,
+  serialize: _cartItemSerialize,
+  deserialize: _cartItemDeserialize,
+  deserializeProp: _cartItemDeserializeProp,
 );
 
-int _itemEstimateSize(
-  Item object,
+int _cartItemEstimateSize(
+  CartItem object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -40,8 +40,8 @@ int _itemEstimateSize(
   return bytesCount;
 }
 
-void _itemSerialize(
-  Item object,
+void _cartItemSerialize(
+  CartItem object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -50,20 +50,20 @@ void _itemSerialize(
   writer.writeLong(offsets[1], object.quantity);
 }
 
-Item _itemDeserialize(
+CartItem _cartItemDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Item(
+  final object = CartItem(
     id: reader.readString(offsets[0]),
     quantity: reader.readLong(offsets[1]),
   );
   return object;
 }
 
-P _itemDeserializeProp<P>(
+P _cartItemDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -79,8 +79,9 @@ P _itemDeserializeProp<P>(
   }
 }
 
-extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
-  QueryBuilder<Item, Item, QAfterFilterCondition> idEqualTo(
+extension CartItemQueryFilter
+    on QueryBuilder<CartItem, CartItem, QFilterCondition> {
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -93,7 +94,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -108,7 +109,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idLessThan(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -123,7 +124,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idBetween(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -142,7 +143,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idStartsWith(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -155,7 +156,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idEndsWith(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -168,7 +169,8 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idContains(String value,
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idContains(
+      String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -179,7 +181,8 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idMatches(String pattern,
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idMatches(
+      String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -190,7 +193,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idIsEmpty() {
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -199,7 +202,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idIsNotEmpty() {
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> idIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'id',
@@ -208,7 +211,8 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> quantityEqualTo(int value) {
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> quantityEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'quantity',
@@ -217,7 +221,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> quantityGreaterThan(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> quantityGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -230,7 +234,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> quantityLessThan(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> quantityLessThan(
     int value, {
     bool include = false,
   }) {
@@ -243,7 +247,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> quantityBetween(
+  QueryBuilder<CartItem, CartItem, QAfterFilterCondition> quantityBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -261,18 +265,20 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
   }
 }
 
-extension ItemQueryObject on QueryBuilder<Item, Item, QFilterCondition> {}
+extension CartItemQueryObject
+    on QueryBuilder<CartItem, CartItem, QFilterCondition> {}
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
+_$_CartItem _$$_CartItemFromJson(Map<String, dynamic> json) => _$_CartItem(
       id: json['id'] as String? ?? '',
       quantity: json['quantity'] as int? ?? 1,
     );
 
-Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
+Map<String, dynamic> _$$_CartItemToJson(_$_CartItem instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'quantity': instance.quantity,
     };

@@ -13,7 +13,7 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockWishlistRepository extends Mock implements WishlistRepository {}
 
-class MockCartLocalRepository extends Mock implements CartLocalRepository {}
+class MockCartRepository extends Mock implements CartRepository {}
 
 class MockProfileRepository extends Mock implements ProfileRepository {}
 
@@ -34,7 +34,7 @@ void main() {
   group('AuthController', () {
     late AuthRepository authRepository;
     late WishlistRepository wishlistRepository;
-    late CartLocalRepository cartLocalRepository;
+    late CartRepository cartLocalRepository;
     late ProfileRepository profileRepository;
     late SettingsRepository settingsRepository;
     late ProviderContainer container;
@@ -46,7 +46,7 @@ void main() {
     setUp(() {
       authRepository = MockAuthRepository();
       wishlistRepository = MockWishlistRepository();
-      cartLocalRepository = MockCartLocalRepository();
+      cartLocalRepository = MockCartRepository();
       profileRepository = MockProfileRepository();
       settingsRepository = MockSettingsRepository();
 
@@ -54,7 +54,7 @@ void main() {
         overrides: [
           authRepositoryProvider.overrideWithValue(authRepository),
           wishlistRepositoryProvider.overrideWithValue(wishlistRepository),
-          cartLocalRepositoryProvider.overrideWithValue(cartLocalRepository),
+          cartRepositoryProvider.overrideWithValue(cartLocalRepository),
           profileRepositoryProvider.overrideWithValue(profileRepository),
           settingsRepositoryProvider.overrideWithValue(settingsRepository),
         ],

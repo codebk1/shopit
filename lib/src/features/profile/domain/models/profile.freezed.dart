@@ -26,9 +26,10 @@ mixin _$Profile {
   String get lastName => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get avatar => throw _privateConstructorUsedError;
-  Wishlist get wishlist => throw _privateConstructorUsedError;
   String? get deliveryAddress => throw _privateConstructorUsedError;
   String? get billingAddress => throw _privateConstructorUsedError;
+  Wishlist get wishlist => throw _privateConstructorUsedError;
+  Cart get cart => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,11 +46,13 @@ abstract class $ProfileCopyWith<$Res> {
       String firstName,
       String lastName,
       @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
-      Wishlist wishlist,
       String? deliveryAddress,
       String? billingAddress});
+      Wishlist wishlist,
+      Cart cart});
 
   $WishlistCopyWith<$Res> get wishlist;
+  $CartCopyWith<$Res> get cart;
 }
 
 /// @nodoc
@@ -69,9 +72,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? firstName = null,
     Object? lastName = null,
     Object? avatar = freezed,
-    Object? wishlist = null,
     Object? deliveryAddress = freezed,
     Object? billingAddress = freezed,
+    Object? wishlist = null,
+    Object? cart = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -90,10 +94,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
-      wishlist: null == wishlist
-          ? _value.wishlist
-          : wishlist // ignore: cast_nullable_to_non_nullable
-              as Wishlist,
       deliveryAddress: freezed == deliveryAddress
           ? _value.deliveryAddress
           : deliveryAddress // ignore: cast_nullable_to_non_nullable
@@ -102,6 +102,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.billingAddress
           : billingAddress // ignore: cast_nullable_to_non_nullable
               as String?,
+      wishlist: null == wishlist
+          ? _value.wishlist
+          : wishlist // ignore: cast_nullable_to_non_nullable
+              as Wishlist,
+      cart: null == cart
+          ? _value.cart
+          : cart // ignore: cast_nullable_to_non_nullable
+              as Cart,
     ) as $Val);
   }
 
@@ -110,6 +118,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   $WishlistCopyWith<$Res> get wishlist {
     return $WishlistCopyWith<$Res>(_value.wishlist, (value) {
       return _then(_value.copyWith(wishlist: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CartCopyWith<$Res> get cart {
+    return $CartCopyWith<$Res>(_value.cart, (value) {
+      return _then(_value.copyWith(cart: value) as $Val);
     });
   }
 }
@@ -126,12 +142,15 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String firstName,
       String lastName,
       @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
-      Wishlist wishlist,
       String? deliveryAddress,
       String? billingAddress});
+      Wishlist wishlist,
+      Cart cart});
 
   @override
   $WishlistCopyWith<$Res> get wishlist;
+  @override
+  $CartCopyWith<$Res> get cart;
 }
 
 /// @nodoc
@@ -148,9 +167,10 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? avatar = freezed,
-    Object? wishlist = null,
     Object? deliveryAddress = freezed,
     Object? billingAddress = freezed,
+    Object? wishlist = null,
+    Object? cart = null,
   }) {
     return _then(_$_Profile(
       id: null == id
@@ -169,10 +189,6 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
-      wishlist: null == wishlist
-          ? _value.wishlist
-          : wishlist // ignore: cast_nullable_to_non_nullable
-              as Wishlist,
       deliveryAddress: freezed == deliveryAddress
           ? _value.deliveryAddress
           : deliveryAddress // ignore: cast_nullable_to_non_nullable
@@ -181,6 +197,14 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.billingAddress
           : billingAddress // ignore: cast_nullable_to_non_nullable
               as String?,
+      wishlist: null == wishlist
+          ? _value.wishlist
+          : wishlist // ignore: cast_nullable_to_non_nullable
+              as Wishlist,
+      cart: null == cart
+          ? _value.cart
+          : cart // ignore: cast_nullable_to_non_nullable
+              as Cart,
     ));
   }
 }
@@ -194,9 +218,10 @@ class _$_Profile implements _Profile {
       required this.firstName,
       required this.lastName,
       @JsonKey(includeFromJson: false, includeToJson: false) this.avatar,
-      this.wishlist = const Wishlist(),
       this.deliveryAddress,
       this.billingAddress});
+      this.wishlist = const Wishlist(),
+      this.cart = const Cart()});
 
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFromJson(json);
@@ -218,10 +243,12 @@ class _$_Profile implements _Profile {
   final String? deliveryAddress;
   @override
   final String? billingAddress;
+  @JsonKey()
+  final Cart cart;
 
   @override
   String toString() {
-    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, avatar: $avatar, wishlist: $wishlist, deliveryAddress: $deliveryAddress, billingAddress: $billingAddress)';
+    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, avatar: $avatar, deliveryAddress: $deliveryAddress, paymentAddress: $paymentAddress, wishlist: $wishlist, cart: $cart)';
   }
 
   @override
@@ -235,18 +262,19 @@ class _$_Profile implements _Profile {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
-            (identical(other.wishlist, wishlist) ||
-                other.wishlist == wishlist) &&
             (identical(other.deliveryAddress, deliveryAddress) ||
                 other.deliveryAddress == deliveryAddress) &&
             (identical(other.billingAddress, billingAddress) ||
                 other.billingAddress == billingAddress));
+            (identical(other.wishlist, wishlist) ||
+                other.wishlist == wishlist) &&
+            (identical(other.cart, cart) || other.cart == cart));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName, avatar,
-      wishlist, deliveryAddress, billingAddress);
+      deliveryAddress, paymentAddress, wishlist, cart);
 
   @JsonKey(ignore: true)
   @override
@@ -269,9 +297,10 @@ abstract class _Profile implements Profile {
       required final String lastName,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final String? avatar,
-      final Wishlist wishlist,
       final String? deliveryAddress,
       final String? billingAddress}) = _$_Profile;
+      final Wishlist wishlist,
+      final Cart cart}) = _$_Profile;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
 
@@ -286,11 +315,13 @@ abstract class _Profile implements Profile {
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get avatar;
   @override
-  Wishlist get wishlist;
-  @override
   String? get deliveryAddress;
   @override
   String? get billingAddress;
+  @override
+  Wishlist get wishlist;
+  @override
+  Cart get cart;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>

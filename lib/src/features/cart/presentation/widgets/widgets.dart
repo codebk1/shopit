@@ -1,3 +1,2 @@
-export 'cart_item.dart';
-export 'cart_summary.dart';
+export 'cart_bottom_section.dart';
 export 'quantity_selector.dart';

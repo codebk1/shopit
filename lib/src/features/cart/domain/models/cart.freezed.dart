@@ -20,13 +20,7 @@ Cart _$CartFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Cart {
-// ignore: invalid_annotation_target
-  @JsonKey(includeToJson: false)
-  String? get id => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  CartState get state => throw _privateConstructorUsedError;
-  double get shipping => throw _privateConstructorUsedError;
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<CartItem> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +32,7 @@ abstract class $CartCopyWith<$Res> {
   factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
       _$CartCopyWithImpl<$Res, Cart>;
   @useResult
-  $Res call(
-      {@JsonKey(includeToJson: false) String? id,
-      String userId,
-      CartState state,
-      double shipping,
-      List<Item> items});
+  $Res call({List<CartItem> items});
 }
 
 /// @nodoc
@@ -59,33 +48,13 @@ class _$CartCopyWithImpl<$Res, $Val extends Cart>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = null,
-    Object? state = null,
-    Object? shipping = null,
     Object? items = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as CartState,
-      shipping: null == shipping
-          ? _value.shipping
-          : shipping // ignore: cast_nullable_to_non_nullable
-              as double,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<CartItem>,
     ) as $Val);
   }
 }
@@ -96,12 +65,7 @@ abstract class _$$_CartCopyWith<$Res> implements $CartCopyWith<$Res> {
       __$$_CartCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(includeToJson: false) String? id,
-      String userId,
-      CartState state,
-      double shipping,
-      List<Item> items});
+  $Res call({List<CartItem> items});
 }
 
 /// @nodoc
@@ -113,33 +77,13 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res, _$_Cart>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = null,
-    Object? state = null,
-    Object? shipping = null,
     Object? items = null,
   }) {
     return _then(_$_Cart(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as CartState,
-      shipping: null == shipping
-          ? _value.shipping
-          : shipping // ignore: cast_nullable_to_non_nullable
-              as double,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<CartItem>,
     ));
   }
 }
@@ -148,32 +92,14 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res, _$_Cart>
 
 @JsonSerializable(explicitToJson: true)
 class _$_Cart implements _Cart {
-  const _$_Cart(
-      {@JsonKey(includeToJson: false) this.id,
-      required this.userId,
-      this.state = CartState.active,
-      this.shipping = 15.0,
-      final List<Item> items = const []})
-      : _items = items;
+  const _$_Cart({final List<CartItem> items = const []}) : _items = items;
 
   factory _$_Cart.fromJson(Map<String, dynamic> json) => _$$_CartFromJson(json);
 
-// ignore: invalid_annotation_target
-  @override
-  @JsonKey(includeToJson: false)
-  final String? id;
-  @override
-  final String userId;
+  final List<CartItem> _items;
   @override
   @JsonKey()
-  final CartState state;
-  @override
-  @JsonKey()
-  final double shipping;
-  final List<Item> _items;
-  @override
-  @JsonKey()
-  List<Item> get items {
+  List<CartItem> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -181,7 +107,7 @@ class _$_Cart implements _Cart {
 
   @override
   String toString() {
-    return 'Cart(id: $id, userId: $userId, state: $state, shipping: $shipping, items: $items)';
+    return 'Cart(items: $items)';
   }
 
   @override
@@ -189,18 +115,13 @@ class _$_Cart implements _Cart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Cart &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.state, state) || other.state == state) &&
-            (identical(other.shipping, shipping) ||
-                other.shipping == shipping) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, state, shipping,
-      const DeepCollectionEquality().hash(_items));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override
@@ -217,26 +138,12 @@ class _$_Cart implements _Cart {
 }
 
 abstract class _Cart implements Cart {
-  const factory _Cart(
-      {@JsonKey(includeToJson: false) final String? id,
-      required final String userId,
-      final CartState state,
-      final double shipping,
-      final List<Item> items}) = _$_Cart;
+  const factory _Cart({final List<CartItem> items}) = _$_Cart;
 
   factory _Cart.fromJson(Map<String, dynamic> json) = _$_Cart.fromJson;
 
-  @override // ignore: invalid_annotation_target
-  @JsonKey(includeToJson: false)
-  String? get id;
   @override
-  String get userId;
-  @override
-  CartState get state;
-  @override
-  double get shipping;
-  @override
-  List<Item> get items;
+  List<CartItem> get items;
   @override
   @JsonKey(ignore: true)
   _$$_CartCopyWith<_$_Cart> get copyWith => throw _privateConstructorUsedError;

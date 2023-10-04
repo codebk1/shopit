@@ -15,14 +15,12 @@ class ProfileFirebaseDataSource implements IProfileRemoteDataSource {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
 
-  static const _collection = 'profiles';
-
   CollectionReference<Profile> get _profilesRef =>
-      _firestore.collection(_collection).withConverter(
+      _firestore.collection('profiles').withConverter(
             fromFirestore: (doc, _) => Profile.fromJson(
               doc.data()!..addAll({'id': doc.id}),
             ),
-            toFirestore: (Profile profile, _) => profile.toJson()..remove('id'),
+            toFirestore: (Profile profile, _) => profile.toJson(),
           );
 
   @override

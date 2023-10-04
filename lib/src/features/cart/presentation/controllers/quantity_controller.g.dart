@@ -7,7 +7,7 @@ part of 'quantity_controller.dart';
 // **************************************************************************
 
 String _$quantityControllerHash() =>
-    r'c1d1e88702d1a12874b93f9fc7cdd36907ad4b6a';
+    r'4f7a122009ff834f2666f081b7b52f564125bf68';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,11 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$QuantityController
-    extends BuildlessAutoDisposeAsyncNotifier<Item> {
-  late final Item item;
+    extends BuildlessAutoDisposeAsyncNotifier<CartItem> {
+  late final CartItem item;
 
-  FutureOr<Item> build(
-    Item item,
+  FutureOr<CartItem> build(
+    CartItem item,
   );
 }
 
@@ -44,13 +44,13 @@ abstract class _$QuantityController
 const quantityControllerProvider = QuantityControllerFamily();
 
 /// See also [QuantityController].
-class QuantityControllerFamily extends Family<AsyncValue<Item>> {
+class QuantityControllerFamily extends Family<AsyncValue<CartItem>> {
   /// See also [QuantityController].
   const QuantityControllerFamily();
 
   /// See also [QuantityController].
   QuantityControllerProvider call(
-    Item item,
+    CartItem item,
   ) {
     return QuantityControllerProvider(
       item,
@@ -83,11 +83,11 @@ class QuantityControllerFamily extends Family<AsyncValue<Item>> {
 
 /// See also [QuantityController].
 class QuantityControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<QuantityController, Item> {
+    extends AutoDisposeAsyncNotifierProviderImpl<QuantityController, CartItem> {
   /// See also [QuantityController].
   QuantityControllerProvider(
-    this.item,
-  ) : super.internal(
+    CartItem item,
+  ) : this._internal(
           () => QuantityController()..item = item,
           from: quantityControllerProvider,
           name: r'quantityControllerProvider',
@@ -98,9 +98,51 @@ class QuantityControllerProvider
           dependencies: QuantityControllerFamily._dependencies,
           allTransitiveDependencies:
               QuantityControllerFamily._allTransitiveDependencies,
+          item: item,
         );
 
-  final Item item;
+  QuantityControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.item,
+  }) : super.internal();
+
+  final CartItem item;
+
+  @override
+  FutureOr<CartItem> runNotifierBuild(
+    covariant QuantityController notifier,
+  ) {
+    return notifier.build(
+      item,
+    );
+  }
+
+  @override
+  Override overrideWith(QuantityController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: QuantityControllerProvider._internal(
+        () => create()..item = item,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        item: item,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<QuantityController, CartItem>
+      createElement() {
+    return _QuantityControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -114,15 +156,20 @@ class QuantityControllerProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin QuantityControllerRef on AutoDisposeAsyncNotifierProviderRef<CartItem> {
+  /// The parameter `item` of this provider.
+  CartItem get item;
+}
+
+class _QuantityControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<QuantityController,
+        CartItem> with QuantityControllerRef {
+  _QuantityControllerProviderElement(super.provider);
 
   @override
-  FutureOr<Item> runNotifierBuild(
-    covariant QuantityController notifier,
-  ) {
-    return notifier.build(
-      item,
-    );
-  }
+  CartItem get item => (origin as QuantityControllerProvider).item;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

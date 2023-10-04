@@ -15,13 +15,17 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
           : Wishlist.fromJson(json['wishlist'] as Map<String, dynamic>),
       deliveryAddress: json['deliveryAddress'] as String?,
       billingAddress: json['billingAddress'] as String?,
+      cart: json['cart'] == null
+          ? const Cart()
+          : Cart.fromJson(json['cart'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
     <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
-      'wishlist': instance.wishlist.toJson(),
       'deliveryAddress': instance.deliveryAddress,
       'billingAddress': instance.billingAddress,
+      'wishlist': instance.wishlist.toJson(),
+      'cart': instance.cart.toJson(),
     };

@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cart_local_repository.dart';
+part of 'cart_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cartLocalRepositoryHash() =>
-    r'a0fd97e8b0cdbeb5fa7f33432c8bb5799270a1ca';
+String _$cartRepositoryHash() => r'484c8d1b9cff5af1160dd4c2474c67d0a775c2e7';
 
-/// See also [cartLocalRepository].
-@ProviderFor(cartLocalRepository)
-final cartLocalRepositoryProvider = Provider<CartLocalRepository>.internal(
-  cartLocalRepository,
-  name: r'cartLocalRepositoryProvider',
+/// See also [cartRepository].
+@ProviderFor(cartRepository)
+final cartRepositoryProvider = Provider<CartRepository>.internal(
+  cartRepository,
+  name: r'cartRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$cartLocalRepositoryHash,
+      : _$cartRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef CartLocalRepositoryRef = ProviderRef<CartLocalRepository>;
+typedef CartRepositoryRef = ProviderRef<CartRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

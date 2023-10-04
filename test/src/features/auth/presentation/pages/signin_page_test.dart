@@ -20,7 +20,7 @@ class MockSettingsRepository extends Mock implements SettingsRepository {}
 
 class MockWishlistRepository extends Mock implements WishlistRepository {}
 
-class MockCartLocalRepository extends Mock implements CartLocalRepository {}
+class MockCartLocalRepository extends Mock implements CartRepository {}
 
 void main() {
   const email = 'test1@test.com';
@@ -30,7 +30,7 @@ void main() {
     late AuthRepository authRepository;
     late SettingsRepository settingsRepository;
     late WishlistRepository wishlistRepository;
-    late CartLocalRepository cartLocalRepository;
+    late CartRepository cartLocalRepository;
     late ProviderContainer container;
 
     setUp(() async {
@@ -44,7 +44,7 @@ void main() {
           authRepositoryProvider.overrideWithValue(authRepository),
           settingsRepositoryProvider.overrideWithValue(settingsRepository),
           wishlistRepositoryProvider.overrideWithValue(wishlistRepository),
-          cartLocalRepositoryProvider.overrideWithValue(cartLocalRepository),
+          cartRepositoryProvider.overrideWithValue(cartLocalRepository),
         ],
       );
 

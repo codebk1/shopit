@@ -7,7 +7,7 @@ part 'quantity_controller.g.dart';
 @riverpod
 class QuantityController extends _$QuantityController {
   @override
-  FutureOr<Item> build(Item item) {
+  FutureOr<CartItem> build(CartItem item) {
     return item;
   }
 

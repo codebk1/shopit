@@ -6,11 +6,11 @@ part of 'cart_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cartServiceHash() => r'ca40b1fcd3f65052c32f08ea112edd249d2db3b5';
+String _$cartServiceHash() => r'11efce811a442f78c4d41cc630f6ce70328ca00a';
 
 /// See also [cartService].
 @ProviderFor(cartService)
-final cartServiceProvider = AutoDisposeProvider<CartService>.internal(
+final cartServiceProvider = Provider<CartService>.internal(
   cartService,
   name: r'cartServiceProvider',
   debugGetCreateSourceHash:
@@ -19,6 +19,6 @@ final cartServiceProvider = AutoDisposeProvider<CartService>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CartServiceRef = AutoDisposeProviderRef<CartService>;
+typedef CartServiceRef = ProviderRef<CartService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

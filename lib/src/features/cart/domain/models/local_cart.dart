@@ -7,14 +7,12 @@ part 'local_cart.g.dart';
 @collection
 class LocalCart {
   Id? id;
-  List<Item> items = [];
+  List<CartItem> items = [];
 }
 
 extension LocalCartExtension on LocalCart {
   Cart toCart() {
     return Cart(
-      id: '',
-      userId: '',
       items: items,
     );
   }

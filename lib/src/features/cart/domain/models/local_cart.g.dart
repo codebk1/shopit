@@ -21,7 +21,7 @@ const LocalCartSchema = CollectionSchema(
       id: 0,
       name: r'items',
       type: IsarType.objectList,
-      target: r'Item',
+      target: r'CartItem',
     )
   },
   estimateSize: _localCartEstimateSize,
@@ -31,7 +31,7 @@ const LocalCartSchema = CollectionSchema(
   idName: r'id',
   indexes: {},
   links: {},
-  embeddedSchemas: {r'Item': ItemSchema},
+  embeddedSchemas: {r'CartItem': CartItemSchema},
   getId: _localCartGetId,
   getLinks: _localCartGetLinks,
   attach: _localCartAttach,
@@ -46,10 +46,10 @@ int _localCartEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.items.length * 3;
   {
-    final offsets = allOffsets[Item]!;
+    final offsets = allOffsets[CartItem]!;
     for (var i = 0; i < object.items.length; i++) {
       final value = object.items[i];
-      bytesCount += ItemSchema.estimateSize(value, offsets, allOffsets);
+      bytesCount += CartItemSchema.estimateSize(value, offsets, allOffsets);
     }
   }
   return bytesCount;
@@ -61,10 +61,10 @@ void _localCartSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeObjectList<Item>(
+  writer.writeObjectList<CartItem>(
     offsets[0],
     allOffsets,
-    ItemSchema.serialize,
+    CartItemSchema.serialize,
     object.items,
   );
 }
@@ -77,11 +77,11 @@ LocalCart _localCartDeserialize(
 ) {
   final object = LocalCart();
   object.id = id;
-  object.items = reader.readObjectList<Item>(
+  object.items = reader.readObjectList<CartItem>(
         offsets[0],
-        ItemSchema.deserialize,
+        CartItemSchema.deserialize,
         allOffsets,
-        Item(),
+        CartItem(),
       ) ??
       [];
   return object;
@@ -95,11 +95,11 @@ P _localCartDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readObjectList<Item>(
+      return (reader.readObjectList<CartItem>(
             offset,
-            ItemSchema.deserialize,
+            CartItemSchema.deserialize,
             allOffsets,
-            Item(),
+            CartItem(),
           ) ??
           []) as P;
     default:
@@ -356,7 +356,7 @@ extension LocalCartQueryFilter
 extension LocalCartQueryObject
     on QueryBuilder<LocalCart, LocalCart, QFilterCondition> {
   QueryBuilder<LocalCart, LocalCart, QAfterFilterCondition> itemsElement(
-      FilterQuery<Item> q) {
+      FilterQuery<CartItem> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'items');
     });
@@ -394,7 +394,7 @@ extension LocalCartQueryProperty
     });
   }
 
-  QueryBuilder<LocalCart, List<Item>, QQueryOperations> itemsProperty() {
+  QueryBuilder<LocalCart, List<CartItem>, QQueryOperations> itemsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'items');
     });

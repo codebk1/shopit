@@ -82,11 +82,9 @@
     "cartEmptyState": "Cart is empty.",
     "cartErrorState": "Can't load cart.\nTry again later.",
     "cartCheckoutButton": "Checkout",
-    "cartSubtotalHeader": "Subtotal",
-    "cartSubtotalLoadingError": "Can't load subtotal value.",
-    "cartShippingCostHeader": "Shipping estimate",
-    "cartTotalHeader": "Order total",
-    "cartTotalLoadingError": "Can't load total value.",
+    "cartTotalHeader": "Products total:",
+    "cartTotalLoadingError": "Can't load products total value.",
+
 
     "inputSearchLabel": "Search products...",
     "inputFirstNameLabel": "First name",

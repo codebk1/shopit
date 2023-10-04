@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'item.dart';
+part of 'cart_item.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,32 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Item _$ItemFromJson(Map<String, dynamic> json) {
-  return _Item.fromJson(json);
+CartItem _$CartItemFromJson(Map<String, dynamic> json) {
+  return _CartItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Item {
+mixin _$CartItem {
   String get id => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
+  $CartItemCopyWith<CartItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) then) =
-      _$ItemCopyWithImpl<$Res, Item>;
+abstract class $CartItemCopyWith<$Res> {
+  factory $CartItemCopyWith(CartItem value, $Res Function(CartItem) then) =
+      _$CartItemCopyWithImpl<$Res, CartItem>;
   @useResult
   $Res call({String id, int quantity});
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res, $Val extends Item>
-    implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._value, this._then);
+class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
+    implements $CartItemCopyWith<$Res> {
+  _$CartItemCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -66,18 +67,21 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
 }
 
 /// @nodoc
-abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
-  factory _$$_ItemCopyWith(_$_Item value, $Res Function(_$_Item) then) =
-      __$$_ItemCopyWithImpl<$Res>;
+abstract class _$$_CartItemCopyWith<$Res> implements $CartItemCopyWith<$Res> {
+  factory _$$_CartItemCopyWith(
+          _$_CartItem value, $Res Function(_$_CartItem) then) =
+      __$$_CartItemCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, int quantity});
 }
 
 /// @nodoc
-class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
-    implements _$$_ItemCopyWith<$Res> {
-  __$$_ItemCopyWithImpl(_$_Item _value, $Res Function(_$_Item) _then)
+class __$$_CartItemCopyWithImpl<$Res>
+    extends _$CartItemCopyWithImpl<$Res, _$_CartItem>
+    implements _$$_CartItemCopyWith<$Res> {
+  __$$_CartItemCopyWithImpl(
+      _$_CartItem _value, $Res Function(_$_CartItem) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +90,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
     Object? id = null,
     Object? quantity = null,
   }) {
-    return _then(_$_Item(
+    return _then(_$_CartItem(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -101,10 +105,11 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Item implements _Item {
-  const _$_Item({this.id = '', this.quantity = 1});
+class _$_CartItem implements _CartItem {
+  const _$_CartItem({this.id = '', this.quantity = 1});
 
-  factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
+  factory _$_CartItem.fromJson(Map<String, dynamic> json) =>
+      _$$_CartItemFromJson(json);
 
   @override
   @JsonKey()
@@ -115,14 +120,14 @@ class _$_Item implements _Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, quantity: $quantity)';
+    return 'CartItem(id: $id, quantity: $quantity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Item &&
+            other is _$_CartItem &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity));
@@ -135,21 +140,21 @@ class _$_Item implements _Item {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ItemCopyWith<_$_Item> get copyWith =>
-      __$$_ItemCopyWithImpl<_$_Item>(this, _$identity);
+  _$$_CartItemCopyWith<_$_CartItem> get copyWith =>
+      __$$_CartItemCopyWithImpl<_$_CartItem>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ItemToJson(
+    return _$$_CartItemToJson(
       this,
     );
   }
 }
 
-abstract class _Item implements Item {
-  const factory _Item({final String id, final int quantity}) = _$_Item;
+abstract class _CartItem implements CartItem {
+  const factory _CartItem({final String id, final int quantity}) = _$_CartItem;
 
-  factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
+  factory _CartItem.fromJson(Map<String, dynamic> json) = _$_CartItem.fromJson;
 
   @override
   String get id;
@@ -157,5 +162,6 @@ abstract class _Item implements Item {
   int get quantity;
   @override
   @JsonKey(ignore: true)
-  _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;
+  _$$_CartItemCopyWith<_$_CartItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }

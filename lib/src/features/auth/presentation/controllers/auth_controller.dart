@@ -24,7 +24,7 @@ class AuthController extends _$AuthController {
     );
 
     if (!state.hasError) {
-      await ref.read(cartLocalRepositoryProvider).clear();
+      await ref.read(cartRepositoryProvider).clear();
       await ref.read(wishlistRepositoryProvider).clear();
       ref.read(routerProvider).pop();
     }

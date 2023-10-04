@@ -82,11 +82,9 @@
     "cartEmptyState": "Koszyk jest pusty.",
     "cartErrorState": "Nie można załadować koszyka.\nSpróbuj ponownie później.",
     "cartCheckoutButton": "Zamówienie",
-    "cartSubtotalHeader": "Wartość koszyka",
-    "cartSubtotalLoadingError": "Nie można załadować wartości.",
-    "cartShippingCostHeader": "Dostawa",
-    "cartTotalHeader": "Razem",
-    "cartTotalLoadingError": "Nie można załadować wartości.",
+    "cartTotalHeader": "Wartość koszyka:",
+    "cartTotalLoadingError": "Nie można załadować wartości koszyka.",
+
 
     "inputSearchLabel": "Szukaj produktów...",
     "inputFirstNameLabel": "Imię",

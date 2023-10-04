@@ -6,11 +6,11 @@ part of 'cart_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cartItemHash() => r'b291ede23cccff4f5be2fd7c36b1edd8cdddb7bd';
+String _$cartItemHash() => r'4ac972facf8740e6fddef6a1b5bfb81eeaa49dbb';
 
 /// See also [cartItem].
 @ProviderFor(cartItem)
-final cartItemProvider = AutoDisposeProvider<Item>.internal(
+final cartItemProvider = AutoDisposeProvider<CartItem>.internal(
   cartItem,
   name: r'cartItemProvider',
   debugGetCreateSourceHash:
@@ -19,7 +19,7 @@ final cartItemProvider = AutoDisposeProvider<Item>.internal(
   allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
-typedef CartItemRef = AutoDisposeProviderRef<Item>;
+typedef CartItemRef = AutoDisposeProviderRef<CartItem>;
 String _$cartItemsCountHash() => r'e8ac312dcbb87c1d8fe633856b3683b253c6d6ab';
 
 /// See also [cartItemsCount].
@@ -35,26 +35,26 @@ final cartItemsCountProvider = AutoDisposeProvider<int>.internal(
 );
 
 typedef CartItemsCountRef = AutoDisposeProviderRef<int>;
-String _$cartSubtotalHash() => r'8871585b831a6de080b5d3afd3d687b0963221d8';
+String _$cartTotalHash() => r'738483e7dfe9b29067744624273eb0f75b866dcb';
 
-/// See also [cartSubtotal].
-@ProviderFor(cartSubtotal)
-final cartSubtotalProvider = AutoDisposeFutureProvider<double>.internal(
-  cartSubtotal,
-  name: r'cartSubtotalProvider',
+/// See also [cartTotal].
+@ProviderFor(cartTotal)
+final cartTotalProvider = FutureProvider<double>.internal(
+  cartTotal,
+  name: r'cartTotalProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$cartSubtotalHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$cartTotalHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef CartSubtotalRef = AutoDisposeFutureProviderRef<double>;
-String _$cartControllerHash() => r'619a4a640b92bffc85e24a25ae8b1663d65a8cd1';
+typedef CartTotalRef = FutureProviderRef<double>;
+String _$cartControllerHash() => r'd3e65a9e099180087723ccaf62d19f1d461b3ae8';
 
 /// See also [CartController].
 @ProviderFor(CartController)
 final cartControllerProvider =
-    AutoDisposeAsyncNotifierProvider<CartController, Cart>.internal(
+    AsyncNotifierProvider<CartController, Cart>.internal(
   CartController.new,
   name: r'cartControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -64,6 +64,6 @@ final cartControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CartController = AutoDisposeAsyncNotifier<Cart>;
+typedef _$CartController = AsyncNotifier<Cart>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

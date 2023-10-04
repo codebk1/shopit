@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/cart/cart.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
@@ -13,9 +14,10 @@ class Profile with _$Profile {
     required String firstName,
     required String lastName,
     @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
-    @Default(Wishlist()) Wishlist wishlist,
     String? deliveryAddress,
     String? billingAddress,
+    @Default(Wishlist()) Wishlist wishlist,
+    @Default(Cart()) Cart cart,
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, Object?> json) =>

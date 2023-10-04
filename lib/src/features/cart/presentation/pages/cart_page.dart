@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/products/products.dart';
 import 'package:shopit/src/features/cart/cart.dart';
 
 class CartPage extends ConsumerWidget {
@@ -46,47 +47,31 @@ class CartPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: ListView.separated(
-                        separatorBuilder: (context, index) => gapH8,
+                        padding: const EdgeInsets.only(bottom: 14),
                         itemCount: cart.items.length,
+                        separatorBuilder: (_, __) => gapH8,
                         itemBuilder: (context, index) {
                           final item = cart.items[index];
                           return ProviderScope(
                             overrides: [
-                              cartItemProvider.overrideWithValue(item)
+                              cartItemProvider.overrideWithValue(item),
+                              productIdProvider.overrideWithValue(item.id),
                             ],
                             child: RemoveSlidable(
                               key: ValueKey(item.id),
                               onRemove: () => ref
                                   .read(cartControllerProvider.notifier)
                                   .removeItem(item),
-                              child: const CartItem(),
+                              child: const ProductsListItem(
+                                heroTag: 'cart',
+                                widgets: [QuantitySelector()],
+                              ),
                             ),
                           );
                         },
                       ),
                     ),
-                    gapH24,
-                    const Padding(
-                      padding: EdgeInsets.all(14),
-                      child: CartSummary(),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(context.l10n.cartCheckoutButton),
-                            gapW10,
-                            const SvgIcon(
-                              iconName: 'arrow-long-right',
-                              color: Color.fromARGB(255, 255, 255, 255),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    const CartBottomSection(),
                   ],
                 ),
           error: (_, __) => ErrorState(

@@ -5,7 +5,7 @@ import 'package:shopit/src/features/cart/cart.dart';
 
 part 'cart_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CartController extends _$CartController {
   @override
   FutureOr<Cart> build() async {
@@ -15,7 +15,7 @@ class CartController extends _$CartController {
   Future<void> addItem(String itemId) async {
     final cart = state.value!;
 
-    Item? currentItem;
+    CartItem? currentItem;
     for (final item in cart.items) {
       if (item.id == itemId) {
         currentItem = item;
@@ -26,7 +26,7 @@ class CartController extends _$CartController {
     if (currentItem == null) {
       state = await AsyncValue.guard(() async {
         final newCart = cart.copyWith(
-          items: [...cart.items, Item(id: itemId, quantity: 1)],
+          items: [...cart.items, CartItem(id: itemId, quantity: 1)],
         );
 
         await ref.read(cartServiceProvider).update(newCart);
@@ -37,10 +37,10 @@ class CartController extends _$CartController {
     }
   }
 
-  Future<void> updateItem(Item currentItem, int quantity) async {
+  Future<void> updateItem(CartItem currentItem, int quantity) async {
     final cart = state.value!;
 
-    List<Item> newItems;
+    List<CartItem> newItems;
     final index = cart.items.indexOf(currentItem);
 
     if (quantity == 0) {
@@ -61,7 +61,7 @@ class CartController extends _$CartController {
     });
   }
 
-  Future<void> removeItem(Item item) async {
+  Future<void> removeItem(CartItem item) async {
     state = await AsyncValue.guard(
       () async {
         final newCart = state.value!.copyWith(
@@ -80,14 +80,14 @@ class CartController extends _$CartController {
     state = await AsyncValue.guard(() async {
       final cartService = ref.read(cartServiceProvider);
 
-      await cartService.clear(state.value!);
+      await cartService.clear();
       return cartService.get();
     });
   }
 }
 
 @Riverpod(dependencies: [])
-Item cartItem(CartItemRef ref) {
+CartItem cartItem(CartItemRef ref) {
   throw UnimplementedError();
 }
 
@@ -99,8 +99,8 @@ int cartItemsCount(CartItemsCountRef ref) {
       );
 }
 
-@riverpod
-Future<double> cartSubtotal(CartSubtotalRef ref) async {
+@Riverpod(keepAlive: true)
+Future<double> cartTotal(CartTotalRef ref) async {
   final cart = ref.watch(cartControllerProvider).value;
 
   var total = 0.0;

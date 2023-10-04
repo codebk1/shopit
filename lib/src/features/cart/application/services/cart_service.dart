@@ -1,45 +1,43 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/cart/cart.dart';
+import 'package:shopit/src/features/profile/profile.dart';
 
 part 'cart_service.g.dart';
 
 class CartService {
   CartService(
-    this._user,
-    this._localRepository,
-    this._remoteRepository,
+    this._profile,
+    this._profileRepository,
+    this._cartRepository,
   );
 
-  final User? _user;
-  final CartLocalRepository _localRepository;
-  final CartRemoteRepository _remoteRepository;
+  final Profile? _profile;
+  final ProfileRepository _profileRepository;
+  final CartRepository _cartRepository;
 
-  Future<Cart> get() {
-    return _user != null
-        ? _remoteRepository.get(_user!.id)
-        : _localRepository.get();
+  Future<Cart> get() async {
+    return _profile != null ? _profile!.cart : await _cartRepository.get();
   }
 
   Future<void> update(Cart cart) {
-    return _user != null
-        ? _remoteRepository.update(cart)
-        : _localRepository.update(cart);
+    return _profile != null
+        ? _profileRepository.update(_profile!.copyWith(cart: cart))
+        : _cartRepository.update(cart);
   }
 
-  Future<void> clear(Cart cart) {
-    return _user != null
-        ? _remoteRepository.clear(cart)
-        : _localRepository.clear();
+  Future<void> clear() {
+    return _profile != null
+        ? _profileRepository.update(_profile!.copyWith(cart: const Cart()))
+        : _cartRepository.clear();
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 CartService cartService(CartServiceRef ref) {
-  final user = ref.watch(authStateChangesProvider).value;
-  final localRepository = ref.watch(cartLocalRepositoryProvider);
-  final remoteRepository = ref.watch(cartRemoteRepositoryProvider);
+  final profile = ref.watch(profileControllerProvider).valueOrNull;
+  final profileRepository = ref.read(profileRepositoryProvider);
+  final cartRepository = ref.read(cartRepositoryProvider);
 
-  return CartService(user, localRepository, remoteRepository);
+  return CartService(profile, profileRepository, cartRepository);
 }
