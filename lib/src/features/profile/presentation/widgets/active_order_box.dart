@@ -180,7 +180,7 @@ class ActiveOrderBox extends ConsumerWidget {
                     ],
                   ),
                 ],
-              )
+              ),
             ],
           ),
         )

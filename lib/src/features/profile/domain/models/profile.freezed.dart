@@ -27,7 +27,7 @@ mixin _$Profile {
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get avatar => throw _privateConstructorUsedError;
   String? get deliveryAddress => throw _privateConstructorUsedError;
-  String? get billingAddress => throw _privateConstructorUsedError;
+  String? get paymentAddress => throw _privateConstructorUsedError;
   Wishlist get wishlist => throw _privateConstructorUsedError;
   Cart get cart => throw _privateConstructorUsedError;
 
@@ -47,7 +47,7 @@ abstract class $ProfileCopyWith<$Res> {
       String lastName,
       @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
       String? deliveryAddress,
-      String? billingAddress});
+      String? paymentAddress,
       Wishlist wishlist,
       Cart cart});
 
@@ -73,7 +73,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? lastName = null,
     Object? avatar = freezed,
     Object? deliveryAddress = freezed,
-    Object? billingAddress = freezed,
+    Object? paymentAddress = freezed,
     Object? wishlist = null,
     Object? cart = null,
   }) {
@@ -98,9 +98,9 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.deliveryAddress
           : deliveryAddress // ignore: cast_nullable_to_non_nullable
               as String?,
-      billingAddress: freezed == billingAddress
-          ? _value.billingAddress
-          : billingAddress // ignore: cast_nullable_to_non_nullable
+      paymentAddress: freezed == paymentAddress
+          ? _value.paymentAddress
+          : paymentAddress // ignore: cast_nullable_to_non_nullable
               as String?,
       wishlist: null == wishlist
           ? _value.wishlist
@@ -143,7 +143,7 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String lastName,
       @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
       String? deliveryAddress,
-      String? billingAddress});
+      String? paymentAddress,
       Wishlist wishlist,
       Cart cart});
 
@@ -168,7 +168,7 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? lastName = null,
     Object? avatar = freezed,
     Object? deliveryAddress = freezed,
-    Object? billingAddress = freezed,
+    Object? paymentAddress = freezed,
     Object? wishlist = null,
     Object? cart = null,
   }) {
@@ -193,9 +193,9 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.deliveryAddress
           : deliveryAddress // ignore: cast_nullable_to_non_nullable
               as String?,
-      billingAddress: freezed == billingAddress
-          ? _value.billingAddress
-          : billingAddress // ignore: cast_nullable_to_non_nullable
+      paymentAddress: freezed == paymentAddress
+          ? _value.paymentAddress
+          : paymentAddress // ignore: cast_nullable_to_non_nullable
               as String?,
       wishlist: null == wishlist
           ? _value.wishlist
@@ -219,7 +219,7 @@ class _$_Profile implements _Profile {
       required this.lastName,
       @JsonKey(includeFromJson: false, includeToJson: false) this.avatar,
       this.deliveryAddress,
-      this.billingAddress});
+      this.paymentAddress,
       this.wishlist = const Wishlist(),
       this.cart = const Cart()});
 
@@ -237,12 +237,13 @@ class _$_Profile implements _Profile {
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String? avatar;
   @override
+  final String? deliveryAddress;
+  @override
+  final String? paymentAddress;
+  @override
   @JsonKey()
   final Wishlist wishlist;
   @override
-  final String? deliveryAddress;
-  @override
-  final String? billingAddress;
   @JsonKey()
   final Cart cart;
 
@@ -264,8 +265,8 @@ class _$_Profile implements _Profile {
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.deliveryAddress, deliveryAddress) ||
                 other.deliveryAddress == deliveryAddress) &&
-            (identical(other.billingAddress, billingAddress) ||
-                other.billingAddress == billingAddress));
+            (identical(other.paymentAddress, paymentAddress) ||
+                other.paymentAddress == paymentAddress) &&
             (identical(other.wishlist, wishlist) ||
                 other.wishlist == wishlist) &&
             (identical(other.cart, cart) || other.cart == cart));
@@ -298,7 +299,7 @@ abstract class _Profile implements Profile {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final String? avatar,
       final String? deliveryAddress,
-      final String? billingAddress}) = _$_Profile;
+      final String? paymentAddress,
       final Wishlist wishlist,
       final Cart cart}) = _$_Profile;
 
@@ -317,7 +318,7 @@ abstract class _Profile implements Profile {
   @override
   String? get deliveryAddress;
   @override
-  String? get billingAddress;
+  String? get paymentAddress;
   @override
   Wishlist get wishlist;
   @override

@@ -15,7 +15,7 @@ class Profile with _$Profile {
     required String lastName,
     @JsonKey(includeFromJson: false, includeToJson: false) String? avatar,
     String? deliveryAddress,
-    String? billingAddress,
+    String? paymentAddress,
     @Default(Wishlist()) Wishlist wishlist,
     @Default(Cart()) Cart cart,
   }) = _Profile;

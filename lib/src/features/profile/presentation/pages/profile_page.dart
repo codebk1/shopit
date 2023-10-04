@@ -77,8 +77,8 @@ class ProfilePage extends StatelessWidget {
                           gapH24,
                           DefaultAddressBox(
                             header: context
-                                .l10n.profileDefaultBillingAddressBoxHeader,
-                            type: AddressType.billing,
+                                .l10n.profileDefaultPaymentAddressBoxHeader,
+                            type: AddressType.payment,
                           ),
                         ],
                       ),

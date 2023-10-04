@@ -10,11 +10,11 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
       id: json['id'] as String,
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
+      deliveryAddress: json['deliveryAddress'] as String?,
+      paymentAddress: json['paymentAddress'] as String?,
       wishlist: json['wishlist'] == null
           ? const Wishlist()
           : Wishlist.fromJson(json['wishlist'] as Map<String, dynamic>),
-      deliveryAddress: json['deliveryAddress'] as String?,
-      billingAddress: json['billingAddress'] as String?,
       cart: json['cart'] == null
           ? const Cart()
           : Cart.fromJson(json['cart'] as Map<String, dynamic>),
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'deliveryAddress': instance.deliveryAddress,
-      'billingAddress': instance.billingAddress,
+      'paymentAddress': instance.paymentAddress,
       'wishlist': instance.wishlist.toJson(),
       'cart': instance.cart.toJson(),
     };
