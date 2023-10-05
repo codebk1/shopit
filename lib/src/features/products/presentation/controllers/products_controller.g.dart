@@ -6,6 +6,20 @@ part of 'products_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$productIdHash() => r'45c432b7de274c4e379590471c87ed7a0298f7b7';
+
+/// See also [productId].
+@ProviderFor(productId)
+final productIdProvider = AutoDisposeProvider<String>.internal(
+  productId,
+  name: r'productIdProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$productIdHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef ProductIdRef = AutoDisposeProviderRef<String>;
 String _$productsCountHash() => r'b530a3edf25a596520c1d6be5c71b030a0a73caf';
 
 /// Copied from Dart SDK
@@ -28,8 +42,6 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
-
-typedef ProductsCountRef = AutoDisposeFutureProviderRef<int>;
 
 /// See also [productsCount].
 @ProviderFor(productsCount)
@@ -77,10 +89,10 @@ class ProductsCountFamily extends Family<AsyncValue<int>> {
 class ProductsCountProvider extends AutoDisposeFutureProvider<int> {
   /// See also [productsCount].
   ProductsCountProvider(
-    this.id,
-  ) : super.internal(
+    String id,
+  ) : this._internal(
           (ref) => productsCount(
-            ref,
+            ref as ProductsCountRef,
             id,
           ),
           from: productsCountProvider,
@@ -92,9 +104,43 @@ class ProductsCountProvider extends AutoDisposeFutureProvider<int> {
           dependencies: ProductsCountFamily._dependencies,
           allTransitiveDependencies:
               ProductsCountFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  ProductsCountProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<int> Function(ProductsCountRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ProductsCountProvider._internal(
+        (ref) => create(ref as ProductsCountRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<int> createElement() {
+    return _ProductsCountProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -108,6 +154,19 @@ class ProductsCountProvider extends AutoDisposeFutureProvider<int> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin ProductsCountRef on AutoDisposeFutureProviderRef<int> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _ProductsCountProviderElement
+    extends AutoDisposeFutureProviderElement<int> with ProductsCountRef {
+  _ProductsCountProviderElement(super.provider);
+
+  @override
+  String get id => (origin as ProductsCountProvider).id;
 }
 
 String _$productsSortHash() => r'ec65fe222d84246ed6aef260f6d3657bdee9142b';
@@ -126,7 +185,7 @@ final productsSortProvider =
 
 typedef _$ProductsSort = AutoDisposeNotifier<Sort>;
 String _$productsPageControllerHash() =>
-    r'77708bdc0949ffcb16b1f3f0feb2336efac05e8c';
+    r'4006eec4702ee216c1e1a8cf2355c88e590f420b';
 
 abstract class _$ProductsPageController
     extends BuildlessAutoDisposeAsyncNotifier<PageMeta<Product>> {
@@ -186,8 +245,8 @@ class ProductsPageControllerProvider
         PageMeta<Product>> {
   /// See also [ProductsPageController].
   ProductsPageControllerProvider(
-    this.categoryId,
-  ) : super.internal(
+    String categoryId,
+  ) : this._internal(
           () => ProductsPageController()..categoryId = categoryId,
           from: productsPageControllerProvider,
           name: r'productsPageControllerProvider',
@@ -198,9 +257,51 @@ class ProductsPageControllerProvider
           dependencies: ProductsPageControllerFamily._dependencies,
           allTransitiveDependencies:
               ProductsPageControllerFamily._allTransitiveDependencies,
+          categoryId: categoryId,
         );
 
+  ProductsPageControllerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.categoryId,
+  }) : super.internal();
+
   final String categoryId;
+
+  @override
+  FutureOr<PageMeta<Product>> runNotifierBuild(
+    covariant ProductsPageController notifier,
+  ) {
+    return notifier.build(
+      categoryId,
+    );
+  }
+
+  @override
+  Override overrideWith(ProductsPageController Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: ProductsPageControllerProvider._internal(
+        () => create()..categoryId = categoryId,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        categoryId: categoryId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<ProductsPageController,
+      PageMeta<Product>> createElement() {
+    return _ProductsPageControllerProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -215,15 +316,22 @@ class ProductsPageControllerProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin ProductsPageControllerRef
+    on AutoDisposeAsyncNotifierProviderRef<PageMeta<Product>> {
+  /// The parameter `categoryId` of this provider.
+  String get categoryId;
+}
+
+class _ProductsPageControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<ProductsPageController,
+        PageMeta<Product>> with ProductsPageControllerRef {
+  _ProductsPageControllerProviderElement(super.provider);
 
   @override
-  FutureOr<PageMeta<Product>> runNotifierBuild(
-    covariant ProductsPageController notifier,
-  ) {
-    return notifier.build(
-      categoryId,
-    );
-  }
+  String get categoryId =>
+      (origin as ProductsPageControllerProvider).categoryId;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

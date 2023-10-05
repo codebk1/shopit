@@ -9,6 +9,11 @@ part 'products_controller.g.dart';
 
 const kProductsPageLimit = 10;
 
+@Riverpod(dependencies: [])
+String productId(ProductIdRef ref) {
+  throw UnimplementedError();
+}
+
 @riverpod
 Future<int> productsCount(ProductsCountRef ref, String id) {
   return ref.read(productsRepositoryProvider).countByCategory(id);
@@ -42,19 +47,19 @@ class ProductsPageController extends _$ProductsPageController {
   }
 
   Future<void> nextPage() async {
-    final pageMeta = await future;
+    final pageMeta = state.requireValue;
 
     final canLoadMore = pageMeta.items.length % kProductsPageLimit == 0 &&
         !pageMeta.noMoreItems &&
-        !pageMeta.isLoading &&
-        pageMeta.error == null;
+        !pageMeta.isLoading;
 
     if (!canLoadMore) return;
 
     try {
       state = AsyncData(
-        pageMeta.copyWith(
+        state.requireValue.copyWith(
           isLoading: true,
+          error: null,
         ),
       );
 
@@ -67,7 +72,7 @@ class ProductsPageController extends _$ProductsPageController {
               );
 
       state = AsyncData(
-        pageMeta.copyWith(
+        state.requireValue.copyWith(
           isLoading: false,
           noMoreItems: nextItems.isEmpty,
           items: [
@@ -78,7 +83,7 @@ class ProductsPageController extends _$ProductsPageController {
       );
     } catch (error) {
       state = AsyncData(
-        pageMeta.copyWith(
+        state.requireValue.copyWith(
           isLoading: false,
           error: error,
         ),

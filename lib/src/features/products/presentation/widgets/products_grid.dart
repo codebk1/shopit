@@ -25,6 +25,7 @@ class ProductsGrid extends ConsumerWidget {
         topRight: Radius.circular(8),
       ),
       child: productsPageController.when(
+        skipLoadingOnRefresh: false,
         data: (pageMeta) {
           return pageMeta.items.isEmpty
               ? EmptyState(
@@ -68,8 +69,9 @@ class ProductsGrid extends ConsumerWidget {
                       if (pageMeta.error != null)
                         SliverToBoxAdapter(
                           child: LoadMoreError(
-                            onRefresh: () =>
-                                ref.invalidate(productsPageProvider),
+                            onRefresh: () => ref
+                                .read(productsPageProvider.notifier)
+                                .nextPage(),
                           ),
                         ),
                     ],
