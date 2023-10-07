@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class Spacing {
   static const s1 = 1.0;
   static const s2 = 2.0;
+  static const s3 = 3.0;
   static const s4 = 4.0;
+  static const s5 = 5.0;
   static const s6 = 6.0;
   static const s8 = 8.0;
   static const s10 = 10.0;
@@ -25,7 +27,9 @@ class Spacing {
 // horizontal spacing
 const gapW1 = SizedBox(width: Spacing.s1);
 const gapW2 = SizedBox(width: Spacing.s2);
+const gapW3 = SizedBox(width: Spacing.s3);
 const gapW4 = SizedBox(width: Spacing.s4);
+const gapW5 = SizedBox(width: Spacing.s5);
 const gapW6 = SizedBox(width: Spacing.s6);
 const gapW8 = SizedBox(width: Spacing.s8);
 const gapW10 = SizedBox(width: Spacing.s10);
@@ -46,7 +50,9 @@ const gapW64 = SizedBox(width: Spacing.s64);
 // vertical spacing
 const gapH1 = SizedBox(height: Spacing.s1);
 const gapH2 = SizedBox(height: Spacing.s2);
+const gapH3 = SizedBox(height: Spacing.s3);
 const gapH4 = SizedBox(height: Spacing.s4);
+const gapH5 = SizedBox(height: Spacing.s5);
 const gapH6 = SizedBox(height: Spacing.s6);
 const gapH8 = SizedBox(height: Spacing.s8);
 const gapH10 = SizedBox(height: Spacing.s10);
@@ -67,7 +73,9 @@ const gapH64 = SizedBox(height: Spacing.s64);
 // sliver horizontal spacing
 const sliverGapW1 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s1));
 const sliverGapW2 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s2));
+const sliverGapW3 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s3));
 const sliverGapW4 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s4));
+const sliverGapW5 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s5));
 const sliverGapW6 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s6));
 const sliverGapW8 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s8));
 const sliverGapW10 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s10));
@@ -88,7 +96,9 @@ const sliverGapW64 = SliverToBoxAdapter(child: SizedBox(width: Spacing.s64));
 // sliver vertical spacing
 const sliverGapH1 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s1));
 const sliverGapH2 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s2));
+const sliverGapH3 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s3));
 const sliverGapH4 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s4));
+const sliverGapH5 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s5));
 const sliverGapH6 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s6));
 const sliverGapH8 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s8));
 const sliverGapH10 = SliverToBoxAdapter(child: SizedBox(height: Spacing.s10));

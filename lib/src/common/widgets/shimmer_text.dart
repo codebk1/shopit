@@ -13,6 +13,7 @@ class ShimmerText extends ConsumerWidget {
     this.lines = 1,
     this.lineHeight = 15,
     this.gap = 5,
+    this.extraHeight = 0,
     this.dark = false,
   }) : oddLinesWidth = oddLinesWidth ?? width;
 
@@ -21,6 +22,7 @@ class ShimmerText extends ConsumerWidget {
   final int lines;
   final double lineHeight;
   final double gap;
+  final double extraHeight;
   final bool dark;
 
   @override
@@ -37,7 +39,8 @@ class ShimmerText extends ConsumerWidget {
           for (int i = 0; i < lines; i++)
             Container(
               margin: EdgeInsets.only(bottom: i == lines - 1 ? 0 : gap),
-              height: lineHeight + gap / lines,
+              height: ((lineHeight * lines - (lines - 1) * gap) + extraHeight) /
+                  lines,
               width: i.isEven ? width : oddLinesWidth,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 255, 255, 255),
