@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 
 part 'profile_controller.g.dart';
@@ -9,18 +8,12 @@ part 'profile_controller.g.dart';
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<Profile?> build() async {
-    final user = await ref.watch(authStateChangesProvider.future);
-
-    if (user != null) {
-      return ref.read(profileRepositoryProvider).get(user.id);
-    }
-
-    return null;
+    return ref.watch(profileProvider).valueOrNull;
   }
 
   Future<void> updateProfile(
     Profile profile, {
-    bool updateAvatar = true,
+    bool updateAvatar = false,
   }) async {
     final newProfile = await ref
         .read(profileRepositoryProvider)

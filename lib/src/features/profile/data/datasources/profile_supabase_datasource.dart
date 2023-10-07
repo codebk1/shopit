@@ -37,7 +37,7 @@ class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
   }
 
   @override
-  Future<Profile> update(Profile profile, [bool updateAvatar = false]) async {
+  Future<Profile> update(Profile profile, bool updateAvatar) async {
     try {
       await _profilesRef.update(profile.toJson()).eq('id', profile.id);
 

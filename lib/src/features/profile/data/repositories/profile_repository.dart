@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 //import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shopit/src/features/auth/auth.dart';
 
 import 'package:shopit/src/features/profile/profile.dart';
 
@@ -37,4 +38,15 @@ ProfileRepository profileRepository(ProfileRepositoryRef ref) {
   // );
 
   return ProfileRepository(remoteDataSource);
+}
+
+@Riverpod(keepAlive: true)
+Future<Profile?> profile(ProfileRef ref) async {
+  final user = ref.watch(authStateChangesProvider).valueOrNull;
+
+  if (user != null) {
+    return ref.read(profileRepositoryProvider).get(user.id);
+  }
+
+  return null;
 }

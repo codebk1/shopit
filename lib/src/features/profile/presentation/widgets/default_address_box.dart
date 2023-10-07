@@ -7,7 +7,6 @@ import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/utils/utils.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
 
 class DefaultAddressBox extends ConsumerStatefulWidget {
@@ -82,43 +81,7 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     address != null
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                address.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              Text(address.street),
-                              Text('${address.postalCode}, ${address.city}'),
-                              if (address.nip!.isNotEmpty)
-                                Row(
-                                  children: [
-                                    const Text('NIP:'),
-                                    gapW4,
-                                    Text(address.nip!),
-                                  ],
-                                ),
-                              Row(
-                                children: [
-                                  const SvgIcon(iconName: 'phone', width: 16),
-                                  gapW4,
-                                  Text(address.phone),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const SvgIcon(iconName: 'email', width: 16),
-                                  gapW4,
-                                  Text(address.email),
-                                ],
-                              ),
-                            ],
-                          )
+                        ? AddressData(address: address)
                         : Text(context.l10n.profileNoDefaultAddress),
                     TextButton(
                       child: Text(
@@ -128,9 +91,9 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                         final selectedAddress = await showModalBottomSheet(
                           context: context,
                           showDragHandle: true,
-                          builder: (_) => SelectDefaultAddressSheet(
-                            currentAddress: address,
-                            addressType: widget.type,
+                          builder: (_) => SelectAddressSheet(
+                            currentAddress:
+                                address ?? Address.empty(widget.type),
                           ),
                         );
 

@@ -94,7 +94,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
         setState(() {
           _updateProfile = ref
               .read(profileControllerProvider.notifier)
-              .updateProfile(newProfile);
+              .updateProfile(newProfile, updateAvatar: true);
         });
 
         _updateProfile!.then((_) {

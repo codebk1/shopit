@@ -21,5 +21,19 @@ final profileRepositoryProvider = Provider<ProfileRepository>.internal(
 );
 
 typedef ProfileRepositoryRef = ProviderRef<ProfileRepository>;
+String _$profileHash() => r'9c06b94c129cf78ef3d36f9328db58bc3838b878';
+
+/// See also [profile].
+@ProviderFor(profile)
+final profileProvider = FutureProvider<Profile?>.internal(
+  profile,
+  name: r'profileProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$profileHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ProfileRef = FutureProviderRef<Profile?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
