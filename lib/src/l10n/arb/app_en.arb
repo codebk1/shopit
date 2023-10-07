@@ -52,6 +52,7 @@
     "addressesEditMenuItem": "Edit",
     "addressesDeleteMenuItem": "Delete",
     "addressesDeleteSuccessSnackbar": "Succesfully deleted address.",
+    "addressesNIPLabel": "NIP:",
 
     "settingsAppBarTitle": "Settings",
     "settingsMenuItemTitle": "Settings",
