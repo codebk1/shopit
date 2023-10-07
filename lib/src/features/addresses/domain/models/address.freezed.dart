@@ -203,7 +203,7 @@ class __$$_AddressCopyWithImpl<$Res>
 class _$_Address implements _Address {
   const _$_Address(
       {@JsonKey(includeToJson: false) this.id,
-      @JsonKey(includeToJson: false) required this.type,
+      @JsonKey(includeToJson: false) this.type = AddressType.delivery,
       this.nip,
       required this.name,
       required this.street,
@@ -280,7 +280,7 @@ class _$_Address implements _Address {
 abstract class _Address implements Address {
   const factory _Address(
       {@JsonKey(includeToJson: false) final String? id,
-      @JsonKey(includeToJson: false) required final AddressType type,
+      @JsonKey(includeToJson: false) final AddressType type,
       final String? nip,
       required final String name,
       required final String street,

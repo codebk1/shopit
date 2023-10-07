@@ -79,40 +79,7 @@ class _AddressGridItemState extends ConsumerState<AddressGridItem> {
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.address.name,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(widget.address.street),
-                  Text('${widget.address.postalCode}, ${widget.address.city}'),
-                  gapH8,
-                  if (widget.address.nip!.isNotEmpty)
-                    Row(
-                      children: [
-                        const Text('NIP:'),
-                        gapW4,
-                        Text(widget.address.nip!),
-                      ],
-                    ),
-                  Row(
-                    children: [
-                      const SvgIcon(iconName: 'phone', width: 16),
-                      gapW4,
-                      Text(widget.address.phone),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const SvgIcon(iconName: 'email', width: 16),
-                      gapW4,
-                      Text(widget.address.email),
-                    ],
-                  ),
-                ],
-              ),
+              child: AddressData(address: widget.address),
             ),
           ),
         ],

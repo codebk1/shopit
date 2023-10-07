@@ -20,7 +20,6 @@ class AddressesFirebaseDataSource implements IAddressesRemoteDataSource {
             toFirestore: (Address address, _) => {
               ...address.toJson(),
               if (address.id == null) 'createdAt': FieldValue.serverTimestamp(),
-              'updatedAt': FieldValue.serverTimestamp(),
             },
           );
 

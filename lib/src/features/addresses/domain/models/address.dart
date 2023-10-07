@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:isar/isar.dart';
 
 part 'address.freezed.dart';
 part 'address.g.dart';
@@ -9,10 +10,13 @@ enum AddressType {
 }
 
 @freezed
+@Embedded(ignore: {'copyWith'})
 class Address with _$Address {
   const factory Address({
     @JsonKey(includeToJson: false) String? id,
-    @JsonKey(includeToJson: false) required AddressType type,
+    @JsonKey(includeToJson: false)
+    @Default(AddressType.delivery)
+    AddressType type,
     String? nip,
     required String name,
     required String street,

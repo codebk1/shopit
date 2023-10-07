@@ -43,18 +43,20 @@ class AddressesService {
         ? _profile.copyWith(deliveryAddress: address.id)
         : _profile.copyWith(paymentAddress: address.id);
 
-    return _profileController.updateProfile(
-      newProfile,
-      updateAvatar: false,
-    );
+    return _profileController.updateProfile(newProfile);
   }
 }
 
 @riverpod
 AddressesService addressesService(AddressesServiceRef ref) {
-  final profile = ref.watch(profileControllerProvider).value!;
+  final profile = ref.watch(profileProvider).valueOrNull!;
   final profileController = ref.watch(profileControllerProvider.notifier);
   final addressesRepository = ref.watch(addressesRepositoryProvider);
 
   return AddressesService(profile, profileController, addressesRepository);
+}
+
+@riverpod
+Future<Address?> address(AddressRef ref, String id, AddressType type) {
+  return ref.watch(addressesServiceProvider).getById(id, type);
 }
