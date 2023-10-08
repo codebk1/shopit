@@ -23,7 +23,7 @@ final wishlistItemsCountProvider = AutoDisposeProvider<int>.internal(
 
 typedef WishlistItemsCountRef = AutoDisposeProviderRef<int>;
 String _$wishlistControllerHash() =>
-    r'555ab5841e8b905cd4e88ef5561fda97a30cd1d6';
+    r'6b99eb73344b8077eae542cc46dfff10168dd944';
 
 /// See also [WishlistController].
 @ProviderFor(WishlistController)

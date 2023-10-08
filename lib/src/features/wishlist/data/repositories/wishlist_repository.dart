@@ -11,7 +11,7 @@ class WishlistRepository {
   final IWishlistLocalDataSource _localDataSource;
 
   Future<Wishlist> get() async {
-    return await _localDataSource.get() ?? const Wishlist(id: 1);
+    return await _localDataSource.get() ?? const Wishlist();
   }
 
   Future<void> update(Wishlist wishlist) async {

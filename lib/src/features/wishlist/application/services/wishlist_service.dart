@@ -7,37 +7,34 @@ part 'wishlist_service.g.dart';
 
 class WishlistService {
   WishlistService(
-    this._profile,
-    this._profileRepository,
+    this._wishlist,
+    this._profileController,
     this._wishlistRepository,
   );
 
-  final Profile? _profile;
-  final ProfileRepository _profileRepository;
+  final Wishlist? _wishlist;
+  final ProfileController _profileController;
   final WishlistRepository _wishlistRepository;
 
   Future<Wishlist> get() async {
-    if (_profile != null) {
-      return _profile!.wishlist;
-    }
-
-    return _wishlistRepository.get();
+    return _wishlist ?? await _wishlistRepository.get();
   }
 
   Future<void> update(Wishlist wishlist) {
-    return _profile != null
-        ? _profileRepository.update(
-            _profile!.copyWith(wishlist: wishlist),
-          )
+    return _wishlist != null
+        ? _profileController.setWishlist(wishlist)
         : _wishlistRepository.update(wishlist);
   }
 }
 
 @riverpod
 WishlistService wishlistService(WishlistServiceRef ref) {
-  final profile = ref.watch(profileControllerProvider).value;
-  final profileRepository = ref.watch(profileRepositoryProvider);
-  final wishlistRepository = ref.watch(wishlistRepositoryProvider);
+  final wishlist = ref.watch(profileControllerProvider.select(
+    (profile) => profile.value?.wishlist,
+  ));
 
-  return WishlistService(profile, profileRepository, wishlistRepository);
+  final profileController = ref.read(profileControllerProvider.notifier);
+  final wishlistRepository = ref.read(wishlistRepositoryProvider);
+
+  return WishlistService(wishlist, profileController, wishlistRepository);
 }

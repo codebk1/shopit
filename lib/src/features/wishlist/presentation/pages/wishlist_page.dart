@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/wishlist/wishlist.dart';
 import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/wishlist/wishlist.dart';
 
 class WishlistPage extends ConsumerWidget {
   const WishlistPage({super.key});
@@ -22,6 +22,7 @@ class WishlistPage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 14),
         child: wishlistController.when(
+          skipLoadingOnReload: true,
           data: (wishlist) => wishlist.items.isEmpty
               ? EmptyState(
                   text: context.l10n.wishlistEmptyState,

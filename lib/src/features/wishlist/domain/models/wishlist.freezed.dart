@@ -20,7 +20,8 @@ Wishlist _$WishlistFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Wishlist {
-  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false)
+  String get id => throw _privateConstructorUsedError; // required by Isar
   List<String> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $WishlistCopyWith<$Res> {
   factory $WishlistCopyWith(Wishlist value, $Res Function(Wishlist) then) =
       _$WishlistCopyWithImpl<$Res, Wishlist>;
   @useResult
-  $Res call({int? id, List<String> items});
+  $Res call({@JsonKey(includeToJson: false) String id, List<String> items});
 }
 
 /// @nodoc
@@ -50,14 +51,14 @@ class _$WishlistCopyWithImpl<$Res, $Val extends Wishlist>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? items = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -73,7 +74,7 @@ abstract class _$$_WishlistCopyWith<$Res> implements $WishlistCopyWith<$Res> {
       __$$_WishlistCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, List<String> items});
+  $Res call({@JsonKey(includeToJson: false) String id, List<String> items});
 }
 
 /// @nodoc
@@ -87,14 +88,14 @@ class __$$_WishlistCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? items = null,
   }) {
     return _then(_$_Wishlist(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -105,17 +106,21 @@ class __$$_WishlistCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Wishlist extends _Wishlist {
-  const _$_Wishlist({this.id, final List<String> items = const []})
-      : _items = items,
-        super._();
+class _$_Wishlist implements _Wishlist {
+  const _$_Wishlist(
+      {@JsonKey(includeToJson: false) this.id = '1',
+      final List<String> items = const []})
+      : _items = items;
 
   factory _$_Wishlist.fromJson(Map<String, dynamic> json) =>
       _$$_WishlistFromJson(json);
 
   @override
-  final int? id;
+  @JsonKey(includeToJson: false)
+  final String id;
+// required by Isar
   final List<String> _items;
+// required by Isar
   @override
   @JsonKey()
   List<String> get items {
@@ -157,16 +162,17 @@ class _$_Wishlist extends _Wishlist {
   }
 }
 
-abstract class _Wishlist extends Wishlist {
-  const factory _Wishlist({final int? id, final List<String> items}) =
-      _$_Wishlist;
-  const _Wishlist._() : super._();
+abstract class _Wishlist implements Wishlist {
+  const factory _Wishlist(
+      {@JsonKey(includeToJson: false) final String id,
+      final List<String> items}) = _$_Wishlist;
 
   factory _Wishlist.fromJson(Map<String, dynamic> json) = _$_Wishlist.fromJson;
 
   @override
-  int? get id;
-  @override
+  @JsonKey(includeToJson: false)
+  String get id;
+  @override // required by Isar
   List<String> get items;
   @override
   @JsonKey(ignore: true)

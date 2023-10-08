@@ -5,18 +5,12 @@ part 'wishlist.freezed.dart';
 part 'wishlist.g.dart';
 
 @freezed
-@Collection(ignore: {'copyWith'})
+@collection
 class Wishlist with _$Wishlist {
-  const Wishlist._();
-
   const factory Wishlist({
-    Id? id,
+    @JsonKey(includeToJson: false) @Default('1') String id, // required by Isar
     @Default([]) List<String> items,
   }) = _Wishlist;
-
-  @JsonKey(includeToJson: false)
-  @override
-  Id? get id => Isar.autoIncrement;
 
   factory Wishlist.fromJson(Map<String, Object?> json) =>
       _$WishlistFromJson(json);

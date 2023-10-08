@@ -9,16 +9,20 @@ class WishlistIsarDataSource implements IWishlistLocalDataSource {
 
   @override
   Future<Wishlist?> get() async {
-    return _isar.wishlists.get(1);
+    return _isar.wishlists.get('1');
   }
 
   @override
   Future<void> update(Wishlist wishlist) {
-    return _isar.writeTxn(() => _isar.wishlists.put(wishlist));
+    return _isar.writeAsync(
+      (isar) => isar.wishlists.put(wishlist),
+    );
   }
 
   @override
   Future<void> clear() {
-    return _isar.writeTxn(() => _isar.wishlists.clear());
+    return _isar.writeAsync(
+      (isar) => isar.wishlists.clear(),
+    );
   }
 }

@@ -12,21 +12,20 @@ class WishlistController extends _$WishlistController {
   }
 
   Future<void> toggle(String itemId) async {
-    final index = state.value!.items.indexOf(itemId);
+    final wishlist = await future;
 
-    List<String> newItems;
-
-    if (index != -1) {
-      newItems = [...state.value!.items]..removeAt(index);
-    } else {
-      newItems = [...state.value!.items, itemId];
-    }
+    final index = wishlist.items.indexOf(itemId);
 
     state = await AsyncValue.guard(() async {
-      final wishlist = state.value!.copyWith(items: newItems);
-      await ref.read(wishlistServiceProvider).update(wishlist);
+      final newWishlist = wishlist.copyWith(
+        items: index != -1
+            ? ([...wishlist.items]..removeAt(index))
+            : [...wishlist.items, itemId],
+      );
 
-      return wishlist;
+      await ref.read(wishlistServiceProvider).update(newWishlist);
+
+      return newWishlist;
     });
   }
 }
