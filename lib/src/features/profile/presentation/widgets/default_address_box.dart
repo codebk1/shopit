@@ -61,7 +61,6 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
           ),
         ),
         Container(
-          height: 150,
           width: double.infinity,
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
@@ -81,7 +80,11 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     address != null
-                        ? AddressData(address: address)
+                        ? Expanded(
+                            child: AddressData(
+                              address: address,
+                            ),
+                          )
                         : Text(context.l10n.profileNoDefaultAddress),
                     TextButton(
                       child: Text(
@@ -107,10 +110,12 @@ class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
                 error: (error, _) => Text(
                   errorMessage(error, context),
                 ),
-                loading: () => const ShimmerText(
+                loading: () => ShimmerText(
                   width: 150,
                   oddLinesWidth: 100,
-                  lines: 6,
+                  lines: widget.type == AddressType.delivery ? 5 : 6,
+                  lineHeight: 20,
+                  extraHeight: 5,
                 ),
               );
             },

@@ -27,6 +27,8 @@ class ShimmerText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scaledLineHeight = lineHeight * MediaQuery.textScaleFactorOf(context);
+
     // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
     return Shimmer.fromColors(
       baseColor: dark ? shimmerDarkBaseColor(ref) : shimmerLightBaseColor,
@@ -39,7 +41,8 @@ class ShimmerText extends ConsumerWidget {
           for (int i = 0; i < lines; i++)
             Container(
               margin: EdgeInsets.only(bottom: i == lines - 1 ? 0 : gap),
-              height: ((lineHeight * lines - (lines - 1) * gap) + extraHeight) /
+              height: ((scaledLineHeight * lines - (lines - 1) * gap) +
+                      extraHeight) /
                   lines,
               width: i.isEven ? width : oddLinesWidth,
               decoration: BoxDecoration(
