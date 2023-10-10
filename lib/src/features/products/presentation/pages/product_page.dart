@@ -94,7 +94,7 @@ class ProductPage extends ConsumerWidget {
                       ),
                     ),
                     gapH14,
-                    ProductAddToCart(itemId: product.id),
+                    ProductAddToCart(product: product),
                   ],
                 ),
               ),
