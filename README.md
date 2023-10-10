@@ -5,20 +5,19 @@
 
 E-commerce application built with Flutter :blue_heart:
 
-https://github.com/codebk1/shopit/assets/20027710/c42471b0-5870-46e9-a008-7c9b20ac44a8
+https://github.com/codebk1/shopit/assets/20027710/27f1c211-872f-4c14-b5c1-eeb0a54d47c7
 
-#### Features / edge cases:
-- dependency injection and state management with riverpod,
-- architecture with separate repositories and datasources, which allows easy extension for future local/remote datasources (still working on better architecture),
-- go_router with StatefulNestedRoutes (still some bugs with redirection and indexed stack),
-- combined freezed model and isar schema (allows to use same entity for local and remote database),
-- separate isar schema and freezed model with mappers to map between local and remote data (nice separation for storing different data shapes for same feature in local and remote database).
-- riverpod infinity scroll with known number of items for categories list (auto disposing pages on scroll, availability to set custom keepAlive cache) and unknown number of items for products list (ongoing states - loading more / loading more error - without extension on AsyncValue),
-
+#### Features:
+- dependency injection, caching, state management with riverpod,
+- local/remote datasources,
+- go_router with StatefulNestedRoutes,
+- combined freezed models and isar schemas (local and remote database),
+- riverpod infinity scroll with known number of items and unknown number of items (ongoing states - loading more / loading more error):
+  
 ![ongoing-states](https://github.com/codebk1/shopit/assets/20027710/0b13b673-7265-433f-9f1f-aabc6a3bafea)
 
 #### TODO:
-- [ ] checkout & orders feature
+- [x] checkout & orders feature
 - [x] categories/products sorting
 - [ ] products filters
 - [ ] full-text search
@@ -26,15 +25,15 @@ https://github.com/codebk1/shopit/assets/20027710/c42471b0-5870-46e9-a008-7c9b20
 
 <img width="250px" src="https://github.com/codebk1/shopit/assets/20027710/df8c7a3d-2eb1-4ac6-9aca-b7b9be7ebc91">
 
-- [x] custom themes:
+- [x] custom Material 3 themes:
 
 https://github.com/codebk1/shopit/assets/20027710/6e704d19-8ea4-4b2b-a5b9-551a0462c2a0
 
-- [ ] animations & microinteractions
 - [x] forms validation
-- [ ] admin panel
-- [ ] unit and widgets tests
 - [x] flavors
 - [x] Firebase Crashlytics
+- [x] firebase/supabase datasources
+- [ ] animations & microinteractions
+- [ ] admin panel
 - [ ] GitHub Actions for CI/CD
-- [ ] supabase datasources
+- [ ] unit and widgets tests
