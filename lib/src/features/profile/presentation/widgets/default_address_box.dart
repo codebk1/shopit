@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopit/src/features/profile/presentation/controllers/controllers.dart';
 
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/exceptions/exceptions.dart';
@@ -25,21 +26,20 @@ class DefaultAddressBox extends ConsumerStatefulWidget {
 
 class _DefaultAddressBoxState extends ConsumerState<DefaultAddressBox> {
   void _changeAddress(Address address) {
-    ref.read(addressesServiceProvider).setDefaultAddress(address).then(
-      (_) {
-        showSuccessSnackbar(
-          context: context,
-          content: context.l10n.addressesSetAsDefaultSuccessSnackbar,
-        );
-      },
-    ).catchError(
-      (error) {
-        showErrorDialog(
-          context: context,
-          error: error,
-        );
-      },
-    );
+    ref
+        .read(profileControllerProvider.notifier)
+        .setDefaultAddress(address)
+        .then((_) {
+      showSuccessSnackbar(
+        context: context,
+        content: context.l10n.addressesSetAsDefaultSuccessSnackbar,
+      );
+    }).catchError((error) {
+      showErrorDialog(
+        context: context,
+        error: error,
+      );
+    });
   }
 
   @override

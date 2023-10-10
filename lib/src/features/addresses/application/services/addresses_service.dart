@@ -8,12 +8,10 @@ part 'addresses_service.g.dart';
 class AddressesService {
   AddressesService(
     this._profile,
-    this._profileController,
     this._addressesRepository,
   );
 
   final Profile _profile;
-  final ProfileController _profileController;
   final AddressesRepository _addressesRepository;
 
   Future<Address?> getById(String id, AddressType type) async {
@@ -37,23 +35,14 @@ class AddressesService {
   Future<void> delete(Address address) {
     return _addressesRepository.delete(_profile.id, address);
   }
-
-  Future<void> setDefaultAddress(Address address) {
-    final newProfile = address.type == AddressType.delivery
-        ? _profile.copyWith(deliveryAddress: address.id)
-        : _profile.copyWith(paymentAddress: address.id);
-
-    return _profileController.updateProfile(newProfile);
-  }
 }
 
 @riverpod
 AddressesService addressesService(AddressesServiceRef ref) {
   final profile = ref.watch(profileProvider).valueOrNull!;
-  final profileController = ref.watch(profileControllerProvider.notifier);
-  final addressesRepository = ref.watch(addressesRepositoryProvider);
+  final addressesRepository = ref.read(addressesRepositoryProvider);
 
-  return AddressesService(profile, profileController, addressesRepository);
+  return AddressesService(profile, addressesRepository);
 }
 
 @riverpod

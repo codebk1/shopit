@@ -33,7 +33,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
   void initState() {
     super.initState();
 
-    final profile = ref.read(profileControllerProvider).value;
+    final profile = ref.read(profileControllerProvider).valueOrNull;
 
     if (profile != null) {
       _firstNameController.text = profile.firstName;
@@ -51,14 +51,12 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
   }
 
   void _loadAvatar() async {
-    final currentAvatarPath =
-        ref.read(profileControllerProvider).requireValue?.avatar;
+    final profile = await ref.read(profileControllerProvider.future);
 
-    if (currentAvatarPath == null) return;
+    final avatar = profile?.avatar;
+    if (avatar == null) return;
 
-    final currentAvatar = await DefaultCacheManager().getSingleFile(
-      currentAvatarPath,
-    );
+    final currentAvatar = await DefaultCacheManager().getSingleFile(avatar);
 
     setState(() {
       _selectedAvatar = currentAvatar.path;
@@ -82,7 +80,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      final profile = ref.read(profileControllerProvider).value;
+      final profile = ref.read(profileControllerProvider).valueOrNull;
 
       if (profile != null) {
         final newProfile = profile.copyWith(

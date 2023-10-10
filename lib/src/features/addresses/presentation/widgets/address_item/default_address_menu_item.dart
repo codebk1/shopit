@@ -6,6 +6,7 @@ import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/utils/utils.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
 
 class DefaultAddressMenuItem extends ConsumerStatefulWidget {
@@ -29,8 +30,9 @@ class _DefaultAddressMenuItemState
 
   void _submit() {
     setState(() {
-      _setAsDefault =
-          ref.read(addressesServiceProvider).setDefaultAddress(widget.address);
+      _setAsDefault = ref
+          .read(profileControllerProvider.notifier)
+          .setDefaultAddress(widget.address);
     });
 
     _setAsDefault!
