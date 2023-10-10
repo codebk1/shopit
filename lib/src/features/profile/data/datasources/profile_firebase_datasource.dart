@@ -99,6 +99,8 @@ class ProfileFirebaseDataSource implements IProfileRemoteDataSource {
 
       return await snapshot.ref.getDownloadURL();
     } on FirebaseException catch (e) {
+      if (e.code == 'object-not-found') return null;
+
       throw StorageException.fromCode(e.code);
     } catch (_) {
       throw StorageUnknownException();
