@@ -8,9 +8,9 @@ import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/cart/cart.dart';
 import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
 
 import '../../../../../helpers/helpers.dart';
 
@@ -20,7 +20,7 @@ class MockSettingsRepository extends Mock implements SettingsRepository {}
 
 class MockWishlistRepository extends Mock implements WishlistRepository {}
 
-class MockCartLocalRepository extends Mock implements CartRepository {}
+class MockCheckoutRepository extends Mock implements CheckoutRepository {}
 
 void main() {
   const email = 'test1@test.com';
@@ -30,21 +30,21 @@ void main() {
     late AuthRepository authRepository;
     late SettingsRepository settingsRepository;
     late WishlistRepository wishlistRepository;
-    late CartRepository cartLocalRepository;
+    late CheckoutRepository checkoutRepository;
     late ProviderContainer container;
 
     setUp(() async {
       authRepository = MockAuthRepository();
       settingsRepository = MockSettingsRepository();
       wishlistRepository = MockWishlistRepository();
-      cartLocalRepository = MockCartLocalRepository();
+      checkoutRepository = MockCheckoutRepository();
 
       container = ProviderContainer(
         overrides: [
           authRepositoryProvider.overrideWithValue(authRepository),
           settingsRepositoryProvider.overrideWithValue(settingsRepository),
           wishlistRepositoryProvider.overrideWithValue(wishlistRepository),
-          cartRepositoryProvider.overrideWithValue(cartLocalRepository),
+          checkoutRepositoryProvider.overrideWithValue(checkoutRepository),
         ],
       );
 
@@ -105,7 +105,7 @@ void main() {
       when(() => wishlistRepository.clear())
           .thenAnswer((_) => Future<void>.value());
 
-      when(() => cartLocalRepository.clear())
+      when(() => checkoutRepository.clear())
           .thenAnswer((_) => Future<void>.value());
 
       await tester.pumpApp(const SignInPage(), container);
@@ -137,7 +137,7 @@ void main() {
       when(() => wishlistRepository.clear())
           .thenAnswer((_) => Future<void>.value());
 
-      when(() => cartLocalRepository.clear())
+      when(() => checkoutRepository.clear())
           .thenAnswer((_) => Future<void>.value());
 
       await tester.pumpApp(const SignInPage(), container);

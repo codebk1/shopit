@@ -7,13 +7,13 @@ import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
-import 'package:shopit/src/features/cart/cart.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockWishlistRepository extends Mock implements WishlistRepository {}
 
-class MockCartRepository extends Mock implements CartRepository {}
+class MockCheckoutRepository extends Mock implements CheckoutRepository {}
 
 class MockProfileRepository extends Mock implements ProfileRepository {}
 
@@ -34,7 +34,7 @@ void main() {
   group('AuthController', () {
     late AuthRepository authRepository;
     late WishlistRepository wishlistRepository;
-    late CartRepository cartLocalRepository;
+    late CheckoutRepository checkoutRepository;
     late ProfileRepository profileRepository;
     late SettingsRepository settingsRepository;
     late ProviderContainer container;
@@ -46,7 +46,7 @@ void main() {
     setUp(() {
       authRepository = MockAuthRepository();
       wishlistRepository = MockWishlistRepository();
-      cartLocalRepository = MockCartRepository();
+      checkoutRepository = MockCheckoutRepository();
       profileRepository = MockProfileRepository();
       settingsRepository = MockSettingsRepository();
 
@@ -54,7 +54,7 @@ void main() {
         overrides: [
           authRepositoryProvider.overrideWithValue(authRepository),
           wishlistRepositoryProvider.overrideWithValue(wishlistRepository),
-          cartRepositoryProvider.overrideWithValue(cartLocalRepository),
+          checkoutRepositoryProvider.overrideWithValue(checkoutRepository),
           profileRepositoryProvider.overrideWithValue(profileRepository),
           settingsRepositoryProvider.overrideWithValue(settingsRepository),
         ],
@@ -86,7 +86,7 @@ void main() {
         when(() => wishlistRepository.clear())
             .thenAnswer((_) => Future<void>.value());
 
-        when(() => cartLocalRepository.clear())
+        when(() => checkoutRepository.clear())
             .thenAnswer((_) => Future<void>.value());
 
         final listener = Listener<AsyncValue<void>>();
@@ -112,7 +112,7 @@ void main() {
         verifyNoMoreInteractions(listener);
         verify(() => authRepository.signIn(email, password)).called(1);
         verify(wishlistRepository.clear).called(1);
-        verify(cartLocalRepository.clear).called(1);
+        verify(checkoutRepository.clear).called(1);
       });
 
       test('error', () async {
@@ -147,7 +147,7 @@ void main() {
         verifyNoMoreInteractions(listener);
         verify(() => authRepository.signIn(email, password)).called(1);
         verifyNever(() => wishlistRepository.clear());
-        verifyNever(() => cartLocalRepository.clear());
+        verifyNever(() => checkoutRepository.clear());
       });
     });
 

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:shopit/src/features/wishlist/wishlist.dart';
-import 'package:shopit/src/features/cart/cart.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
@@ -17,7 +17,7 @@ class Profile with _$Profile {
     String? deliveryAddress,
     String? paymentAddress,
     @Default(Wishlist()) Wishlist wishlist,
-    @Default(Cart()) Cart cart,
+    @Default(Checkout()) Checkout checkout,
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, Object?> json) =>

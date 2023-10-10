@@ -5,7 +5,7 @@ import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
-import 'package:shopit/src/features/cart/cart.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
 
 part 'auth_controller.g.dart';
 
@@ -24,7 +24,7 @@ class AuthController extends _$AuthController {
     );
 
     if (!state.hasError) {
-      await ref.read(cartRepositoryProvider).clear();
+      await ref.read(checkoutRepositoryProvider).clear();
       await ref.read(wishlistRepositoryProvider).clear();
       ref.read(routerProvider).pop();
     }

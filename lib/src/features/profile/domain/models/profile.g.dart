@@ -15,9 +15,9 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
       wishlist: json['wishlist'] == null
           ? const Wishlist()
           : Wishlist.fromJson(json['wishlist'] as Map<String, dynamic>),
-      cart: json['cart'] == null
-          ? const Cart()
-          : Cart.fromJson(json['cart'] as Map<String, dynamic>),
+      checkout: json['checkout'] == null
+          ? const Checkout()
+          : Checkout.fromJson(json['checkout'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
@@ -27,5 +27,5 @@ Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
       'deliveryAddress': instance.deliveryAddress,
       'paymentAddress': instance.paymentAddress,
       'wishlist': instance.wishlist.toJson(),
-      'cart': instance.cart.toJson(),
+      'checkout': instance.checkout.toJson(),
     };

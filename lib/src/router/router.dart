@@ -15,21 +15,25 @@ import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
 import 'package:shopit/src/features/categories/categories.dart';
 import 'package:shopit/src/features/products/products.dart';
-import 'package:shopit/src/features/cart/cart.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
 
 enum Routes {
   home,
+  signin,
+  signup,
   categories,
   wishlist,
   account,
   profile,
   addresses,
   settings,
-  signin,
-  signup,
-  cart,
   products,
   product,
+  cart,
+  checkout,
+  delivery,
+  payment,
+  summary,
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -48,11 +52,14 @@ final routerProvider = Provider<GoRouter>(
       redirect: (context, state) async {
         final isLogged = authRepository.currentUser != null;
 
-        if (!isLogged && state.uri.toString().startsWith('/account')) {
+        final protectedRoute = state.uri.path.startsWith('/account') ||
+            state.uri.path.startsWith('/checkout/');
+
+        if (!isLogged && protectedRoute) {
           // solution until something will change - https://github.com/flutter/flutter/issues/114131
           await Future.delayed(const Duration(microseconds: 1));
           // ignore: use_build_context_synchronously
-          await _rootNavigatorKey.currentContext!.pushNamed(Routes.signin.name);
+          _rootNavigatorKey.currentContext!.pushNamed(Routes.signin.name);
         }
 
         return null;
@@ -162,6 +169,52 @@ final routerProvider = Provider<GoRouter>(
           builder: (_, state) => ProductPage(
             product: state.extra as Product,
           ),
+        ),
+        GoRoute(
+          path: '/checkout',
+          name: Routes.checkout.name,
+          parentNavigatorKey: _rootNavigatorKey,
+          redirect: (context, state) {
+            if (state.uri.path == '/checkout') {
+              final checkout =
+                  ref.read(checkoutControllerProvider).requireValue;
+
+              return switch (checkout.currentStep) {
+                1 => '/checkout/delivery',
+                2 => '/checkout/payment',
+                3 => '/checkout/summary',
+                _ => null,
+              };
+            }
+
+            return null;
+          },
+          routes: [
+            GoRoute(
+              path: 'delivery',
+              name: Routes.delivery.name,
+              parentNavigatorKey: _rootNavigatorKey,
+              pageBuilder: (_, __) => const NoTransitionPage(
+                child: DeliveryPage(),
+              ),
+            ),
+            GoRoute(
+              path: 'payment',
+              name: Routes.payment.name,
+              parentNavigatorKey: _rootNavigatorKey,
+              pageBuilder: (_, __) => const NoTransitionPage(
+                child: PaymentPage(),
+              ),
+            ),
+            GoRoute(
+              path: 'summary',
+              name: Routes.summary.name,
+              parentNavigatorKey: _rootNavigatorKey,
+              pageBuilder: (_, __) => const NoTransitionPage(
+                child: SummaryPage(),
+              ),
+            ),
+          ],
         ),
       ],
     );

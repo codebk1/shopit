@@ -9,7 +9,7 @@ import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/settings/settings.dart';
-import 'package:shopit/src/features/cart/cart.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
 
 class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const MainAppBar({
@@ -61,9 +61,10 @@ class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
                       offset: const Offset(-6, 4),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       label: Consumer(
-                        builder: (context, ref, child) {
-                          final count = ref.watch(cartItemsCountProvider);
-                          return Text(count.toString());
+                        builder: (_, ref, __) {
+                          final count = ref.watch(checkoutItemsCountProvider);
+
+                          return Text('$count');
                         },
                       ),
                       child: IconButton(

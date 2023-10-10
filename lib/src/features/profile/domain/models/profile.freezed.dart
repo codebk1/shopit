@@ -29,7 +29,7 @@ mixin _$Profile {
   String? get deliveryAddress => throw _privateConstructorUsedError;
   String? get paymentAddress => throw _privateConstructorUsedError;
   Wishlist get wishlist => throw _privateConstructorUsedError;
-  Cart get cart => throw _privateConstructorUsedError;
+  Checkout get checkout => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,10 +49,10 @@ abstract class $ProfileCopyWith<$Res> {
       String? deliveryAddress,
       String? paymentAddress,
       Wishlist wishlist,
-      Cart cart});
+      Checkout checkout});
 
   $WishlistCopyWith<$Res> get wishlist;
-  $CartCopyWith<$Res> get cart;
+  $CheckoutCopyWith<$Res> get checkout;
 }
 
 /// @nodoc
@@ -75,7 +75,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? deliveryAddress = freezed,
     Object? paymentAddress = freezed,
     Object? wishlist = null,
-    Object? cart = null,
+    Object? checkout = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,10 +106,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.wishlist
           : wishlist // ignore: cast_nullable_to_non_nullable
               as Wishlist,
-      cart: null == cart
-          ? _value.cart
-          : cart // ignore: cast_nullable_to_non_nullable
-              as Cart,
+      checkout: null == checkout
+          ? _value.checkout
+          : checkout // ignore: cast_nullable_to_non_nullable
+              as Checkout,
     ) as $Val);
   }
 
@@ -123,9 +123,9 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
 
   @override
   @pragma('vm:prefer-inline')
-  $CartCopyWith<$Res> get cart {
-    return $CartCopyWith<$Res>(_value.cart, (value) {
-      return _then(_value.copyWith(cart: value) as $Val);
+  $CheckoutCopyWith<$Res> get checkout {
+    return $CheckoutCopyWith<$Res>(_value.checkout, (value) {
+      return _then(_value.copyWith(checkout: value) as $Val);
     });
   }
 }
@@ -145,12 +145,12 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String? deliveryAddress,
       String? paymentAddress,
       Wishlist wishlist,
-      Cart cart});
+      Checkout checkout});
 
   @override
   $WishlistCopyWith<$Res> get wishlist;
   @override
-  $CartCopyWith<$Res> get cart;
+  $CheckoutCopyWith<$Res> get checkout;
 }
 
 /// @nodoc
@@ -170,7 +170,7 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? deliveryAddress = freezed,
     Object? paymentAddress = freezed,
     Object? wishlist = null,
-    Object? cart = null,
+    Object? checkout = null,
   }) {
     return _then(_$_Profile(
       id: null == id
@@ -201,10 +201,10 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.wishlist
           : wishlist // ignore: cast_nullable_to_non_nullable
               as Wishlist,
-      cart: null == cart
-          ? _value.cart
-          : cart // ignore: cast_nullable_to_non_nullable
-              as Cart,
+      checkout: null == checkout
+          ? _value.checkout
+          : checkout // ignore: cast_nullable_to_non_nullable
+              as Checkout,
     ));
   }
 }
@@ -221,7 +221,7 @@ class _$_Profile implements _Profile {
       this.deliveryAddress,
       this.paymentAddress,
       this.wishlist = const Wishlist(),
-      this.cart = const Cart()});
+      this.checkout = const Checkout()});
 
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFromJson(json);
@@ -245,11 +245,11 @@ class _$_Profile implements _Profile {
   final Wishlist wishlist;
   @override
   @JsonKey()
-  final Cart cart;
+  final Checkout checkout;
 
   @override
   String toString() {
-    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, avatar: $avatar, deliveryAddress: $deliveryAddress, paymentAddress: $paymentAddress, wishlist: $wishlist, cart: $cart)';
+    return 'Profile(id: $id, firstName: $firstName, lastName: $lastName, avatar: $avatar, deliveryAddress: $deliveryAddress, paymentAddress: $paymentAddress, wishlist: $wishlist, checkout: $checkout)';
   }
 
   @override
@@ -269,13 +269,14 @@ class _$_Profile implements _Profile {
                 other.paymentAddress == paymentAddress) &&
             (identical(other.wishlist, wishlist) ||
                 other.wishlist == wishlist) &&
-            (identical(other.cart, cart) || other.cart == cart));
+            (identical(other.checkout, checkout) ||
+                other.checkout == checkout));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, firstName, lastName, avatar,
-      deliveryAddress, paymentAddress, wishlist, cart);
+      deliveryAddress, paymentAddress, wishlist, checkout);
 
   @JsonKey(ignore: true)
   @override
@@ -301,7 +302,7 @@ abstract class _Profile implements Profile {
       final String? deliveryAddress,
       final String? paymentAddress,
       final Wishlist wishlist,
-      final Cart cart}) = _$_Profile;
+      final Checkout checkout}) = _$_Profile;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
 
@@ -322,7 +323,7 @@ abstract class _Profile implements Profile {
   @override
   Wishlist get wishlist;
   @override
-  Cart get cart;
+  Checkout get checkout;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>
