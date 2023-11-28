@@ -610,14 +610,15 @@ extension CarrierQueryObject
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Carrier _$$_CarrierFromJson(Map<String, dynamic> json) => _$_Carrier(
+_$CarrierImpl _$$CarrierImplFromJson(Map<String, dynamic> json) =>
+    _$CarrierImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       price: (json['price'] as num).toDouble(),
       type: $enumDecode(_$CarrierTypeEnumMap, json['type']),
     );
 
-Map<String, dynamic> _$$_CarrierToJson(_$_Carrier instance) =>
+Map<String, dynamic> _$$CarrierImplToJson(_$CarrierImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

@@ -105,10 +105,11 @@ class _$CheckoutCopyWithImpl<$Res, $Val extends Checkout>
 }
 
 /// @nodoc
-abstract class _$$_CheckoutCopyWith<$Res> implements $CheckoutCopyWith<$Res> {
-  factory _$$_CheckoutCopyWith(
-          _$_Checkout value, $Res Function(_$_Checkout) then) =
-      __$$_CheckoutCopyWithImpl<$Res>;
+abstract class _$$CheckoutImplCopyWith<$Res>
+    implements $CheckoutCopyWith<$Res> {
+  factory _$$CheckoutImplCopyWith(
+          _$CheckoutImpl value, $Res Function(_$CheckoutImpl) then) =
+      __$$CheckoutImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -122,11 +123,11 @@ abstract class _$$_CheckoutCopyWith<$Res> implements $CheckoutCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CheckoutCopyWithImpl<$Res>
-    extends _$CheckoutCopyWithImpl<$Res, _$_Checkout>
-    implements _$$_CheckoutCopyWith<$Res> {
-  __$$_CheckoutCopyWithImpl(
-      _$_Checkout _value, $Res Function(_$_Checkout) _then)
+class __$$CheckoutImplCopyWithImpl<$Res>
+    extends _$CheckoutCopyWithImpl<$Res, _$CheckoutImpl>
+    implements _$$CheckoutImplCopyWith<$Res> {
+  __$$CheckoutImplCopyWithImpl(
+      _$CheckoutImpl _value, $Res Function(_$CheckoutImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -140,7 +141,7 @@ class __$$_CheckoutCopyWithImpl<$Res>
     Object? paymentAddressId = freezed,
     Object? items = null,
   }) {
-    return _then(_$_Checkout(
+    return _then(_$CheckoutImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -176,8 +177,8 @@ class __$$_CheckoutCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Checkout extends _Checkout {
-  const _$_Checkout(
+class _$CheckoutImpl extends _Checkout {
+  const _$CheckoutImpl(
       {@JsonKey(includeToJson: false) this.id = '1',
       this.currentStep = 1,
       this.carrierId,
@@ -188,8 +189,8 @@ class _$_Checkout extends _Checkout {
       : _items = items,
         super._();
 
-  factory _$_Checkout.fromJson(Map<String, dynamic> json) =>
-      _$$_CheckoutFromJson(json);
+  factory _$CheckoutImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CheckoutImplFromJson(json);
 
   @override
   @JsonKey(includeToJson: false)
@@ -224,7 +225,7 @@ class _$_Checkout extends _Checkout {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Checkout &&
+            other is _$CheckoutImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.currentStep, currentStep) ||
                 other.currentStep == currentStep) &&
@@ -254,12 +255,12 @@ class _$_Checkout extends _Checkout {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheckoutCopyWith<_$_Checkout> get copyWith =>
-      __$$_CheckoutCopyWithImpl<_$_Checkout>(this, _$identity);
+  _$$CheckoutImplCopyWith<_$CheckoutImpl> get copyWith =>
+      __$$CheckoutImplCopyWithImpl<_$CheckoutImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheckoutToJson(
+    return _$$CheckoutImplToJson(
       this,
     );
   }
@@ -273,10 +274,11 @@ abstract class _Checkout extends Checkout {
       final String? paymentId,
       final String? deliveryAddressId,
       final String? paymentAddressId,
-      final List<CartItem> items}) = _$_Checkout;
+      final List<CartItem> items}) = _$CheckoutImpl;
   const _Checkout._() : super._();
 
-  factory _Checkout.fromJson(Map<String, dynamic> json) = _$_Checkout.fromJson;
+  factory _Checkout.fromJson(Map<String, dynamic> json) =
+      _$CheckoutImpl.fromJson;
 
   @override
   @JsonKey(includeToJson: false)
@@ -295,6 +297,6 @@ abstract class _Checkout extends Checkout {
   List<CartItem> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_CheckoutCopyWith<_$_Checkout> get copyWith =>
+  _$$CheckoutImplCopyWith<_$CheckoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

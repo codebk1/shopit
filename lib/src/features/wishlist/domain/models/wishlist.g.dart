@@ -575,14 +575,15 @@ extension WishlistQueryProperty3<R1, R2>
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Wishlist _$$_WishlistFromJson(Map<String, dynamic> json) => _$_Wishlist(
+_$WishlistImpl _$$WishlistImplFromJson(Map<String, dynamic> json) =>
+    _$WishlistImpl(
       id: json['id'] as String? ?? '1',
       items:
           (json['items'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               const [],
     );
 
-Map<String, dynamic> _$$_WishlistToJson(_$_Wishlist instance) =>
+Map<String, dynamic> _$$WishlistImplToJson(_$WishlistImpl instance) =>
     <String, dynamic>{
       'items': instance.items,
     };

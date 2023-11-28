@@ -68,21 +68,22 @@ class _$WishlistCopyWithImpl<$Res, $Val extends Wishlist>
 }
 
 /// @nodoc
-abstract class _$$_WishlistCopyWith<$Res> implements $WishlistCopyWith<$Res> {
-  factory _$$_WishlistCopyWith(
-          _$_Wishlist value, $Res Function(_$_Wishlist) then) =
-      __$$_WishlistCopyWithImpl<$Res>;
+abstract class _$$WishlistImplCopyWith<$Res>
+    implements $WishlistCopyWith<$Res> {
+  factory _$$WishlistImplCopyWith(
+          _$WishlistImpl value, $Res Function(_$WishlistImpl) then) =
+      __$$WishlistImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(includeToJson: false) String id, List<String> items});
 }
 
 /// @nodoc
-class __$$_WishlistCopyWithImpl<$Res>
-    extends _$WishlistCopyWithImpl<$Res, _$_Wishlist>
-    implements _$$_WishlistCopyWith<$Res> {
-  __$$_WishlistCopyWithImpl(
-      _$_Wishlist _value, $Res Function(_$_Wishlist) _then)
+class __$$WishlistImplCopyWithImpl<$Res>
+    extends _$WishlistCopyWithImpl<$Res, _$WishlistImpl>
+    implements _$$WishlistImplCopyWith<$Res> {
+  __$$WishlistImplCopyWithImpl(
+      _$WishlistImpl _value, $Res Function(_$WishlistImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -91,7 +92,7 @@ class __$$_WishlistCopyWithImpl<$Res>
     Object? id = null,
     Object? items = null,
   }) {
-    return _then(_$_Wishlist(
+    return _then(_$WishlistImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -106,14 +107,14 @@ class __$$_WishlistCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Wishlist implements _Wishlist {
-  const _$_Wishlist(
+class _$WishlistImpl implements _Wishlist {
+  const _$WishlistImpl(
       {@JsonKey(includeToJson: false) this.id = '1',
       final List<String> items = const []})
       : _items = items;
 
-  factory _$_Wishlist.fromJson(Map<String, dynamic> json) =>
-      _$$_WishlistFromJson(json);
+  factory _$WishlistImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WishlistImplFromJson(json);
 
   @override
   @JsonKey(includeToJson: false)
@@ -138,7 +139,7 @@ class _$_Wishlist implements _Wishlist {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Wishlist &&
+            other is _$WishlistImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
@@ -151,12 +152,12 @@ class _$_Wishlist implements _Wishlist {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WishlistCopyWith<_$_Wishlist> get copyWith =>
-      __$$_WishlistCopyWithImpl<_$_Wishlist>(this, _$identity);
+  _$$WishlistImplCopyWith<_$WishlistImpl> get copyWith =>
+      __$$WishlistImplCopyWithImpl<_$WishlistImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WishlistToJson(
+    return _$$WishlistImplToJson(
       this,
     );
   }
@@ -165,9 +166,10 @@ class _$_Wishlist implements _Wishlist {
 abstract class _Wishlist implements Wishlist {
   const factory _Wishlist(
       {@JsonKey(includeToJson: false) final String id,
-      final List<String> items}) = _$_Wishlist;
+      final List<String> items}) = _$WishlistImpl;
 
-  factory _Wishlist.fromJson(Map<String, dynamic> json) = _$_Wishlist.fromJson;
+  factory _Wishlist.fromJson(Map<String, dynamic> json) =
+      _$WishlistImpl.fromJson;
 
   @override
   @JsonKey(includeToJson: false)
@@ -176,6 +178,6 @@ abstract class _Wishlist implements Wishlist {
   List<String> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_WishlistCopyWith<_$_Wishlist> get copyWith =>
+  _$$WishlistImplCopyWith<_$WishlistImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -73,21 +73,22 @@ class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
 }
 
 /// @nodoc
-abstract class _$$_CartItemCopyWith<$Res> implements $CartItemCopyWith<$Res> {
-  factory _$$_CartItemCopyWith(
-          _$_CartItem value, $Res Function(_$_CartItem) then) =
-      __$$_CartItemCopyWithImpl<$Res>;
+abstract class _$$CartItemImplCopyWith<$Res>
+    implements $CartItemCopyWith<$Res> {
+  factory _$$CartItemImplCopyWith(
+          _$CartItemImpl value, $Res Function(_$CartItemImpl) then) =
+      __$$CartItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, double price, int quantity});
 }
 
 /// @nodoc
-class __$$_CartItemCopyWithImpl<$Res>
-    extends _$CartItemCopyWithImpl<$Res, _$_CartItem>
-    implements _$$_CartItemCopyWith<$Res> {
-  __$$_CartItemCopyWithImpl(
-      _$_CartItem _value, $Res Function(_$_CartItem) _then)
+class __$$CartItemImplCopyWithImpl<$Res>
+    extends _$CartItemCopyWithImpl<$Res, _$CartItemImpl>
+    implements _$$CartItemImplCopyWith<$Res> {
+  __$$CartItemImplCopyWithImpl(
+      _$CartItemImpl _value, $Res Function(_$CartItemImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -97,7 +98,7 @@ class __$$_CartItemCopyWithImpl<$Res>
     Object? price = null,
     Object? quantity = null,
   }) {
-    return _then(_$_CartItem(
+    return _then(_$CartItemImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -116,11 +117,12 @@ class __$$_CartItemCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CartItem implements _CartItem {
-  const _$_CartItem({required this.id, required this.price, this.quantity = 1});
+class _$CartItemImpl implements _CartItem {
+  const _$CartItemImpl(
+      {required this.id, required this.price, this.quantity = 1});
 
-  factory _$_CartItem.fromJson(Map<String, dynamic> json) =>
-      _$$_CartItemFromJson(json);
+  factory _$CartItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CartItemImplFromJson(json);
 
   @override
   final String id;
@@ -139,7 +141,7 @@ class _$_CartItem implements _CartItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartItem &&
+            other is _$CartItemImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
@@ -153,12 +155,12 @@ class _$_CartItem implements _CartItem {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartItemCopyWith<_$_CartItem> get copyWith =>
-      __$$_CartItemCopyWithImpl<_$_CartItem>(this, _$identity);
+  _$$CartItemImplCopyWith<_$CartItemImpl> get copyWith =>
+      __$$CartItemImplCopyWithImpl<_$CartItemImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CartItemToJson(
+    return _$$CartItemImplToJson(
       this,
     );
   }
@@ -168,9 +170,10 @@ abstract class _CartItem implements CartItem {
   const factory _CartItem(
       {required final String id,
       required final double price,
-      final int quantity}) = _$_CartItem;
+      final int quantity}) = _$CartItemImpl;
 
-  factory _CartItem.fromJson(Map<String, dynamic> json) = _$_CartItem.fromJson;
+  factory _CartItem.fromJson(Map<String, dynamic> json) =
+      _$CartItemImpl.fromJson;
 
   @override
   String get id;
@@ -180,6 +183,6 @@ abstract class _CartItem implements CartItem {
   int get quantity;
   @override
   @JsonKey(ignore: true)
-  _$$_CartItemCopyWith<_$_CartItem> get copyWith =>
+  _$$CartItemImplCopyWith<_$CartItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -419,13 +419,14 @@ extension CartItemQueryObject
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CartItem _$$_CartItemFromJson(Map<String, dynamic> json) => _$_CartItem(
+_$CartItemImpl _$$CartItemImplFromJson(Map<String, dynamic> json) =>
+    _$CartItemImpl(
       id: json['id'] as String,
       price: (json['price'] as num).toDouble(),
       quantity: json['quantity'] as int? ?? 1,
     );
 
-Map<String, dynamic> _$$_CartItemToJson(_$_CartItem instance) =>
+Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'price': instance.price,

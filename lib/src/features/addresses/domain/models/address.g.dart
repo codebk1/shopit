@@ -1632,7 +1632,8 @@ extension AddressQueryObject
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Address _$$_AddressFromJson(Map<String, dynamic> json) => _$_Address(
+_$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
+    _$AddressImpl(
       id: json['id'] as String?,
       type: $enumDecodeNullable(_$AddressTypeEnumMap, json['type']) ??
           AddressType.delivery,
@@ -1645,7 +1646,7 @@ _$_Address _$$_AddressFromJson(Map<String, dynamic> json) => _$_Address(
       email: json['email'] as String,
     );
 
-Map<String, dynamic> _$$_AddressToJson(_$_Address instance) =>
+Map<String, dynamic> _$$AddressImplToJson(_$AddressImpl instance) =>
     <String, dynamic>{
       'nip': instance.nip,
       'name': instance.name,

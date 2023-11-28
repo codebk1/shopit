@@ -72,22 +72,22 @@ class _$PageMetaCopyWithImpl<T, $Res, $Val extends PageMeta<T>>
 }
 
 /// @nodoc
-abstract class _$$_PageMetaCopyWith<T, $Res>
+abstract class _$$PageMetaImplCopyWith<T, $Res>
     implements $PageMetaCopyWith<T, $Res> {
-  factory _$$_PageMetaCopyWith(
-          _$_PageMeta<T> value, $Res Function(_$_PageMeta<T>) then) =
-      __$$_PageMetaCopyWithImpl<T, $Res>;
+  factory _$$PageMetaImplCopyWith(
+          _$PageMetaImpl<T> value, $Res Function(_$PageMetaImpl<T>) then) =
+      __$$PageMetaImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({List<T> items, bool isLoading, bool noMoreItems, Object? error});
 }
 
 /// @nodoc
-class __$$_PageMetaCopyWithImpl<T, $Res>
-    extends _$PageMetaCopyWithImpl<T, $Res, _$_PageMeta<T>>
-    implements _$$_PageMetaCopyWith<T, $Res> {
-  __$$_PageMetaCopyWithImpl(
-      _$_PageMeta<T> _value, $Res Function(_$_PageMeta<T>) _then)
+class __$$PageMetaImplCopyWithImpl<T, $Res>
+    extends _$PageMetaCopyWithImpl<T, $Res, _$PageMetaImpl<T>>
+    implements _$$PageMetaImplCopyWith<T, $Res> {
+  __$$PageMetaImplCopyWithImpl(
+      _$PageMetaImpl<T> _value, $Res Function(_$PageMetaImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$_PageMetaCopyWithImpl<T, $Res>
     Object? noMoreItems = null,
     Object? error = freezed,
   }) {
-    return _then(_$_PageMeta<T>(
+    return _then(_$PageMetaImpl<T>(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -118,8 +118,8 @@ class __$$_PageMetaCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_PageMeta<T> implements _PageMeta<T> {
-  const _$_PageMeta(
+class _$PageMetaImpl<T> implements _PageMeta<T> {
+  const _$PageMetaImpl(
       {required final List<T> items,
       this.isLoading = false,
       this.noMoreItems = false,
@@ -152,7 +152,7 @@ class _$_PageMeta<T> implements _PageMeta<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PageMeta<T> &&
+            other is _$PageMetaImpl<T> &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
@@ -172,8 +172,8 @@ class _$_PageMeta<T> implements _PageMeta<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PageMetaCopyWith<T, _$_PageMeta<T>> get copyWith =>
-      __$$_PageMetaCopyWithImpl<T, _$_PageMeta<T>>(this, _$identity);
+  _$$PageMetaImplCopyWith<T, _$PageMetaImpl<T>> get copyWith =>
+      __$$PageMetaImplCopyWithImpl<T, _$PageMetaImpl<T>>(this, _$identity);
 }
 
 abstract class _PageMeta<T> implements PageMeta<T> {
@@ -181,7 +181,7 @@ abstract class _PageMeta<T> implements PageMeta<T> {
       {required final List<T> items,
       final bool isLoading,
       final bool noMoreItems,
-      final Object? error}) = _$_PageMeta<T>;
+      final Object? error}) = _$PageMetaImpl<T>;
 
   @override
   List<T> get items;
@@ -193,6 +193,6 @@ abstract class _PageMeta<T> implements PageMeta<T> {
   Object? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_PageMetaCopyWith<T, _$_PageMeta<T>> get copyWith =>
+  _$$PageMetaImplCopyWith<T, _$PageMetaImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -78,20 +78,21 @@ class _$CarrierCopyWithImpl<$Res, $Val extends Carrier>
 }
 
 /// @nodoc
-abstract class _$$_CarrierCopyWith<$Res> implements $CarrierCopyWith<$Res> {
-  factory _$$_CarrierCopyWith(
-          _$_Carrier value, $Res Function(_$_Carrier) then) =
-      __$$_CarrierCopyWithImpl<$Res>;
+abstract class _$$CarrierImplCopyWith<$Res> implements $CarrierCopyWith<$Res> {
+  factory _$$CarrierImplCopyWith(
+          _$CarrierImpl value, $Res Function(_$CarrierImpl) then) =
+      __$$CarrierImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, double price, CarrierType type});
 }
 
 /// @nodoc
-class __$$_CarrierCopyWithImpl<$Res>
-    extends _$CarrierCopyWithImpl<$Res, _$_Carrier>
-    implements _$$_CarrierCopyWith<$Res> {
-  __$$_CarrierCopyWithImpl(_$_Carrier _value, $Res Function(_$_Carrier) _then)
+class __$$CarrierImplCopyWithImpl<$Res>
+    extends _$CarrierCopyWithImpl<$Res, _$CarrierImpl>
+    implements _$$CarrierImplCopyWith<$Res> {
+  __$$CarrierImplCopyWithImpl(
+      _$CarrierImpl _value, $Res Function(_$CarrierImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +103,7 @@ class __$$_CarrierCopyWithImpl<$Res>
     Object? price = null,
     Object? type = null,
   }) {
-    return _then(_$_Carrier(
+    return _then(_$CarrierImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -125,15 +126,15 @@ class __$$_CarrierCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Carrier implements _Carrier {
-  const _$_Carrier(
+class _$CarrierImpl implements _Carrier {
+  const _$CarrierImpl(
       {required this.id,
       required this.name,
       required this.price,
       required this.type});
 
-  factory _$_Carrier.fromJson(Map<String, dynamic> json) =>
-      _$$_CarrierFromJson(json);
+  factory _$CarrierImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CarrierImplFromJson(json);
 
   @override
   final String id;
@@ -153,7 +154,7 @@ class _$_Carrier implements _Carrier {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Carrier &&
+            other is _$CarrierImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
@@ -167,12 +168,12 @@ class _$_Carrier implements _Carrier {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CarrierCopyWith<_$_Carrier> get copyWith =>
-      __$$_CarrierCopyWithImpl<_$_Carrier>(this, _$identity);
+  _$$CarrierImplCopyWith<_$CarrierImpl> get copyWith =>
+      __$$CarrierImplCopyWithImpl<_$CarrierImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CarrierToJson(
+    return _$$CarrierImplToJson(
       this,
     );
   }
@@ -183,9 +184,9 @@ abstract class _Carrier implements Carrier {
       {required final String id,
       required final String name,
       required final double price,
-      required final CarrierType type}) = _$_Carrier;
+      required final CarrierType type}) = _$CarrierImpl;
 
-  factory _Carrier.fromJson(Map<String, dynamic> json) = _$_Carrier.fromJson;
+  factory _Carrier.fromJson(Map<String, dynamic> json) = _$CarrierImpl.fromJson;
 
   @override
   String get id;
@@ -197,6 +198,6 @@ abstract class _Carrier implements Carrier {
   CarrierType get type;
   @override
   @JsonKey(ignore: true)
-  _$$_CarrierCopyWith<_$_Carrier> get copyWith =>
+  _$$CarrierImplCopyWith<_$CarrierImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

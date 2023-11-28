@@ -1806,7 +1806,8 @@ extension CheckoutQueryProperty3<R1, R2>
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Checkout _$$_CheckoutFromJson(Map<String, dynamic> json) => _$_Checkout(
+_$CheckoutImpl _$$CheckoutImplFromJson(Map<String, dynamic> json) =>
+    _$CheckoutImpl(
       id: json['id'] as String? ?? '1',
       currentStep: json['currentStep'] as int? ?? 1,
       carrierId: json['carrierId'] as String?,
@@ -1819,7 +1820,7 @@ _$_Checkout _$$_CheckoutFromJson(Map<String, dynamic> json) => _$_Checkout(
           const [],
     );
 
-Map<String, dynamic> _$$_CheckoutToJson(_$_Checkout instance) =>
+Map<String, dynamic> _$$CheckoutImplToJson(_$CheckoutImpl instance) =>
     <String, dynamic>{
       'currentStep': instance.currentStep,
       'carrierId': instance.carrierId,
