@@ -27,7 +27,7 @@ class ShimmerText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scaledLineHeight = lineHeight * MediaQuery.textScaleFactorOf(context);
+    final scaledLineHeight = MediaQuery.textScalerOf(context).scale(lineHeight);
 
     // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
     return Shimmer.fromColors(

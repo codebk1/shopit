@@ -69,7 +69,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 
@@ -93,7 +93,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 
@@ -122,7 +122,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 
@@ -163,7 +163,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 
@@ -194,7 +194,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 
@@ -237,7 +237,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 
@@ -263,7 +263,7 @@ void main() {
 
         container.listen(
           authControllerProvider,
-          listener,
+          listener.call,
           fireImmediately: true,
         );
 

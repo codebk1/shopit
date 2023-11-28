@@ -18,7 +18,7 @@ void main() {
 
     container.listen(
       showPasswordControllerProvider,
-      listener,
+      listener.call,
       fireImmediately: true,
     );
 
