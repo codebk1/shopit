@@ -99,7 +99,7 @@ class CheckoutController extends _$CheckoutController {
     );
   }
 
-  Future<void> clearItems() async {
+  Future<void> clear() async {
     state = await AsyncValue.guard(() async {
       await ref.read(checkoutServiceProvider).clear();
 

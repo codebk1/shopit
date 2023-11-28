@@ -58,25 +58,23 @@ class _ProductGalleryState extends State<ProductGallery> {
                 ),
               ),
             ),
-            ...widget.product.gallery
-                .map(
-                  (photo) => ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(
-                      imageUrl: photo,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: imageProvider,
-                          ),
-                        ),
+            ...widget.product.gallery.map(
+              (photo) => ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: CachedNetworkImage(
+                  imageUrl: photo,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: imageProvider,
                       ),
-                      errorWidget: (_, __, ___) => const ImageError(),
                     ),
                   ),
-                )
-                .toList()
+                  errorWidget: (_, __, ___) => const ImageError(),
+                ),
+              ),
+            ),
           ],
         ),
         gapH10,

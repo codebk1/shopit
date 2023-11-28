@@ -26,7 +26,7 @@ class CartPage extends ConsumerWidget {
             child: IconButton(
               onPressed: checkoutController.isLoading
                   ? null
-                  : ref.read(checkoutControllerProvider.notifier).clearItems,
+                  : ref.read(checkoutControllerProvider.notifier).clear,
               icon: const SvgIcon(
                 iconName: 'trash',
                 height: 18,
