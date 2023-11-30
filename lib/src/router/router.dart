@@ -10,6 +10,7 @@ import 'package:shopit/src/features/home/home.dart';
 import 'package:shopit/src/features/auth/auth.dart';
 import 'package:shopit/src/features/account/account.dart';
 import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/orders/orders.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
 import 'package:shopit/src/features/settings/settings.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
@@ -25,6 +26,8 @@ enum Routes {
   wishlist,
   account,
   profile,
+  orders,
+  orderConfirmation,
   addresses,
   settings,
   products,
@@ -117,6 +120,12 @@ final routerProvider = Provider<GoRouter>(
                       path: 'profile',
                       name: Routes.profile.name,
                       builder: (_, __) => const ProfilePage(),
+                    ),
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      path: 'orders',
+                      name: Routes.orders.name,
+                      builder: (_, __) => const OrdersPage(),
                     ),
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
@@ -215,6 +224,14 @@ final routerProvider = Provider<GoRouter>(
               ),
             ),
           ],
+        ),
+        GoRoute(
+          path: '/order-confirmation',
+          name: Routes.orderConfirmation.name,
+          parentNavigatorKey: _rootNavigatorKey,
+          builder: (_, state) => OrderConfirmation(
+            orderId: state.extra as String,
+          ),
         ),
       ],
     );

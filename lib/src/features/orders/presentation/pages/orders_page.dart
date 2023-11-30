@@ -1,0 +1,191 @@
+import 'package:flutter/material.dart';
+
+import 'package:intl/intl.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/exceptions/exceptions.dart';
+import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/common/common.dart';
+import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/orders/orders.dart';
+
+class OrdersPage extends ConsumerWidget {
+  const OrdersPage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final groupedOrders = ref.watch(groupedOrdersProvider);
+
+    return Scaffold(
+      appBar: MainAppBar(
+        title: context.l10n.ordersAppBarTitle,
+        showActions: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          left: 14,
+          right: 14,
+          top: 14,
+        ),
+        child: CustomScrollView(
+          slivers: [
+            groupedOrders.when(
+              data: (groups) {
+                return SliverMainAxisGroup(
+                  slivers: [
+                    for (var group in groups.entries) ...[
+                      SliverPersistentHeader(
+                        pinned: true,
+                        delegate: TextHeaderDelegate(
+                          text: DateFormat(
+                            'LLLL yyyy',
+                            context.l10n.localeName,
+                          ).format(group.key),
+                        ),
+                      ),
+                      SliverList.separated(
+                        itemCount: group.value.length,
+                        separatorBuilder: (_, __) => gapH8,
+                        itemBuilder: (context, index) {
+                          final order = group.value[index];
+                          return Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(
+                              // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+                              color: surfaceContainer(ref),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '#${order.number.toString().padLeft(6, '0')}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    OrderStatusChip(
+                                      status: order.status,
+                                    ),
+                                  ],
+                                ),
+                                gapH14,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          context
+                                              .l10n.ordersListItemDeliveryLabel,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall!
+                                              .copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline,
+                                              ),
+                                        ),
+                                        Text(
+                                          order.carrier.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            context.l10n
+                                                .ordersListItemPaymentLabel,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall!
+                                                .copyWith(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .outline,
+                                                )),
+                                        Text(
+                                          order.payment.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          context.l10n.ordersListItemTotalLabel,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall!
+                                              .copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline,
+                                              ),
+                                        ),
+                                        Text(
+                                          ref
+                                              .read(currencyFormatterProvider)
+                                              .format(order.total),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                      sliverGapH14,
+                    ],
+                  ],
+                );
+              },
+              error: (error, _) => SliverToBoxAdapter(
+                child: Text(
+                  errorMessage(error, context),
+                ),
+              ),
+              loading: () => const SliverToBoxAdapter(
+                child: OrdersListLoader(),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:shopit/src/exceptions/exceptions.dart';
 import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/router/router.dart';
 import 'package:shopit/src/utils/utils.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
@@ -12,6 +14,7 @@ import 'package:shopit/src/features/addresses/addresses.dart';
 import 'package:shopit/src/features/carriers/carriers.dart';
 import 'package:shopit/src/features/payments/payments.dart';
 import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/orders/orders.dart';
 
 class SummaryPage extends ConsumerWidget {
   const SummaryPage({super.key});
@@ -235,7 +238,23 @@ class SummaryPage extends ConsumerWidget {
           ),
           CheckoutBottomSection(
             title: context.l10n.checkoutPlaceOrderButton,
-            action: () {
+            action: () async {
+              final order = Order(
+                carrier: carrier.value!,
+                payment: payment.value!,
+                deliveryAddress: deliveryAddress.value!,
+                paymentAddress: paymentAddress.value!,
+                items: checkout.items,
+              );
+
+              final orderId = await ref.read(ordersServiceProvider).add(order);
+
+              if (context.mounted) {
+                context.goNamed(
+                  Routes.orderConfirmation.name,
+                  extra: orderId,
+                );
+              }
             },
             disabled: carrier.isLoading ||
                 payment.isLoading ||

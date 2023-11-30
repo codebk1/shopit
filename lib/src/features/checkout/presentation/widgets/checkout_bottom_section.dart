@@ -10,7 +10,7 @@ import 'package:shopit/src/features/carriers/carriers.dart';
 import 'package:shopit/src/features/payments/payments.dart';
 import 'package:shopit/src/features/checkout/checkout.dart';
 
-class CheckoutBottomSection extends ConsumerWidget {
+class CheckoutBottomSection extends ConsumerStatefulWidget {
   const CheckoutBottomSection({
     super.key,
     required this.title,
@@ -19,11 +19,25 @@ class CheckoutBottomSection extends ConsumerWidget {
   });
 
   final String title;
-  final VoidCallback action;
+  final Future Function() action;
   final bool disabled;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CheckoutBottomSection> createState() =>
+      _CheckoutBottomSectionState();
+}
+
+class _CheckoutBottomSectionState extends ConsumerState<CheckoutBottomSection> {
+  Future? _future;
+
+  void setAction() {
+    setState(() {
+      _future = widget.action();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final checkout = ref.watch(checkoutControllerProvider).requireValue;
 
     final carrierPrice = checkout.carrierId != null
@@ -73,19 +87,29 @@ class CheckoutBottomSection extends ConsumerWidget {
             ),
           ),
           gapH8,
-          ElevatedButton(
-            onPressed: disabled ? null : action,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(title),
-                gapW10,
-                const SvgIcon(
-                  iconName: 'arrow-long-right',
-                  color: Color.fromARGB(255, 255, 255, 255),
-                ),
-              ],
-            ),
+          FutureBuilder(
+            future: _future,
+            builder: (context, snapshot) {
+              final isLoading =
+                  snapshot.connectionState == ConnectionState.waiting;
+
+              return ElevatedButton(
+                onPressed: widget.disabled || isLoading ? null : setAction,
+                child: isLoading
+                    ? const Loader()
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(widget.title),
+                          gapW10,
+                          const SvgIcon(
+                            iconName: 'arrow-long-right',
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ],
+                      ),
+              );
+            },
           ),
         ],
       ),
