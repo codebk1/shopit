@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shopit/src/features/addresses/addresses.dart';
 
 import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/addresses/addresses.dart';
 import 'package:shopit/src/features/wishlist/wishlist.dart';
 import 'package:shopit/src/features/checkout/checkout.dart';
 
@@ -11,7 +11,7 @@ part 'profile_controller.g.dart';
 class ProfileController extends _$ProfileController {
   @override
   FutureOr<Profile?> build() async {
-    return ref.watch(profileProvider).valueOrNull;
+    return ref.watch(profileProvider.future);
   }
 
   Future<void> updateProfile(
