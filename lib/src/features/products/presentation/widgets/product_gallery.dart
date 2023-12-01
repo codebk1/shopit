@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
@@ -22,8 +21,22 @@ class ProductGallery extends StatefulWidget {
   State<ProductGallery> createState() => _ProductGalleryState();
 }
 
-class _ProductGalleryState extends State<ProductGallery> {
+class _ProductGalleryState extends State<ProductGallery>
+    with SingleTickerProviderStateMixin {
   var _currentPhotoIndex = 0;
+  var _swipeRight = true;
+
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +48,10 @@ class _ProductGalleryState extends State<ProductGallery> {
             enlargeCenterPage: true,
             enableInfiniteScroll: false,
             onPageChanged: (index, reason) => setState(() {
+              _swipeRight = index >= _currentPhotoIndex;
               _currentPhotoIndex = index;
+
+              _controller.forward(from: 0);
             }),
           ),
           items: [
@@ -80,18 +96,17 @@ class _ProductGalleryState extends State<ProductGallery> {
         gapH10,
         Consumer(
           builder: (context, ref, child) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: AnimatedSmoothIndicator(
+            return CustomPaint(
+              size: const Size.fromHeight(10),
+              painter: _Indicator(
                 activeIndex: _currentPhotoIndex,
+                swipeRight: _swipeRight,
                 count: widget.product.gallery.length + 1,
-                effect: ExpandingDotsEffect(
-                  dotWidth: 10,
-                  dotHeight: 10,
-                  // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-                  dotColor: surfaceContainer(ref),
-                  activeDotColor: Theme.of(context).colorScheme.primary,
-                ),
+                activeDotWidth: 20,
+                spacing: 10,
+                color: surfaceContainer(ref),
+                activeColor: Theme.of(context).colorScheme.primary,
+                animation: _controller,
               ),
             );
           },
@@ -99,4 +114,93 @@ class _ProductGalleryState extends State<ProductGallery> {
       ],
     );
   }
+}
+
+class _Indicator extends CustomPainter {
+  _Indicator({
+    required this.activeIndex,
+    required this.swipeRight,
+    required this.count,
+    required this.activeDotWidth,
+    required this.spacing,
+    required this.color,
+    required this.activeColor,
+    required this.animation,
+  }) : super(repaint: animation);
+
+  final int activeIndex;
+  final bool swipeRight;
+  final int count;
+  final double activeDotWidth;
+  final double spacing;
+  final Color color;
+  final Color activeColor;
+  final Animation animation;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final centerOffsetX =
+        (size.width - count * size.height - count * spacing - activeDotWidth) /
+            2;
+
+    for (var i = 0; i < count; i++) {
+      final dx = i * spacing +
+          i * size.height +
+          (i >= activeIndex + 1 ? activeDotWidth : 0) +
+          spacing / 2;
+
+      var l1 = 0.0;
+      var r1 = 0.0;
+
+      if (swipeRight) {
+        if (i == activeIndex) {
+          l1 = activeDotWidth * (1 - animation.value);
+          r1 = activeDotWidth;
+        }
+
+        if (i == activeIndex - 1) {
+          r1 = activeDotWidth * (1 - animation.value);
+        }
+      } else {
+        if (i == activeIndex) {
+          r1 = activeDotWidth * animation.value;
+        }
+
+        if (i == activeIndex + 1) {
+          l1 = -activeDotWidth * (1 - animation.value);
+        }
+      }
+
+      var dotColor = color;
+
+      if (i == activeIndex) {
+        dotColor = Color.lerp(color, activeColor, animation.value)!;
+      }
+
+      if (swipeRight && i == activeIndex - 1 ||
+          !swipeRight && i == activeIndex + 1) {
+        dotColor = Color.lerp(activeColor, color, animation.value)!;
+      }
+
+      if (i == 0 && activeIndex == 0 && swipeRight) {
+        l1 = 0.0;
+        r1 = activeDotWidth - activeDotWidth * animation.value;
+        dotColor = activeColor;
+      }
+
+      canvas.drawRRect(
+        RRect.fromLTRBR(
+          dx + centerOffsetX + l1,
+          0,
+          dx + size.height + centerOffsetX + r1,
+          size.height,
+          const Radius.circular(100),
+        ),
+        Paint()..color = dotColor,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _Indicator oldDelegate) => true;
 }
