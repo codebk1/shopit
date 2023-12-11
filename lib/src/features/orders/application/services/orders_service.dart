@@ -14,12 +14,20 @@ class OrdersService {
   final User? _user;
   final OrdersRepository _ordersRepository;
 
-  Future<Order?> getById(String id) async {
-    return _user != null ? _ordersRepository.getById(_user.id, id) : null;
-  }
-
   Future<List<Order>> get() async {
     return _user != null ? await _ordersRepository.get(_user.id) : [];
+  }
+
+  Future<Order?> byId(String id) async {
+    return _user != null ? _ordersRepository.byId(_user.id, id) : null;
+  }
+
+  Future<Order?> latest() async {
+    return _user != null ? _ordersRepository.latest(_user.id) : null;
+  }
+
+  Future<int> count() async {
+    return _user != null ? await _ordersRepository.count(_user.id) : 0;
   }
 
   Future<String> add(Order order) async {
@@ -36,13 +44,23 @@ OrdersService ordersService(OrdersServiceRef ref) {
 }
 
 @riverpod
-Future<Order?> order(OrderRef ref, String id) {
-  return ref.watch(ordersServiceProvider).getById(id);
+Future<List<Order>> orders(OrdersRef ref) {
+  return ref.watch(ordersServiceProvider).get();
 }
 
 @riverpod
-Future<List<Order>> orders(OrdersRef ref) {
-  return ref.watch(ordersServiceProvider).get();
+Future<Order?> order(OrderRef ref, String id) {
+  return ref.watch(ordersServiceProvider).byId(id);
+}
+
+@riverpod
+Future<Order?> latestOrder(LatestOrderRef ref) {
+  return ref.watch(ordersServiceProvider).latest();
+}
+
+@riverpod
+Future<int> ordersCount(OrdersCountRef ref) {
+  return ref.watch(ordersServiceProvider).count();
 }
 
 @riverpod

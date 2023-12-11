@@ -1,7 +1,9 @@
-export 'active_order_box.dart';
 export 'default_address_box.dart';
 export 'edit_profile_form.dart';
 export 'edit_profile_sheet.dart';
+export 'latest_order_loader.dart';
+export 'latest_order_status.dart';
+export 'latest_order.dart';
 export 'profile_box_loader.dart';
 export 'profile_box.dart';
 export 'stats_box.dart';

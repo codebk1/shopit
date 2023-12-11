@@ -33,7 +33,19 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
       );
 
   @override
-  Future<Order?> getById(String uid, String id) async {
+  Future<List<Order>> get(String uid) async {
+    try {
+      final snapshot =
+          await _ordersRef(uid).orderBy('createdAt', descending: true).get();
+
+      return snapshot.docs.map((snapshot) => snapshot.data()).toList();
+    } catch (_) {
+      throw AppUnknownException();
+    }
+  }
+
+  @override
+  Future<Order?> byId(String uid, String id) async {
     try {
       final snapshot = await _ordersRef(uid).doc(id).get();
 
@@ -44,12 +56,25 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
   }
 
   @override
-  Future<List<Order>> get(String uid) async {
+  Future<Order?> latest(String uid) async {
     try {
-      final snapshot =
-          await _ordersRef(uid).orderBy('createdAt', descending: true).get();
+      final snapshot = await _ordersRef(uid)
+          .orderBy('createdAt', descending: true)
+          .limit(1)
+          .get();
 
-      return snapshot.docs.map((snapshot) => snapshot.data()).toList();
+      return snapshot.docs[0].data();
+    } catch (_) {
+      throw AppUnknownException();
+    }
+  }
+
+  @override
+  Future<int> count(String uid) async {
+    try {
+      final snapshot = await _ordersRef(uid).count().get();
+
+      return snapshot.count;
     } catch (_) {
       throw AppUnknownException();
     }
@@ -65,8 +90,15 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
         final config = await transaction.get(configRef);
         final orderNumber = config.get('lastNumber') + 1;
 
-        transaction.set(docRef, order.copyWith(number: orderNumber));
-        transaction.set(configRef, {'lastNumber': orderNumber});
+        transaction.set(
+          docRef,
+          order.copyWith(number: orderNumber),
+        );
+
+        transaction.set(
+          configRef,
+          {'lastNumber': orderNumber},
+        );
 
         return docRef.id;
       });

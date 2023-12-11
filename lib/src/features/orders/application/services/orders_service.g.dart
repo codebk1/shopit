@@ -21,7 +21,21 @@ final ordersServiceProvider = Provider<OrdersService>.internal(
 );
 
 typedef OrdersServiceRef = ProviderRef<OrdersService>;
-String _$orderHash() => r'613f6c8297280146a1d8995101576720935c83e4';
+String _$ordersHash() => r'5a86887f4d39e1eaec0005e8d5ce38a6d9e50f8c';
+
+/// See also [orders].
+@ProviderFor(orders)
+final ordersProvider = AutoDisposeFutureProvider<List<Order>>.internal(
+  orders,
+  name: r'ordersProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef OrdersRef = AutoDisposeFutureProviderRef<List<Order>>;
+String _$orderHash() => r'040bf0176a44a4ac3db06bce38e0e017c8f9261d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -169,20 +183,34 @@ class _OrderProviderElement extends AutoDisposeFutureProviderElement<Order?>
   String get id => (origin as OrderProvider).id;
 }
 
-String _$ordersHash() => r'5a86887f4d39e1eaec0005e8d5ce38a6d9e50f8c';
+String _$latestOrderHash() => r'52f90289eae3599ef7ad657b7e15ca09af519cfe';
 
-/// See also [orders].
-@ProviderFor(orders)
-final ordersProvider = AutoDisposeFutureProvider<List<Order>>.internal(
-  orders,
-  name: r'ordersProvider',
+/// See also [latestOrder].
+@ProviderFor(latestOrder)
+final latestOrderProvider = AutoDisposeFutureProvider<Order?>.internal(
+  latestOrder,
+  name: r'latestOrderProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$latestOrderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef OrdersRef = AutoDisposeFutureProviderRef<List<Order>>;
+typedef LatestOrderRef = AutoDisposeFutureProviderRef<Order?>;
+String _$ordersCountHash() => r'8e8758538073962383a22b341848ed0a258d6ea8';
+
+/// See also [ordersCount].
+@ProviderFor(ordersCount)
+final ordersCountProvider = AutoDisposeFutureProvider<int>.internal(
+  ordersCount,
+  name: r'ordersCountProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ordersCountHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef OrdersCountRef = AutoDisposeFutureProviderRef<int>;
 String _$groupedOrdersHash() => r'41c5a8021a848c3583f9df2792a3331ec35a7aab';
 
 /// See also [groupedOrders].

@@ -12,12 +12,20 @@ class OrdersRepository {
 
   final IOrdersRemoteDataSource _remoteDataSource;
 
-  Future<Order?> getById(String uid, String id) {
-    return _remoteDataSource.getById(uid, id);
-  }
-
   Future<List<Order>> get(String uid) {
     return _remoteDataSource.get(uid);
+  }
+
+  Future<Order?> byId(String uid, String id) {
+    return _remoteDataSource.byId(uid, id);
+  }
+
+  Future<Order?> latest(String uid) {
+    return _remoteDataSource.latest(uid);
+  }
+
+  Future<int> count(String uid) {
+    return _remoteDataSource.count(uid);
   }
 
   Future<String> add(String uid, Order order) {

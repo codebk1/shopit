@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/profile/profile.dart';
 import 'package:shopit/src/features/addresses/addresses.dart';
+import 'package:shopit/src/features/orders/orders.dart';
+import 'package:shopit/src/features/profile/profile.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -25,7 +28,7 @@ class ProfilePage extends StatelessWidget {
               );
             },
             icon: const SvgIcon(iconName: 'edit'),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -44,7 +47,7 @@ class ProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 14),
                   child: Column(
                     children: [
-                      const ActiveOrderBox(),
+                      const LatestOrder(),
                       gapH24,
                       GridView.count(
                         physics: const NeverScrollableScrollPhysics(),
@@ -53,15 +56,24 @@ class ProfilePage extends StatelessWidget {
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
                         shrinkWrap: true,
-                        children: const [
-                          StatsBox(
-                            name: 'placed orders',
-                            value: '123',
-                            iconName: 'orders',
+                        children: [
+                          Consumer(
+                            builder: (context, ref, child) {
+                              final ordersCount =
+                                  ref.watch(ordersCountProvider);
+
+                              return StatsBox(
+                                value: ordersCount.valueOrNull?.toString(),
+                                isError: ordersCount.hasError,
+                                name: context.l10n.profileStatsOrdersCountLabel,
+                                iconName: 'orders',
+                              );
+                            },
                           ),
-                          StatsBox(
+                          const StatsBox(
                             name: 'reviews',
                             value: '14',
+                            isError: false,
                             iconName: 'reviews',
                           ),
                         ],
