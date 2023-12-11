@@ -64,7 +64,7 @@ class OrdersPage extends ConsumerWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '#${order.number.toString().padLeft(6, '0')}',
+                                      order.formattedNumber,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge!

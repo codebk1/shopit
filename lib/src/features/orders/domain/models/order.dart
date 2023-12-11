@@ -29,6 +29,7 @@ class Order with _$Order {
   }) = _Order;
 
   double get total => items.fold(0, (prev, item) => prev + item.price);
+  String get formattedNumber => '#${number.toString().padLeft(6, '0')}';
 
   factory Order.fromJson(Map<String, Object?> json) => _$OrderFromJson(json);
 }
