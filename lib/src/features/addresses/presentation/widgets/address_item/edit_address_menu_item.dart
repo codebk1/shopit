@@ -10,14 +10,17 @@ class EditAddressMenuItem extends StatelessWidget {
     super.key,
     required this.address,
     required this.submit,
+    required this.controller,
   });
 
   final Address address;
   final Future<void> Function(Address) submit;
+  final MenuController controller;
 
   @override
   Widget build(BuildContext context) {
     return MenuItemButton(
+      closeOnActivate: false,
       onPressed: () {
         showModalBottomSheet(
           context: context,
@@ -28,6 +31,8 @@ class EditAddressMenuItem extends StatelessWidget {
             submit: submit,
           ),
         );
+
+        controller.close();
       },
       child: Row(
         children: [

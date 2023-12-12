@@ -66,6 +66,7 @@ class _AddressGridItemState extends ConsumerState<AddressGridItem> {
                     EditAddressMenuItem(
                       address: widget.address,
                       submit: widget.submit,
+                      controller: _controller,
                     ),
                     DeleteAddressMenuItem(
                       address: widget.address,

@@ -81,7 +81,7 @@ class _AddressFormState extends ConsumerState<AddressForm> {
         _save = widget.submit(address);
       });
 
-      _save!.then((_) {
+      _save?.then((_) {
         showSuccessSnackbar(
           context: context,
           content: context.l10n.addressesSaveSuccessSnackbar,
