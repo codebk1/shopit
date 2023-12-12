@@ -32,14 +32,13 @@
     "profileSaveSuccessSnackbar": "Succesfully saved profile.",
     "profileLatestOrderBoxHeader": "Latest order",
     "profileNoLatestOrderText": "You haven't placed any orders yet.",
-    "profileNoLatestOrderGoShoppingButton": "Go Shopping ->",
+    "profileNoLatestOrderGoShoppingButton": "Go Shopping ->",    
+    "profileStatsError": "Can't load stats.\nTry again later.",
     "profileStatsOrdersCountLabel": "placed orders",
     "profileDefaultDeliveryAddressBoxHeader": "Default delivery address",
     "profileDefaultPaymentAddressBoxHeader": "Default payment address",
     "profileNoDefaultAddress": "No default address selected",
     "profileChangeDefaultAddressButton": "Change",
-
-    "ordersMenuItemTitle": "My orders",
 
     "addressesAppBarTitle": "Addresses",
     "addressesMenuItemTitle": "Addresses",
@@ -118,6 +117,7 @@
     "checkoutTotalsBoxPaymentLabel": "Payment:",
 
     "ordersAppBarTitle": "Orders",
+    "ordersMenuItemTitle": "My orders",
     "ordersListItemDeliveryLabel": "Delivery",
     "ordersListItemPaymentLabel": "Payment",
     "ordersListItemTotalLabel": "Total",

@@ -58,10 +58,10 @@ class LatestOrderStatus extends StatelessWidget {
             Text(
               e.$2[index].label,
               style: activeIndex == e.$1 + index
-                  ? Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  ? Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontWeight: FontWeight.bold,
                       )
-                  : null,
+                  : Theme.of(context).textTheme.bodySmall,
             ),
             activeIndex <= e.$1 + e.$2.length - 1
                 ? SvgIcon(
@@ -78,7 +78,7 @@ class LatestOrderStatus extends StatelessWidget {
     );
 
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(8),

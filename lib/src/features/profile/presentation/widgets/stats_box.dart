@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shopit/src/l10n/l10n.dart';
 import 'package:shopit/src/constants/constants.dart';
 import 'package:shopit/src/common/common.dart';
 
@@ -35,7 +36,7 @@ class StatsBox extends ConsumerWidget {
                   iconName: 'error',
                 ),
                 Text(
-                  'Can\'t load stats.\nTry again later.',
+                  context.l10n.profileStatsError,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -53,17 +54,19 @@ class StatsBox extends ConsumerWidget {
                           )
                         : Text(
                             value!,
-                            style: Theme.of(context).textTheme.headlineLarge!,
+                            style: Theme.of(context).textTheme.headlineLarge,
                           ),
                     SvgIcon(
                       iconName: iconName,
                       color: Theme.of(context).colorScheme.primary,
-                    )
+                    ),
                   ],
                 ),
-                Text(
-                  name,
-                  style: Theme.of(context).textTheme.bodyMedium!,
+                Expanded(
+                  child: Text(
+                    name,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
               ],
             ),

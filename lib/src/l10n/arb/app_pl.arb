@@ -33,13 +33,12 @@
     "profileLatestOrderBoxHeader": "Ostatnie zamówienie",
     "profileNoLatestOrderText": "Jeszcze nie złożono żadnego zamówienia.",
     "profileNoLatestOrderGoShoppingButton": "Zobacz produkty ->",
+    "profileStatsError": "Nie można załadować statystyki.\nSpróbuj ponownie później.",
     "profileStatsOrdersCountLabel": "złożone zamówienia",
     "profileDefaultDeliveryAddressBoxHeader": "Domyślny adres dostawy",
     "profileDefaultPaymentAddressBoxHeader": "Domyślny adres płatności",
     "profileNoDefaultAddress": "Nie wybrano domyślnego adresu",
     "profileChangeDefaultAddressButton": "Zmień",
-
-    "ordersMenuItemTitle": "Moje zamówienia",
 
     "addressesAppBarTitle": "Adresy",
     "addressesMenuItemTitle": "Adresy",
@@ -118,6 +117,7 @@
     "checkoutTotalsBoxPaymentLabel": "Płatność:",
 
     "ordersAppBarTitle": "Zamówienia",
+    "ordersMenuItemTitle": "Moje zamówienia",
     "ordersListItemDeliveryLabel": "Dostawa",
     "ordersListItemPaymentLabel": "Płatność",
     "ordersListItemTotalLabel": "Razem",

@@ -99,10 +99,12 @@ class LatestOrder extends ConsumerWidget {
                             iconName: 'clock',
                           ),
                           gapW4,
-                          Text(
-                            'Delivery: ${DateFormat('MMMMEEEEd').format(
-                              order.createdAt!.add(const Duration(days: 3)),
-                            )}, 10am - 11am',
+                          Expanded(
+                            child: Text(
+                              'Delivery: ${DateFormat('MMMMEEEEd').format(
+                                order.createdAt!.add(const Duration(days: 3)),
+                              )}, 10am - 11am',
+                            ),
                           ),
                         ],
                       ),
