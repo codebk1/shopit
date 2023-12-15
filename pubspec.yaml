@@ -31,7 +31,7 @@ dependencies:
   cached_network_image: 3.3.0
   firebase_crashlytics: 3.4.5
   mocktail: 1.0.1
-  supabase_flutter: 1.10.25
+  supabase_flutter: 2.0.1
   firebase_storage: 11.5.2
   image_picker: 1.0.4
   
