@@ -14,15 +14,8 @@ class ProductsSupabaseDataSource implements IProductsRemoteDataSource {
   @override
   Future<int> countByCategoryId(String id) async {
     try {
-      final response = await _productsRef
-          .select(
-            '*',
-            const supabase.FetchOptions(
-              count: supabase.CountOption.exact,
-              head: true,
-            ),
-          )
-          .eq('categoryId', id);
+      final response =
+          await _productsRef.select('*').eq('categoryId', id).count();
 
       return response.count;
     } catch (_) {

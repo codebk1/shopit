@@ -12,7 +12,7 @@ class AddressesSupabaseDataSource implements IAddressesRemoteDataSource {
       _supabase.from('addresses');
 
   @override
-  Future<Address?> getById(String userId, AddressType type, String id) async {
+  Future<Address?> getById(String _, AddressType type, String id) async {
     try {
       final response = await _addressesRef.select().eq('id', id).single();
 
@@ -56,7 +56,7 @@ class AddressesSupabaseDataSource implements IAddressesRemoteDataSource {
   @override
   Future<void> delete(String _, Address address) async {
     try {
-      await _addressesRef.delete().eq('id', address.id);
+      await _addressesRef.delete().eq('id', address.id!);
     } catch (_) {
       throw AppUnknownException();
     }
@@ -68,7 +68,7 @@ class AddressesSupabaseDataSource implements IAddressesRemoteDataSource {
       await _addressesRef
           .update(address.toJson()
             ..addAll({'updatedAt': DateTime.now().toIso8601String()}))
-          .eq('id', address.id);
+          .eq('id', address.id!);
     } catch (_) {
       throw AppUnknownException();
     }

@@ -15,13 +15,7 @@ class CategoriesSupabaseDataSource implements ICategoriesRemoteDataSource {
   @override
   Future<int> count() async {
     try {
-      final response = await _categoriesRef.select(
-        '*',
-        const supabase.FetchOptions(
-          count: supabase.CountOption.exact,
-          head: true,
-        ),
-      );
+      final response = await _categoriesRef.select('*').count();
 
       return response.count;
     } catch (_) {
@@ -70,7 +64,7 @@ class CategoriesSupabaseDataSource implements ICategoriesRemoteDataSource {
   @override
   Future<List<Category>> byIds(List<String> ids) async {
     try {
-      final response = await _categoriesRef.select().in_('id', ids);
+      final response = await _categoriesRef.select().inFilter('id', ids);
 
       return response
           .map<Category>((category) => Category.fromJson(category))
