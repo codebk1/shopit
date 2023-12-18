@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
@@ -26,72 +25,58 @@ class _ProductGalleryState extends State<ProductGallery>
   var _currentPhotoIndex = 0;
   var _swipeRight = true;
 
-  late AnimationController _controller;
+  late AnimationController _indicatorController;
+  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    _indicatorController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
+
+    _pageController = PageController();
   }
 
   @override
   Widget build(BuildContext context) {
+    final photos = [
+      Hero(
+        tag: GoRouterState.of(context).uri.queryParameters['tag'] ??
+            widget.product.id,
+        child: _Photo(
+          url: widget.product.thumbnail,
+          pageController: _pageController,
+          index: 0,
+        ),
+      ),
+      ...widget.product.gallery.indexed.map(
+        (item) => _Photo(
+          url: item.$2,
+          pageController: _pageController,
+          index: item.$1 + 1,
+        ),
+      ),
+    ];
+
     return Column(
       children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            aspectRatio: 1.5,
-            enlargeCenterPage: true,
-            enableInfiniteScroll: false,
-            onPageChanged: (index, reason) => setState(() {
+        SizedBox(
+          height: 300,
+          child: PageView.builder(
+            controller: _pageController,
+            allowImplicitScrolling: true,
+            itemCount: photos.length,
+            onPageChanged: (index) => setState(() {
               _swipeRight = index >= _currentPhotoIndex;
               _currentPhotoIndex = index;
 
-              _controller.forward(from: 0);
+              _indicatorController.forward(from: 0);
             }),
+            itemBuilder: (context, index) => photos[index],
           ),
-          items: [
-            Hero(
-              tag: GoRouterState.of(context).uri.queryParameters['tag'] ??
-                  widget.product.id,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: CachedNetworkImage(
-                  imageUrl: widget.product.thumbnail,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: imageProvider,
-                      ),
-                    ),
-                  ),
-                  errorWidget: (_, __, ___) => const ImageError(),
-                ),
-              ),
-            ),
-            ...widget.product.gallery.map(
-              (photo) => ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: CachedNetworkImage(
-                  imageUrl: photo,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: imageProvider,
-                      ),
-                    ),
-                  ),
-                  errorWidget: (_, __, ___) => const ImageError(),
-                ),
-              ),
-            ),
-          ],
         ),
         gapH10,
         Consumer(
@@ -106,12 +91,62 @@ class _ProductGalleryState extends State<ProductGallery>
                 spacing: 10,
                 color: surfaceContainer(ref),
                 activeColor: Theme.of(context).colorScheme.primary,
-                animation: _controller,
+                animation: _indicatorController,
               ),
             );
           },
         ),
       ],
+    );
+  }
+}
+
+class _Photo extends StatelessWidget {
+  const _Photo({
+    required this.url,
+    required this.index,
+    required this.pageController,
+  });
+
+  final String url;
+  final int index;
+  final PageController pageController;
+  final double scaleDown = 0.25;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: pageController,
+      builder: (context, child) {
+        double offset = 0;
+
+        if (pageController.position.hasContentDimensions &&
+            pageController.page != null) {
+          offset = pageController.page! - index;
+        }
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Transform.scale(
+            scale: 1 - offset.abs() * scaleDown,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CachedNetworkImage(
+                imageUrl: url,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: imageProvider,
+                    ),
+                  ),
+                ),
+                errorWidget: (_, __, ___) => const ImageError(),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -202,5 +237,5 @@ class _Indicator extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _Indicator oldDelegate) => true;
+  bool shouldRepaint(_Indicator oldDelegate) => false;
 }
