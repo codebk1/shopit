@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/features.dart';
 
 class WishlistIsarDataSource implements IWishlistLocalDataSource {
   WishlistIsarDataSource(this._isar);

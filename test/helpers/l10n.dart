@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/core/core.dart';
 
 extension TesterL10n on WidgetTester {
   AppLocalizations get l10n {

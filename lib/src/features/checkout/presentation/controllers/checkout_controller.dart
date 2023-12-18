@@ -1,9 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/addresses/addresses.dart';
-import 'package:shopit/src/features/carriers/carriers.dart';
-import 'package:shopit/src/features/payments/payments.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'checkout_controller.g.dart';
 

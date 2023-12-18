@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/orders/orders.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class IOrdersRemoteDataSource {
   Future<List<Order>> get(String uid);

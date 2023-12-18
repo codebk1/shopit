@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/features.dart';
 
 class EditProfileSheet extends StatelessWidget {
   const EditProfileSheet({super.key});

@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'checkout_service.g.dart';
 

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/addresses/addresses.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 class AddressActionButton extends ConsumerStatefulWidget {
   const AddressActionButton({

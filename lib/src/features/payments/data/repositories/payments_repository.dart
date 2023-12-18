@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/payments/payments.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'payments_repository.g.dart';
 

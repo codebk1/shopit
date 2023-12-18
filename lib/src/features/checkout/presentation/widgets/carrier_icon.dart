@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/carriers/carriers.dart';
+import 'package:shopit/src/features/features.dart';
 
 class CarrierIcon extends StatelessWidget {
   const CarrierIcon({

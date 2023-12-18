@@ -1,5 +1,5 @@
-export 'validators/is_not_empty.dart';
 export 'validators/is_email_valid.dart';
+export 'validators/is_not_empty.dart';
 export 'validators/not_match.dart';
 
 String? one(List<String? Function()> validators) {

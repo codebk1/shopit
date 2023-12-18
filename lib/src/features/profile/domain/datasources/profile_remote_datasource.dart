@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class IProfileRemoteDataSource {
   Future<Profile> get(String id);

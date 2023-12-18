@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'products_repository.g.dart';
 

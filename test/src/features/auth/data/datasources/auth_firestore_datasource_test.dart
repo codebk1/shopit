@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class MockFirebaseAuth extends Mock implements firebase_auth.FirebaseAuth {}
 

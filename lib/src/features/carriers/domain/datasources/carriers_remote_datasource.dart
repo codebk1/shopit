@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/carriers/carriers.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class ICarriersRemoteDataSource {
   Future<List<Carrier>> get();

@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/categories/categories.dart';
-import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'home_controller.g.dart';
 

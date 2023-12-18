@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/payments/payments.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class PaymentsFirebaseDataSource implements IPaymentsRemoteDataSource {
   const PaymentsFirebaseDataSource(this._firestore);

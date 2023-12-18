@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/core/core.dart';
 
 class ImageError extends StatelessWidget {
   const ImageError({super.key});

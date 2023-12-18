@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:isar/isar.dart';
 
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 
 part 'settings.freezed.dart';
 part 'settings.g.dart';

@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 //import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shopit/src/features/auth/auth.dart';
 
-import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'profile_repository.g.dart';
 

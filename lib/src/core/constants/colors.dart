@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/features.dart';
 
 enum ThemeSeed {
   blue(0xFF2196F3),

@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/features.dart';
 
 class SettingsIsarDataSource implements ISettingsLocalDataSource {
   SettingsIsarDataSource(this._isar);

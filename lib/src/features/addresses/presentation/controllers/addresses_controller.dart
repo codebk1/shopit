@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/addresses/addresses.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'addresses_controller.g.dart';
 

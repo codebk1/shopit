@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/categories/categories.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'categories_controller.g.dart';
 

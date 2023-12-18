@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/addresses/addresses.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 class PaymentPage extends ConsumerWidget {
   const PaymentPage({super.key});

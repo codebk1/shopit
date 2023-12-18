@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class IAuthRemoteDataSource {
   User? get currentUser;

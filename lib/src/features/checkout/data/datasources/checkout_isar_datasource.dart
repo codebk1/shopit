@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 class CheckoutIsarDataSource implements ICheckoutLocalDataSource {
   CheckoutIsarDataSource(this._isar);

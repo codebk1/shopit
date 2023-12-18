@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class ISettingsLocalDataSource {
   Future<Settings?> get();

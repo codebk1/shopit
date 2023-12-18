@@ -3,11 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/settings/settings.dart';
-import 'package:shopit/src/features/wishlist/wishlist.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 

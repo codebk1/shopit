@@ -1,7 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class AuthSupabaseDataSource implements IAuthRemoteDataSource {
   const AuthSupabaseDataSource(this._supabase);

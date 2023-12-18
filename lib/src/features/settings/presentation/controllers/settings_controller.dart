@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'settings_controller.g.dart';
 

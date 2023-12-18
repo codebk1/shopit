@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/constants/constants.dart';
-import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/carriers/carriers.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 class SelectDeliveryGrid extends ConsumerWidget {
   const SelectDeliveryGrid({super.key});

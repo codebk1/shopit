@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class ICheckoutLocalDataSource {
   Future<Checkout?> get();

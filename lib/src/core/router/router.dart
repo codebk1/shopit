@@ -5,18 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/router/scaffold_with_navbar.dart';
-import 'package:shopit/src/features/home/home.dart';
-import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/account/account.dart';
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/orders/orders.dart';
-import 'package:shopit/src/features/addresses/addresses.dart';
-import 'package:shopit/src/features/settings/settings.dart';
-import 'package:shopit/src/features/wishlist/wishlist.dart';
-import 'package:shopit/src/features/categories/categories.dart';
-import 'package:shopit/src/features/products/products.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/core/router/scaffold_with_navbar.dart';
+import 'package:shopit/src/features/features.dart';
 
 enum Routes {
   home,
@@ -27,6 +17,7 @@ enum Routes {
   account,
   profile,
   orders,
+  order,
   orderConfirmation,
   addresses,
   settings,
@@ -50,6 +41,7 @@ final routerProvider = Provider<GoRouter>(
     final authRepository = ref.read(authRepositoryProvider);
 
     return GoRouter(
+      debugLogDiagnostics: true,
       navigatorKey: _rootNavigatorKey,
       initialLocation: '/',
       redirect: (context, state) async {
@@ -126,6 +118,16 @@ final routerProvider = Provider<GoRouter>(
                       path: 'orders',
                       name: Routes.orders.name,
                       builder: (_, __) => const OrdersPage(),
+                      routes: [
+                        GoRoute(
+                          parentNavigatorKey: _rootNavigatorKey,
+                          path: 'order',
+                          name: Routes.order.name,
+                          builder: (_, state) => OrderDetailsPage(
+                            order: state.extra as Order,
+                          ),
+                        ),
+                      ],
                     ),
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
@@ -229,7 +231,7 @@ final routerProvider = Provider<GoRouter>(
           path: '/order-confirmation',
           name: Routes.orderConfirmation.name,
           parentNavigatorKey: _rootNavigatorKey,
-          builder: (_, state) => OrderConfirmation(
+          builder: (_, state) => OrderConfirmationPage(
             orderId: state.extra as String,
           ),
         ),

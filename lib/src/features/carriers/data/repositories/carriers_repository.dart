@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/carriers/carriers.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'carriers_repository.g.dart';
 

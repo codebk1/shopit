@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class ProfileFirebaseDataSource implements IProfileRemoteDataSource {
   const ProfileFirebaseDataSource(

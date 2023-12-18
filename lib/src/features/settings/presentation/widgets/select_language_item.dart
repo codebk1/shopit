@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/features.dart';
 
 class SelectLanguageItem extends ConsumerWidget {
   const SelectLanguageItem({

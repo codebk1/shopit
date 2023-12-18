@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/features.dart';
 
 class ProductsHeader extends ConsumerWidget {
   const ProductsHeader({

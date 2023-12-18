@@ -5,9 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/theme/theme.dart';
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 
 class MockGoRouter extends Mock implements GoRouter {}
 

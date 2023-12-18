@@ -1,11 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/settings/settings.dart';
-import 'package:shopit/src/features/wishlist/wishlist.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'auth_controller.g.dart';
 

@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/orders/orders.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'orders_service.g.dart';
 

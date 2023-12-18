@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:shopit/src/features/orders/orders.dart';
+import 'package:shopit/src/features/features.dart';
 
 part 'orders_repository.g.dart';
 

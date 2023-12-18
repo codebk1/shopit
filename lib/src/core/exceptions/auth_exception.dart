@@ -1,4 +1,4 @@
-import 'package:shopit/src/l10n/l10n.dart';
+import 'package:shopit/src/core/core.dart';
 
 sealed class AuthException implements Exception {
   const AuthException();

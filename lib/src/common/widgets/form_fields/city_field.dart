@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/core/core.dart';
 
 class CityField extends StatelessWidget {
   const CityField({

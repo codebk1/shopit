@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/profile/profile.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class ProfileSupabaseDataSource implements IProfileRemoteDataSource {
   const ProfileSupabaseDataSource(this._supabase);

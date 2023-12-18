@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/utils/utils.dart';
-import 'package:shopit/src/features/carriers/carriers.dart';
-import 'package:shopit/src/features/payments/payments.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class CheckoutTotalsBox extends ConsumerWidget {
   const CheckoutTotalsBox({super.key});

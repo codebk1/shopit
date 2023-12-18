@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/addresses/addresses.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class IAddressesRemoteDataSource {
   Future<Address?> getById(String userId, AddressType type, String id);

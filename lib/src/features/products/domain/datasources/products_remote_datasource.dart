@@ -1,5 +1,5 @@
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/products/products.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class IProductsRemoteDataSource {
   Future<Product?> getById(String id);

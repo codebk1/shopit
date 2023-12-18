@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/core/core.dart';
 
 extension AsyncValueExtension on AsyncValue {
   void showSnackbarOnSuccess(BuildContext context, String text) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/constants/spacing.dart';
-import 'package:shopit/src/common/widgets/svg_icon.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/common/common.dart';
 
 class ErrorState extends StatelessWidget {
   const ErrorState({

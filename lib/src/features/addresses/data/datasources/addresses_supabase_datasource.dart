@@ -1,7 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/addresses/addresses.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class AddressesSupabaseDataSource implements IAddressesRemoteDataSource {
   AddressesSupabaseDataSource(this._supabase);

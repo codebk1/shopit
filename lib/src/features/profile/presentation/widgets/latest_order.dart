@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/constants/constants.dart';
-import 'package:shopit/src/utils/utils.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/orders/orders.dart';
+import 'package:shopit/src/features/features.dart';
 
 class LatestOrder extends ConsumerWidget {
   const LatestOrder({super.key});

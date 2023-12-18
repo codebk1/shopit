@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/account/account.dart';
+import 'package:shopit/src/features/features.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});

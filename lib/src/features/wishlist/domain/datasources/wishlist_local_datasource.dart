@@ -1,4 +1,4 @@
-import 'package:shopit/src/features/wishlist/wishlist.dart';
+import 'package:shopit/src/features/features.dart';
 
 abstract interface class IWishlistLocalDataSource {
   Future<Wishlist?> get();

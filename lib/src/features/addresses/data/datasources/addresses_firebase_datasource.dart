@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/addresses/addresses.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class AddressesFirebaseDataSource implements IAddressesRemoteDataSource {
   const AddressesFirebaseDataSource(this._firestore);

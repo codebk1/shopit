@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/l10n/l10n.dart';
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/constants/constants.dart';
-import 'package:shopit/src/router/router.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/checkout/checkout.dart';
-import 'package:shopit/src/features/orders/orders.dart';
+import 'package:shopit/src/features/features.dart';
 
-class OrderConfirmation extends ConsumerStatefulWidget {
-  const OrderConfirmation({
+class OrderConfirmationPage extends ConsumerStatefulWidget {
+  const OrderConfirmationPage({
     super.key,
     required this.orderId,
   });
@@ -21,10 +17,11 @@ class OrderConfirmation extends ConsumerStatefulWidget {
   final String orderId;
 
   @override
-  ConsumerState<OrderConfirmation> createState() => _OrderConfirmationState();
+  ConsumerState<OrderConfirmationPage> createState() =>
+      _OrderConfirmationPageState();
 }
 
-class _OrderConfirmationState extends ConsumerState<OrderConfirmation> {
+class _OrderConfirmationPageState extends ConsumerState<OrderConfirmationPage> {
   @override
   void initState() {
     super.initState();
@@ -70,7 +67,7 @@ class _OrderConfirmationState extends ConsumerState<OrderConfirmation> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    '#${order?.number.toString().padLeft(6, '0')}',
+                    order?.formattedNumber ?? '',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -104,7 +101,10 @@ class _OrderConfirmationState extends ConsumerState<OrderConfirmation> {
                 gapH14,
                 ElevatedButton(
                   onPressed: () {
-                    context.goNamed(Routes.orders.name);
+                    context.goNamed(
+                      Routes.order.name,
+                      extra: order,
+                    );
                   },
                   child: Text(context.l10n.ordersOrderDetailsButton),
                 ),

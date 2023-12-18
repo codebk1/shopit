@@ -4,12 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:shopit/src/router/router.dart';
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/auth/auth.dart';
-import 'package:shopit/src/features/profile/profile.dart';
-import 'package:shopit/src/features/settings/settings.dart';
+import 'package:shopit/src/features/features.dart';
 
 import '../../../../../helpers/helpers.dart';
 

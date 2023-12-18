@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/payments/payments.dart';
+import 'package:shopit/src/features/features.dart';
 
 class PaymentIcon extends StatelessWidget {
   const PaymentIcon({

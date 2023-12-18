@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
-import 'package:shopit/src/exceptions/exceptions.dart';
-import 'package:shopit/src/features/auth/auth.dart';
+import 'package:shopit/src/core/core.dart';
+import 'package:shopit/src/features/features.dart';
 
 class MockSupabaseClient extends Mock implements sb.SupabaseClient {}
 

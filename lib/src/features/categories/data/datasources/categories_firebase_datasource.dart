@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:shopit/src/exceptions/exceptions.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/categories/categories.dart';
+import 'package:shopit/src/features/features.dart';
 
 class CategoriesFirebaseDataSource implements ICategoriesRemoteDataSource {
   CategoriesFirebaseDataSource(this._firestore);

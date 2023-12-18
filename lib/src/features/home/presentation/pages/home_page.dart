@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/constants/constants.dart';
+import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
-import 'package:shopit/src/features/home/home.dart';
+import 'package:shopit/src/features/features.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
