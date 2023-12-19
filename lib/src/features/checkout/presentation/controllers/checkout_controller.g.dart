@@ -204,7 +204,7 @@ class _CheckoutAddressProviderElement
 }
 
 String _$checkoutControllerHash() =>
-    r'ffdfb1f2d8e1f9c8f281795e995d2b4dc3ea0633';
+    r'bb2d5f7ca2626f2f09026a8ac7577a5795c4f43e';
 
 /// See also [CheckoutController].
 @ProviderFor(CheckoutController)

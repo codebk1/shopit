@@ -27,6 +27,7 @@ mixin _$Checkout {
   String? get paymentId => throw _privateConstructorUsedError;
   String? get deliveryAddressId => throw _privateConstructorUsedError;
   String? get paymentAddressId => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
   List<CartItem> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $CheckoutCopyWith<$Res> {
       String? paymentId,
       String? deliveryAddressId,
       String? paymentAddressId,
+      String? comment,
       List<CartItem> items});
 }
 
@@ -69,6 +71,7 @@ class _$CheckoutCopyWithImpl<$Res, $Val extends Checkout>
     Object? paymentId = freezed,
     Object? deliveryAddressId = freezed,
     Object? paymentAddressId = freezed,
+    Object? comment = freezed,
     Object? items = null,
   }) {
     return _then(_value.copyWith(
@@ -96,6 +99,10 @@ class _$CheckoutCopyWithImpl<$Res, $Val extends Checkout>
           ? _value.paymentAddressId
           : paymentAddressId // ignore: cast_nullable_to_non_nullable
               as String?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -119,6 +126,7 @@ abstract class _$$CheckoutImplCopyWith<$Res>
       String? paymentId,
       String? deliveryAddressId,
       String? paymentAddressId,
+      String? comment,
       List<CartItem> items});
 }
 
@@ -139,6 +147,7 @@ class __$$CheckoutImplCopyWithImpl<$Res>
     Object? paymentId = freezed,
     Object? deliveryAddressId = freezed,
     Object? paymentAddressId = freezed,
+    Object? comment = freezed,
     Object? items = null,
   }) {
     return _then(_$CheckoutImpl(
@@ -166,6 +175,10 @@ class __$$CheckoutImplCopyWithImpl<$Res>
           ? _value.paymentAddressId
           : paymentAddressId // ignore: cast_nullable_to_non_nullable
               as String?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -185,6 +198,7 @@ class _$CheckoutImpl extends _Checkout {
       this.paymentId,
       this.deliveryAddressId,
       this.paymentAddressId,
+      this.comment,
       final List<CartItem> items = const []})
       : _items = items,
         super._();
@@ -207,6 +221,8 @@ class _$CheckoutImpl extends _Checkout {
   final String? deliveryAddressId;
   @override
   final String? paymentAddressId;
+  @override
+  final String? comment;
   final List<CartItem> _items;
   @override
   @JsonKey()
@@ -218,7 +234,7 @@ class _$CheckoutImpl extends _Checkout {
 
   @override
   String toString() {
-    return 'Checkout(id: $id, currentStep: $currentStep, carrierId: $carrierId, paymentId: $paymentId, deliveryAddressId: $deliveryAddressId, paymentAddressId: $paymentAddressId, items: $items)';
+    return 'Checkout(id: $id, currentStep: $currentStep, carrierId: $carrierId, paymentId: $paymentId, deliveryAddressId: $deliveryAddressId, paymentAddressId: $paymentAddressId, comment: $comment, items: $items)';
   }
 
   @override
@@ -237,6 +253,7 @@ class _$CheckoutImpl extends _Checkout {
                 other.deliveryAddressId == deliveryAddressId) &&
             (identical(other.paymentAddressId, paymentAddressId) ||
                 other.paymentAddressId == paymentAddressId) &&
+            (identical(other.comment, comment) || other.comment == comment) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
@@ -250,6 +267,7 @@ class _$CheckoutImpl extends _Checkout {
       paymentId,
       deliveryAddressId,
       paymentAddressId,
+      comment,
       const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
@@ -274,6 +292,7 @@ abstract class _Checkout extends Checkout {
       final String? paymentId,
       final String? deliveryAddressId,
       final String? paymentAddressId,
+      final String? comment,
       final List<CartItem> items}) = _$CheckoutImpl;
   const _Checkout._() : super._();
 
@@ -293,6 +312,8 @@ abstract class _Checkout extends Checkout {
   String? get deliveryAddressId;
   @override
   String? get paymentAddressId;
+  @override
+  String? get comment;
   @override
   List<CartItem> get items;
   @override

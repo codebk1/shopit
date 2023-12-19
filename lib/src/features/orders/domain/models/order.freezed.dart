@@ -29,6 +29,7 @@ mixin _$Order {
   Address get deliveryAddress => throw _privateConstructorUsedError;
   Address get paymentAddress => throw _privateConstructorUsedError;
   List<CartItem> get items => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -51,6 +52,7 @@ abstract class $OrderCopyWith<$Res> {
       Address deliveryAddress,
       Address paymentAddress,
       List<CartItem> items,
+      String? comment,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -81,6 +83,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? deliveryAddress = null,
     Object? paymentAddress = null,
     Object? items = null,
+    Object? comment = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -117,6 +120,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CartItem>,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -177,6 +184,7 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       Address deliveryAddress,
       Address paymentAddress,
       List<CartItem> items,
+      String? comment,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -209,6 +217,7 @@ class __$$OrderImplCopyWithImpl<$Res>
     Object? deliveryAddress = null,
     Object? paymentAddress = null,
     Object? items = null,
+    Object? comment = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -245,6 +254,10 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CartItem>,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -270,6 +283,7 @@ class _$OrderImpl extends _Order {
       required this.deliveryAddress,
       required this.paymentAddress,
       required final List<CartItem> items,
+      this.comment,
       this.createdAt,
       this.updatedAt})
       : _items = items,
@@ -303,13 +317,15 @@ class _$OrderImpl extends _Order {
   }
 
   @override
+  final String? comment;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'Order(id: $id, number: $number, status: $status, carrier: $carrier, payment: $payment, deliveryAddress: $deliveryAddress, paymentAddress: $paymentAddress, items: $items, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Order(id: $id, number: $number, status: $status, carrier: $carrier, payment: $payment, deliveryAddress: $deliveryAddress, paymentAddress: $paymentAddress, items: $items, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -327,6 +343,7 @@ class _$OrderImpl extends _Order {
             (identical(other.paymentAddress, paymentAddress) ||
                 other.paymentAddress == paymentAddress) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -345,6 +362,7 @@ class _$OrderImpl extends _Order {
       deliveryAddress,
       paymentAddress,
       const DeepCollectionEquality().hash(_items),
+      comment,
       createdAt,
       updatedAt);
 
@@ -372,6 +390,7 @@ abstract class _Order extends Order {
       required final Address deliveryAddress,
       required final Address paymentAddress,
       required final List<CartItem> items,
+      final String? comment,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$OrderImpl;
   const _Order._() : super._();
@@ -395,6 +414,8 @@ abstract class _Order extends Order {
   Address get paymentAddress;
   @override
   List<CartItem> get items;
+  @override
+  String? get comment;
   @override
   DateTime? get createdAt;
   @override

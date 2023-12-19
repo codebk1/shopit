@@ -20,6 +20,7 @@ _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
       items: (json['items'] as List<dynamic>)
           .map((e) => CartItem.fromJson(e as Map<String, dynamic>))
           .toList(),
+      comment: json['comment'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$OrderImplToJson(_$OrderImpl instance) =>
       'deliveryAddress': instance.deliveryAddress.toJson(),
       'paymentAddress': instance.paymentAddress.toJson(),
       'items': instance.items.map((e) => e.toJson()).toList(),
+      'comment': instance.comment,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

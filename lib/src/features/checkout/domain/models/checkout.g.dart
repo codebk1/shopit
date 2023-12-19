@@ -45,6 +45,10 @@ const CheckoutSchema = IsarGeneratedSchema(
         type: IsarType.string,
       ),
       IsarPropertySchema(
+        name: 'comment',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
         name: 'items',
         type: IsarType.objectList,
         target: 'CartItem',
@@ -97,8 +101,16 @@ int serializeCheckout(IsarWriter writer, Checkout object) {
     }
   }
   {
+    final value = object.comment;
+    if (value == null) {
+      IsarCore.writeNull(writer, 7);
+    } else {
+      IsarCore.writeString(writer, 7, value);
+    }
+  }
+  {
     final list = object.items;
-    final listWriter = IsarCore.beginList(writer, 7, list.length);
+    final listWriter = IsarCore.beginList(writer, 8, list.length);
     for (var i = 0; i < list.length; i++) {
       {
         final value = list[i];
@@ -126,9 +138,11 @@ Checkout deserializeCheckout(IsarReader reader) {
   _deliveryAddressId = IsarCore.readString(reader, 5);
   final String? _paymentAddressId;
   _paymentAddressId = IsarCore.readString(reader, 6);
+  final String? _comment;
+  _comment = IsarCore.readString(reader, 7);
   final List<CartItem> _items;
   {
-    final length = IsarCore.readList(reader, 7, IsarCore.readerPtrPtr);
+    final length = IsarCore.readList(reader, 8, IsarCore.readerPtrPtr);
     {
       final reader = IsarCore.readerPtr;
       if (reader.isNull) {
@@ -168,6 +182,7 @@ Checkout deserializeCheckout(IsarReader reader) {
     paymentId: _paymentId,
     deliveryAddressId: _deliveryAddressId,
     paymentAddressId: _paymentAddressId,
+    comment: _comment,
     items: _items,
   );
   return object;
@@ -189,8 +204,10 @@ dynamic deserializeCheckoutProp(IsarReader reader, int property) {
     case 6:
       return IsarCore.readString(reader, 6);
     case 7:
+      return IsarCore.readString(reader, 7);
+    case 8:
       {
-        final length = IsarCore.readList(reader, 7, IsarCore.readerPtrPtr);
+        final length = IsarCore.readList(reader, 8, IsarCore.readerPtrPtr);
         {
           final reader = IsarCore.readerPtr;
           if (reader.isNull) {
@@ -236,6 +253,7 @@ sealed class _CheckoutUpdate {
     String? paymentId,
     String? deliveryAddressId,
     String? paymentAddressId,
+    String? comment,
   });
 }
 
@@ -252,6 +270,7 @@ class _CheckoutUpdateImpl implements _CheckoutUpdate {
     Object? paymentId = ignore,
     Object? deliveryAddressId = ignore,
     Object? paymentAddressId = ignore,
+    Object? comment = ignore,
   }) {
     return collection.updateProperties([
           id
@@ -261,6 +280,7 @@ class _CheckoutUpdateImpl implements _CheckoutUpdate {
           if (paymentId != ignore) 4: paymentId as String?,
           if (deliveryAddressId != ignore) 5: deliveryAddressId as String?,
           if (paymentAddressId != ignore) 6: paymentAddressId as String?,
+          if (comment != ignore) 7: comment as String?,
         }) >
         0;
   }
@@ -274,6 +294,7 @@ sealed class _CheckoutUpdateAll {
     String? paymentId,
     String? deliveryAddressId,
     String? paymentAddressId,
+    String? comment,
   });
 }
 
@@ -290,6 +311,7 @@ class _CheckoutUpdateAllImpl implements _CheckoutUpdateAll {
     Object? paymentId = ignore,
     Object? deliveryAddressId = ignore,
     Object? paymentAddressId = ignore,
+    Object? comment = ignore,
   }) {
     return collection.updateProperties(id, {
       if (currentStep != ignore) 2: currentStep as int?,
@@ -297,6 +319,7 @@ class _CheckoutUpdateAllImpl implements _CheckoutUpdateAll {
       if (paymentId != ignore) 4: paymentId as String?,
       if (deliveryAddressId != ignore) 5: deliveryAddressId as String?,
       if (paymentAddressId != ignore) 6: paymentAddressId as String?,
+      if (comment != ignore) 7: comment as String?,
     });
   }
 }
@@ -314,6 +337,7 @@ sealed class _CheckoutQueryUpdate {
     String? paymentId,
     String? deliveryAddressId,
     String? paymentAddressId,
+    String? comment,
   });
 }
 
@@ -330,6 +354,7 @@ class _CheckoutQueryUpdateImpl implements _CheckoutQueryUpdate {
     Object? paymentId = ignore,
     Object? deliveryAddressId = ignore,
     Object? paymentAddressId = ignore,
+    Object? comment = ignore,
   }) {
     return query.updateProperties(limit: limit, {
       if (currentStep != ignore) 2: currentStep as int?,
@@ -337,6 +362,7 @@ class _CheckoutQueryUpdateImpl implements _CheckoutQueryUpdate {
       if (paymentId != ignore) 4: paymentId as String?,
       if (deliveryAddressId != ignore) 5: deliveryAddressId as String?,
       if (paymentAddressId != ignore) 6: paymentAddressId as String?,
+      if (comment != ignore) 7: comment as String?,
     });
   }
 }
@@ -361,6 +387,7 @@ class _CheckoutQueryBuilderUpdateImpl implements _CheckoutQueryUpdate {
     Object? paymentId = ignore,
     Object? deliveryAddressId = ignore,
     Object? paymentAddressId = ignore,
+    Object? comment = ignore,
   }) {
     final q = query.build();
     try {
@@ -370,6 +397,7 @@ class _CheckoutQueryBuilderUpdateImpl implements _CheckoutQueryUpdate {
         if (paymentId != ignore) 4: paymentId as String?,
         if (deliveryAddressId != ignore) 5: deliveryAddressId as String?,
         if (paymentAddressId != ignore) 6: paymentAddressId as String?,
+        if (comment != ignore) 7: comment as String?,
       });
     } finally {
       q.close();
@@ -1405,6 +1433,192 @@ extension CheckoutQueryFilter
     });
   }
 
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 7));
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentIsNotNull() {
+    return QueryBuilder.apply(not(), (query) {
+      return query.addFilterCondition(const IsNullCondition(property: 7));
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EqualCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentGreaterThan(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition>
+      commentGreaterThanOrEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        GreaterOrEqualCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentLessThan(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition>
+      commentLessThanOrEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        LessOrEqualCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentBetween(
+    String? lower,
+    String? upper, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        BetweenCondition(
+          property: 7,
+          lower: lower,
+          upper: upper,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        StartsWithCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        EndsWithCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        ContainsCondition(
+          property: 7,
+          value: value,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        MatchesCondition(
+          property: 7,
+          wildcard: pattern,
+          caseSensitive: caseSensitive,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const EqualCondition(
+          property: 7,
+          value: '',
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterFilterCondition> commentIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const GreaterCondition(
+          property: 7,
+          value: '',
+        ),
+      );
+    });
+  }
+
   QueryBuilder<Checkout, Checkout, QAfterFilterCondition> itemsIsEmpty() {
     return not().itemsIsNotEmpty();
   }
@@ -1412,7 +1626,7 @@ extension CheckoutQueryFilter
   QueryBuilder<Checkout, Checkout, QAfterFilterCondition> itemsIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
-        const GreaterOrEqualCondition(property: 7, value: null),
+        const GreaterOrEqualCondition(property: 8, value: null),
       );
     });
   }
@@ -1538,6 +1752,27 @@ extension CheckoutQuerySortBy on QueryBuilder<Checkout, Checkout, QSortBy> {
       );
     });
   }
+
+  QueryBuilder<Checkout, Checkout, QAfterSortBy> sortByComment(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(
+        7,
+        caseSensitive: caseSensitive,
+      );
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterSortBy> sortByCommentDesc(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(
+        7,
+        sort: Sort.desc,
+        caseSensitive: caseSensitive,
+      );
+    });
+  }
 }
 
 extension CheckoutQuerySortThenBy
@@ -1623,6 +1858,20 @@ extension CheckoutQuerySortThenBy
       return query.addSortBy(6, sort: Sort.desc, caseSensitive: caseSensitive);
     });
   }
+
+  QueryBuilder<Checkout, Checkout, QAfterSortBy> thenByComment(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(7, caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterSortBy> thenByCommentDesc(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(7, sort: Sort.desc, caseSensitive: caseSensitive);
+    });
+  }
 }
 
 extension CheckoutQueryWhereDistinct
@@ -1658,6 +1907,13 @@ extension CheckoutQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(6, caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Checkout, Checkout, QAfterDistinct> distinctByComment(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(7, caseSensitive: caseSensitive);
     });
   }
 }
@@ -1700,9 +1956,15 @@ extension CheckoutQueryProperty1
     });
   }
 
-  QueryBuilder<Checkout, List<CartItem>, QAfterProperty> itemsProperty() {
+  QueryBuilder<Checkout, String?, QAfterProperty> commentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(7);
+    });
+  }
+
+  QueryBuilder<Checkout, List<CartItem>, QAfterProperty> itemsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(8);
     });
   }
 }
@@ -1747,9 +2009,15 @@ extension CheckoutQueryProperty2<R>
     });
   }
 
-  QueryBuilder<Checkout, (R, List<CartItem>), QAfterProperty> itemsProperty() {
+  QueryBuilder<Checkout, (R, String?), QAfterProperty> commentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addProperty(7);
+    });
+  }
+
+  QueryBuilder<Checkout, (R, List<CartItem>), QAfterProperty> itemsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(8);
     });
   }
 }
@@ -1794,10 +2062,16 @@ extension CheckoutQueryProperty3<R1, R2>
     });
   }
 
+  QueryBuilder<Checkout, (R1, R2, String?), QOperations> commentProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addProperty(7);
+    });
+  }
+
   QueryBuilder<Checkout, (R1, R2, List<CartItem>), QOperations>
       itemsProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addProperty(7);
+      return query.addProperty(8);
     });
   }
 }
@@ -1814,6 +2088,7 @@ _$CheckoutImpl _$$CheckoutImplFromJson(Map<String, dynamic> json) =>
       paymentId: json['paymentId'] as String?,
       deliveryAddressId: json['deliveryAddressId'] as String?,
       paymentAddressId: json['paymentAddressId'] as String?,
+      comment: json['comment'] as String?,
       items: (json['items'] as List<dynamic>?)
               ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -1827,5 +2102,6 @@ Map<String, dynamic> _$$CheckoutImplToJson(_$CheckoutImpl instance) =>
       'paymentId': instance.paymentId,
       'deliveryAddressId': instance.deliveryAddressId,
       'paymentAddressId': instance.paymentAddressId,
+      'comment': instance.comment,
       'items': instance.items.map((e) => e.toJson()).toList(),
     };

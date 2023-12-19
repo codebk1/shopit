@@ -5,6 +5,7 @@ export 'cart_list_item_quantity.dart';
 export 'checkout_bottom_section.dart';
 export 'checkout_header.dart';
 export 'checkout_totals_box.dart';
+export 'order_comment_sheet.dart';
 export 'payment_icon.dart';
 export 'quantity_selector.dart';
 export 'select_address_section.dart';

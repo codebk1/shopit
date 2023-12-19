@@ -19,6 +19,7 @@ class Checkout with _$Checkout {
     String? paymentId,
     String? deliveryAddressId,
     String? paymentAddressId,
+    String? comment,
     @Default([]) List<CartItem> items,
   }) = _Checkout;
 

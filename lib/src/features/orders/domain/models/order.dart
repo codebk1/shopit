@@ -21,6 +21,7 @@ class Order with _$Order {
     required Address deliveryAddress,
     required Address paymentAddress,
     required List<CartItem> items,
+    String? comment,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _Order;

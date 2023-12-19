@@ -49,6 +49,16 @@ class CheckoutController extends _$CheckoutController {
         : checkout.copyWith(paymentAddressId: address.id));
   }
 
+  Future<void> setComment(String? comment) async {
+    final checkout = await future;
+
+    state = AsyncData(
+      checkout.copyWith(
+        comment: comment,
+      ),
+    );
+  }
+
   Future<void> addItem(CartItem item) async {
     final checkout = await future;
 

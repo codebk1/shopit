@@ -129,7 +129,9 @@ class SummaryPage extends ConsumerWidget {
                           ),
                           child: deliveryAddress.when(
                             data: (address) {
-                              return AddressData(address: address!);
+                              return AddressData(
+                                address: address!,
+                              );
                             },
                             error: (error, _) => Text(
                               errorMessage(error, context),
@@ -201,7 +203,9 @@ class SummaryPage extends ConsumerWidget {
                           ),
                           child: paymentAddress.when(
                             data: (address) {
-                              return AddressData(address: address!);
+                              return AddressData(
+                                address: address!,
+                              );
                             },
                             error: (error, _) => Text(
                               errorMessage(error, context),
@@ -212,6 +216,55 @@ class SummaryPage extends ConsumerWidget {
                               lines: 6,
                               lineHeight: 20,
                               extraHeight: 5,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  sliverGapH24,
+                  SliverMainAxisGroup(
+                    slivers: [
+                      SliverPersistentHeader(
+                        pinned: true,
+                        delegate: TextHeaderDelegate(
+                          text: context.l10n.checkoutSummaryCommentHeader,
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: GestureDetector(
+                          onTap: () => showModalBottomSheet(
+                            context: context,
+                            showDragHandle: true,
+                            isScrollControlled: true,
+                            builder: (_) => const OrderCommentSheet(),
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(
+                              color: surfaceContainer(ref),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              children: [
+                                const SvgIcon(
+                                  iconName: 'chat-bubble',
+                                ),
+                                gapW14,
+                                Expanded(
+                                  child: Text(
+                                    checkout.comment ??
+                                        context
+                                            .l10n.checkoutSummaryNoCommentText,
+                                  ),
+                                ),
+                                if (checkout.comment == null) ...[
+                                  const Spacer(),
+                                  const SvgIcon(
+                                    iconName: 'chevron-right',
+                                  ),
+                                ],
+                              ],
                             ),
                           ),
                         ),
@@ -236,6 +289,7 @@ class SummaryPage extends ConsumerWidget {
                 deliveryAddress: deliveryAddress.value!,
                 paymentAddress: paymentAddress.value!,
                 items: checkout.items,
+                comment: checkout.comment,
               );
 
               final orderId = await ref.read(ordersServiceProvider).add(order);
