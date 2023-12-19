@@ -26,28 +26,32 @@ class OrdersPage extends ConsumerWidget {
           right: 14,
           top: 14,
         ),
-        child: CustomScrollView(
-          slivers: [
-            groupedOrders.when(
-              data: (groups) {
-                return SliverMainAxisGroup(
+        child: groupedOrders.when(
+          data: (groups) => CustomScrollView(
+            slivers: [
+              for (var group in groups.entries)
+                SliverMainAxisGroup(
                   slivers: [
-                    for (var group in groups.entries) ...[
-                      SliverPersistentHeader(
-                        pinned: true,
-                        delegate: TextHeaderDelegate(
-                          text: DateFormat(
-                            'LLLL yyyy',
-                            context.l10n.localeName,
-                          ).format(group.key),
-                        ),
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: TextHeaderDelegate(
+                        text: DateFormat(
+                          'LLLL yyyy',
+                          context.l10n.localeName,
+                        ).format(group.key),
                       ),
-                      SliverList.separated(
-                        itemCount: group.value.length,
-                        separatorBuilder: (_, __) => gapH8,
-                        itemBuilder: (context, index) {
-                          final order = group.value[index];
-                          return Container(
+                    ),
+                    SliverList.separated(
+                      itemCount: group.value.length,
+                      separatorBuilder: (_, __) => gapH8,
+                      itemBuilder: (context, index) {
+                        final order = group.value[index];
+                        return GestureDetector(
+                          onTap: () => context.pushNamed(
+                            Routes.order.name,
+                            extra: order,
+                          ),
+                          child: Container(
                             padding: const EdgeInsets.all(14),
                             decoration: BoxDecoration(
                               // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
@@ -111,23 +115,25 @@ class OrdersPage extends ConsumerWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                            context.l10n
-                                                .ordersListItemPaymentLabel,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall!
-                                                .copyWith(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .outline,
-                                                )),
+                                          context
+                                              .l10n.ordersListItemPaymentLabel,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall!
+                                              .copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline,
+                                              ),
+                                        ),
                                         Text(
                                           order.payment.name,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
                                               .copyWith(
-                                                  fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -163,24 +169,19 @@ class OrdersPage extends ConsumerWidget {
                                 ),
                               ],
                             ),
-                          );
-                        },
-                      ),
-                      sliverGapH14,
-                    ],
+                          ),
+                        );
+                      },
+                    ),
+                    sliverGapH14,
                   ],
-                );
-              },
-              error: (error, _) => SliverToBoxAdapter(
-                child: Text(
-                  errorMessage(error, context),
                 ),
-              ),
-              loading: () => const SliverToBoxAdapter(
-                child: OrdersListLoader(),
-              ),
-            ),
-          ],
+            ],
+          ),
+          error: (error, _) => Text(
+            errorMessage(error, context),
+          ),
+          loading: () => const OrdersListLoader(),
         ),
       ),
     );
