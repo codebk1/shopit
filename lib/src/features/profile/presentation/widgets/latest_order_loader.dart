@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +20,7 @@ class LatestOrderLoader extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 24,
+            height: max(24, MediaQuery.textScalerOf(context).scale(20)),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: const Color.fromARGB(255, 255, 255, 255),
@@ -26,7 +28,7 @@ class LatestOrderLoader extends ConsumerWidget {
           ),
           gapH10,
           Container(
-            height: 24,
+            height: max(24, MediaQuery.textScalerOf(context).scale(20)),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: const Color.fromARGB(255, 255, 255, 255),
@@ -34,7 +36,7 @@ class LatestOrderLoader extends ConsumerWidget {
           ),
           gapH14,
           Container(
-            height: 72,
+            height: 44 + MediaQuery.textScalerOf(context).scale(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: const Color.fromARGB(255, 255, 255, 255),
@@ -42,7 +44,7 @@ class LatestOrderLoader extends ConsumerWidget {
           ),
           gapH14,
           Container(
-            height: 40,
+            height: MediaQuery.textScalerOf(context).scale(40),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: const Color.fromARGB(255, 255, 255, 255),
