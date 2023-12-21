@@ -140,6 +140,7 @@
     "ordersDetailsCommentHeader": "Komentarz",
     "ordersDetailsNoCommentText": "Brak komentarza",
     "ordersDetailsProductsHeader": "Produkty",
+    "ordersEmptyStateText": "Nie złożyłeś/-aś jeszcze żadnych zamówień.",
 
     "inputSearchLabel": "Szukaj produktów...",
     "inputFirstNameLabel": "Imię",

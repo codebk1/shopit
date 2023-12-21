@@ -63,7 +63,7 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
           .limit(1)
           .get();
 
-      return snapshot.docs[0].data();
+      return snapshot.docs.isEmpty ? null : snapshot.docs[0].data();
     } catch (_) {
       throw AppUnknownException();
     }

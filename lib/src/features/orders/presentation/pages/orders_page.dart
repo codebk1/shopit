@@ -27,157 +27,167 @@ class OrdersPage extends ConsumerWidget {
           top: 14,
         ),
         child: groupedOrders.when(
-          data: (groups) => CustomScrollView(
-            slivers: [
-              for (var group in groups.entries)
-                SliverMainAxisGroup(
+          data: (groups) => groups.isEmpty
+              ? EmptyState(
+                  text: context.l10n.ordersEmptyStateText,
+                  onRefresh: () => ref.invalidate(ordersProvider),
+                )
+              : CustomScrollView(
                   slivers: [
-                    SliverPersistentHeader(
-                      pinned: true,
-                      delegate: TextHeaderDelegate(
-                        text: DateFormat(
-                          'LLLL yyyy',
-                          context.l10n.localeName,
-                        ).format(group.key),
-                      ),
-                    ),
-                    SliverList.separated(
-                      itemCount: group.value.length,
-                      separatorBuilder: (_, __) => gapH8,
-                      itemBuilder: (context, index) {
-                        final order = group.value[index];
-                        return GestureDetector(
-                          onTap: () => context.pushNamed(
-                            Routes.order.name,
-                            extra: order,
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.all(14),
-                            decoration: BoxDecoration(
-                              // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-                              color: surfaceContainer(ref),
-                              borderRadius: BorderRadius.circular(8),
+                    for (var group in groups.entries)
+                      SliverMainAxisGroup(
+                        slivers: [
+                          SliverPersistentHeader(
+                            pinned: true,
+                            delegate: TextHeaderDelegate(
+                              text: DateFormat(
+                                'LLLL yyyy',
+                                context.l10n.localeName,
+                              ).format(group.key),
                             ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      order.formattedNumber,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                            fontWeight: FontWeight.bold,
+                          ),
+                          SliverList.separated(
+                            itemCount: group.value.length,
+                            separatorBuilder: (_, __) => gapH8,
+                            itemBuilder: (context, index) {
+                              final order = group.value[index];
+                              return GestureDetector(
+                                onTap: () => context.pushNamed(
+                                  Routes.order.name,
+                                  extra: order,
+                                ),
+                                child: Container(
+                                  padding: const EdgeInsets.all(14),
+                                  decoration: BoxDecoration(
+                                    // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
+                                    color: surfaceContainer(ref),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            order.formattedNumber,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge!
+                                                .copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
-                                    ),
-                                    OrderStatusChip(
-                                      status: order.status,
-                                    ),
-                                  ],
+                                          OrderStatusChip(
+                                            status: order.status,
+                                          ),
+                                        ],
+                                      ),
+                                      gapH14,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                context.l10n
+                                                    .ordersListItemDeliveryLabel,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall!
+                                                    .copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .outline,
+                                                    ),
+                                              ),
+                                              Text(
+                                                order.carrier.name,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                context.l10n
+                                                    .ordersListItemPaymentLabel,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall!
+                                                    .copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .outline,
+                                                    ),
+                                              ),
+                                              Text(
+                                                order.payment.name,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                context.l10n
+                                                    .ordersListItemTotalLabel,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall!
+                                                    .copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .outline,
+                                                    ),
+                                              ),
+                                              Text(
+                                                ref
+                                                    .read(
+                                                        currencyFormatterProvider)
+                                                    .format(order.total),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                gapH14,
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          context
-                                              .l10n.ordersListItemDeliveryLabel,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall!
-                                              .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .outline,
-                                              ),
-                                        ),
-                                        Text(
-                                          order.carrier.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          context
-                                              .l10n.ordersListItemPaymentLabel,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall!
-                                              .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .outline,
-                                              ),
-                                        ),
-                                        Text(
-                                          order.payment.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          context.l10n.ordersListItemTotalLabel,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall!
-                                              .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .outline,
-                                              ),
-                                        ),
-                                        Text(
-                                          ref
-                                              .read(currencyFormatterProvider)
-                                              .format(order.total),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                    sliverGapH14,
+                          sliverGapH14,
+                        ],
+                      ),
                   ],
                 ),
-            ],
-          ),
           error: (error, _) => Text(
             errorMessage(error, context),
           ),
