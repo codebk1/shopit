@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Settings {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   AppLocale? get locale => throw _privateConstructorUsedError;
   AppTheme get theme => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
       _$SettingsCopyWithImpl<$Res, Settings>;
   @useResult
-  $Res call({int id, AppLocale? locale, AppTheme theme});
+  $Res call({String id, AppLocale? locale, AppTheme theme});
 
   $AppThemeCopyWith<$Res> get theme;
 }
@@ -56,7 +56,7 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
@@ -78,24 +78,25 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
 }
 
 /// @nodoc
-abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
-  factory _$$_SettingsCopyWith(
-          _$_Settings value, $Res Function(_$_Settings) then) =
-      __$$_SettingsCopyWithImpl<$Res>;
+abstract class _$$SettingsImplCopyWith<$Res>
+    implements $SettingsCopyWith<$Res> {
+  factory _$$SettingsImplCopyWith(
+          _$SettingsImpl value, $Res Function(_$SettingsImpl) then) =
+      __$$SettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, AppLocale? locale, AppTheme theme});
+  $Res call({String id, AppLocale? locale, AppTheme theme});
 
   @override
   $AppThemeCopyWith<$Res> get theme;
 }
 
 /// @nodoc
-class __$$_SettingsCopyWithImpl<$Res>
-    extends _$SettingsCopyWithImpl<$Res, _$_Settings>
-    implements _$$_SettingsCopyWith<$Res> {
-  __$$_SettingsCopyWithImpl(
-      _$_Settings _value, $Res Function(_$_Settings) _then)
+class __$$SettingsImplCopyWithImpl<$Res>
+    extends _$SettingsCopyWithImpl<$Res, _$SettingsImpl>
+    implements _$$SettingsImplCopyWith<$Res> {
+  __$$SettingsImplCopyWithImpl(
+      _$SettingsImpl _value, $Res Function(_$SettingsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,11 +106,11 @@ class __$$_SettingsCopyWithImpl<$Res>
     Object? locale = freezed,
     Object? theme = null,
   }) {
-    return _then(_$_Settings(
+    return _then(_$SettingsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
@@ -124,13 +125,13 @@ class __$$_SettingsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Settings extends _Settings {
-  const _$_Settings({this.id = 1, this.locale, this.theme = const AppTheme()})
-      : super._();
+class _$SettingsImpl implements _Settings {
+  const _$SettingsImpl(
+      {this.id = '1', this.locale, this.theme = const AppTheme()});
 
   @override
   @JsonKey()
-  final int id;
+  final String id;
   @override
   final AppLocale? locale;
   @override
@@ -146,7 +147,7 @@ class _$_Settings extends _Settings {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Settings &&
+            other is _$SettingsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.locale, locale) || other.locale == locale) &&
             (identical(other.theme, theme) || other.theme == theme));
@@ -158,36 +159,31 @@ class _$_Settings extends _Settings {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SettingsCopyWith<_$_Settings> get copyWith =>
-      __$$_SettingsCopyWithImpl<_$_Settings>(this, _$identity);
+  _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
+      __$$SettingsImplCopyWithImpl<_$SettingsImpl>(this, _$identity);
 }
 
-abstract class _Settings extends Settings {
+abstract class _Settings implements Settings {
   const factory _Settings(
-      {final int id,
+      {final String id,
       final AppLocale? locale,
-      final AppTheme theme}) = _$_Settings;
-  const _Settings._() : super._();
+      final AppTheme theme}) = _$SettingsImpl;
 
   @override
-  int get id;
+  String get id;
   @override
   AppLocale? get locale;
   @override
   AppTheme get theme;
   @override
   @JsonKey(ignore: true)
-  _$$_SettingsCopyWith<_$_Settings> get copyWith =>
+  _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$AppTheme {
-// ignore: invalid_annotation_target
-  @enumerated
-  ThemeSeed get seed =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @enumerated
+  ThemeSeed get seed => throw _privateConstructorUsedError;
   Brightness get brightness => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -200,7 +196,7 @@ abstract class $AppThemeCopyWith<$Res> {
   factory $AppThemeCopyWith(AppTheme value, $Res Function(AppTheme) then) =
       _$AppThemeCopyWithImpl<$Res, AppTheme>;
   @useResult
-  $Res call({@enumerated ThemeSeed seed, @enumerated Brightness brightness});
+  $Res call({ThemeSeed seed, Brightness brightness});
 }
 
 /// @nodoc
@@ -233,21 +229,22 @@ class _$AppThemeCopyWithImpl<$Res, $Val extends AppTheme>
 }
 
 /// @nodoc
-abstract class _$$_AppThemeCopyWith<$Res> implements $AppThemeCopyWith<$Res> {
-  factory _$$_AppThemeCopyWith(
-          _$_AppTheme value, $Res Function(_$_AppTheme) then) =
-      __$$_AppThemeCopyWithImpl<$Res>;
+abstract class _$$AppThemeImplCopyWith<$Res>
+    implements $AppThemeCopyWith<$Res> {
+  factory _$$AppThemeImplCopyWith(
+          _$AppThemeImpl value, $Res Function(_$AppThemeImpl) then) =
+      __$$AppThemeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@enumerated ThemeSeed seed, @enumerated Brightness brightness});
+  $Res call({ThemeSeed seed, Brightness brightness});
 }
 
 /// @nodoc
-class __$$_AppThemeCopyWithImpl<$Res>
-    extends _$AppThemeCopyWithImpl<$Res, _$_AppTheme>
-    implements _$$_AppThemeCopyWith<$Res> {
-  __$$_AppThemeCopyWithImpl(
-      _$_AppTheme _value, $Res Function(_$_AppTheme) _then)
+class __$$AppThemeImplCopyWithImpl<$Res>
+    extends _$AppThemeCopyWithImpl<$Res, _$AppThemeImpl>
+    implements _$$AppThemeImplCopyWith<$Res> {
+  __$$AppThemeImplCopyWithImpl(
+      _$AppThemeImpl _value, $Res Function(_$AppThemeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -256,7 +253,7 @@ class __$$_AppThemeCopyWithImpl<$Res>
     Object? seed = null,
     Object? brightness = null,
   }) {
-    return _then(_$_AppTheme(
+    return _then(_$AppThemeImpl(
       seed: null == seed
           ? _value.seed
           : seed // ignore: cast_nullable_to_non_nullable
@@ -271,20 +268,15 @@ class __$$_AppThemeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppTheme implements _AppTheme {
-  const _$_AppTheme(
-      {@enumerated this.seed = ThemeSeed.blue,
-      @enumerated this.brightness = Brightness.light});
+class _$AppThemeImpl implements _AppTheme {
+  const _$AppThemeImpl(
+      {this.seed = ThemeSeed.blue, this.brightness = Brightness.light});
 
-// ignore: invalid_annotation_target
   @override
   @JsonKey()
-  @enumerated
   final ThemeSeed seed;
-// ignore: invalid_annotation_target
   @override
   @JsonKey()
-  @enumerated
   final Brightness brightness;
 
   @override
@@ -296,7 +288,7 @@ class _$_AppTheme implements _AppTheme {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppTheme &&
+            other is _$AppThemeImpl &&
             (identical(other.seed, seed) || other.seed == seed) &&
             (identical(other.brightness, brightness) ||
                 other.brightness == brightness));
@@ -308,23 +300,20 @@ class _$_AppTheme implements _AppTheme {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppThemeCopyWith<_$_AppTheme> get copyWith =>
-      __$$_AppThemeCopyWithImpl<_$_AppTheme>(this, _$identity);
+  _$$AppThemeImplCopyWith<_$AppThemeImpl> get copyWith =>
+      __$$AppThemeImplCopyWithImpl<_$AppThemeImpl>(this, _$identity);
 }
 
 abstract class _AppTheme implements AppTheme {
-  const factory _AppTheme(
-      {@enumerated final ThemeSeed seed,
-      @enumerated final Brightness brightness}) = _$_AppTheme;
+  const factory _AppTheme({final ThemeSeed seed, final Brightness brightness}) =
+      _$AppThemeImpl;
 
-  @override // ignore: invalid_annotation_target
-  @enumerated
+  @override
   ThemeSeed get seed;
-  @override // ignore: invalid_annotation_target
-  @enumerated
+  @override
   Brightness get brightness;
   @override
   @JsonKey(ignore: true)
-  _$$_AppThemeCopyWith<_$_AppTheme> get copyWith =>
+  _$$AppThemeImplCopyWith<_$AppThemeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

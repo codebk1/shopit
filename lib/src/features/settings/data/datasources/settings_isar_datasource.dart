@@ -9,16 +9,20 @@ class SettingsIsarDataSource implements ISettingsLocalDataSource {
 
   @override
   Future<Settings?> get() {
-    return _isar.settings.get(1);
+    return _isar.settings.getAsync('1');
   }
 
   @override
   Future<void> update(Settings settings) {
-    return _isar.writeTxn(() => _isar.settings.put(settings));
+    return _isar.writeAsync(
+      (isar) => isar.settings.put(settings),
+    );
   }
 
   @override
   Future<void> clear() {
-    return _isar.writeTxn(() => _isar.settings.clear());
+    return _isar.writeAsync(
+      (isar) => isar.settings.clear(),
+    );
   }
 }

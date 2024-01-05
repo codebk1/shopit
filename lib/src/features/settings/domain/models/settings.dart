@@ -9,18 +9,13 @@ part 'settings.freezed.dart';
 part 'settings.g.dart';
 
 @freezed
-@Collection(ignore: {'copyWith'})
+@collection
 class Settings with _$Settings {
-  const Settings._();
-
   const factory Settings({
-    @Default(1) Id id,
+    @Default('1') String id,
     AppLocale? locale,
     @Default(AppTheme()) AppTheme theme,
   }) = _Settings;
-
-  @override
-  Id get id => Isar.autoIncrement;
 }
 
 @embedded
@@ -33,10 +28,8 @@ class AppLocale {
 @Embedded(ignore: {'copyWith'})
 class AppTheme with _$AppTheme {
   const factory AppTheme({
-    // ignore: invalid_annotation_target
-    @Default(ThemeSeed.blue) @enumerated ThemeSeed seed,
-    // ignore: invalid_annotation_target
-    @Default(Brightness.light) @enumerated Brightness brightness,
+    @Default(ThemeSeed.blue) ThemeSeed seed,
+    @Default(Brightness.light) Brightness brightness,
   }) = _AppTheme;
 }
 
