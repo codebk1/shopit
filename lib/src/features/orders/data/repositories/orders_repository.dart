@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
+// import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:shopit/src/features/features.dart';
@@ -16,8 +17,8 @@ class OrdersRepository {
     return _remoteDataSource.get(uid);
   }
 
-  Future<Order?> byId(String uid, String id) {
-    return _remoteDataSource.byId(uid, id);
+  Future<Order?> getById(String uid, String id) {
+    return _remoteDataSource.getById(uid, id);
   }
 
   Future<Order?> latest(String uid) {
@@ -38,6 +39,10 @@ OrdersRepository ordersRepository(OrdersRepositoryRef ref) {
   final remoteDataSource = OrdersFirebaseDataSource(
     firestore.FirebaseFirestore.instance,
   );
+
+  // final remoteDataSource = OrdersSupabaseDataSource(
+  //   supabase.Supabase.instance.client,
+  // );
 
   return OrdersRepository(remoteDataSource);
 }

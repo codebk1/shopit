@@ -17,8 +17,8 @@ class OrdersService {
     return _user != null ? await _ordersRepository.get(_user.id) : [];
   }
 
-  Future<Order?> byId(String id) async {
-    return _user != null ? _ordersRepository.byId(_user.id, id) : null;
+  Future<Order?> getById(String id) async {
+    return _user != null ? _ordersRepository.getById(_user.id, id) : null;
   }
 
   Future<Order?> latest() async {
@@ -49,7 +49,7 @@ Future<List<Order>> orders(OrdersRef ref) {
 
 @riverpod
 Future<Order?> order(OrderRef ref, String id) {
-  return ref.watch(ordersServiceProvider).byId(id);
+  return ref.watch(ordersServiceProvider).getById(id);
 }
 
 @riverpod

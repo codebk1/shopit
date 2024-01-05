@@ -45,7 +45,7 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
   }
 
   @override
-  Future<Order?> byId(String uid, String id) async {
+  Future<Order?> getById(String uid, String id) async {
     try {
       final snapshot = await _ordersRef(uid).doc(id).get();
 
@@ -88,7 +88,7 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
         final configRef = _firestore.collection('config').doc('orders');
 
         final config = await transaction.get(configRef);
-        final orderNumber = config.get('lastNumber') + 1;
+        final orderNumber = config.get('latestOrderNumber') + 1;
 
         transaction.set(
           docRef,
@@ -97,7 +97,7 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
 
         transaction.set(
           configRef,
-          {'lastNumber': orderNumber},
+          {'latestOrderNumber': orderNumber},
         );
 
         return docRef.id;

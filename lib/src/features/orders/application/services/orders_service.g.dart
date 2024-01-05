@@ -35,7 +35,7 @@ final ordersProvider = AutoDisposeFutureProvider<List<Order>>.internal(
 );
 
 typedef OrdersRef = AutoDisposeFutureProviderRef<List<Order>>;
-String _$orderHash() => r'040bf0176a44a4ac3db06bce38e0e017c8f9261d';
+String _$orderHash() => r'613f6c8297280146a1d8995101576720935c83e4';
 
 /// Copied from Dart SDK
 class _SystemHash {
