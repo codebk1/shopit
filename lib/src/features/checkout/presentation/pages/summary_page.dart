@@ -7,11 +7,23 @@ import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/features.dart';
 
-class SummaryPage extends ConsumerWidget {
+class SummaryPage extends ConsumerStatefulWidget {
   const SummaryPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SummaryPage> createState() => _SummaryPageState();
+}
+
+class _SummaryPageState extends ConsumerState<SummaryPage> {
+  @override
+  void deactivate() {
+    ref.read(checkoutControllerProvider.notifier).clear();
+
+    super.deactivate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final checkout = ref.watch(checkoutControllerProvider).requireValue;
 
     final deliveryAddress = ref.watch(checkoutAddressProvider(
