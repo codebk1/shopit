@@ -10,12 +10,16 @@ class WishlistRepository {
 
   final IWishlistLocalDataSource _localDataSource;
 
-  Future<Wishlist> get() async {
-    return await _localDataSource.get() ?? const Wishlist();
+  Future<List<String>> get() async {
+    return await _localDataSource.get();
   }
 
-  Future<void> update(Wishlist wishlist) async {
-    return _localDataSource.update(wishlist);
+  Future<void> add(String id) async {
+    return _localDataSource.add(id);
+  }
+
+  Future<void> delete(String id) async {
+    return _localDataSource.delete(id);
   }
 
   Future<void> clear() async {
@@ -25,8 +29,8 @@ class WishlistRepository {
 
 @Riverpod(keepAlive: true)
 WishlistRepository wishlistRepository(WishlistRepositoryRef ref) {
-  final isar = ref.watch(isarProvider);
-  final localDataSource = WishlistIsarDataSource(isar);
+  final db = ref.watch(appDatabaseProvider);
+  final localDataSource = WishlistLocalDataSource(db);
 
   return WishlistRepository(localDataSource);
 }

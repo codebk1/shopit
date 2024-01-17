@@ -25,8 +25,8 @@ class SettingsRepository {
 
 @Riverpod(keepAlive: true)
 SettingsRepository settingsRepository(SettingsRepositoryRef ref) {
-  final isar = ref.watch(isarProvider);
-  final localDataSource = SettingsIsarDataSource(isar);
+  final db = ref.watch(appDatabaseProvider);
+  final localDataSource = SettingsLocalDataSource(db);
 
   return SettingsRepository(localDataSource);
 }

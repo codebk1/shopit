@@ -1,7 +1,6 @@
-import 'package:shopit/src/features/features.dart';
-
 abstract interface class IWishlistLocalDataSource {
-  Future<Wishlist?> get();
-  Future<void> update(Wishlist wishlist);
+  Future<List<String>> get();
+  Future<void> add(String id);
+  Future<void> delete(String id);
   Future<void> clear();
 }

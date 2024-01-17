@@ -7,25 +7,24 @@ part 'wishlist_controller.g.dart';
 @riverpod
 class WishlistController extends _$WishlistController {
   @override
-  FutureOr<Wishlist> build() {
+  FutureOr<List<String>> build() {
     return ref.watch(wishlistServiceProvider).get();
   }
 
   Future<void> toggle(String itemId) async {
     final wishlist = await future;
 
-    final index = wishlist.items.indexOf(itemId);
-
     state = await AsyncValue.guard(() async {
-      final newWishlist = wishlist.copyWith(
-        items: index != -1
-            ? ([...wishlist.items]..removeAt(index))
-            : [...wishlist.items, itemId],
-      );
+      final index = wishlist.indexOf(itemId);
+      if (index != -1) {
+        await ref.read(wishlistServiceProvider).delete(itemId);
 
-      await ref.read(wishlistServiceProvider).update(newWishlist);
+        return [...wishlist..removeAt(index)];
+      } else {
+        await ref.read(wishlistServiceProvider).add(itemId);
 
-      return newWishlist;
+        return [...wishlist, itemId];
+      }
     });
   }
 }
@@ -34,7 +33,7 @@ class WishlistController extends _$WishlistController {
 int wishlistItemsCount(WishlistItemsCountRef ref) {
   return ref.watch(wishlistControllerProvider).maybeWhen(
         skipLoadingOnReload: true,
-        data: (wishlist) => wishlist.items.length,
+        data: (wishlist) => wishlist.length,
         orElse: () => 0,
       );
 }

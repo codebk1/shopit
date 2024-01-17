@@ -17,7 +17,9 @@ class SettingsController extends _$SettingsController {
     final settings = await future;
 
     state = await AsyncValue.guard(() async {
-      final newSettings = settings.copyWith(locale: locale?.toAppLocale());
+      final newSettings = settings.copyWith(
+        locale: () => locale?.toAppLocale(),
+      );
 
       await ref.read(settingsRepositoryProvider).update(newSettings);
 

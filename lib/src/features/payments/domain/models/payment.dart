@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 
 part 'payment.freezed.dart';
 part 'payment.g.dart';
@@ -7,7 +6,6 @@ part 'payment.g.dart';
 enum PaymentType { wireTransfer, cod, creditCard, online }
 
 @freezed
-@Embedded(ignore: {'copyWith'})
 class Payment with _$Payment {
   const factory Payment({
     required String id,

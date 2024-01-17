@@ -7,7 +7,7 @@ part of 'checkout_repository.dart';
 // **************************************************************************
 
 String _$checkoutRepositoryHash() =>
-    r'152745ae4a140f7c6e64d7a269f884bfde9ce594';
+    r'4bc320944821bb3abfae7c30ae420e061d672250';
 
 /// See also [checkoutRepository].
 @ProviderFor(checkoutRepository)

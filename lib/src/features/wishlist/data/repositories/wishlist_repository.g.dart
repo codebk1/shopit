@@ -7,7 +7,7 @@ part of 'wishlist_repository.dart';
 // **************************************************************************
 
 String _$wishlistRepositoryHash() =>
-    r'c0209a04f162e1084817a52e60dbffeba015be31';
+    r'11da446cb61926aeae4d5eb0c0b6249e3bd30e85';
 
 /// See also [wishlistRepository].
 @ProviderFor(wishlistRepository)

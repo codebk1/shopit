@@ -1,1 +1,1 @@
-export 'wishlist_isar_datasource.dart';
+export 'wishlist_local_datasource.dart';

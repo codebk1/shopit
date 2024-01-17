@@ -11,18 +11,24 @@ class WishlistService {
     this._wishlistRepository,
   );
 
-  final Wishlist? _wishlist;
+  final List<String>? _wishlist;
   final ProfileController _profileController;
   final WishlistRepository _wishlistRepository;
 
-  Future<Wishlist> get() async {
+  Future<List<String>> get() async {
     return _wishlist ?? await _wishlistRepository.get();
   }
 
-  Future<void> update(Wishlist wishlist) {
+  Future<void> add(String id) {
     return _wishlist != null
-        ? _profileController.setWishlist(wishlist)
-        : _wishlistRepository.update(wishlist);
+        ? _profileController.addWishlistItem(id)
+        : _wishlistRepository.add(id);
+  }
+
+  Future<void> delete(String id) {
+    return _wishlist != null
+        ? _profileController.deleteWishlistItem(id)
+        : _wishlistRepository.delete(id);
   }
 }
 

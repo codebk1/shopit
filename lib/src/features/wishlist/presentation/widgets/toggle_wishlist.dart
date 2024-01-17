@@ -17,7 +17,7 @@ class ToggleWishlist extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final wishlisted = ref.watch(wishlistControllerProvider).maybeWhen(
           skipLoadingOnReload: true,
-          data: (data) => data.items.any((item) => item == product.id),
+          data: (wishlist) => wishlist.any((item) => item == product.id),
           orElse: () => false,
         );
 

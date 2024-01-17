@@ -21,17 +21,17 @@ class WishlistPage extends ConsumerWidget {
         padding: const EdgeInsets.only(top: 14),
         child: wishlistController.when(
           skipLoadingOnReload: true,
-          data: (wishlist) => wishlist.items.isEmpty
+          data: (wishlist) => wishlist.isEmpty
               ? EmptyState(
                   text: context.l10n.wishlistEmptyState,
                   onRefresh: () => ref.invalidate(wishlistControllerProvider),
                 )
               : ListView.separated(
                   padding: const EdgeInsets.only(bottom: 14),
-                  itemCount: wishlist.items.length,
+                  itemCount: wishlist.length,
                   separatorBuilder: (_, __) => gapH8,
                   itemBuilder: (context, index) {
-                    final productId = wishlist.items[index];
+                    final productId = wishlist[index];
 
                     return ProviderScope(
                       overrides: [

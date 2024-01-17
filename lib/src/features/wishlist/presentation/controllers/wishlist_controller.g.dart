@@ -7,7 +7,7 @@ part of 'wishlist_controller.dart';
 // **************************************************************************
 
 String _$wishlistItemsCountHash() =>
-    r'3e2fc75638792fd2a91ec27ecd270e1975f26a01';
+    r'911b090fa7fa5b1643c94026e997a41974cbd5ce';
 
 /// See also [wishlistItemsCount].
 @ProviderFor(wishlistItemsCount)
@@ -23,12 +23,12 @@ final wishlistItemsCountProvider = AutoDisposeProvider<int>.internal(
 
 typedef WishlistItemsCountRef = AutoDisposeProviderRef<int>;
 String _$wishlistControllerHash() =>
-    r'6b99eb73344b8077eae542cc46dfff10168dd944';
+    r'3929fee4958857cba18d78cc2c44a65aed7679e9';
 
 /// See also [WishlistController].
 @ProviderFor(WishlistController)
 final wishlistControllerProvider =
-    AutoDisposeAsyncNotifierProvider<WishlistController, Wishlist>.internal(
+    AutoDisposeAsyncNotifierProvider<WishlistController, List<String>>.internal(
   WishlistController.new,
   name: r'wishlistControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -38,6 +38,6 @@ final wishlistControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$WishlistController = AutoDisposeAsyncNotifier<Wishlist>;
+typedef _$WishlistController = AutoDisposeAsyncNotifier<List<String>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

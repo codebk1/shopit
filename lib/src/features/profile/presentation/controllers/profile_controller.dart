@@ -36,14 +36,30 @@ class ProfileController extends _$ProfileController {
     }
   }
 
-  Future<void> setWishlist(Wishlist wishlist) async {
+  Future<void> addWishlistItem(String id) async {
     final profile = await future;
 
     if (profile != null) {
       state = await AsyncValue.guard(() {
-        return ref
-            .read(profileRepositoryProvider)
-            .update(profile.copyWith(wishlist: wishlist));
+        return ref.read(profileRepositoryProvider).update(
+              profile.copyWith(
+                wishlist: [...profile.wishlist, id],
+              ),
+            );
+      });
+    }
+  }
+
+  Future<void> deleteWishlistItem(String id) async {
+    final profile = await future;
+
+    if (profile != null) {
+      state = await AsyncValue.guard(() {
+        return ref.read(profileRepositoryProvider).update(
+              profile.copyWith(
+                wishlist: [...profile.wishlist..remove(id)],
+              ),
+            );
       });
     }
   }

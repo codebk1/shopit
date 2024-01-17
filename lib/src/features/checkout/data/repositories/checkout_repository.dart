@@ -27,8 +27,8 @@ class CheckoutRepository {
 
 @Riverpod(keepAlive: true)
 CheckoutRepository checkoutRepository(CheckoutRepositoryRef ref) {
-  final isar = ref.watch(isarProvider);
-  final localDataSource = CheckoutIsarDataSource(isar);
+  final db = ref.watch(appDatabaseProvider);
+  final localDataSource = CheckoutLocalDataSource(db);
 
   return CheckoutRepository(localDataSource);
 }
