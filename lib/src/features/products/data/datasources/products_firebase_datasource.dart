@@ -34,7 +34,7 @@ class ProductsFirebaseDataSource implements IProductsRemoteDataSource {
       final snapshot =
           await _productsRef.where('categoryId', isEqualTo: id).count().get();
 
-      return snapshot.count;
+      return snapshot.count ?? 0;
     } catch (_) {
       throw AppUnknownException();
     }

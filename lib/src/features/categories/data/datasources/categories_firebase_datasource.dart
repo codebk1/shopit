@@ -22,7 +22,7 @@ class CategoriesFirebaseDataSource implements ICategoriesRemoteDataSource {
     try {
       final snapshot = await _categoriesRef.count().get();
 
-      return snapshot.count;
+      return snapshot.count ?? 0;
     } catch (_) {
       throw AppUnknownException();
     }

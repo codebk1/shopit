@@ -74,7 +74,7 @@ class OrdersFirebaseDataSource implements IOrdersRemoteDataSource {
     try {
       final snapshot = await _ordersRef(uid).count().get();
 
-      return snapshot.count;
+      return snapshot.count ?? 0;
     } catch (_) {
       throw AppUnknownException();
     }
