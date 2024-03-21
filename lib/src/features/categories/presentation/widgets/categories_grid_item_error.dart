@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:shopit/src/core/core.dart';
 
-class CategoriesGridItemError extends ConsumerWidget {
+class CategoriesGridItemError extends StatelessWidget {
   const CategoriesGridItemError({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-        color: surfaceContainer(ref),
+        color: Theme.of(context).colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Center(

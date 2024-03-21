@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/features.dart';
 
-class AddressGridItem extends ConsumerStatefulWidget {
+class AddressGridItem extends StatefulWidget {
   const AddressGridItem({
     super.key,
     required this.address,
@@ -19,17 +16,17 @@ class AddressGridItem extends ConsumerStatefulWidget {
   final Future<void> Function(Address) submit;
 
   @override
-  ConsumerState<AddressGridItem> createState() => _AddressGridItemState();
+  State<AddressGridItem> createState() => _AddressGridItemState();
 }
 
-class _AddressGridItemState extends ConsumerState<AddressGridItem> {
+class _AddressGridItemState extends State<AddressGridItem> {
   final _controller = MenuController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: surfaceContainer(ref),
+        color: Theme.of(context).colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: widget.isDefault

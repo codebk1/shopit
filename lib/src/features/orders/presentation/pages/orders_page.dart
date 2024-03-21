@@ -59,8 +59,9 @@ class OrdersPage extends ConsumerWidget {
                                 child: Container(
                                   padding: const EdgeInsets.all(14),
                                   decoration: BoxDecoration(
-                                    // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-                                    color: surfaceContainer(ref),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceContainer,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Column(

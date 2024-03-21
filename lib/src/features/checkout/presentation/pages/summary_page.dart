@@ -7,23 +7,11 @@ import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/features.dart';
 
-class SummaryPage extends ConsumerStatefulWidget {
+class SummaryPage extends ConsumerWidget {
   const SummaryPage({super.key});
 
   @override
-  ConsumerState<SummaryPage> createState() => _SummaryPageState();
-}
-
-class _SummaryPageState extends ConsumerState<SummaryPage> {
-  @override
-  void deactivate() {
-    ref.read(checkoutControllerProvider.notifier).clear();
-
-    super.deactivate();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final checkout = ref.watch(checkoutControllerProvider).requireValue;
 
     final deliveryAddress = ref.watch(checkoutAddressProvider(
@@ -99,7 +87,8 @@ class _SummaryPageState extends ConsumerState<SummaryPage> {
                         child: Container(
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: surfaceContainer(ref),
+                            color:
+                                Theme.of(context).colorScheme.surfaceContainer,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: carrier.when(
@@ -136,7 +125,8 @@ class _SummaryPageState extends ConsumerState<SummaryPage> {
                         child: Container(
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: surfaceContainer(ref),
+                            color:
+                                Theme.of(context).colorScheme.surfaceContainer,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: deliveryAddress.when(
@@ -173,7 +163,8 @@ class _SummaryPageState extends ConsumerState<SummaryPage> {
                         child: Container(
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: surfaceContainer(ref),
+                            color:
+                                Theme.of(context).colorScheme.surfaceContainer,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: payment.when(
@@ -210,7 +201,8 @@ class _SummaryPageState extends ConsumerState<SummaryPage> {
                         child: Container(
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: surfaceContainer(ref),
+                            color:
+                                Theme.of(context).colorScheme.surfaceContainer,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: paymentAddress.when(
@@ -254,7 +246,9 @@ class _SummaryPageState extends ConsumerState<SummaryPage> {
                           child: Container(
                             padding: const EdgeInsets.all(14),
                             decoration: BoxDecoration(
-                              color: surfaceContainer(ref),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .surfaceContainer,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(

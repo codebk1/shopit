@@ -45,8 +45,7 @@ class ProductsListItem extends ConsumerWidget {
                     : null,
                 height: 75,
                 decoration: BoxDecoration(
-                  // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-                  color: surfaceContainer(ref),
+                  color: Theme.of(context).colorScheme.surfaceContainer,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(

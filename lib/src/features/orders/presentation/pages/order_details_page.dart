@@ -93,7 +93,7 @@ class OrderDetailsPage extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: surfaceContainer(ref),
+                      color: Theme.of(context).colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -127,7 +127,7 @@ class OrderDetailsPage extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: surfaceContainer(ref),
+                      color: Theme.of(context).colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -153,7 +153,7 @@ class OrderDetailsPage extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: surfaceContainer(ref),
+                      color: Theme.of(context).colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: AddressData(
@@ -176,7 +176,7 @@ class OrderDetailsPage extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: surfaceContainer(ref),
+                      color: Theme.of(context).colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -202,7 +202,7 @@ class OrderDetailsPage extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: surfaceContainer(ref),
+                      color: Theme.of(context).colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: AddressData(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:shopit/src/core/core.dart';
@@ -79,22 +78,18 @@ class _ProductGalleryState extends State<ProductGallery>
           ),
         ),
         gapH10,
-        Consumer(
-          builder: (context, ref, child) {
-            return CustomPaint(
-              size: const Size.fromHeight(10),
-              painter: _Indicator(
-                activeIndex: _currentPhotoIndex,
-                swipeRight: _swipeRight,
-                count: widget.product.gallery.length + 1,
-                activeDotWidth: 20,
-                spacing: 10,
-                color: surfaceContainer(ref),
-                activeColor: Theme.of(context).colorScheme.primary,
-                animation: _indicatorController,
-              ),
-            );
-          },
+        CustomPaint(
+          size: const Size.fromHeight(10),
+          painter: _Indicator(
+            activeIndex: _currentPhotoIndex,
+            swipeRight: _swipeRight,
+            count: widget.product.gallery.length + 1,
+            activeDotWidth: 20,
+            spacing: 10,
+            color: Theme.of(context).colorScheme.surfaceContainer,
+            activeColor: Theme.of(context).colorScheme.primary,
+            animation: _indicatorController,
+          ),
         ),
       ],
     );

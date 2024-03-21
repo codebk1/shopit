@@ -18,7 +18,7 @@ class Loader extends StatelessWidget {
         height: size ?? 15,
         child: CircularProgressIndicator(
           color: dark
-              ? Theme.of(context).colorScheme.onBackground
+              ? Theme.of(context).colorScheme.onSurface
               : const Color.fromARGB(255, 255, 255, 255),
           strokeWidth: 2,
         ),

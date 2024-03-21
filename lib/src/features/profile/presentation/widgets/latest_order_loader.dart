@@ -2,20 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:shopit/src/core/core.dart';
 
-class LatestOrderLoader extends ConsumerWidget {
+class LatestOrderLoader extends StatelessWidget {
   const LatestOrderLoader({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-      baseColor: shimmerLightBaseColor,
-      highlightColor: shimmerLightHighlightColor(ref),
+      baseColor: Theme.of(context).colorScheme.surfaceContainer.withAlpha(1),
+      highlightColor:
+          Theme.of(context).colorScheme.surfaceContainer.withAlpha(50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

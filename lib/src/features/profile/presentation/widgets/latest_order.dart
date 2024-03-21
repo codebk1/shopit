@@ -47,7 +47,7 @@ class LatestOrder extends ConsumerWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: surfaceContainer(ref),
+            color: Theme.of(context).colorScheme.surfaceContainer,
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(14),
               bottomLeft: Radius.circular(14),

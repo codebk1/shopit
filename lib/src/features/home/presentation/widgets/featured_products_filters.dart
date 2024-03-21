@@ -57,9 +57,10 @@ class FeaturedProductsFilters extends ConsumerWidget {
           onRefresh: () => ref.invalidate(featuredProductsCategoriesProvider),
         ),
         loading: () => Shimmer.fromColors(
-          // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-          baseColor: shimmerDarkBaseColor(ref),
-          highlightColor: shimmerDarkHighlightColor(ref),
+          baseColor:
+              Theme.of(context).colorScheme.surfaceContainer.withAlpha(150),
+          highlightColor:
+              Theme.of(context).colorScheme.surfaceContainer.withAlpha(50),
           child: SizedBox(
             height: 40,
             child: ListView.separated(

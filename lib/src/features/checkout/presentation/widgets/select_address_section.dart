@@ -36,7 +36,7 @@ class SelectAddressSection extends ConsumerWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: surfaceContainer(ref),
+            color: Theme.of(context).colorScheme.surfaceContainer,
             borderRadius: BorderRadius.circular(8),
           ),
           child: address.when(

@@ -29,8 +29,7 @@ class AccountPage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 14),
                   padding: const EdgeInsets.only(left: 14),
                   decoration: BoxDecoration(
-                    // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-                    color: surfaceContainer(ref),
+                    color: Theme.of(context).colorScheme.surfaceContainer,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(

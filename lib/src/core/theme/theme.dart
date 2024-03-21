@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:shopit/src/core/core.dart';
-
 class CustomTheme {
   const CustomTheme({
     required this.brightness,
@@ -36,9 +34,6 @@ class CustomTheme {
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: brightness == Brightness.light
-            ? surfaceContainerLight(seedColor.value)
-            : surfaceContainerDark(seedColor.value),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

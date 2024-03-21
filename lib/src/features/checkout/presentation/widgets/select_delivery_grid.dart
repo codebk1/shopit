@@ -46,7 +46,7 @@ class SelectDeliveryGrid extends ConsumerWidget {
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: surfaceContainer(ref),
+                color: Theme.of(context).colorScheme.surfaceContainer,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: checkout.carrierId == carrier.id

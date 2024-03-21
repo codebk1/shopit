@@ -11,9 +11,9 @@ class FeaturedProductsLoader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Shimmer.fromColors(
-      // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-      baseColor: shimmerDarkBaseColor(ref),
-      highlightColor: shimmerDarkHighlightColor(ref),
+      baseColor: Theme.of(context).colorScheme.surfaceContainer.withAlpha(150),
+      highlightColor:
+          Theme.of(context).colorScheme.surfaceContainer.withAlpha(50),
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 14),
         scrollDirection: Axis.horizontal,

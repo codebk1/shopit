@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 
-class FeaturedEmptyState extends ConsumerWidget {
+class FeaturedEmptyState extends StatelessWidget {
   const FeaturedEmptyState({
     super.key,
     this.isRow = false,
@@ -18,7 +15,7 @@ class FeaturedEmptyState extends ConsumerWidget {
   final VoidCallback onRefresh;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final children = [
       Text(
         text,
@@ -36,8 +33,7 @@ class FeaturedEmptyState extends ConsumerWidget {
           isRow ? const EdgeInsets.only(left: 14) : const EdgeInsets.all(14),
       margin: const EdgeInsets.symmetric(horizontal: 14),
       decoration: BoxDecoration(
-        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-        color: surfaceContainer(ref),
+        color: Theme.of(context).colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(8),
       ),
       child: isRow

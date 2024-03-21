@@ -6,7 +6,7 @@ import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/features.dart';
 
-class CategoriesHeader extends ConsumerWidget {
+class CategoriesHeader extends StatelessWidget {
   const CategoriesHeader({
     super.key,
     required this.count,
@@ -15,13 +15,12 @@ class CategoriesHeader extends ConsumerWidget {
   final int count;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-        color: surfaceContainer(ref),
+        color: Theme.of(context).colorScheme.surfaceContainer,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

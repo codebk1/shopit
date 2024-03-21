@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 
-class AddressesGridEmpty extends ConsumerWidget {
+class AddressesGridEmpty extends StatelessWidget {
   const AddressesGridEmpty({
     super.key,
     required this.onRefresh,
@@ -14,12 +12,12 @@ class AddressesGridEmpty extends ConsumerWidget {
   final VoidCallback onRefresh;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       height: 365,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: surfaceContainer(ref),
+        color: Theme.of(context).colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(

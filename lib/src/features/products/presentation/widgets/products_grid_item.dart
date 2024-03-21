@@ -8,7 +8,7 @@ import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/features.dart';
 
-class ProductsGridItem extends ConsumerWidget {
+class ProductsGridItem extends StatelessWidget {
   const ProductsGridItem({
     super.key,
     required this.product,
@@ -17,7 +17,7 @@ class ProductsGridItem extends ConsumerWidget {
   final Product product;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => context.pushNamed(
         Routes.product.name,
@@ -25,8 +25,7 @@ class ProductsGridItem extends ConsumerWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-          color: surfaceContainer(ref),
+          color: Theme.of(context).colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(

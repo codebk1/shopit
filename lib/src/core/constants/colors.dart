@@ -1,11 +1,3 @@
-import 'package:flutter/material.dart';
-
-// ignore: depend_on_referenced_packages
-import 'package:material_color_utilities/material_color_utilities.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:shopit/src/features/features.dart';
-
 enum ThemeSeed {
   blue(0xFF2196F3),
   green(0xFF4CAF50),
@@ -23,26 +15,3 @@ enum ThemeSeed {
   const ThemeSeed(this.value);
   final int value;
 }
-
-// waiting for: https://github.com/flutter/flutter/issues/115912
-Color surfaceContainerLight(int color) =>
-    Color(CorePalette.of(color).neutralVariant.get(94));
-Color surfaceContainerDark(int color) => Color(
-      CorePalette.of(color).neutralVariant.get(18),
-    );
-
-Color surfaceContainer(WidgetRef ref) {
-  final appTheme = ref.watch(settingsControllerProvider.select(
-    (value) => value.requireValue.theme,
-  ));
-
-  return appTheme.brightness == Brightness.light
-      ? surfaceContainerLight(appTheme.seed.value)
-      : surfaceContainerDark(appTheme.seed.value);
-}
-
-final shimmerLightBaseColor = Colors.white.withAlpha(100);
-shimmerDarkBaseColor(WidgetRef ref) => surfaceContainer(ref).withAlpha(150);
-
-shimmerLightHighlightColor(WidgetRef ref) => surfaceContainer(ref).withAlpha(1);
-shimmerDarkHighlightColor(WidgetRef ref) => surfaceContainer(ref).withAlpha(50);

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:shopit/src/core/core.dart';
-
-class ProductsGridLoader extends ConsumerWidget {
+class ProductsGridLoader extends StatelessWidget {
   const ProductsGridLoader({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-      baseColor: shimmerDarkBaseColor(ref),
-      highlightColor: shimmerDarkHighlightColor(ref),
+      baseColor: Theme.of(context).colorScheme.surfaceContainer.withAlpha(150),
+      highlightColor:
+          Theme.of(context).colorScheme.surfaceContainer.withAlpha(50),
       child: GridView.builder(
         padding: const EdgeInsets.only(bottom: 14),
         itemCount: 6,

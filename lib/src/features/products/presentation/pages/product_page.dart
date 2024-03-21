@@ -32,8 +32,7 @@ class ProductPage extends ConsumerWidget {
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
-                  // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-                  color: surfaceContainer(ref),
+                  color: Theme.of(context).colorScheme.surfaceContainer,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(14),
                     topRight: Radius.circular(14),
@@ -117,48 +116,41 @@ class _PriceHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final progress = shrinkOffset / maxExtent;
 
-    return Consumer(
-      builder: (context, ref, child) {
-        return Column(
-          children: [
-            Container(
-              // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-              color: surfaceContainer(ref),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Consumer(
-                      builder: (context, ref, child) {
-                        return Text(
-                          ref
-                              .read(currencyFormatterProvider)
-                              .format(product.price),
-                          style: TextStyle.lerp(
-                            Theme.of(context).textTheme.titleMedium,
-                            Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(fontWeight: FontWeight.bold),
-                            progress,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Visibility(
-                    visible: progress != 0,
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 150),
-                      opacity: progress,
-                      child: ToggleWishlist(product: product),
-                    ),
-                  ),
-                ],
+    return Column(
+      children: [
+        Container(
+          color: Theme.of(context).colorScheme.surfaceContainer,
+          child: Row(
+            children: [
+              Expanded(
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    return Text(
+                      ref.read(currencyFormatterProvider).format(product.price),
+                      style: TextStyle.lerp(
+                        Theme.of(context).textTheme.titleMedium,
+                        Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontWeight: FontWeight.bold),
+                        progress,
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
-        );
-      },
+              Visibility(
+                visible: progress != 0,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 150),
+                  opacity: progress,
+                  child: ToggleWishlist(product: product),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

@@ -17,7 +17,7 @@ class CartBottomSection extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: surfaceContainer(ref),
+        color: Theme.of(context).colorScheme.surfaceContainer,
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).brightness == Brightness.light

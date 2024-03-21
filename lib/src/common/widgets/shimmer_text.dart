@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:shopit/src/core/core.dart';
-
-class ShimmerText extends ConsumerWidget {
+class ShimmerText extends StatelessWidget {
   const ShimmerText({
     super.key,
     required this.width,
@@ -26,15 +23,16 @@ class ShimmerText extends ConsumerWidget {
   final bool dark;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final scaledLineHeight = MediaQuery.textScalerOf(context).scale(lineHeight);
 
-    // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
     return Shimmer.fromColors(
-      baseColor: dark ? shimmerDarkBaseColor(ref) : shimmerLightBaseColor,
+      baseColor: dark
+          ? Theme.of(context).colorScheme.surfaceContainer.withAlpha(150)
+          : Colors.white.withAlpha(100),
       highlightColor: dark
-          ? shimmerDarkHighlightColor(ref)
-          : shimmerLightHighlightColor(ref),
+          ? Theme.of(context).colorScheme.surfaceContainer.withAlpha(50)
+          : Theme.of(context).colorScheme.surfaceContainer.withAlpha(1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

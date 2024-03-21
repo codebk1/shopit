@@ -37,8 +37,8 @@ class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
         statusBarBrightness: systemOverlayBrightness,
         statusBarIconBrightness: systemOverlayBrightness,
         systemStatusBarContrastEnforced: false,
-        // TODO: refactor when: https://github.com/flutter/flutter/issues/115912
-        systemNavigationBarColor: surfaceContainer(ref),
+        systemNavigationBarColor:
+            Theme.of(context).colorScheme.surfaceContainer,
         systemNavigationBarIconBrightness: systemOverlayBrightness,
       ),
       scrolledUnderElevation: 0,

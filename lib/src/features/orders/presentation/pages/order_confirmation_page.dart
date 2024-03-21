@@ -50,7 +50,7 @@ class OrderConfirmationPage extends ConsumerWidget {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: surfaceContainer(ref),
+                    color: Theme.of(context).colorScheme.surfaceContainer,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
