@@ -59,7 +59,7 @@ class AuthFirebaseDataSource implements IAuthRemoteDataSource {
   @override
   Future<void> updateEmail(String email) async {
     try {
-      await _auth.currentUser!.updateEmail(email);
+      await _auth.currentUser!.verifyBeforeUpdateEmail(email);
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw AuthException.fromCode(e.code);
     } catch (_) {
