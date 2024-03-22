@@ -8,7 +8,7 @@ import 'package:shopit/src/core/core.dart';
 import 'package:shopit/src/common/common.dart';
 import 'package:shopit/src/features/features.dart';
 
-class OrderConfirmationPage extends ConsumerWidget {
+class OrderConfirmationPage extends ConsumerStatefulWidget {
   const OrderConfirmationPage({
     super.key,
     required this.orderId,
@@ -17,8 +17,21 @@ class OrderConfirmationPage extends ConsumerWidget {
   final String orderId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final order = ref.watch(orderProvider(orderId));
+  ConsumerState<OrderConfirmationPage> createState() =>
+      _OrderConfirmationPageState();
+}
+
+class _OrderConfirmationPageState extends ConsumerState<OrderConfirmationPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    ref.read(checkoutControllerProvider.notifier).clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final order = ref.watch(orderProvider(widget.orderId));
 
     return Scaffold(
       body: Padding(

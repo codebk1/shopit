@@ -75,7 +75,8 @@ class DeliveryPage extends ConsumerWidget {
                 context.pushReplacementNamed(Routes.payment.name);
               }
             },
-            disabled: checkout.deliveryAddressId == null,
+            disabled: checkout.deliveryAddressId == null ||
+                checkout.carrierId == null,
           ),
         ],
       ),

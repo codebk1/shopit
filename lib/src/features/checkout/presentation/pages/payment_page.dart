@@ -74,7 +74,8 @@ class PaymentPage extends ConsumerWidget {
                 context.pushReplacementNamed(Routes.summary.name);
               }
             },
-            disabled: checkout.paymentAddressId == null,
+            disabled:
+                checkout.paymentAddressId == null || checkout.paymentId == null,
           ),
         ],
       ),
