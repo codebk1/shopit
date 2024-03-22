@@ -19,8 +19,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await container.read(settingsControllerProvider.future);
 
   runApp(
-    ProviderScope(
-      parent: container,
+    UncontrolledProviderScope(
+      container: container,
       child: await builder(),
     ),
   );
