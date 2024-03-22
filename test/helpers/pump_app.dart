@@ -28,13 +28,13 @@ class MockGoRouterProvider extends StatelessWidget {
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
-    Widget widget, [
-    ProviderContainer? container,
+    Widget widget,
+    ProviderContainer container, [
     GoRouter? router,
   ]) {
     return pumpWidget(
-      ProviderScope(
-        parent: container,
+      UncontrolledProviderScope(
+        container: container,
         child: MockGoRouterProvider(
           goRouter: router ?? MockGoRouter(),
           child: MaterialApp(

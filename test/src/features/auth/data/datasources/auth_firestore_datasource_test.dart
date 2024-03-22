@@ -178,14 +178,15 @@ void main() {
           (_) => firebaseUser1,
         );
 
-        when(() => firebaseUser1.updateEmail(email))
+        when(() => firebaseUser1.verifyBeforeUpdateEmail(email))
             .thenAnswer((_) async => Future<void>);
 
         expect(sut.updateEmail(email), completes);
       });
 
       test('throws correct Exception when FirebaseAuthException is threw', () {
-        when(() => firebaseAuth.currentUser!.updateEmail(email)).thenThrow(
+        when(() => firebaseAuth.currentUser!.verifyBeforeUpdateEmail(email))
+            .thenThrow(
           firebase_auth.FirebaseAuthException(code: 'invalid-email'),
         );
 
@@ -197,7 +198,7 @@ void main() {
 
       test('throws correct Exception when FirebaseAuthException is not threw',
           () {
-        when(() => firebaseAuth.currentUser!.updateEmail(email))
+        when(() => firebaseAuth.currentUser!.verifyBeforeUpdateEmail(email))
             .thenThrow(Exception);
 
         expect(
@@ -220,7 +221,8 @@ void main() {
       });
 
       test('throws correct Exception when FirebaseAuthException is threw', () {
-        when(() => firebaseAuth.currentUser!.updateEmail(email)).thenThrow(
+        when(() => firebaseAuth.currentUser!.verifyBeforeUpdateEmail(email))
+            .thenThrow(
           firebase_auth.FirebaseAuthException(code: 'weak-password'),
         );
 
