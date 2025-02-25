@@ -43,7 +43,7 @@ dev_dependencies:
   riverpod_lint: 2.3.10
   build_runner: 2.4.8
   riverpod_generator: 2.4.0
-  freezed: 2.4.7
+  freezed: 3.0.0
   json_serializable: 6.7.1
   drift_dev: 2.16.0
 
