@@ -1,6 +1,3 @@
-> [!WARNING]  
-> Work in progress.
-
 ## DEMO
 https://github.com/codebk1/shopit/assets/20027710/f7a617ed-7477-459a-8820-204489a10f25
 
